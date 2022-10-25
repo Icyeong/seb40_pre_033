@@ -1,11 +1,12 @@
 import { GlobalStyle } from './assets/styles/GlobalStyle';
 import './assets/styles/variables.css';
+import { QuestionPage } from './pages/QuestionPage';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <div>삼삼조 화이팅</div>
+      <QuestionPage />
     </>
   );
 }
