@@ -29,5 +29,6 @@ export const GlobalStyle = createGlobalStyle`
     background-color: transparent;
     font-size: 100%;
     border: none;
+    cursor: pointer;
   }
 `;
