@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { QuestionHeader } from '../components/question/QuestionHeader';
 import { Question } from '../components/question/Question';
 import { Answer } from '../components/question/Answer';
-import { CreateAnswer } from '../components/question/CreateAnswer';
+import { AnswerWrite } from '../components/question/AnswerWrite';
 
 const Container = styled.div`
   padding: 24px;
@@ -22,7 +22,7 @@ export const QuestionPage = () => {
       <Content>
         <Question />
         <Answer />
-        <CreateAnswer />
+        <AnswerWrite />
       </Content>
     </Container>
   );
