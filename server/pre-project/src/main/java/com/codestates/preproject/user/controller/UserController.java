@@ -1,6 +1,7 @@
 package com.codestates.preproject.user.controller;
 
 import com.codestates.preproject.user.dto.UserPostDto;
+import com.codestates.preproject.user.dto.UserResponseDto;
 import com.codestates.preproject.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/auth/signup")
-    public ResponseEntity signUp(@Valid @RequestBody UserPostDto request) {
-        return new ResponseEntity("signup", HttpStatus.CREATED);
+    public ResponseEntity<UserResponseDto> signUp(@Valid @RequestBody UserPostDto request) {
+        return new ResponseEntity<>(userService.createUser(request), HttpStatus.CREATED);
     }
 }
