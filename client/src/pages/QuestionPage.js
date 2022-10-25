@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { QuestionHeader } from '../components/question/QuestionHeader';
-import { Qustion } from '../components/question/Question';
+import { Question } from '../components/question/Question';
 import { Answer } from '../components/question/Answer';
 import { CreateAnswer } from '../components/question/CreateAnswer';
 
@@ -20,7 +20,7 @@ export const QuestionPage = () => {
     <Container>
       <QuestionHeader />
       <Content>
-        <Qustion />
+        <Question />
         <Answer />
         <CreateAnswer />
       </Content>

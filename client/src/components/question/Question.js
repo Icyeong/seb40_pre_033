@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import { QustionContent } from './QustionContent';
-import { QuestionLeftBar } from './QustionLeftBar';
+import { QuestionContent } from './QuestionContent';
+import { QuestionLeftBar } from './QuestionLeftBar';
 
 const Block = styled.div`
   display: flex;
 `;
 
-export const Qustion = () => {
+export const Question = () => {
   return (
     <Block>
       <QuestionLeftBar />
-      <QustionContent />
+      <QuestionContent />
     </Block>
   );
 };

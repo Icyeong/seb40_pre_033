@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    color: #232629;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI Adjusted","Segoe UI","Liberation Sans",sans-serif;
   }
 
   ul {
@@ -25,6 +25,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button {
+    padding: 0;
+    background-color: transparent;
+    font-size: 100%;
     border: none;
   }
 `;

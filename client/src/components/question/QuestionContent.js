@@ -111,7 +111,7 @@ const Badge = styled.span`
   background-color: ${(props) => props.color};
 `;
 
-export const QustionContent = () => {
+export const QuestionContent = () => {
   return (
     <Block>
       <Body>
