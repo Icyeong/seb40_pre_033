@@ -19,9 +19,9 @@ class ArticleRepositoryTest {
     }
     @Test
     @DisplayName("게시글 등록 테스트")
-    void testCreateArticle() {
+    void testSaveArticle() {
         //given
-        final Article article = article.builder()
+        final Article article = Article.builder()
                 .title("질문제목")
                 .contents("질문내용")
                 .build();

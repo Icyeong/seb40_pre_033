@@ -1,7 +1,7 @@
 package com.codestates.preproject.article;
 
 
-
+@Service
 public class ArticleService {
     private final ArticleRepository articleRepository;
     public ArticleService(ArticleRepository articleRepository) {
