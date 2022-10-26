@@ -111,7 +111,7 @@ const Badge = styled.span`
   background-color: ${(props) => props.color};
 `;
 
-export const QuestionContent = () => {
+export const QuestionContent = (type) => {
   return (
     <Block>
       <Body>
@@ -139,46 +139,74 @@ ul {
           </code>
         </pre>
       </Body>
-      <Tags>
-        <li>python</li>
-        <li>ios</li>
-      </Tags>
+      {type.type === 'question' && (
+        <Tags>
+          <li>python</li>
+          <li>ios</li>
+        </Tags>
+      )}
       <Detail>
         <PostMenu>
           <li>Share</li>
           <li>Edit</li>
           <li>Follow</li>
         </PostMenu>
-        <div>
+        {/* ✨ 리팩토링 예정 */}
+        {type.type === 'question' ? (
+          <div>
+            <PostUser>
+              <h5>edited 18 hours ago</h5>
+              <UserInfo>
+                <img
+                  src="https://via.placeholder.com/32"
+                  alt="user-thumbnail"
+                />
+                <div>
+                  <h6>편집한 사람</h6>
+                  <ul>
+                    <li>3,192</li>
+                    <li>
+                      <Badge color="#FFCC01" />6
+                    </li>
+                    <li>
+                      <Badge color="#B4B8BC" />
+                      11
+                    </li>
+                    <li>
+                      <Badge color="#D1A684" />
+                      27
+                    </li>
+                  </ul>
+                </div>
+              </UserInfo>
+            </PostUser>
+            <PostUser color="#D9EAF7">
+              <h5>asked Oct 16 at 8:40</h5>
+              <UserInfo>
+                <img
+                  src="https://via.placeholder.com/32"
+                  alt="user-thumbnail"
+                />
+                <div>
+                  <h6>질문한 사람</h6>
+                  <ul>
+                    <li>156</li>
+                    <li>
+                      <Badge color="#D1A684" />
+                      27
+                    </li>
+                  </ul>
+                </div>
+              </UserInfo>
+            </PostUser>
+          </div>
+        ) : (
           <PostUser>
-            <h5>edited 18 hours ago</h5>
+            <h5>answerd Oct 17 at 6:54</h5>
             <UserInfo>
               <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
               <div>
-                <h6>편집한 사람</h6>
-                <ul>
-                  <li>3,192</li>
-                  <li>
-                    <Badge color="#FFCC01" />6
-                  </li>
-                  <li>
-                    <Badge color="#B4B8BC" />
-                    11
-                  </li>
-                  <li>
-                    <Badge color="#D1A684" />
-                    27
-                  </li>
-                </ul>
-              </div>
-            </UserInfo>
-          </PostUser>
-          <PostUser color="#D9EAF7">
-            <h5>asked Oct 16 at 8:40</h5>
-            <UserInfo>
-              <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
-              <div>
-                <h6>질문한 사람</h6>
+                <h6>답변한 사람</h6>
                 <ul>
                   <li>156</li>
                   <li>
@@ -189,7 +217,7 @@ ul {
               </div>
             </UserInfo>
           </PostUser>
-        </div>
+        )}
       </Detail>
     </Block>
   );

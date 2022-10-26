@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { QuestionHeader } from '../components/question/QuestionHeader';
-import { Question } from '../components/question/Question';
-import { Answer } from '../components/question/Answer';
-import { AnswerWrite } from '../components/question/AnswerWrite';
+import { QuestionTemplate } from '../components/question/QuestionTemplate';
+import { Answers } from '../components/question/Answers';
 
 const Container = styled.div`
   padding: 24px;
@@ -20,9 +19,9 @@ export const QuestionPage = () => {
     <Container>
       <QuestionHeader />
       <Content>
-        <Question />
-        <Answer />
-        <AnswerWrite />
+        <QuestionTemplate type="question" />
+        <Answers />
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       </Content>
     </Container>
   );

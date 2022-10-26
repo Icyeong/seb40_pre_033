@@ -13,13 +13,15 @@ const Title = styled.div`
 
 export const AskQuestion = styled.button`
   margin-left: 12px;
-  padding: 10.4px;
+  border: 1px solid transparent;
+  border-radius: 3px;
   background-color: #0a95ff;
   font-size: 13px;
   color: white;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  cursor: pointer;
+
+  a {
+    padding: 10.4px;
+  }
 
   &:active {
     background-color: #00b3bf;
@@ -56,7 +58,9 @@ export const QuestionHeader = () => {
     <>
       <Title>
         <h1>질문글 제목</h1>
-        <AskQuestion>Ask Question</AskQuestion>
+        <AskQuestion>
+          <a href="/questions/ask">Ask Question</a>
+        </AskQuestion>
       </Title>
       <Detail>
         <li>
