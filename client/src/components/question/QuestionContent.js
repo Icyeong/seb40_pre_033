@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Tags } from '../Common/Tags';
 
 const Block = styled.div`
   padding-right: 16px;
@@ -18,41 +19,52 @@ const Body = styled.div`
   }
 `;
 
-export const Tags = styled.ul`
-  display: flex;
+const QuestionTags = styled(Tags)`
   margin: 24px 0 25px 0;
-
-  li {
-    margin-right: 4px;
-    padding: 4px 6px;
-    color: hsl(205, 47%, 42%);
-    background-color: hsl(205, 46%, 92%);
-    border-radius: 3px;
-    font-size: 12px;
-  }
 `;
 
 const Detail = styled.div`
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   margin: 16px 0;
   padding-top: 4px;
 
   > div {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 `;
 
 const PostMenu = styled.ul`
   display: flex;
-  width: 96px;
+  flex-wrap: wrap;
+  flex: 1 auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+
   margin: 4px 16px 4px 0;
   margin-right: 16px;
 
   li {
-    margin: 4px;
+    margin: 0 4px;
     font-size: 13px;
     color: #6a737c;
+    height: 1rem;
+  }
+
+  h6 {
+    font-size: 11px;
+  }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    li {
+      font-size: 11px;
+    }
   }
 `;
 
@@ -103,6 +115,15 @@ const UserInfo = styled.div`
       }
     }
   }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    > div {
+      h6 {
+        font-size: 11px;
+      }
+    }
+  }
 `;
 
 const Badge = styled.span`
@@ -114,7 +135,7 @@ const Badge = styled.span`
   background-color: ${(props) => props.color};
 `;
 
-export const QuestionContent = () => {
+export const QuestionContent = (type) => {
   return (
     <Block>
       <Body>
@@ -142,46 +163,74 @@ ul {
           </code>
         </pre>
       </Body>
-      <Tags>
-        <li>python</li>
-        <li>ios</li>
-      </Tags>
+      {type.type === 'question' && (
+        <QuestionTags>
+          <li>python</li>
+          <li>ios</li>
+        </QuestionTags>
+      )}
       <Detail>
         <PostMenu>
           <li>Share</li>
           <li>Edit</li>
           <li>Follow</li>
         </PostMenu>
-        <div>
+        {/* ✨ 리팩토링 예정 */}
+        {type.type === 'question' ? (
+          <div>
+            <PostUser>
+              <h5>edited 18 hours ago</h5>
+              <UserInfo>
+                <img
+                  src="https://via.placeholder.com/32"
+                  alt="user-thumbnail"
+                />
+                <div>
+                  <h6>편집한 사람</h6>
+                  <ul>
+                    <li>3,192</li>
+                    <li>
+                      <Badge color="#FFCC01" />6
+                    </li>
+                    <li>
+                      <Badge color="#B4B8BC" />
+                      11
+                    </li>
+                    <li>
+                      <Badge color="#D1A684" />
+                      27
+                    </li>
+                  </ul>
+                </div>
+              </UserInfo>
+            </PostUser>
+            <PostUser color="#D9EAF7">
+              <h5>asked Oct 16 at 8:40</h5>
+              <UserInfo>
+                <img
+                  src="https://via.placeholder.com/32"
+                  alt="user-thumbnail"
+                />
+                <div>
+                  <h6>질문한 사람</h6>
+                  <ul>
+                    <li>156</li>
+                    <li>
+                      <Badge color="#D1A684" />
+                      27
+                    </li>
+                  </ul>
+                </div>
+              </UserInfo>
+            </PostUser>
+          </div>
+        ) : (
           <PostUser>
-            <h5>edited 18 hours ago</h5>
+            <h5>answerd Oct 17 at 6:54</h5>
             <UserInfo>
               <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
               <div>
-                <h6>편집한 사람</h6>
-                <ul>
-                  <li>3,192</li>
-                  <li>
-                    <Badge color="#FFCC01" />6
-                  </li>
-                  <li>
-                    <Badge color="#B4B8BC" />
-                    11
-                  </li>
-                  <li>
-                    <Badge color="#D1A684" />
-                    27
-                  </li>
-                </ul>
-              </div>
-            </UserInfo>
-          </PostUser>
-          <PostUser color="#D9EAF7">
-            <h5>asked Oct 16 at 8:40</h5>
-            <UserInfo>
-              <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
-              <div>
-                <h6>질문한 사람</h6>
+                <h6>답변한 사람</h6>
                 <ul>
                   <li>156</li>
                   <li>
@@ -192,7 +241,7 @@ ul {
               </div>
             </UserInfo>
           </PostUser>
-        </div>
+        )}
       </Detail>
     </Block>
   );
