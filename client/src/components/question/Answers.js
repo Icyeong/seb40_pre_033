@@ -15,6 +15,13 @@ const Block = styled.div`
       color: #0074cc;
     }
   }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    > h2 {
+      font-size: 14.3846px;
+    }
+  }
 `;
 
 export const Answers = () => {

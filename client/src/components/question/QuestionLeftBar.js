@@ -29,6 +29,13 @@ const Block = styled.div`
     margin: 2px 11.5px;
     padding: 6px 0;
   }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    span {
+      font-size: 19.8px;
+    }
+  }
 `;
 
 export const QuestionLeftBar = () => {

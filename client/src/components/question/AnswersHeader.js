@@ -8,13 +8,22 @@ const Block = styled.div`
   h2 {
     font-size: 19px;
   }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    h2 {
+      font-size: 16.0769px;
+    }
+  }
 `;
 
 const SortSelect = styled.div`
+  display: flex;
   position: relative;
 
   label {
     font-size: 12px;
+    width: 25%;
   }
   select {
     padding: 7.8px 32px 7.8px 9.1px;
@@ -23,6 +32,7 @@ const SortSelect = styled.div`
     font-size: 13px;
     color: #0c0d0e;
     appearance: none;
+    width: 100%;
 
     &:focus {
       border-color: hsl(205, 47%, 42%);
@@ -35,7 +45,6 @@ const SortSelect = styled.div`
   &:after {
     content: '';
     position: absolute;
-    z-index: var(--zi-selected);
     right: 13px;
     border-color: currentColor transparent;
     border-style: solid;
@@ -44,14 +53,24 @@ const SortSelect = styled.div`
     box-sizing: inherit;
   }
   &:before {
-    top: calc(50% - 5px);
+    top: calc(50% + 2.5px);
     border-top-width: 0;
     border-bottom-width: 4px;
   }
   &:after {
-    top: calc(50% + 1px);
+    top: calc(50% + 8.5px);
     border-top-width: 4px;
     border-bottom-width: 0;
+  }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+
+    label {
+      width: 100%;
+      margin-bottom: 4px;
+    }
   }
 `;
 

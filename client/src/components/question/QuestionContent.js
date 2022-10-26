@@ -25,25 +25,46 @@ const QuestionTags = styled(Tags)`
 
 const Detail = styled.div`
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   margin: 16px 0;
   padding-top: 4px;
 
   > div {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 `;
 
 const PostMenu = styled.ul`
   display: flex;
-  width: 96px;
+  flex-wrap: wrap;
+  flex: 1 auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+
   margin: 4px 16px 4px 0;
   margin-right: 16px;
 
   li {
-    margin: 4px;
+    margin: 0 4px;
     font-size: 13px;
     color: #6a737c;
+    height: 1rem;
+  }
+
+  h6 {
+    font-size: 11px;
+  }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    li {
+      font-size: 11px;
+    }
   }
 `;
 
@@ -88,6 +109,15 @@ const UserInfo = styled.div`
         margin: 0px 3px 0 2px;
         font-size: 12px;
         color: #838c95;
+      }
+    }
+  }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    > div {
+      h6 {
+        font-size: 11px;
       }
     }
   }

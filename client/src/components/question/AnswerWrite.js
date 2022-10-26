@@ -16,6 +16,13 @@ const Block = styled.div`
     line-height: 284.333px;
     text-align: center;
   }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    h2 {
+      font-size: 16.0769px;
+    }
+  }
 `;
 
 const PostAnswerButton = styled(BlueButton)`

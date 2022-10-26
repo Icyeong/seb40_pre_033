@@ -10,14 +10,33 @@ const Title = styled.div`
     font-size: 27px;
     color: #3b4045;
   }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+
+    h1 {
+      font-size: 22.8462px;
+    }
+  }
 `;
 
 const AskQuestionButton = styled(BlueButton)`
   margin-left: 12px;
+  width: 101px;
+  min-width: 101px;
+  height: 42px;
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    margin: 0 0 12px 0;
+  }
 `;
 
 const Detail = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid lightgray;
@@ -30,8 +49,15 @@ const Detail = styled.ul`
     margin-right: 16px;
   }
   span {
-    margin-right: 8px;
+    margin-right: 5px;
     color: #6a737c;
+  }
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    li {
+      font-size: 11px;
+    }
   }
 `;
 
@@ -39,7 +65,7 @@ export const QuestionHeader = () => {
   return (
     <>
       <Title>
-        <h1>질문글 제목</h1>
+        <h1>what&#39;s the meaning of clip_box in Matplotlib Artist</h1>
         <AskQuestionButton>
           <a href="/Questions/ask">Ask Question</a>
         </AskQuestionButton>
