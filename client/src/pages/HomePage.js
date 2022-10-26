@@ -5,7 +5,6 @@ const Block = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-
   a {
     margin: 20px;
   }

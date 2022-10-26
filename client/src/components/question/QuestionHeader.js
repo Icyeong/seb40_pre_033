@@ -37,7 +37,6 @@ const Detail = styled.ul`
   margin-bottom: 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid lightgray;
-
   li {
     margin-bottom: 8px;
     font-size: 13px;
