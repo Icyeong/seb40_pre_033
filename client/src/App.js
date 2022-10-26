@@ -17,9 +17,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/users/login" element={<LoginPage />} />
           <Route path="/users/signup" element={<SignupPage />} />
-          <Route path="/questions/:id" element={<QuestionPage />} />
-          <Route path="/questions/ask" element={<QuestionWritePage />} />
-          <Route path="/questions/edit/:id" element={<QuestionEditPage />} />
+          <Route path="/Questions/:id" element={<QuestionPage />} />
+          <Route path="/Questions/ask" element={<QuestionWritePage />} />
+          <Route path="/Questions/edit/:id" element={<QuestionEditPage />} />
         </Routes>
       </Router>
     </>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BlueButton } from '../Button/BlueButton';
 
 const Title = styled.div`
   display: flex;
@@ -11,27 +12,8 @@ const Title = styled.div`
   }
 `;
 
-export const AskQuestion = styled.button`
+const AskQuestionButton = styled(BlueButton)`
   margin-left: 12px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  background-color: #0a95ff;
-  font-size: 13px;
-  color: white;
-
-  a {
-    padding: 10.4px;
-  }
-
-  &:active {
-    background-color: #00b3bf;
-  }
-  &:hover {
-    background-color: #0074cc;
-  }
-  &:focus {
-    background-color: #0074cc;
-  }
 `;
 
 const Detail = styled.ul`
@@ -58,9 +40,9 @@ export const QuestionHeader = () => {
     <>
       <Title>
         <h1>질문글 제목</h1>
-        <AskQuestion>
-          <a href="/questions/ask">Ask Question</a>
-        </AskQuestion>
+        <AskQuestionButton>
+          <a href="/Questions/ask">Ask Question</a>
+        </AskQuestionButton>
       </Title>
       <Detail>
         <li>

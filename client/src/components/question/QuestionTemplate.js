@@ -3,14 +3,16 @@ import { AnswerComments } from './AnswerComments';
 import { QuestionContent } from './QuestionContent';
 import { QuestionLeftBar } from './QuestionLeftBar';
 
-const Block = styled.div`
+const LiBlock = styled.li`
   padding: ${(props) => props.type === 'answer' && '16px 0'};
+  border-bottom: 1px solid hsl(201, 8%, 90%);
 
   > div {
     display: flex;
   }
 
   a {
+    margin-left: 52px;
     padding: 0 3px 2px 3px;
     font-size: 13px;
     color: #838c95;
@@ -24,7 +26,7 @@ const Block = styled.div`
 
 export const QuestionTemplate = (type) => {
   return (
-    <Block type={type.type}>
+    <LiBlock type={type.type}>
       <div>
         <QuestionLeftBar />
         <QuestionContent type={type.type} />
@@ -32,6 +34,6 @@ export const QuestionTemplate = (type) => {
       {type.type === 'answer' && <AnswerComments />}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a href="#">Add a comment</a>
-    </Block>
+    </LiBlock>
   );
 };

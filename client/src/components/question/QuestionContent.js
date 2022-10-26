@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Tags } from './Tags';
 
 const Block = styled.div`
   padding-right: 16px;
@@ -18,18 +19,8 @@ const Body = styled.div`
   }
 `;
 
-export const Tags = styled.ul`
-  display: flex;
+const QuestionTags = styled(Tags)`
   margin: 24px 0 25px 0;
-
-  li {
-    margin-right: 4px;
-    padding: 4px 6px;
-    color: hsl(205, 47%, 42%);
-    background-color: hsl(205, 46%, 92%);
-    border-radius: 3px;
-    font-size: 12px;
-  }
 `;
 
 const Detail = styled.div`
@@ -140,10 +131,10 @@ ul {
         </pre>
       </Body>
       {type.type === 'question' && (
-        <Tags>
+        <QuestionTags>
           <li>python</li>
           <li>ios</li>
-        </Tags>
+        </QuestionTags>
       )}
       <Detail>
         <PostMenu>
