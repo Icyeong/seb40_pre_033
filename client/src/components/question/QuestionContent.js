@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Tags } from './Tags';
+import { Tags } from '../Common/Tags';
 
 const Block = styled.div`
   padding-right: 16px;
