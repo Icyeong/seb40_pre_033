@@ -1,7 +1,7 @@
 ---
-name: feature 템플릿
+name: feature
 about: add feature
-title: ''
+title: "[FE BE] "
 labels: feature
 assignees: ''
 
