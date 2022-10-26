@@ -21,10 +21,7 @@ const Body = styled.div`
 export const Tags = styled.ul`
   display: flex;
   margin: 24px 0 25px 0;
-<<<<<<< HEAD
-=======
 
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
   li {
     margin-right: 4px;
     padding: 4px 6px;
@@ -40,10 +37,7 @@ const Detail = styled.div`
   justify-content: space-between;
   margin: 16px 0;
   padding-top: 4px;
-<<<<<<< HEAD
-=======
 
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
   > div {
     display: flex;
   }
@@ -54,10 +48,7 @@ const PostMenu = styled.ul`
   width: 96px;
   margin: 4px 16px 4px 0;
   margin-right: 16px;
-<<<<<<< HEAD
-=======
 
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
   li {
     margin: 4px;
     font-size: 13px;
@@ -71,10 +62,7 @@ export const PostUser = styled.ul`
   padding: 5px 6px 7px 7px;
   background: ${(props) => props.color && props.color};
   border-radius: 3px;
-<<<<<<< HEAD
-=======
 
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
   h5 {
     margin: 1px 0 4px 0;
     color: #00747c;
@@ -84,31 +72,23 @@ export const PostUser = styled.ul`
 
 const UserInfo = styled.div`
   display: flex;
-<<<<<<< HEAD
-=======
 
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
   img {
     width: 32px;
     height: 32px;
   }
-<<<<<<< HEAD
-  > div {
-    margin-left: 8px;
-=======
 
   > div {
     margin-left: 8px;
+  }
+  > div {
+    margin-left: 8px;
 
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
     h6 {
       color: #00747c;
       font-size: 13px;
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
     ul {
       display: flex;
       li:first-of-type {

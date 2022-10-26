@@ -3,10 +3,7 @@ import styled from 'styled-components';
 const Title = styled.div`
   display: flex;
   justify-content: space-between;
-<<<<<<< HEAD
-=======
 
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
   h1 {
     margin: 0 0 8px 0;
     font-size: 27px;
@@ -23,10 +20,7 @@ export const AskQuestion = styled.button`
   border: 1px solid transparent;
   border-radius: 3px;
   cursor: pointer;
-<<<<<<< HEAD
-=======
 
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
   &:active {
     background-color: #00b3bf;
   }
@@ -43,10 +37,6 @@ const Detail = styled.ul`
   margin-bottom: 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid lightgray;
-<<<<<<< HEAD
-=======
-
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
   li {
     margin-bottom: 8px;
     font-size: 13px;

@@ -5,10 +5,6 @@ const Block = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-<<<<<<< HEAD
-=======
-
->>>>>>> 65f8c095c4d87d368ab88c96728f500793273993
   a {
     margin: 20px;
   }
