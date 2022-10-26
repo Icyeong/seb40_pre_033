@@ -92,6 +92,9 @@ const UserInfo = styled.div`
 
   > div {
     margin-left: 8px;
+  }
+  > div {
+    margin-left: 8px;
 
     h6 {
       color: #00747c;

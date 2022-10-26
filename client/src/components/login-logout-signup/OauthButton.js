@@ -1,5 +1,9 @@
 import styled from 'styled-components';
-import { FacebookSvg, GithubSvg, GoogleSvg } from '../assets/images/LoginSvg';
+import {
+  FacebookSvg,
+  GithubSvg,
+  GoogleSvg,
+} from '../../assets/images/LoginSvg';
 
 const Button = styled.button`
   width: 100%;
