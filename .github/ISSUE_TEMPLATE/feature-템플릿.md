@@ -1,6 +1,6 @@
 ---
-name: "[FE BE] "
-about: feat 템플릿
+name: feature 템플릿
+about: add feature
 title: ''
 labels: feature
 assignees: ''
@@ -14,3 +14,4 @@ assignees: ''
 
 ### 관련 이슈
 - #1
+위의 번호를 바꾸시면 됩니다
