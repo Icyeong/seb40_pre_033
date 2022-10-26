@@ -1,6 +1,8 @@
 package com.codestates.preproject.article;
 
 
+import org.springframework.stereotype.Service;
+
 @Service
 public class ArticleService {
     private final ArticleRepository articleRepository;
