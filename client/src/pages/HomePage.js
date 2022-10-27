@@ -1,24 +1,38 @@
 import styled from 'styled-components';
+import { Footer } from '../components/shared/Footer/Footer';
+import { Header } from '../components/shared/Header/Header';
+import { Sidebar } from '../components/shared/Sidebar/Sidebar';
+import { SidebarWidget } from '../components/shared/SidebarWidget/SidebarWidget';
 
 const Block = styled.div`
-  padding: 30px;
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  /* flex-direction: column;
+  text-align: center; */
+
   a {
-    margin: 20px;
+    margin: 10px;
+  }
+
+  aside {
+    float: right;
   }
 `;
 
 export const HomePage = () => {
   return (
-    <Block>
-      <a href="/">홈페이지로 이동</a>
-      <a href="/users/login">로그인 페이지로 이동</a>
-      <a href="/users/signup">회원가입 페이지로 이동</a>
-      <a href="/Questions/1">상세글 페이지로 이동</a>
-      <a href="/Questions/ask">질문글 작성 페이지로 이동</a>
-      <a href="/Questions/edit/1">질문글 수정 페이지로 이동</a>
-    </Block>
+    <div>
+      <Block>
+        <Header />
+        <Sidebar />
+        <a href="/questions/1">상세글 페이지로 이동</a>
+        <a href="/questions/ask">질문글 작성 페이지로 이동</a>
+        <a href="/questions/edit/1">질문글 수정 페이지로 이동</a>
+        <aside>
+          <section></section>
+          <SidebarWidget />
+        </aside>
+      </Block>
+      <Footer />
+    </div>
   );
 };
