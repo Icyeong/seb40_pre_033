@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HasErrorSvg } from '../../assets/images/LoginSvg';
-import { LoginButton } from '../../assets/styles/LoginStyle';
+// import { HasErrorSvg } from '../../assets/images/LoginSvg';
+import { BlueButton } from '../../assets/styles/LoginStyle';
+import Input from './Input';
 // import useFetch from '../../hooks/useFetch';
 
 const LoginForm = () => {
@@ -54,34 +55,28 @@ const LoginForm = () => {
 
   return (
     <form>
-      <div className="form" ref={emailFormEl}>
-        <label htmlFor="email-input">Email</label>
-        <input
-          id="email-input"
-          type="text"
-          name="email"
-          value={email}
-          onChange={inputHandler}
-        />
-        <HasErrorSvg />
-      </div>
-      <p className="inValid-txt inValid-email">{invalidEmail}</p>
-      <div className="form" ref={passwordFormEl}>
-        <div className="inline">
-          <label htmlFor="password-input">Password</label>
-          <p>Forgot password?</p>
-        </div>
-        <input
-          id="password-input"
-          type="password"
-          name="password"
-          value={password}
-          onChange={inputHandler}
-        />
-        <HasErrorSvg />
-      </div>
-      <p className="inValid-txt inValid-password">{invalidPassword}</p>
-      <LoginButton onClick={loginHandler}>Log in</LoginButton>
+      <Input
+        label="Email"
+        id="email-input"
+        type="text"
+        name="email"
+        inputRef={emailFormEl}
+        value={email}
+        onChange={inputHandler}
+        invalidTxt={invalidEmail}
+      />
+      <Input
+        label="Password"
+        id="password-input"
+        type="password"
+        name="password"
+        inputRef={passwordFormEl}
+        value={password}
+        onChange={inputHandler}
+        invalidTxt={invalidPassword}
+        smTxt="Forgot password?"
+      />
+      <BlueButton onClick={loginHandler}>Log in</BlueButton>
     </form>
   );
 };
