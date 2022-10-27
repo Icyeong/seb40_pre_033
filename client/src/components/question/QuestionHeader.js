@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BlueButton } from '../Button/BlueButton';
+import { BlueButton } from '../Common/BlueButton';
 
 const Title = styled.div`
   display: flex;
