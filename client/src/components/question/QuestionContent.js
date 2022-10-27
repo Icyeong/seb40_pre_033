@@ -52,8 +52,14 @@ const PostMenu = styled.ul`
   li {
     margin: 0 4px;
     font-size: 13px;
-    color: #6a737c;
+    color: var(--black-500);
     height: 1rem;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: var(--black-400);
+    }
   }
 
   h6 {
@@ -72,12 +78,12 @@ export const PostUser = styled.ul`
   width: 200px;
   margin: 4px 0;
   padding: 5px 6px 7px 7px;
-  background: ${(props) => props.color && props.color};
+  background: ${(props) => props.background && props.background};
   border-radius: 3px;
 
   h5 {
     margin: 1px 0 4px 0;
-    color: #00747c;
+    color: var(--black-500);
     font-size: 12px;
   }
 `;
@@ -88,6 +94,7 @@ const UserInfo = styled.div`
   img {
     width: 32px;
     height: 32px;
+    cursor: pointer;
   }
 
   > div {
@@ -97,8 +104,14 @@ const UserInfo = styled.div`
     margin-left: 8px;
 
     h6 {
-      color: #00747c;
+      color: var(--theme-link-color);
       font-size: 13px;
+      cursor: pointer;
+
+      &:hover,
+      &:active {
+        color: var(--theme-link-color-hover);
+      }
     }
 
     ul {
@@ -107,11 +120,12 @@ const UserInfo = styled.div`
         margin-left: 2px;
         font-weight: bold;
         font-size: 12px;
+        color: var(--black-500);
       }
       li:not(:first-of-type) {
         margin: 0px 3px 0 2px;
         font-size: 12px;
-        color: #838c95;
+        color: var(--black-400);
       }
     }
   }
@@ -165,8 +179,14 @@ ul {
       </Body>
       {type.type === 'question' && (
         <QuestionTags>
-          <li>python</li>
-          <li>ios</li>
+          <li>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a href="#">python</a>
+          </li>
+          <li>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a href="#">ios</a>
+          </li>
         </QuestionTags>
       )}
       <Detail>
@@ -178,7 +198,7 @@ ul {
         {/* ✨ 리팩토링 예정 */}
         {type.type === 'question' ? (
           <div>
-            <PostUser>
+            {/* <PostUser>
               <h5>edited 18 hours ago</h5>
               <UserInfo>
                 <img
@@ -203,8 +223,8 @@ ul {
                   </ul>
                 </div>
               </UserInfo>
-            </PostUser>
-            <PostUser color="#D9EAF7">
+            </PostUser> */}
+            <PostUser background="#D9EAF7">
               <h5>asked Oct 16 at 8:40</h5>
               <UserInfo>
                 <img

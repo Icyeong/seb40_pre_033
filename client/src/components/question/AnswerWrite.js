@@ -26,8 +26,7 @@ const Block = styled.div`
 `;
 
 const PostAnswerButton = styled(BlueButton)`
-  margin: 10px 0 15px 0;
-  padding: 10.4px;
+  padding: 10px 0 15px 0;
 `;
 
 export const AnswerWrite = () => {
@@ -35,7 +34,10 @@ export const AnswerWrite = () => {
     <Block>
       <h2>Your Answer</h2>
       <div>텍스트 에디터</div>
-      <PostAnswerButton>Post Your Answer</PostAnswerButton>
+      <PostAnswerButton>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a href="#">Post Your Answer</a>
+      </PostAnswerButton>
     </Block>
   );
 };

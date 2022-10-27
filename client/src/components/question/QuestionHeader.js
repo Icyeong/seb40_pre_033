@@ -8,7 +8,7 @@ const Title = styled.div`
   h1 {
     margin: 0 0 8px 0;
     font-size: 27px;
-    color: #3b4045;
+    color: var(--black-700);
   }
 
   // Mobile
@@ -24,9 +24,7 @@ const Title = styled.div`
 
 const AskQuestionButton = styled(BlueButton)`
   margin-left: 12px;
-  width: 101px;
-  min-width: 101px;
-  height: 42px;
+  min-width: 100.115px;
 
   // Mobile
   @media screen and (max-width: 640px) {
@@ -37,7 +35,6 @@ const AskQuestionButton = styled(BlueButton)`
 const Detail = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid lightgray;
   li {
@@ -49,7 +46,7 @@ const Detail = styled.ul`
   }
   span {
     margin-right: 5px;
-    color: #6a737c;
+    color: var(--fc-light);
   }
 
   // Mobile
