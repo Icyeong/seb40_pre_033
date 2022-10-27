@@ -53,12 +53,12 @@ const SortSelect = styled.div`
     box-sizing: inherit;
   }
   &:before {
-    top: calc(50% + 2.5px);
+    top: calc(50% - 5px);
     border-top-width: 0;
     border-bottom-width: 4px;
   }
   &:after {
-    top: calc(50% + 8.5px);
+    top: calc(50% + 1px);
     border-top-width: 4px;
     border-bottom-width: 0;
   }
@@ -70,6 +70,13 @@ const SortSelect = styled.div`
     label {
       width: 100%;
       margin-bottom: 4px;
+    }
+
+    &:before {
+      top: calc(50% + 5px);
+    }
+    &:after {
+      top: calc(50% + 11px);
     }
   }
 `;
