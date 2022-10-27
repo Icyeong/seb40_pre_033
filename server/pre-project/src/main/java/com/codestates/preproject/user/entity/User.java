@@ -9,6 +9,8 @@ import org.springframework.data.domain.Auditable;
 
 import javax.persistence.*;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -33,11 +35,15 @@ public class User extends BaseTime {
     @Column(length = 20, nullable = false)
     private UserStatus userStatus = UserStatus.USER_ACTIVE;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
+
     @Builder
-    public User(String email, String password, String nickname) {
+    public User(String email, String password, String nickname, List<String> roles) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
+        this.roles = roles;
     }
 
     public enum UserStatus {
