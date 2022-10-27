@@ -26,7 +26,7 @@ const Block = styled.div`
 `;
 
 const PostAnswerButton = styled(BlueButton)`
-  padding: 10px 0 15px 0;
+  margin: 20.4px 0 25.4px 0;
 `;
 
 export const AnswerWrite = () => {
