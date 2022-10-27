@@ -41,4 +41,17 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 100%;
     color: inherit;
   }
+  .g-recaptcha iframe {
+    max-width: 100%;
+    transform:scale(0.77);
+    -webkit-transform:scale(0.77);
+    transform-origin: center center;
+    -webkit-transform-origin: center center;
+  }
+  #rc-imageselect,.g-recaptcha {
+    transform:scale(0.77);
+    -webkit-transform:scale(0.77);
+    transform-origin:0 0;
+    -webkit-transform-origin:0 0;
+  }
 `;

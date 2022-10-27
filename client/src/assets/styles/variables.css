@@ -29,4 +29,8 @@
   --red-050: hsl(358,75%,97%);
   --red-100: hsl(358,76%,90%);
   --red-400: hsl(358,68%,59%);
+  --theme-link-color: var(--blue-600);
+  --theme-link-color-hover: var(--blue-500);
+  --fc-dark: hsl(210,8%,5%);
+  --fc-light: hsl(210,8%,45%);
 }
