@@ -10,13 +10,18 @@ const Block = styled.ul`
     padding: 6px;
     border-bottom: 1px solid hsl(201, 8%, 95%);
 
-    span:nth-of-type(1) {
+    > span {
       font-size: 13px;
     }
-    span:nth-of-type(3) {
-      margin: 0 3px;
-      font-size: 13px;
-      color: #9199a1;
+    > div {
+      display: flex;
+      align-items: center;
+
+      span:nth-of-type(2) {
+        margin: 0 3px;
+        font-size: 13px;
+        color: #9199a1;
+      }
     }
   }
 `;
@@ -48,11 +53,13 @@ export const AnswerComments = () => {
           behavior doesn&#39;t happen when the modifier is on the inner
           HStack...not sure how to fix it.
         </span>
-        <span>
-          -&nbsp; <UserButton>nickcoding</UserButton>
-        </span>
-        <span>Oct 18 at 16:23</span>
-        <PencilSvg />
+        <div>
+          <span>
+            -&nbsp; <UserButton>nickcoding</UserButton>
+          </span>
+          <span>Oct 18 at 16:23</span>
+          <PencilSvg />
+        </div>
       </li>
     </Block>
   );
