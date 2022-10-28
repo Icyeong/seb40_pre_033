@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { QuestionContent } from './QuestionContent';
 import { QuestionLeftBar } from './QuestionLeftBar';
 
-const LiBlock = styled.li`
+export const LiBlock = styled.li`
   padding: 16px 0;
   border-bottom: 1px solid hsl(201, 8%, 90%);
 
@@ -23,14 +23,13 @@ const LiBlock = styled.li`
   }
 `;
 
-export const QuestionTemplate = (type) => {
+export const QuestionTemplate = () => {
   return (
-    <LiBlock type={type.type}>
+    <LiBlock>
       <div>
         <QuestionLeftBar />
-        <QuestionContent type={type.type} />
+        <QuestionContent />
       </div>
-      {/* {type.type === 'answer' && <AnswerComments />} */}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a href="#">Add a comment</a>
     </LiBlock>

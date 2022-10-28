@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BlueButton } from '../../Common/BlueButton';
+import { BlueButton } from '../Common/BlueButton';
 
 const Block = styled.div`
   h2 {

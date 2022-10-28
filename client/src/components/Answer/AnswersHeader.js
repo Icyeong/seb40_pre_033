@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 const Block = styled.div`
@@ -82,9 +83,11 @@ const SortSelect = styled.div`
 `;
 
 export const AnswersHeader = () => {
+  let question = useSelector((state) => state.questionReducer);
+
   return (
     <Block>
-      <h2>2 Answers</h2>
+      <h2>{question.comments.length} Answers</h2>
       <SortSelect>
         <label htmlFor="answers-sort">Sorted by: </label>
         <select id="answers-sort">

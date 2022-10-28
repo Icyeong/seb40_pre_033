@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { BlueButton } from '../Common/BlueButton';
+import { useSelector } from 'react-redux';
 
 const Title = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const Title = styled.div`
 
     h1 {
       font-size: 22.8462px;
+      width: 100%;
     }
   }
 `;
@@ -58,12 +60,14 @@ const Detail = styled.ul`
 `;
 
 export const QuestionHeader = () => {
+  let question = useSelector((state) => state.questionReducer);
+
   return (
     <>
       <Title>
-        <h1>what&#39;s the meaning of clip_box in Matplotlib Artist</h1>
+        <h1>{question.title}</h1>
         <AskQuestionButton>
-          <a href="/Questions/ask">Ask Question</a>
+          <a href="/questions/ask">Ask Question</a>
         </AskQuestionButton>
       </Title>
       <Detail>
