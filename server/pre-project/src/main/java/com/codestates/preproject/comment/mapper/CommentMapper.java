@@ -1,5 +1,6 @@
 package com.codestates.preproject.comment.mapper;
 
+import com.codestates.preproject.comment.dto.CommentPatchDto;
 import com.codestates.preproject.comment.dto.CommentPostDto;
 import com.codestates.preproject.comment.dto.CommentResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
@@ -12,9 +13,9 @@ public interface CommentMapper {
 
     Comment commentPostToComment(CommentPostDto commentPostDto);
 
+    Comment commentPatchToComment(CommentPatchDto commentPatchDto);
+
     CommentResponseDto commentToCommentResponse(Comment comment);
 
     List<CommentResponseDto> CommentsToCommentResponseDtos(List<Comment> comments);
-
-    // TODO 답변 수정 매퍼 추가 필요
 }

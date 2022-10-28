@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Comment /*생성날짜, 수정날짜 상속 필요*/ {
 
     @Id
@@ -26,6 +28,11 @@ public class Comment /*생성날짜, 수정날짜 상속 필요*/ {
 
     @Column(name = "comment_content")
     private String content;
+
+    public Comment(String username, String content) {
+        this.username = username;
+        this.content = content;
+    }
 
     //TODO  PV와 NV는 추후 추가예정
 
