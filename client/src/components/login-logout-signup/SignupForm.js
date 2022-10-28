@@ -1,11 +1,11 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { HasErrorSvg } from '../../assets/images/LoginSvg';
 import { BlueButton } from '../../assets/styles/LoginStyle';
 import Input from './Input';
-// import useFetch from '../../hooks/useFetch';
+import OptionalInput from './OptionalInput';
+import Recaptcha from './Recaptcha';
 
-const LoginForm = () => {
+const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [invalidEmail, setInvalidEmail] = useState('');
@@ -52,9 +52,9 @@ const LoginForm = () => {
       setPassword(e.target.value);
     }
   };
-
   return (
     <form>
+      <Input label="Display name" id="name-input" type="text" name="name" />
       <Input
         label="Email"
         id="email-input"
@@ -74,11 +74,27 @@ const LoginForm = () => {
         value={password}
         onChange={inputHandler}
         invalidTxt={invalidPassword}
-        smTxt="Forgot password?"
+        reqTxt="Passwords must contain at least eight characters, including at least 1 letter and 1 number."
       />
-      <BlueButton onClick={loginHandler}>Log in</BlueButton>
+      <Recaptcha />
+      <OptionalInput />
+      <BlueButton onClick={loginHandler}>Sign up</BlueButton>
+      <div className="terms">
+        By clicking “Sign up”, you agree to our
+        <a href="https://stackoverflow.com/legal/terms-of-service/public">
+          terms of service
+        </a>
+        ,
+        <a href="https://stackoverflow.com/legal/privacy-policy">
+          privacy policy
+        </a>
+        and{' '}
+        <a href="https://stackoverflow.com/legal/cookie-policy">
+          cookie policy
+        </a>
+      </div>
     </form>
   );
 };
 
-export default LoginForm;
+export default SignupForm;
