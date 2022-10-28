@@ -1,4 +1,4 @@
-export const question = {
+export const questionData = {
   article_id: 1,
   title: '질문 제목',
   content: '질문 내용',
