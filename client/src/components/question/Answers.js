@@ -12,7 +12,12 @@ const Block = styled.div`
     font-size: 17px;
 
     > a {
-      color: #0074cc;
+      color: var(--theme-link-color);
+
+      &:hover,
+      &:active {
+        color: var(--theme-link-color-hover);
+      }
     }
   }
 
@@ -35,8 +40,14 @@ export const Answers = () => {
       <h2>
         Not the answer you&#39;re looking for? Browse other questions tagged{' '}
         <Tags>
-          <li>python</li>
-          <li>ios</li>
+          <li>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a href="#">python</a>
+          </li>
+          <li>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a href="#">ios</a>
+          </li>
         </Tags>
         or <a href="/questions/ask">ask your own question</a>.
       </h2>

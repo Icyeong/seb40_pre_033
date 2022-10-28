@@ -23,21 +23,21 @@ const SortSelect = styled.div`
 
   label {
     font-size: 12px;
-    width: 25%;
+    margin-right: 5px;
   }
   select {
     padding: 7.8px 32px 7.8px 9.1px;
-    border: 1px solid hsl(210, 8%, 75%);
+    border: 1px solid var(--bc-darker);
     border-radius: 3px;
     font-size: 13px;
-    color: #0c0d0e;
+    color: var(--fc-dark);
     appearance: none;
-    width: 100%;
+    outline: 0;
 
     &:focus {
       border-color: hsl(205, 47%, 42%);
       box-shadow: 0 0 0 4px hsla(206, 100%, 40%, 0.15);
-      outline: 0;
+      color: var(--black);
     }
   }
 
@@ -53,12 +53,12 @@ const SortSelect = styled.div`
     box-sizing: inherit;
   }
   &:before {
-    top: calc(50% + 2.5px);
+    top: calc(50% - 5px);
     border-top-width: 0;
     border-bottom-width: 4px;
   }
   &:after {
-    top: calc(50% + 8.5px);
+    top: calc(50% + 1px);
     border-top-width: 4px;
     border-bottom-width: 0;
   }
@@ -70,6 +70,13 @@ const SortSelect = styled.div`
     label {
       width: 100%;
       margin-bottom: 4px;
+    }
+
+    &:before {
+      top: calc(50% + 5px);
+    }
+    &:after {
+      top: calc(50% + 11px);
     }
   }
 `;
