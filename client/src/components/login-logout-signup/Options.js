@@ -1,13 +1,20 @@
 import { TalentSvg } from '../../assets/images/LoginSvg';
 import { OptionsWrapper } from '../../assets/styles/LoginStyle';
 
-const LoginOptions = () => {
+const Options = (option) => {
   return (
     <OptionsWrapper>
-      <p className="options">
-        Don t have an account?
-        <a href="https://naver.com">Sign up</a>
-      </p>
+      {option.signup ? (
+        <p className="options">
+          Already have an account?
+          <a href="https://naver.com">Log in</a>
+        </p>
+      ) : (
+        <p className="options">
+          Don t have an account?
+          <a href="https://naver.com">Sign up</a>
+        </p>
+      )}
       <p className="options">
         Are you an employer?
         <a href="https://naver.com" name="talent">
@@ -18,4 +25,4 @@ const LoginOptions = () => {
   );
 };
 
-export default LoginOptions;
+export default Options;

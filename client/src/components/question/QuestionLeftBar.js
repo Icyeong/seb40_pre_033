@@ -19,7 +19,7 @@ const Block = styled.div`
   }
   span {
     font-size: 21px;
-    color: #6a737c;
+    color: var(--black-500);
   }
 
   button:nth-child(4) {
