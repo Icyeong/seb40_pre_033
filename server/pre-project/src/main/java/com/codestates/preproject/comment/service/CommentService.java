@@ -2,7 +2,11 @@ package com.codestates.preproject.comment.service;
 
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
+import com.codestates.preproject.exception.BusinessLogicException;
+import com.codestates.preproject.exception.ExceptionCode;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CommentService {
@@ -39,7 +43,7 @@ public class CommentService {
         Comment findComment = commentRepository.findByCommentId(comment.getCommentId());
         findComment.setContent(comment.getContent());
 
-        return commentRepository.save(comment);
+        return commentRepository.save(findComment);
     }
 
 }

@@ -73,7 +73,7 @@ public class CommentController {
     }
 
     // 댓글 수정
-    @PatchMapping("/comment/{comment-id}")
+    @PatchMapping("/{comment-id}")
     public ResponseEntity patchComment(
             @PathVariable("comment-id") @Positive long commentId,
             @Valid @RequestBody CommentPatchDto commentPatchDto) {

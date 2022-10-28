@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 public class CommentPatchDto {
 
     private long commentId;
+    private String username;
     private String content;
 
     public void setCommentId(long commentId) {
