@@ -1,4 +1,4 @@
-package com.codestates.preproject.comment.dto;
+package com.codestates.preproject.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
