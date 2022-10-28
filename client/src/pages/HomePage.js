@@ -24,9 +24,6 @@ export const HomePage = () => {
       <Block>
         <Header />
         <Sidebar />
-        <a href="/questions/1">상세글 페이지로 이동</a>
-        <a href="/questions/ask">질문글 작성 페이지로 이동</a>
-        <a href="/questions/edit/1">질문글 수정 페이지로 이동</a>
         <aside>
           <section></section>
           <SidebarWidget />

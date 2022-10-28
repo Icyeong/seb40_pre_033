@@ -1,6 +1,6 @@
 import { GlobalStyle } from './assets/styles/GlobalStyle';
-import './assets/styles/variables.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './assets/styles/variables.css';
 
 import { HomePage } from './pages/HomePage';
 import Login from './pages/Login';
@@ -18,9 +18,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/users/login" element={<Login />} />\
           <Route path="/users/signup" element={<Signup />} />
-          <Route path="/Questions/:id" element={<QuestionPage />} />
-          <Route path="/Questions/ask" element={<QuestionWritePage />} />
-          <Route path="/Questions/edit/:id" element={<QuestionEditPage />} />
+          <Route path="/questions/:id" element={<QuestionPage />} />
+          <Route path="/questions/ask" element={<QuestionWritePage />} />
+          <Route path="/questions/edit/:id" element={<QuestionEditPage />} />
         </Routes>
       </Router>
     </>

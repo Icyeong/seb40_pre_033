@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { AnswersHeader } from './AnswersHeader';
-import { QuestionTemplate } from './QuestionTemplate';
+import { QuestionTemplate } from '../QuestionTemplate';
 import { AnswerWrite } from './AnswerWrite';
-import { Tags } from '../Common/Tags';
+import { Tags } from '../../Common/Tags';
 
 const Block = styled.div`
   padding-top: 10px;

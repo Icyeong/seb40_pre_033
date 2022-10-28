@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import { testReducer } from './testReducer';
+import { questionReducer } from './questionReducer';
 
-export const rootReducer = combineReducers({ testReducer });
+export const rootReducer = combineReducers({ questionReducer });

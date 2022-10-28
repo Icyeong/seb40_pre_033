@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { QuestionHeader } from '../components/question/QuestionHeader';
-import { QuestionTemplate } from '../components/question/QuestionTemplate';
-import { Answers } from '../components/question/Answers';
+import { QuestionHeader } from '../components/Question/QuestionHeader';
+import { QuestionTemplate } from '../components/Question/QuestionTemplate';
+import { Answers } from '../components/Question/Answer/Answers';
 
 const Container = styled.div`
   width: calc(100% - 164px);
