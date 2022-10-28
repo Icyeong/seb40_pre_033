@@ -20,6 +20,11 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
+    // 답변 조회
+    public Comment findComment(long commentId) {
+        return findComment(commentId);
+    }
+
     // 답변 생성
     public Comment createComment(Comment comment) {
         

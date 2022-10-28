@@ -43,6 +43,20 @@ public class CommentController {
         this.commentMapper = commentMapper;
     }
 
+    // 댓글 조회
+    @GetMapping("/comment/{comment-id}")
+    public ResponseEntity getComment(
+            @PathVariable("comment-id") @Positive long commentId) {
+
+        Comment comment = commentService.findComment(commentId);
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(commentMapper.commentToCommentResponse(comment)),
+                HttpStatus.OK
+        );
+    }
+
+
     // 댓글 생성
     @PostMapping
     public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto) {
