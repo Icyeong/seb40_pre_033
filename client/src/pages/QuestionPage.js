@@ -39,7 +39,7 @@ export const QuestionPage = () => {
     <Container>
       <QuestionHeader />
       <Content>
-        <QuestionTemplate type="question" />
+        <QuestionTemplate />
         <Answers />
       </Content>
     </Container>

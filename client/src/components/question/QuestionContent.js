@@ -156,7 +156,7 @@ export const QuestionContent = () => {
   return (
     <Block>
       <Body>
-        <p>question.content</p>
+        <p>{question.content}</p>
         <pre>
           <code></code>
         </pre>

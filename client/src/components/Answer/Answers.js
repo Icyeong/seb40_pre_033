@@ -11,6 +11,7 @@ const Block = styled.div`
   > h2 {
     margin: 15px 0 17px;
     font-size: 17px;
+    line-height: 1.5rem;
 
     > a {
       color: var(--theme-link-color);
@@ -37,8 +38,8 @@ export const Answers = () => {
     <Block>
       <AnswersHeader />
       <ul>
-        {question.comments.map((answer, comment_id) => (
-          <AnswersTemplate key={comment_id} />
+        {question.comments.map((answer, idx) => (
+          <AnswersTemplate key={answer.comment_id} idx={idx} />
         ))}
       </ul>
       <AnswerWrite />

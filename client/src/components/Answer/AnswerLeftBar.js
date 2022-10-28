@@ -7,15 +7,16 @@ import {
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
 
-export const AnswerLeftBar = () => {
+export const AnswerLeftBar = (type) => {
   let question = useSelector((state) => state.questionReducer);
+  const idx = type.idx;
 
   return (
     <Block>
       <button>
         <ArrowUpSvg />
       </button>
-      <span>{question.comments[0].vote}</span>
+      <span>{question.comments[idx].vote}</span>
       <button>
         <ArrowDownSvg />
       </button>
