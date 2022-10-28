@@ -4,10 +4,11 @@ import com.codestates.preproject.comment.dto.CommentPatchDto;
 import com.codestates.preproject.comment.dto.CommentPostDto;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
-import com.codestates.preproject.comment.dto.SingleResponseDto;
+import com.codestates.preproject.response.SingleResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
+@Validated
 @RequestMapping("/comment")
 public class CommentController {
 
@@ -44,7 +46,7 @@ public class CommentController {
     }
 
     // 댓글 조회
-    @GetMapping("/comment/{comment-id}")
+    @GetMapping("/{comment-id}")
     public ResponseEntity getComment(
             @PathVariable("comment-id") @Positive long commentId) {
 
