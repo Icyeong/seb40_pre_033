@@ -17,13 +17,13 @@ public class CommentService {
     }
 
     // 답변 생성
-    public Comment createComment(long commentId, Comment comment) {
-
-        Comment createComment = comment;
-
-        // 확인 필요  ~[classes/:na]
+    public Comment createCommet(Comment comment) {
+        
+        // 로그인 한 계정인지 확인
         return commentRepository.save(comment);
     }
 
     // TODO 유저 관련 메서드 생성 필요
+    
+    // TODO 로그인 한 계정인지 확인하는 메서드 추가 필요
 }

@@ -1,21 +1,20 @@
 package com.codestates.preproject.comment.mapper;
 
-import com.codestates.preproject.comment.dto.CommentDto;
+import com.codestates.preproject.comment.dto.CommentPostDto;
+import com.codestates.preproject.comment.dto.CommentResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
 import org.mapstruct.Mapper;
-import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
+@Mapper(componentModel = "spring")
 public interface CommentMapper {
 
-    CommentDto.Response commentToCommentResponse(Comment comment);
+    Comment commentPostToComment(CommentPostDto commentPostDto);
 
-    List<CommentDto.Response> commentToCommentResponses(List<Comment> comment);
+    CommentResponseDto commentToCommentResponse(Comment comment);
 
-    Comment commentPostToComment(CommentDto.Post requestBody);
-
+    List<CommentResponseDto> CommentsToCommentResponseDtos(List<Comment> comments);
 
     // TODO 답변 수정 매퍼 추가 필요
 }

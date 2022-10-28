@@ -9,28 +9,22 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Comment {
+public class Comment /*생성날짜, 수정날짜 상속 필요*/ {
 
     @Id
     @Column(name = "comment_id")
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long commentId;
 
     @ManyToOne
-    @NotNull
     @JoinColumn(name = "article_id")
     private Article articleId;
 
     @Column(name = "user_name")
-    @NotNull
     private String username;
 
     @Column(name = "comment_content")
-    @NotNull
     private String content;
 
     //TODO  PV와 NV는 추후 추가예정

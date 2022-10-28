@@ -1,18 +1,15 @@
 package com.codestates.preproject.comment.controller;
 
+import com.codestates.preproject.comment.dto.CommentPostDto;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
-import com.codestates.preproject.comment.dto.CommentDto;
 import com.codestates.preproject.comment.dto.SingleResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/comment")
@@ -30,30 +27,18 @@ public class CommentController {
         this.commentMapper = commentMapper;
     }
 
-    private final Map<Long, Map<String, Object>> contents = new HashMap<>();
-    @PostConstruct
-    public void init() {
-        Map<String, Object> member1 = new HashMap<>();
-        long memberId = 1L;
-        member1.put("contentId", 1);
-        member1.put("username", "김씨");
-        member1.put("content", "하이하이");
-
-        contents.put(memberId, member1);
-    }
-
     // 댓글 생성
     @PostMapping
-    public ResponseEntity postComment(@Valid @RequestBody CommentDto.Post requestBody) {
+    public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto) {
 
-        Comment comment = commentMapper.commentPostToComment(requestBody);
-        long commentId = comment.getCommentId();
+        Comment comment = commentMapper.commentPostToComment(commentPostDto);
+//        long commentId = comment.getCommentId();
 
-        // 확인 필요: ~[classes/:na]
-        Comment createdComment = commentService.createComment(commentId, comment);
+        Comment createdComment = commentService.createCommet(comment);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(createdComment)),
                 HttpStatus.CREATED);
+
     }
 }
