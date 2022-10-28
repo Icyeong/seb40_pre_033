@@ -1,4 +1,4 @@
-package com.codestates.preproject.user.service;
+/*package com.codestates.preproject.user.service;
 
 import com.codestates.preproject.user.dto.UserPostDto;
 import com.codestates.preproject.user.dto.UserResponseDto;
@@ -30,4 +30,4 @@ public class UserService {
 
         return UserResponseDto.of(newUser);
     }
-}
+}*/
