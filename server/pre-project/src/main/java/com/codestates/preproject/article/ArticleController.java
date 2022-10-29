@@ -1,16 +1,13 @@
 package com.codestates.preproject.article;
 
-import com.codestates.preproject.exception.ErrorResponse;
+import com.codestates.preproject.common.SingleResponseDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -25,5 +22,17 @@ public class ArticleController {
         articleService.createArticle(article);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+
+    @GetMapping("/{article-id}")
+    public ResponseEntity getArticle(
+            @PathVariable("article-id") @Positive long articleId) {
+        Article article = articleService.findArticle(articleId);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.articleToArticleResponse(article))
+                , HttpStatus.OK);
+    }
+
+
 
     }
