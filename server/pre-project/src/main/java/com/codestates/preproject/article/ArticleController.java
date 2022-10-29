@@ -11,21 +11,28 @@ import javax.validation.constraints.Positive;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("v1/article")//인입 url설정
+@RequestMapping("/v1/article")//인입 url설정
 public class ArticleController {
     private final ArticleMapper mapper;
     private final ArticleService articleService;
 
-    @PostMapping
-    public ResponseEntity postArticle(@Valid @RequestBody ArticlePost articlePost){
+/*    @PostMapping
+    public ResponseEntity<ArticleResponse> postArticle(@Valid @RequestBody ArticlePost articlePost){
         Article article = mapper.articlePostToArticle(articlePost);
         articleService.createArticle(article);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }*/
+    @PostMapping
+    public ResponseEntity<SingleResponseDto<ArticleResponse>> postArticle(@Valid @RequestBody ArticlePost articlePost) {
+        Article article = articleService.createArticle(mapper.articlePostToArticle(articlePost));
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.articleToArticleResponse(article))
+                , HttpStatus.OK);
     }
 
 
     @GetMapping("/{article-id}")
-    public ResponseEntity getArticle(
+    public ResponseEntity<SingleResponseDto<ArticleResponse>> getArticle(
             @PathVariable("article-id") @Positive long articleId) {
         Article article = articleService.findArticle(articleId);
         return new ResponseEntity<>(

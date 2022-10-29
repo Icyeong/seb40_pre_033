@@ -14,7 +14,7 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//기본키 자동생성 목적
     Long articleId;
-    @Column(length=200, nullable = false)
+    @Column(length=200)
     String title;
     @Lob
     String contents;
