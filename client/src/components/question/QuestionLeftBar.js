@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import {
   ArrowDownSvg,
@@ -6,7 +7,7 @@ import {
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
 
-const Block = styled.div`
+export const Block = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,12 +40,14 @@ const Block = styled.div`
 `;
 
 export const QuestionLeftBar = () => {
+  let question = useSelector((state) => state.questionReducer);
+
   return (
     <Block>
       <button>
         <ArrowUpSvg />
       </button>
-      <span>0</span>
+      <span>{question.vote}</span>
       <button>
         <ArrowDownSvg />
       </button>

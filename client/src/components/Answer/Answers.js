@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { AnswersHeader } from './AnswersHeader';
-import { QuestionTemplate } from './QuestionTemplate';
 import { AnswerWrite } from './AnswerWrite';
 import { Tags } from '../Common/Tags';
+import { useSelector } from 'react-redux';
+import { AnswersTemplate } from './AnswerTemplate';
 
 const Block = styled.div`
   padding-top: 10px;
@@ -10,6 +11,7 @@ const Block = styled.div`
   > h2 {
     margin: 15px 0 17px;
     font-size: 17px;
+    line-height: 1.5rem;
 
     > a {
       color: var(--theme-link-color);
@@ -30,24 +32,26 @@ const Block = styled.div`
 `;
 
 export const Answers = () => {
+  let question = useSelector((state) => state.questionReducer);
+
   return (
     <Block>
       <AnswersHeader />
       <ul>
-        <QuestionTemplate type="answer" />
+        {question.comments.map((answer, idx) => (
+          <AnswersTemplate key={answer.comment_id} idx={idx} />
+        ))}
       </ul>
       <AnswerWrite />
       <h2>
         Not the answer you&#39;re looking for? Browse other questions tagged{' '}
         <Tags>
-          <li>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#">python</a>
-          </li>
-          <li>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#">ios</a>
-          </li>
+          {question.tags.map((tag, idx) => (
+            <li key={idx}>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a href="#">{tag}</a>
+            </li>
+          ))}
         </Tags>
         or <a href="/questions/ask">ask your own question</a>.
       </h2>

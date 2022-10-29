@@ -1,11 +1,12 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
 
-const Block = styled.div`
+export const Block = styled.div`
   padding-right: 16px;
 `;
 
-const Body = styled.div`
+export const Body = styled.div`
   p {
     margin: 0 0 16.5px 0;
     font-size: 15px;
@@ -19,11 +20,11 @@ const Body = styled.div`
   }
 `;
 
-const QuestionTags = styled(Tags)`
+export const QuestionTags = styled(Tags)`
   margin: 24px 0 25px 0;
 `;
 
-const Detail = styled.div`
+export const Detail = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
@@ -38,7 +39,7 @@ const Detail = styled.div`
   }
 `;
 
-const PostMenu = styled.ul`
+export const PostMenu = styled.ul`
   display: flex;
   flex-wrap: wrap;
   flex: 1 auto;
@@ -88,7 +89,7 @@ export const PostUser = styled.ul`
   }
 `;
 
-const UserInfo = styled.div`
+export const UserInfo = styled.div`
   display: flex;
 
   img {
@@ -140,7 +141,7 @@ const UserInfo = styled.div`
   }
 `;
 
-const Badge = styled.span`
+export const Badge = styled.span`
   display: inline-block;
   margin: 0px 3px 0 2px;
   width: 6px;
@@ -149,119 +150,47 @@ const Badge = styled.span`
   background-color: ${(props) => props.color};
 `;
 
-export const QuestionContent = (type) => {
+export const QuestionContent = () => {
+  let question = useSelector((state) => state.questionReducer);
+
   return (
     <Block>
       <Body>
-        <p>
-          The program is to accept a choice from the user. Choice 1 to check the
-          deposit Choice 2 to make a deposit - when I entered choice two it
-          should accept a deposit that is greater than 0 but less than 100,000,
-          if this condition is not met then the program should prompt the user
-          to enter the deposit until the condition is met. If the condition is
-          met, then the program should add the deposit entered to 30,000 and
-          print the result. My problem is even if the deposit is greater than
-          100,000 or less than 0, it is still printing the result and it should
-          only prompt the user to enter the deposit until it is greater than 0
-          or less than 100,000. What could be the error or problem in my code?
-        </p>
+        <p>{question.content}</p>
         <pre>
-          <code>
-            {`
-ul {
-  background-color: red;
-  font-family: 바탕체;
-  font-size: 50px;
-}
-            `}
-          </code>
+          <code></code>
         </pre>
       </Body>
-      {type.type === 'question' && (
-        <QuestionTags>
-          <li>
+      <QuestionTags>
+        {question.tags.map((tag, idx) => (
+          <li key={idx}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#">python</a>
+            <a href="#">{tag}</a>
           </li>
-          <li>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#">ios</a>
-          </li>
-        </QuestionTags>
-      )}
+        ))}
+      </QuestionTags>
       <Detail>
         <PostMenu>
           <li>Share</li>
           <li>Edit</li>
           <li>Follow</li>
         </PostMenu>
-        {/* ✨ 리팩토링 예정 */}
-        {type.type === 'question' ? (
-          <div>
-            {/* <PostUser>
-              <h5>edited 18 hours ago</h5>
-              <UserInfo>
-                <img
-                  src="https://via.placeholder.com/32"
-                  alt="user-thumbnail"
-                />
-                <div>
-                  <h6>편집한 사람</h6>
-                  <ul>
-                    <li>3,192</li>
-                    <li>
-                      <Badge color="#FFCC01" />6
-                    </li>
-                    <li>
-                      <Badge color="#B4B8BC" />
-                      11
-                    </li>
-                    <li>
-                      <Badge color="#D1A684" />
-                      27
-                    </li>
-                  </ul>
-                </div>
-              </UserInfo>
-            </PostUser> */}
-            <PostUser background="#D9EAF7">
-              <h5>asked Oct 16 at 8:40</h5>
-              <UserInfo>
-                <img
-                  src="https://via.placeholder.com/32"
-                  alt="user-thumbnail"
-                />
-                <div>
-                  <h6>질문한 사람</h6>
-                  <ul>
-                    <li>156</li>
-                    <li>
-                      <Badge color="#D1A684" />
-                      27
-                    </li>
-                  </ul>
-                </div>
-              </UserInfo>
-            </PostUser>
-          </div>
-        ) : (
-          <PostUser>
-            <h5>answerd Oct 17 at 6:54</h5>
-            <UserInfo>
-              <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
-              <div>
-                <h6>답변한 사람</h6>
-                <ul>
-                  <li>156</li>
-                  <li>
-                    <Badge color="#D1A684" />
-                    27
-                  </li>
-                </ul>
-              </div>
-            </UserInfo>
-          </PostUser>
-        )}
+        <PostUser background="#D9EAF7">
+          <h5>{question.create_at}</h5>
+          <UserInfo>
+            <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
+            <div>
+              <h6>{question.email}</h6>
+              <ul>
+                <li>156</li>
+                <li>
+                  <Badge color="#D1A684" />
+                  27
+                </li>
+              </ul>
+            </div>
+          </UserInfo>
+        </PostUser>
       </Detail>
     </Block>
   );

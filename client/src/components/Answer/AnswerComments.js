@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { PencilSvg } from '../../assets/images/QuestionSvg';
+import { PencilSvg } from '../../../assets/images/QuestionSvg';
 
 const Block = styled.ul`
   margin: 12px 0 0 52px;
