@@ -1,13 +1,10 @@
 package com.codestates.preproject.article;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 public class ArticlePost {
     @NotEmpty(message="내용을 입력해주세요.")

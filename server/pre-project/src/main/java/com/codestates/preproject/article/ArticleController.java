@@ -2,6 +2,7 @@ package com.codestates.preproject.article;
 
 import com.codestates.preproject.common.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,12 @@ public class ArticleController {
                 new SingleResponseDto<>(mapper.articleToArticleResponse(article))
                 , HttpStatus.OK);
     }
-
+/*    @GetMapping("/articles")
+    public ResponseEntity getArticles(@Positive@RequestParam("page") int page,
+                                      @Positive@RequestParam("size") int size,
+                                      @RequestParam("sort") String sort){
+        Page<Article> articlePage = articleService.findArticles();
+    }*/
 
 
     }

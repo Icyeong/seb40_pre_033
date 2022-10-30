@@ -6,9 +6,8 @@ import javax.persistence.*;
 
 
 @Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "ARTICLE")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Article {
     // merge 이후 extends BaseTime 추가
@@ -16,16 +15,22 @@ public class Article {
     @Column(name="article_id")
     private Long articleId;
 
-    @Column(nullable= false)
+    @Column(insertable = true, nullable= false)
     private String title;
 
     @Lob
-    @Column(nullable= false)
+    @Column(insertable = true, nullable= false)
     private String contents;
 
     //추후 추가 예정
     /*@ManyToOne @JoinColumn(name = "user_id")
     private User writer;
     */
+    @Builder
+    public Article(Long articleId, String title, String contents) {
+        this.articleId = articleId;
+        this.title = title;
+        this.contents = contents;
+    }
 
 }
