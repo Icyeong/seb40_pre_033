@@ -24,8 +24,8 @@
   --fc-ligth: hsl(210, 8%, 45%);
   --fc-dark: hsl(210, 8%, 5%);
   --bc-darker: var(--black-200);
-  --fc-dark: hsl(210,8%,5%);
-  --fc-light: hsl(210,8%,45%);
+  --fc-dark: hsl(210, 8%, 5%);
+  --fc-light: hsl(210, 8%, 45%);
   --blue-050: hsl(206, 100%, 97%);
   --blue-060: hsl(205, 46%, 92%);
   --blue-100: hsl(206, 96%, 90%);
@@ -37,6 +37,7 @@
   --red-050: hsl(358, 75%, 97%);
   --red-100: hsl(358, 76%, 90%);
   --red-400: hsl(358, 68%, 59%);
+  --red-500: hsl(1, 50%, 54%);
 
   --theme-button-primary-color: var(--white);
   --theme-button-primary-background-color: var(--blue-500);

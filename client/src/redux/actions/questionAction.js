@@ -5,9 +5,9 @@ export const ADD_ANSWER = 'ADD_ANSWER';
 export const EDIT_ANSWER = 'EDIT_ANSWER';
 export const DELETE_ANSWER = 'DELETE_ANSWER';
 
-export const getQuestion = async (questionId) => {
+export const getQuestion = (questionId) => {
   try {
-    const res = await axios.get(`/article/${questionId}`);
+    const res = axios.get(`/article/${questionId}`);
 
     return {
       type: GET_QUESTION,
@@ -18,9 +18,9 @@ export const getQuestion = async (questionId) => {
   }
 };
 
-export const addAnswer = async (questionId, answerData) => {
+export const addAnswer = (questionId, answerData) => {
   try {
-    const res = await axios.post(`/article/${questionId}/comment`, {
+    const res = axios.post(`/article/${questionId}/comment`, {
       answerData,
     });
 
@@ -33,14 +33,11 @@ export const addAnswer = async (questionId, answerData) => {
   }
 };
 
-export const editAnswer = async (questionId, answerId, answerData) => {
+export const editAnswer = (questionId, answerId, answerData) => {
   try {
-    const res = await axios.patch(
-      `/article/${questionId}/comment/${answerId}`,
-      {
-        answerData,
-      }
-    );
+    const res = axios.patch(`/article/${questionId}/comment/${answerId}`, {
+      answerData,
+    });
 
     return {
       type: EDIT_ANSWER,
@@ -51,11 +48,9 @@ export const editAnswer = async (questionId, answerId, answerData) => {
   }
 };
 
-export const deleteAnswer = async (questionId, answerId) => {
+export const deleteAnswer = (questionId, answerId) => {
   try {
-    const res = await axios.delete(
-      `/article/${questionId}/comment/${answerId}`
-    );
+    const res = axios.delete(`/article/${questionId}/comment/${answerId}`);
 
     return {
       type: DELETE_ANSWER,
