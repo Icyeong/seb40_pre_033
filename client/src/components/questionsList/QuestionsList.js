@@ -1,161 +1,35 @@
-import styled from 'styled-components';
 import Pagination from 'react-js-pagination';
 import { useState } from 'react';
-import { Container } from './style';
-
-const ListWrapper = styled.div`
-  margin-top: 75px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  max-width: 1300px;
-  font-size: 17px;
-`;
-
-const StyledQuestions = styled.div`
-  flex: 1 1 80%;
-  margin: 0 0 0 4px;
-  padding: 5px 23px;
-  width: 80%;
-  > .title {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 23px;
-    > h1 {
-      font-size: 27px;
-    }
-  }
-  > .sort {
-    margin-bottom: 5px;
-    height: 43px;
-    display: flex;
-    justify-content: space-between;
-    > .question-sort {
-      > button {
-        font-size: 12px;
-        border: 1px solid hsl(210, 8%, 55%);
-        padding: 10px;
-        cursor: pointer;
-        :first-child {
-          border-radius: 3px;
-          border-top-right-radius: 0;
-          border-bottom-right-radius: 0;
-        }
-        :last-child {
-          border-radius: 3px;
-          border-top-left-radius: 0;
-          border-bottom-left-radius: 0;
-        }
-        :not(:last-child) {
-          margin-right: -1px;
-        }
-        /* 선택시 버튼 색깔 변경 */
-        &.is-selected {
-          background-color: #e3e6e8;
-          color: #3b4045;
-          border: 1px solid hsl(210, 8%, 55%);
-        }
-      }
-    }
-  }
-  > .questions {
-    /* border: 1px solid pink; */
-    margin-left: -27px;
-    display: flex;
-    padding-left: 10px;
-    padding-top: 15px;
-    border-top: 1px solid hsl(210, 8%, 90%);
-    border-bottom: 1px solid hsl(210, 8%, 90%); // #d6d9dc;
-    font-size: 13px;
-    > .post-summury {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      width: 108px;
-      flex-shrink: 0;
-      margin-right: 10px;
-      row-gap: 7px;
-      column-gap: 4px;
-    }
-    /* 클릭 시 색 변경 */
-    &.is-selected {
-      background-color: #e3e6e8;
-      color: #3b4045;
-      border: 1px solid hsl(210, 8%, 55%);
-    }
-    > .question-list {
-      > .question-title {
-        > a {
-          color: hsl(206, 100%, 40%);
-          font-size: 17px;
-        }
-        > a:hover {
-          color: hsl(206, 100%, 52%);
-        }
-      }
-
-      > .question-content {
-        margin: 10px;
-        flex-direction: column;
-      }
-      > .question-information {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-
-        > .question__avatar--wrapper {
-          padding-top: 10px;
-          display: flex;
-          flex-direction: row;
-          > img {
-            margin: 2px 5px 0 0;
-            width: 16px;
-            height: 16px;
-            border-radius: 3px;
-            display: block;
-}
-          }
-        }
-      }
-    }
-  }
-`;
-
-const AskQuestion = styled.div`
-  width: 99px;
-  height: 39px;
-  background-color: hsl(206, 100%, 52%);
-  color: hsl(0, 0%, 100%);
-  font-size: 13px;
-  border: 1px solid transparent;
-  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
-  border-radius: 4px;
-  display: flex;
-  :hover {
-    background-color: #0074cc;
-  }
-`;
-
-const Tags = styled.ul`
-  display: inline-flex;
-
-  li {
-    margin-right: 5px;
-    padding: 4px 6px;
-    color: hsl(205, 47%, 42%);
-    background-color: hsl(205, 46%, 92%);
-    border-radius: 3px;
-    font-size: 12px;
-  }
-`;
-
-const QuestionTags = styled(Tags)`
-  margin: 0px 0 25px 10px;
-`;
+import {
+  ListWrapper,
+  StyledQuestions,
+  AskQuestion,
+  QuestionTags,
+  Container,
+} from './style';
 
 export const QuestionsList = () => {
   const [page, setPage] = useState(1);
+  const [selected, setSelected] = useState('newest');
+  // 수정 후 redux로
+  const sortClick = (e) => {
+    switch (e.target.value) {
+      case 'newest':
+        setSelected('newest');
+        break;
+      case 'votes':
+        setSelected('votes');
+        break;
+      default:
+        break;
+    }
+  };
+  // const fiveCount = [1, 2, 3, 4, 5];
   const questionCount = [15, 30, 50];
+  const [btnClick, setBtnClick] = useState(2);
+  const pageClick = (e) => {
+    setBtnClick(Number(e.target.value));
+  };
 
   const handleChange = (page) => {
     setPage(page);
@@ -172,8 +46,20 @@ export const QuestionsList = () => {
         <div className="sort">
           <div> 23,160,164 questions</div>
           <div className="question-sort">
-            <button>Newest</button>
-            <button>Votes</button>
+            <button
+              onClick={sortClick}
+              className={selected === 'newest' ? 'is-selected' : ''}
+              value={'newest'}
+            >
+              Newest
+            </button>
+            <button
+              onClick={sortClick}
+              className={selected === 'votes' ? 'is-selected' : ''}
+              value={'votes'}
+            >
+              Votes
+            </button>
           </div>
         </div>
         {/* 글 받아오는 부분 */}
@@ -217,14 +103,26 @@ export const QuestionsList = () => {
         <Container>
           <Pagination
             activePage={page}
-            itemsCountPerPage={7}
+            itemsCountPerPage={20}
+            // 한 페이지 당 20개 * 5페이지 = 100
+            totalItemsCount={100}
             onChange={handleChange}
-            pageRangeDisplayed={5}
             prevPageText="Prev"
             nextPageText="Next"
           />
-          <div className="per-page">
-            {questionCount}
+          <div className="btn-per-page">
+            {questionCount.map((el, idx) => {
+              return (
+                <button
+                  key={idx}
+                  value={el}
+                  className={el === btnClick ? 'btn-active' : ''}
+                  onClick={pageClick}
+                >
+                  {el}
+                </button>
+              );
+            })}
             <p>per page</p>
           </div>
         </Container>
