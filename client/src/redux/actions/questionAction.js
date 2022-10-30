@@ -5,6 +5,9 @@ export const ADD_ANSWER = 'ADD_ANSWER';
 export const EDIT_ANSWER = 'EDIT_ANSWER';
 export const DELETE_ANSWER = 'DELETE_ANSWER';
 
+export const VOTE_QUESTION = 'VOTE_QUESTION';
+export const VOTE_ANSWER = 'VOTE_ANSWER';
+
 export const getQuestion = (questionId) => {
   try {
     const res = axios.get(`/article/${questionId}`);
@@ -54,9 +57,39 @@ export const deleteAnswer = (questionId, answerId) => {
 
     return {
       type: DELETE_ANSWER,
-      payload: res.data, // 삭제한 답변 데이터(or id)
+      payload: res.data, // 삭제한 답변 id
     };
   } catch (err) {
     throw new Error('답변 DELETE 에러 발생');
+  }
+};
+
+// 🟢🟢🟢🟢🟢 투표
+
+export const voteQuestion = (questionId) => {
+  try {
+    const res = axios.get(`/article/${questionId}/vote-quesion`);
+
+    return {
+      type: VOTE_QUESTION,
+      payload: res.data, // 질문 투표 수
+    };
+  } catch (err) {
+    throw new Error('질문 투표 GET 에러 발생');
+  }
+};
+
+export const voteAnswer = (questionId, answerId) => {
+  try {
+    const res = axios.get(
+      `/article/${questionId}/comment/${answerId}/vote-answer`
+    );
+
+    return {
+      type: VOTE_ANSWER,
+      payload: res.data, // 답변 데이터 (투표 수 적용)
+    };
+  } catch (err) {
+    throw new Error('답변 투표 GET 에러 발생');
   }
 };

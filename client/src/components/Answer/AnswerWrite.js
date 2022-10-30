@@ -67,6 +67,7 @@ export const AnswerWrite = () => {
         value={answer}
         onChange={(e) => setAnswer(e.target.value)}
         placeholder="텍스트 에디터"
+        style={{ resize: 'none' }}
       />
       <PostAnswerButton onClick={handleAddAnswer}>
         Post Your Answer

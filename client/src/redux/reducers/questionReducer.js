@@ -3,6 +3,8 @@ import {
   DELETE_ANSWER,
   EDIT_ANSWER,
   GET_QUESTION,
+  VOTE_QUESTION,
+  VOTE_ANSWER,
 } from '../actions/questionAction';
 
 // const initialState = {
@@ -65,8 +67,25 @@ export const questionReducer = (state = initialState, action) => {
         ...state,
         comments: [
           state.comments.filter(
-            (answer) => answer.comment_id !== action.payload.comment_id
+            (answer) => answer.comment_id !== action.payload
           ),
+        ],
+      };
+    case VOTE_QUESTION:
+      return {
+        ...state,
+        vote: action.payload,
+      };
+    case VOTE_ANSWER:
+      return {
+        ...state,
+        comments: [
+          state.comments.map((answer) => {
+            if (answer.comment_id === action.payload.comment_id)
+              answer.vote = action.payload.vote;
+
+            return answer;
+          }),
         ],
       };
     default:
