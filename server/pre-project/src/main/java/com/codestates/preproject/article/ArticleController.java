@@ -1,7 +1,7 @@
 package com.codestates.preproject.article;
 
 import com.codestates.preproject.common.SingleResponseDto;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/v1/article")//인입 url설정
 public class ArticleController {
     private final ArticleMapper mapper;

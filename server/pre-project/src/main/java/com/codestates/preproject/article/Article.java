@@ -16,11 +16,11 @@ public class Article {
     @Column(name="article_id")
     private Long articleId;
 
-    @Column(nullable = false)
+    @Column(nullable= false)
     private String title;
 
     @Lob
-    @Column(nullable = false)
+    @Column(nullable= false)
     private String contents;
 
     //추후 추가 예정
