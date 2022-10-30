@@ -108,11 +108,14 @@ export const Wrapper = styled.main`
     }
 
     + .inValid-txt {
-      color: red;
+      color: var(--red-500);
       font-size: 11px;
       margin: 2px 1px;
       display: block;
     }
+  }
+  .inValid-password {
+    display: none;
   }
 `;
 
