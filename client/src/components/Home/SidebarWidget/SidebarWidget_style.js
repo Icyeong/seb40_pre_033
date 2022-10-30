@@ -7,6 +7,10 @@ export const RightSide = styled.div`
   display: flex;
   flex-direction: column;
   width: 302px;
+  // Mobile
+  @media screen and (max-width: 981px) {
+    display: none;
+  }
 `;
 
 export const RightSidebar = styled.div`

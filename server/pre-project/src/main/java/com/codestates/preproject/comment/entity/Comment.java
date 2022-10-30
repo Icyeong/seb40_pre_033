@@ -23,10 +23,10 @@ public class Comment /*생성날짜, 수정날짜 상속 필요*/ {
     @JoinColumn(name = "article_id")
     private Article articleId;
 
-    @Column(name = "user_name")
+    @Column(name = "user_name",  nullable = false)
     private String username;
 
-    @Column(name = "comment_content")
+    @Column(name = "comment_content",  nullable = false)
     private String content;
 
     public Comment(String username, String content) {

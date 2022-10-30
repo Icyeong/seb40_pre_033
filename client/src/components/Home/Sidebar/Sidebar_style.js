@@ -2,6 +2,10 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const SidebarContainer = styled.nav`
+  // Mobile
+  @media screen and (max-width: 1160px) {
+    display: none;
+  }
   border-right: 1px solid #d6d9dc;
   margin-top: 52px;
   position: sticky;
@@ -31,6 +35,10 @@ export const Wrapper = styled.div`
     height: 34px;
     padding: 4px 4px 4px 30px;
     margin: 0;
+    :hover {
+      border: none;
+      background-color: #e2e6e8;
+    }
   }
 `;
 
@@ -42,6 +50,10 @@ export const NavLinkMenu = styled(NavLink)`
   align-items: center;
   height: 34px;
   padding-left: 8px;
+  :hover {
+    border: none;
+    background-color: #e2e6e8;
+  }
   > svg {
     margin: 0px 5px 0px 0px;
   }
@@ -50,7 +62,7 @@ export const NavLinkMenu = styled(NavLink)`
     color: hsl(210, 8%, 15%);
   }
 
-  /* 선택 시 박스 크기 조절 */
+  /* 선택 시  */
   &.active {
     font-weight: 700;
     color: hsl(210, 8%, 15%);

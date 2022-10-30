@@ -30,6 +30,10 @@ export const Wrapper = styled.div`
     height: 34px;
     padding: 4px 4px 4px 30px;
     margin: 0;
+    :hover {
+      border: none;
+      background-color: #e2e6e8;
+    }
   }
 `;
 

@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
-  /* margin-top: 50px; */
   background-color: #232629;
   color: hsl(210, 8%, 60%);
+  // Mobile
+  @media screen and (max-width: 980px) {
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
+  }
   > .footer {
     box-sizing: border-box;
     max-width: 1300px;
@@ -12,6 +17,14 @@ export const FooterContainer = styled.footer`
     padding: 32px 12px 12px 12px;
     display: flex;
     flex-flow: row wrap;
+    > .footer-logo {
+      flex: 0 0 64px;
+      margin: -12px 0 32px 0;
+      @media screen and (max-width: 980px) {
+        margin-left: 10px;
+        margin-top: -20px;
+      }
+    }
 
     a {
       text-decoration: none;
@@ -19,16 +32,32 @@ export const FooterContainer = styled.footer`
       cursor: pointer;
     }
 
-    li,
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    > .footer-nav {
+      @media screen and (max-width: 980px) {
+        display: flex;
+        flex-direction: column;
+        margin-top: -5px;
+        margin-left: 10px;
+        padding-bottom: 10px;
+      }
+      li {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        @media screen and (max-width: 980px) {
+          display: flex;
+          column-gap: 12px;
+          flex-flow: row wrap;
+          flex-direction: row;
+        }
+      }
     }
-    > .footer-logo {
-      flex: 0 0 64px;
-      margin: -12px 0 32px 0;
-    }
+
     > .footer-nav {
       display: flex;
       flex: 2 1 auto;
@@ -61,6 +90,7 @@ export const FooterContainer = styled.footer`
       flex-direction: column;
       box-sizing: border-box;
       font-size: 11px;
+      margin-left: 10px;
       > ul {
         display: flex;
         > li {
