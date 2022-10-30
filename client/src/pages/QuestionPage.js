@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { QuestionHeader } from '../components/Question/QuestionHeader';
 import { QuestionTemplate } from '../components/Question/QuestionTemplate';
 import { Answers } from '../components/Answer/Answers';
+import { useDispatch } from 'react-redux';
+import { getQuestion } from '../redux/actions/questionAction';
+import { useEffect } from 'react';
 
 const Container = styled.div`
   width: calc(100% - 164px);
@@ -35,6 +38,12 @@ const Content = styled.div`
 `;
 
 export const QuestionPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getQuestion());
+  }, []);
+
   return (
     <Container>
       <QuestionHeader />
