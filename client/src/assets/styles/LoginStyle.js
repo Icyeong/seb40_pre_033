@@ -64,7 +64,9 @@ export const Wrapper = styled.main`
   }
   form input {
     width: 100%;
+    max-height: 32.59px;
     padding: 8px 32px 8px 9px;
+    font-size: 13px;
     background-color: white;
     border-radius: 3px;
     border: 1px solid var(--bc-darker);

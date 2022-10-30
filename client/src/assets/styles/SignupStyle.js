@@ -14,17 +14,26 @@ export const SignupWrapper = styled(Wrapper)`
       flex-direction: row;
       align-items: flex-start;
       color: var(--fc-dark);
-      input {
+      #opt-check {
         width: auto;
         border-radius: 35px;
+        margin-top: 3px;
+        border: 1px solid var(--bc-darker);
       }
       label {
         font-size: 12px;
         font-weight: 400;
         line-height: 18px;
-        margin: 0;
+        margin: 0 0 0 3px;
         width: calc(100% - 27px);
         cursor: pointer;
+      }
+      .bootsBtn {
+        max-width: 14px;
+        width: 14px;
+        height: 14px;
+        background: transparent;
+        border: none;
       }
       svg {
         display: block;
