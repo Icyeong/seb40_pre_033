@@ -1,7 +1,9 @@
 package com.codestates.preproject.security;
 
+import com.codestates.preproject.security.handler.UserAuthenticationEntryPoint;
 import com.codestates.preproject.security.handler.UserAuthenticationFailureHandler;
 import com.codestates.preproject.security.handler.UserAuthenticationSucessHandler;
+import com.codestates.preproject.security.handler.UserDeniedHandler;
 import com.codestates.preproject.security.jwt.JwtAuthenticationFilter;
 import com.codestates.preproject.security.jwt.JwtTokenizer;
 import com.codestates.preproject.security.jwt.JwtVerificationFilter;
@@ -43,6 +45,10 @@ public class SecurityConfig{
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new UserAuthenticationEntryPoint())
+                .accessDeniedHandler(new UserDeniedHandler())
+                .and()
                 .apply(new JwtFilterConfigurer()) // Custom Configurer 구성해 추가
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
