@@ -33,6 +33,7 @@ public class ArticleService {
     }
 
 
-
-
+    public Article updateArticle(Article article) {
+            return article;
+    }
 }

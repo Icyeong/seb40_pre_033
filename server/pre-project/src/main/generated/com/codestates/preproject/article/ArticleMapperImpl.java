@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-31T02:02:10+0900",
+    date = "2022-10-31T15:01:43+0900",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 11.0.15 (Azul Systems, Inc.)"
 )
 @Component
@@ -17,13 +17,12 @@ public class ArticleMapperImpl implements ArticleMapper {
             return null;
         }
 
-        Long articleId = null;
-        String title = null;
-        String contents = null;
+        Article.ArticleBuilder article = Article.builder();
 
-        Article article = new Article( articleId, title, contents );
+        article.title( articlePost.getTitle() );
+        article.contents( articlePost.getContents() );
 
-        return article;
+        return article.build();
     }
 
     @Override
@@ -32,8 +31,14 @@ public class ArticleMapperImpl implements ArticleMapper {
             return null;
         }
 
-        ArticleResponse articleResponse = new ArticleResponse();
+        ArticleResponse.ArticleResponseBuilder articleResponse = ArticleResponse.builder();
 
-        return articleResponse;
+        if ( article.getArticleId() != null ) {
+            articleResponse.articleId( article.getArticleId() );
+        }
+        articleResponse.title( article.getTitle() );
+        articleResponse.contents( article.getContents() );
+
+        return articleResponse.build();
     }
 }
