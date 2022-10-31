@@ -60,7 +60,7 @@ const Detail = styled.ul`
 `;
 
 export const QuestionHeader = () => {
-  let question = useSelector((state) => state.questionReducer);
+  let question = useSelector((state) => state.postReducer);
 
   return (
     <>

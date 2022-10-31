@@ -14,7 +14,7 @@ export const AnswerLeftBar = (type) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  let question = useSelector((state) => state.questionReducer);
+  let question = useSelector((state) => state.postReducer);
   const idx = type.idx;
 
   const handleVoteUpAnswer = useCallback(() => {

@@ -164,7 +164,7 @@ export const Badge = styled.span`
 export const QuestionContent = () => {
   const { id } = useParams();
 
-  let question = useSelector((state) => state.questionReducer);
+  let question = useSelector((state) => state.postReducer);
 
   const editUrl = `/questions/edit/${id}`;
 

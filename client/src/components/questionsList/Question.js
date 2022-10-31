@@ -2,8 +2,8 @@ import { QuestionTags } from './style';
 import { useSelector } from 'react-redux';
 
 export const Question = (type) => {
-  let question = useSelector((state) => state.questionReducer);
-  let posts = useSelector((state) => state.postsReducer);
+  let question = useSelector((state) => state.postReducer);
+  let questions = useSelector((state) => state.postsReducer);
 
   return (
     <div className="questions">
@@ -17,7 +17,7 @@ export const Question = (type) => {
           {/* /questions/id */}
           <a href="/questions/1">
             {/* How to prevent 2 objects from splitting on top of another */}
-            {posts.posts[type.idx].title}
+            {questions[type.idx].title}
           </a>
         </h2>
         <div className="question-content">
@@ -25,11 +25,11 @@ export const Question = (type) => {
           javascript). The game is Asteroids the code is basically the same
           as freeCodeCamp video only some differences are the scoring system
           ... */}
-          {posts.posts[type.idx].content}
+          {questions[type.idx].content}
         </div>
         <div className="question-information">
           <QuestionTags>
-            {posts.posts[type.idx].tags.map((tag, idx) => (
+            {questions[type.idx].tags.map((tag, idx) => (
               <li key={idx}>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a href="#">{tag}</a>
@@ -39,11 +39,11 @@ export const Question = (type) => {
           <div className="question__avatar--wrapper">
             <img
               className="discussion__avatar--image"
-              src={posts.posts[type.idx].image}
+              src={questions[type.idx].image}
               alt=""
             />
             {`${
-              posts.posts[type.idx].user
+              questions[type.idx].user
             } asked ${new Date().toLocaleDateString()}`}
           </div>
         </div>

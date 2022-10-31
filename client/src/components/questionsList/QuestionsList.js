@@ -5,7 +5,7 @@ import { ListWrapper, StyledQuestions, AskQuestion, Container } from './style';
 import { Question } from './Question';
 
 export const QuestionsList = () => {
-  let posts = useSelector((state) => state.postsReducer);
+  let questions = useSelector((state) => state.postsReducer);
 
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState('newest');
@@ -41,7 +41,7 @@ export const QuestionsList = () => {
           </AskQuestion>
         </div>
         <div className="sort">
-          <div>{posts.posts.length} questions</div>
+          <div>{questions.length} questions</div>
           <div className="question-sort">
             <button
               onClick={sortClick}
@@ -60,7 +60,7 @@ export const QuestionsList = () => {
           </div>
         </div>
         {/* 글 받아오는 부분 */}
-        {posts.posts.map((post, idx) => (
+        {questions.map((post, idx) => (
           <Question key={post.article_id} idx={idx} />
         ))}
         <Container>

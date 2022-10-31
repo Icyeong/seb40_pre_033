@@ -49,7 +49,7 @@ export const QuestionLeftBar = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  let question = useSelector((state) => state.questionReducer);
+  let question = useSelector((state) => state.postReducer);
 
   const handleVoteUpQuestion = useCallback(() => {
     console.log('VOTE QUESTION');

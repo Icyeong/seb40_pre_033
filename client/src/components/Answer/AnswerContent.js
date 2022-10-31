@@ -16,7 +16,7 @@ export const AnswerContent = (type) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  let question = useSelector((state) => state.questionReducer);
+  let question = useSelector((state) => state.postReducer);
 
   const editUrl = `/questions/edit/${id}`;
 
