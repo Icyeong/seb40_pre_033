@@ -1,7 +1,6 @@
 import { GlobalStyle } from './assets/styles/GlobalStyle';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './assets/styles/variables.css';
-
 import { HomePage } from './pages/HomePage';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
