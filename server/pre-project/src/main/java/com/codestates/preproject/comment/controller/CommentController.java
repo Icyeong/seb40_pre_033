@@ -11,13 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
 @Validated
 @RequestMapping("/comment")
+// TODO 주입 방법 공부
 public class CommentController {
 
     private final CommentService commentService;
@@ -50,19 +50,14 @@ public class CommentController {
     @PostMapping
     public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto) {
 
-/*        Comment comment = commentMapper.commentPostToComment(commentPostDto);
+        Comment comment = commentMapper.commentPostToComment(commentPostDto);
 //        long commentId = comment.getCommentId();
 
         Comment createdComment = commentService.createComment(comment);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(createdComment)),
-                HttpStatus.CREATED);*/
-
-        return new ResponseEntity<>(
-                commentService.createComment(commentPostDto),
-                HttpStatus.CREATED
-        );
+                HttpStatus.CREATED);
 
     }
 
