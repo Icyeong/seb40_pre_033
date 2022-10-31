@@ -5,26 +5,48 @@ export const SignupWrapper = styled(Wrapper)`
   main {
     width: 316px;
 
+    .inValid-password {
+      display: block;
+    }
     .req-txt {
       font-size: 12px;
       margin: 4px 0;
       color: var(--fc-light);
     }
+
+    ul {
+      margin: 5px 0 15px;
+      padding: 0 30px;
+      li {
+        font-size: 12px;
+        color: var(--red-500);
+        list-style: disc;
+      }
+    }
     .optionalCheck {
       flex-direction: row;
       align-items: flex-start;
       color: var(--fc-dark);
-      input {
+      #opt-check {
         width: auto;
         border-radius: 35px;
+        margin-top: 3px;
+        border: 1px solid var(--bc-darker);
       }
       label {
         font-size: 12px;
         font-weight: 400;
         line-height: 18px;
-        margin: 0;
+        margin: 0 0 0 3px;
         width: calc(100% - 27px);
         cursor: pointer;
+      }
+      .bootsBtn {
+        max-width: 14px;
+        width: 14px;
+        height: 14px;
+        background: transparent;
+        border: none;
       }
       svg {
         display: block;
