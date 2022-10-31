@@ -50,14 +50,19 @@ public class CommentController {
     @PostMapping
     public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto) {
 
-        Comment comment = commentMapper.commentPostToComment(commentPostDto);
+/*        Comment comment = commentMapper.commentPostToComment(commentPostDto);
 //        long commentId = comment.getCommentId();
 
         Comment createdComment = commentService.createComment(comment);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(createdComment)),
-                HttpStatus.CREATED);
+                HttpStatus.CREATED);*/
+
+        return new ResponseEntity<>(
+                commentService.createComment(commentPostDto),
+                HttpStatus.CREATED
+        );
 
     }
 
