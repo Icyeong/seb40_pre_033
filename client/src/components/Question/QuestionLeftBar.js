@@ -7,7 +7,7 @@ import {
   BookmarkSvg,
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
-import { voteQuestion } from '../../redux/actions/questionAction';
+import { voteQuestion } from '../../redux/actions/postAction';
 import { useParams } from 'react-router-dom';
 
 export const Block = styled.div`

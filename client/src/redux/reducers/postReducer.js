@@ -5,7 +5,7 @@ import {
   GET_QUESTION,
   VOTE_QUESTION,
   VOTE_ANSWER,
-} from '../actions/questionAction';
+} from '../actions/postAction';
 
 // const initialState = {
 //   article_id: 0,
@@ -44,7 +44,7 @@ const initialState = {
   ],
 };
 
-export const questionReducer = (state = initialState, action) => {
+export const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_QUESTION:
       return { ...state, ...action.payload };

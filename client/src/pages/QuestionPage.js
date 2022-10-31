@@ -3,6 +3,12 @@ import { QuestionHeader } from '../components/Question/QuestionHeader';
 import { QuestionTemplate } from '../components/Question/QuestionTemplate';
 import { Answers } from '../components/Answer/Answers';
 import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
+import { Header } from '../components/Home/Header/Header';
+import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
+import { Block } from './HomePage';
+import { Sidebar } from '../components/Home/Sidebar/Sidebar';
+import { SidebarMargin } from '../components/Home/Sidebar/SidebarMargin';
+import { Footer } from '../components/Home/Footer/Footer';
 // import { useDispatch } from 'react-redux';
 // import { getQuestion } from '../redux/actions/questionAction';
 // import { useEffect } from 'react';
@@ -53,18 +59,27 @@ export const QuestionPage = () => {
   // }, []);
 
   return (
-    <Container>
-      <QuestionHeader />
-      <div>
-        <Content>
-          <QuestionTemplate />
-          <Answers />
-        </Content>
-        <aside>
-          <section></section>
-          <SidebarWidget />
-        </aside>
-      </div>
-    </Container>
+    <>
+      <Header />
+      <HeaderMargin />
+      <Block>
+        <Sidebar />
+        <SidebarMargin />
+        <Container>
+          <QuestionHeader />
+          <div>
+            <Content>
+              <QuestionTemplate />
+              <Answers />
+            </Content>
+            <aside>
+              <section></section>
+              <SidebarWidget />
+            </aside>
+          </div>
+        </Container>
+      </Block>
+      <Footer />
+    </>
   );
 };

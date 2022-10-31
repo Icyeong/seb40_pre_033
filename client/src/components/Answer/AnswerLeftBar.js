@@ -7,7 +7,7 @@ import {
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
 import { useParams } from 'react-router-dom';
-import { voteAnswer } from '../../redux/actions/questionAction';
+import { voteAnswer } from '../../redux/actions/postAction';
 import { useCallback } from 'react';
 
 export const AnswerLeftBar = (type) => {

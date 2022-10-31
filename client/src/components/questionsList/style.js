@@ -2,19 +2,16 @@ import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
 
 export const ListWrapper = styled.div`
-  margin-top: 75px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  max-width: 1300px;
+  width: calc(100% - 300px - 24px);
   font-size: 17px;
 `;
 
 export const StyledQuestions = styled.div`
   flex: 1 1 80%;
-  margin: 0 0 0 4px;
-  padding: 5px 23px;
-  width: 80%;
+  padding: 24px 0 24px 24px;
   > .title {
     display: flex;
     justify-content: space-between;

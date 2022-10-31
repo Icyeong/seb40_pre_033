@@ -3,7 +3,7 @@ import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
-import { addAnswer } from '../../redux/actions/questionAction';
+import { addAnswer } from '../../redux/actions/postAction';
 
 const Block = styled.div`
   h2 {

@@ -43,6 +43,7 @@ export const NavBar = styled.div`
     max-width: 100%;
     background-color: hsl(210, 8%, 97.5%);
     position: relative;
+
     > .menuBtn {
       display: none;
       justify-content: center;
@@ -59,7 +60,7 @@ export const NavBar = styled.div`
         display: flex;
       }
     }
-    > .dropdown-menu {
+    > .dropdown-menu2 {
       position: absolute;
       top: 47px;
       left: 0;
@@ -91,7 +92,7 @@ export const NavBar = styled.div`
       white-space: nowrap;
       text-decoration: none;
       color: #525960;
-      font-size: 12px;
+      font-size: 13px;
       margin: 2px;
       padding: 6px 12px;
       :hover {

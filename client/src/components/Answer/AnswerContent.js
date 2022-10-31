@@ -10,7 +10,7 @@ import {
 } from '../Question/QuestionContent';
 import { useParams } from 'react-router-dom';
 import { useCallback } from 'react';
-import { deleteAnswer } from '../../redux/actions/questionAction';
+import { deleteAnswer } from '../../redux/actions/postAction';
 
 export const AnswerContent = (type) => {
   const dispatch = useDispatch();

@@ -14,6 +14,7 @@ export const Header = () => {
   }, [location]);
 
   const handleClick = () => {
+    console.log('햄버거 클릭');
     setClick(!click);
   };
   return (
@@ -22,7 +23,7 @@ export const Header = () => {
         <button className="menuBtn" onClick={handleClick}>
           {click ? <GrClose /> : <GrMenu />}
         </button>
-        <div className="dropdown-menu">{click ? <Dropdown /> : null}</div>
+        <div className="dropdown-menu2">{click ? <Dropdown /> : null}</div>
         <a href="/" className="logo-wrapper">
           <div className="logo" />
         </a>
