@@ -3,7 +3,7 @@ import {
   DELETE_QUESTION,
   EDIT_QUESTION,
   GET_QUESTIONS,
-} from '../actions/postsAction';
+} from '../actions/questionsAction';
 
 // const initialState = [
 //   {
@@ -96,7 +96,7 @@ const initialState = [
   },
 ];
 
-export const postsReducer = (state = initialState, action) => {
+export const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_QUESTIONS:
       return [...state, ...action.payload];

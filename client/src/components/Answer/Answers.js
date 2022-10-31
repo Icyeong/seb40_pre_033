@@ -32,7 +32,7 @@ const Block = styled.div`
 `;
 
 export const Answers = () => {
-  let question = useSelector((state) => state.postReducer);
+  let question = useSelector((state) => state.questionReducer);
 
   return (
     <Block>

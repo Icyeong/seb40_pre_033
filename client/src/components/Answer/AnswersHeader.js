@@ -83,7 +83,7 @@ const SortSelect = styled.div`
 `;
 
 export const AnswersHeader = () => {
-  let question = useSelector((state) => state.postReducer);
+  let question = useSelector((state) => state.questionReducer);
 
   return (
     <Block>

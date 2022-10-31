@@ -5,6 +5,9 @@ import { Header } from '../components/Home/Header/Header';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
+// import { useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { getQuestions } from '../redux/actions/questionsAction';
 
 export const Block = styled.div`
   max-width: 1264px;
@@ -27,6 +30,13 @@ const HomeSidebarMargin = styled.div`
 `;
 
 export const HomePage = () => {
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   console.log('GET QUESTIONS');
+  //   dispatch(getQuestions());
+  // }, []);
+
   return (
     <div>
       <Header />

@@ -10,7 +10,7 @@ import {
 import {
   voteUpQuestion,
   voteDownQuestion,
-} from '../../redux/actions/postAction';
+} from '../../redux/actions/questionAction';
 import { useParams } from 'react-router-dom';
 
 export const Block = styled.div`
@@ -49,15 +49,15 @@ export const QuestionLeftBar = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  let question = useSelector((state) => state.postReducer);
+  let question = useSelector((state) => state.questionReducer);
 
   const handleVoteUpQuestion = useCallback(() => {
-    console.log('VOTE QUESTION');
+    console.log('VOTE UP QUESTION');
     dispatch(voteUpQuestion(id));
   }, []);
 
   const handleVoteDownQuestion = useCallback(() => {
-    console.log('VOTE QUESTION');
+    console.log('VOTE DOWN QUESTION');
     dispatch(voteDownQuestion(id));
   }, []);
 

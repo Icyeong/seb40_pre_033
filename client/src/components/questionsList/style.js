@@ -66,7 +66,6 @@ export const StyledQuestions = styled.div`
     padding-top: 15px;
     border-top: 1px solid hsl(210, 8%, 90%);
     font-size: 13px;
-    not
     // Mobile
     @media screen and (max-width: 640px) {
       display: flex;

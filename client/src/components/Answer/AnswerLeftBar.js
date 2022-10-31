@@ -7,23 +7,26 @@ import {
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
 import { useParams } from 'react-router-dom';
-import { voteUpAnswer, voteDownAnswer } from '../../redux/actions/postAction';
+import {
+  voteUpAnswer,
+  voteDownAnswer,
+} from '../../redux/actions/questionAction';
 import { useCallback } from 'react';
 
 export const AnswerLeftBar = (type) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  let question = useSelector((state) => state.postReducer);
+  let question = useSelector((state) => state.questionReducer);
   const idx = type.idx;
 
   const handleVoteUpAnswer = useCallback(() => {
-    console.log('VOTE ANSWER');
+    console.log('VOTE UP ANSWER');
     dispatch(voteUpAnswer(id, question.comments[idx].comment_id));
   }, []);
 
   const handleVoteDownAnswer = useCallback(() => {
-    console.log('VOTE ANSWER');
+    console.log('VOTE DOWN ANSWER');
     dispatch(voteDownAnswer(id, question.comments[idx].comment_id));
   }, []);
 

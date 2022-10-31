@@ -2,8 +2,8 @@ import { QuestionTags } from './style';
 import { useSelector } from 'react-redux';
 
 export const Question = (type) => {
-  let question = useSelector((state) => state.postReducer);
-  let questions = useSelector((state) => state.postsReducer);
+  let question = useSelector((state) => state.questionReducer);
+  let questions = useSelector((state) => state.questionsReducer);
 
   return (
     <div className="questions">
