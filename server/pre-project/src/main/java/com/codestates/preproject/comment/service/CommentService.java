@@ -1,7 +1,5 @@
 package com.codestates.preproject.comment.service;
 
-import com.codestates.preproject.comment.dto.CommentPostDto;
-import com.codestates.preproject.comment.dto.CommentResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
 import org.springframework.stereotype.Service;
@@ -28,18 +26,8 @@ public class CommentService {
     }
 
     // 답변 생성
-//    public Comment createComment(Comment comment) {return commentRepository.save(comment);}
-    public CommentResponseDto createComment(CommentPostDto commentPostDto) {
-
-        Comment newComment = Comment.builder()
-                .commentId(commentPostDto.getCommentId())
-                .username(commentPostDto.getUsername())
-                .content(commentPostDto.getContent())
-                .build();
-
-        Comment createdComment = commentRepository.save(newComment);
-
-        return CommentResponseDto.of(createdComment);
+    public Comment createComment(Comment comment) {
+        return commentRepository.save(comment);
     }
 
     // 답변 수정
