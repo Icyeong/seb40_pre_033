@@ -2,7 +2,7 @@ import { QuestionmarkSvg } from '../../assets/images/SignupSvg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Popover, OverlayTrigger, Button } from 'react-bootstrap';
 
-const OptionalInput = () => {
+const OptionalInput = ({ opt, setOpt }) => {
   const popoverLeft = (
     <Popover id="popover-positioned-left" title="Popover left">
       <Popover.Body>
@@ -20,7 +20,12 @@ const OptionalInput = () => {
 
   return (
     <div className="optionalCheck">
-      <input id="opt-check" type="checkbox" />
+      <input
+        id="opt-check"
+        type="checkbox"
+        name="opt"
+        onChange={() => setOpt(!opt)}
+      />
       <label htmlFor="opt-check">
         Opt-in to receive occasional product updates, user research invitations,
         company announcements, and digests.

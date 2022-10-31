@@ -5,10 +5,23 @@ export const SignupWrapper = styled(Wrapper)`
   main {
     width: 316px;
 
+    .inValid-password {
+      display: block;
+    }
     .req-txt {
       font-size: 12px;
       margin: 4px 0;
       color: var(--fc-light);
+    }
+
+    ul {
+      margin: 5px 0 15px;
+      padding: 0 30px;
+      li {
+        font-size: 12px;
+        color: var(--red-500);
+        list-style: disc;
+      }
     }
     .optionalCheck {
       flex-direction: row;
