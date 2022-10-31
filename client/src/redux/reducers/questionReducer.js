@@ -5,7 +5,7 @@ import {
   GET_QUESTION,
   VOTE_QUESTION,
   VOTE_ANSWER,
-} from '../actions/postAction';
+} from '../actions/questionAction';
 
 // const initialState = {
 //   article_id: 0,
