@@ -1,27 +1,29 @@
 package com.codestates.preproject.comment.entity;
 
 import com.codestates.preproject.article.Article;
+import com.codestates.preproject.audit.BaseTime;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
+@Entity(name = "COMMENT")
+@Table(name = "COMMETS")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Comment /*생성날짜, 수정날짜 상속 필요*/ {
+public class Comment extends BaseTime {
 
     @Id
     @Column(name = "comment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long commentId;
 
-    @ManyToOne
-    @JoinColumn(name = "article_id")
-    private Article articleId;
+//    @ManyToOne
+//    @JoinColumn(name = "article_id")
+//    private Article articleId;
 
     @Column(name = "user_name",  nullable = false)
     private String username;
@@ -29,6 +31,7 @@ public class Comment /*생성날짜, 수정날짜 상속 필요*/ {
     @Column(name = "comment_content",  nullable = false)
     private String content;
 
+    @Builder
     public Comment(String username, String content) {
         this.username = username;
         this.content = content;

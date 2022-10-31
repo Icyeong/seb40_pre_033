@@ -7,6 +7,17 @@ export const ListWrapper = styled.div`
   justify-content: center;
   width: calc(100% - 300px - 24px);
   font-size: 17px;
+  /* margin-left: 164px; */
+  // Mobile
+  @media screen and (max-width: 640px) {
+    margin-left: -8px;
+    width: 100%;
+  }
+  // tablet
+  @media screen and (max-width: 820px) {
+    margin-right: 16px;
+    width: 100%;
+  }
 `;
 
 export const StyledQuestions = styled.div`
@@ -16,21 +27,41 @@ export const StyledQuestions = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 23px;
+    // Mobile
+    @media screen and (max-width: 640px) {
+      display: flex;
+      flex: 1 auto !important;
+    }
     > h1 {
       font-size: 27px;
+      // Mobile
+      @media screen and (max-width: 640px) {
+        font-size: 22px;
+      }
     }
   }
   > .sort {
     margin-bottom: 5px;
-    height: 43px;
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: 640px) {
+      font-size: 15.4px;
+      flex-direction: column !important;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
     > .question-sort {
       > button {
         font-size: 12px;
         border: 1px solid hsl(210, 8%, 55%);
         padding: 10px;
         color: hsl(210,8%,45%);
+        @media screen and (max-width: 640px) {
+          height: 35.44px;
+          padding-left: 0.4em;
+          padding-right: 0.4em;
+          flex-direction: column-reverse;
+        }
         cursor: pointer;
         :first-child {
           border-radius: 3px;
@@ -60,7 +91,6 @@ export const StyledQuestions = styled.div`
     }
   }
   > .questions {
-    margin-left: -27px;
     display: flex;
     padding-left: 10px;
     padding-top: 15px;
@@ -70,6 +100,7 @@ export const StyledQuestions = styled.div`
     @media screen and (max-width: 640px) {
       display: flex;
       flex-direction: column;
+      padding: 16px;
     }
     > .post-summury {
       display: flex;
@@ -131,6 +162,13 @@ export const StyledQuestions = styled.div`
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+          justify-content: flex-end;
+          // Mobile
+          @media screen and (max-width: 640px) {
+            gap: 4px;
+            margin-left: 10px;
+            font-size: 12px;
+          }
           > img {
             margin: 2px 5px 0 0;
             width: 16px;
@@ -146,7 +184,7 @@ export const StyledQuestions = styled.div`
 `;
 
 export const AskQuestion = styled.div`
-  width: 98px;
+  width: 98.73px;
   height: 37.8px;
   background-color: hsl(206, 100%, 52%);
   color: hsl(0, 0%, 100%);
@@ -175,6 +213,11 @@ export const Container = styled.div`
   column-gap: 30px;
   justify-content: space-between;
   margin: 20px 0;
+  // Mobile
+  @media screen and (max-width: 640px) {
+    gap: 30px;
+    padding-left: 50px;
+  }
   > .pagination {
     margin: -10px;
     display: flex;

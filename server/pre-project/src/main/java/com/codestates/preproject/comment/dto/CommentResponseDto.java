@@ -1,6 +1,9 @@
 package com.codestates.preproject.comment.dto;
 
+import com.codestates.preproject.comment.entity.Comment;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -11,5 +14,12 @@ public class CommentResponseDto {
     private long commentId;
     private String username;
     private String content;
+
+//    private LocalDateTime createAt;
+//    private LocalDateTime modifiedAt;
+
+    public static CommentResponseDto of(Comment comment) {
+        return new CommentResponseDto(comment.getCommentId(), comment.getUsername(), comment.getContent());
+    }
 
 }

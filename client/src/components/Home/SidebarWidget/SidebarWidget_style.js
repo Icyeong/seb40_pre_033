@@ -4,6 +4,7 @@ export const RightSide = styled.div`
   /* margin 사이즈 수정 가능 */
   padding: 24px 0;
   margin-left: 24px;
+  margin-right: 24px;
   display: flex;
   flex-direction: column;
   width: 302px;

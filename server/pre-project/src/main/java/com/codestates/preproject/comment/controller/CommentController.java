@@ -27,19 +27,6 @@ public class CommentController {
     //private final ArticleService articleService;
     //private final UserService userService;
 
-    /* -------------------------- 1번 게시물 -------------------------- */
-
-    @PostConstruct
-    public void init() {
-        Comment comment = Comment.builder()
-                .commentId(1)
-                .username("김씨")
-                .content("안녕하세요. 안녕히가세요.")
-                .build();
-        commentService.createComment(comment);
-    }
-
-
     public CommentController(CommentService commentService, CommentMapper commentMapper) {
         this.commentService = commentService;
         this.commentMapper = commentMapper;
@@ -63,14 +50,19 @@ public class CommentController {
     @PostMapping
     public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto) {
 
-        Comment comment = commentMapper.commentPostToComment(commentPostDto);
+/*        Comment comment = commentMapper.commentPostToComment(commentPostDto);
 //        long commentId = comment.getCommentId();
 
         Comment createdComment = commentService.createComment(comment);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(createdComment)),
-                HttpStatus.CREATED);
+                HttpStatus.CREATED);*/
+
+        return new ResponseEntity<>(
+                commentService.createComment(commentPostDto),
+                HttpStatus.CREATED
+        );
 
     }
 
