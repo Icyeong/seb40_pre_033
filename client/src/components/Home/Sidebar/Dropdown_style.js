@@ -2,12 +2,11 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const DropdownContainer = styled.nav`
-  position: sticky;
+  position: fixed;
   display: flex;
   flex-flow: column nowrap;
   flex-direction: column;
   width: 222px;
-  height: 570px;
   background-color: #ffffff;
 `;
 
@@ -18,7 +17,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   > div {
     color: hsl(210, 8%, 35%);
-    font-size: 13px;
+    font-size: 11px;
     margin: 20px 8px 0px 8px;
   }
   > .tab-menu {
@@ -30,6 +29,10 @@ export const Wrapper = styled.div`
     height: 34px;
     padding: 4px 4px 4px 30px;
     margin: 0;
+    :hover {
+      border: none;
+      background-color: #e2e6e8;
+    }
   }
 `;
 

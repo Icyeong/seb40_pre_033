@@ -79,7 +79,7 @@ export const QuestionWritePage = () => {
                     <Sidebarwidget2>
                       Avoid asking opinion-based questions.
                     </Sidebarwidget2>
-                    <Sidebarwidget2>1. Summarize the problems</Sidebarwidget2>{' '}
+                    <Sidebarwidget2>1. Summarize the problems</Sidebarwidget2>
                     <TextList>
                       <li>Include details abot your goal</li>
                       <li>Describe expected and actual results</li>

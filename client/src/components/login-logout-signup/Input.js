@@ -22,7 +22,15 @@ const Input = (type) => {
         <HasErrorSvg />
       </div>
       <p className="inValid-txt">{type.invalidTxt}</p>
+      {type.invalidTxt && (
+        <ul className="inValid-password">
+          <li>numbers</li>
+        </ul>
+      )}
       {type.reqTxt && <p className="req-txt">{type.reqTxt}</p>}
+      {/* <ul className="inValid-password">
+        <li>numbers</li>
+      </ul> */}
     </>
   );
 };

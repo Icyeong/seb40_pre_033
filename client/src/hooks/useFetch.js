@@ -1,18 +1,15 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 
-const useFetch = async (url) => {
-  const [data, setData] = useState(null);
-  //   const [isPending, setIsPending] = useState(null);
-  const [error, setError] = useState(null);
+const DOMAIN = 'http://localhost:8000';
 
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((res) => setData(res))
-      .catch((error) => setError(error))
-      .then(() => [data, error]);
-  }, [url]);
+const useFetch = (method, url, data) => {
+  return axios({
+    method,
+    url: DOMAIN + url,
+    data,
+  })
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
 };
 
 export default useFetch;

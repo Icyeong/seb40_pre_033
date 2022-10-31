@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const NavBar = styled.div`
+  padding-right: 12px;
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -14,7 +15,23 @@ export const NavBar = styled.div`
   background-color: hsl(210, 8%, 97.5%);
   border-top: 3px solid hsl(27, 90%, 55%);
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
-  z-index: 9999;
+  z-index: 2;
+  @media screen and (max-width: 1160px) {
+    left: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 50px;
+    max-width: 100%;
+    background-color: hsl(210, 8%, 97.5%);
+    border-top: 3px solid hsl(27, 90%, 55%);
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
 
   > .navbar-wrapper {
     display: flex;
@@ -26,8 +43,9 @@ export const NavBar = styled.div`
     max-width: 100%;
     background-color: hsl(210, 8%, 97.5%);
     position: relative;
+
     > .menuBtn {
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       height: 44px;
@@ -37,8 +55,12 @@ export const NavBar = styled.div`
         border: none;
         background-color: #e2e6e8;
       }
+      // Mobile
+      @media screen and (max-width: 640px) {
+        display: flex;
+      }
     }
-    > .dropdown-menu {
+    > .dropdown-menu2 {
       position: absolute;
       top: 47px;
       left: 0;
@@ -70,13 +92,17 @@ export const NavBar = styled.div`
       white-space: nowrap;
       text-decoration: none;
       color: #525960;
-      font-size: 12px;
+      font-size: 13px;
       margin: 2px;
       padding: 6px 12px;
       :hover {
         border: none;
         background-color: #e2e6e8;
         border-radius: 15px;
+      }
+      // Mobile
+      @media screen and (max-width: 640px) {
+        display: none;
       }
     }
 
