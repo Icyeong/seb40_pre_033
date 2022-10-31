@@ -29,9 +29,9 @@ export const AnswerContent = (type) => {
     <Block>
       <Body>
         <p>{question.comments[type.idx].content}</p>
-        <pre>
+        {/* <pre>
           <code></code>
-        </pre>
+        </pre> */}
       </Body>
       <Detail>
         <PostMenu>

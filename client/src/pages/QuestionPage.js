@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { QuestionHeader } from '../components/Question/QuestionHeader';
 import { QuestionTemplate } from '../components/Question/QuestionTemplate';
 import { Answers } from '../components/Answer/Answers';
+import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
 // import { useDispatch } from 'react-redux';
 // import { getQuestion } from '../redux/actions/questionAction';
 // import { useEffect } from 'react';
@@ -11,6 +12,10 @@ const Container = styled.div`
   width: calc(100% - 164px);
   max-width: 1100px;
   padding: 24px;
+
+  > div {
+    display: flex;
+  }
 
   // Mobile
   @media screen and (max-width: 640px) {
@@ -26,7 +31,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   width: calc(100% - 300px - 24px);
-  border: 2px solid aquamarine;
+  /* border: 2px solid aquamarine; */
 
   // Mobile
   @media screen and (max-width: 640px) {
@@ -50,10 +55,16 @@ export const QuestionPage = () => {
   return (
     <Container>
       <QuestionHeader />
-      <Content>
-        <QuestionTemplate />
-        <Answers />
-      </Content>
+      <div>
+        <Content>
+          <QuestionTemplate />
+          <Answers />
+        </Content>
+        <aside>
+          <section></section>
+          <SidebarWidget />
+        </aside>
+      </div>
     </Container>
   );
 };

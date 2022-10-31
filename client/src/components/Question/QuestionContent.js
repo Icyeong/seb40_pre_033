@@ -172,9 +172,9 @@ export const QuestionContent = () => {
     <Block>
       <Body>
         <p>{question.content}</p>
-        <pre>
+        {/* <pre>
           <code></code>
-        </pre>
+        </pre> */}
       </Body>
       <QuestionTags>
         {question.tags.map((tag, idx) => (
