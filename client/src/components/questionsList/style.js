@@ -161,10 +161,10 @@ export const StyledQuestions = styled.div`
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        margin-bottom: 15px;
 
         > .question__avatar--wrapper {
           margin-top: -5px;
-          margin-bottom: 15px;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
