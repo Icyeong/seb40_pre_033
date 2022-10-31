@@ -27,19 +27,6 @@ public class CommentController {
     //private final ArticleService articleService;
     //private final UserService userService;
 
-    /* -------------------------- 1번 게시물 -------------------------- */
-
-    @PostConstruct
-    public void init() {
-        Comment comment = Comment.builder()
-                .commentId(1)
-                .username("김씨")
-                .content("안녕하세요. 안녕히가세요.")
-                .build();
-        commentService.createComment(comment);
-    }
-
-
     public CommentController(CommentService commentService, CommentMapper commentMapper) {
         this.commentService = commentService;
         this.commentMapper = commentMapper;
