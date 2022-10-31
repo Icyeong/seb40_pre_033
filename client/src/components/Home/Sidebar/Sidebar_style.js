@@ -7,12 +7,11 @@ export const SidebarContainer = styled.nav`
     display: none;
   }
   border-right: 1px solid #d6d9dc;
-  margin-top: 52px;
-  position: sticky;
+  position: fixed;
   display: flex;
   flex-flow: column nowrap;
   flex-direction: column;
-  width: 224px;
+  width: 164px;
   background-color: hsl(0, 0%, 100%);
 `;
 
@@ -24,7 +23,7 @@ export const Wrapper = styled.div`
   > div {
     color: hsl(210, 8%, 35%);
     font-size: 13px;
-    margin: 20px 8px 0px 8px;
+    margin: 24px 8px 0px 8px;
   }
   > .tab-menu {
     color: hsl(210, 8%, 35%);

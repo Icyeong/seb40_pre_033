@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
+import { useParams } from 'react-router-dom';
 
 export const Block = styled.div`
   padding-right: 16px;
@@ -60,6 +61,16 @@ export const PostMenu = styled.ul`
     &:hover,
     &:active {
       color: var(--black-400);
+    }
+  }
+
+  .delete-button {
+    button {
+      color: var(--red-500);
+      &:active,
+      &:hover {
+        color: var(--red-400);
+      }
     }
   }
 
@@ -151,15 +162,19 @@ export const Badge = styled.span`
 `;
 
 export const QuestionContent = () => {
+  const { id } = useParams();
+
   let question = useSelector((state) => state.questionReducer);
+
+  const editUrl = `/questions/edit/${id}`;
 
   return (
     <Block>
       <Body>
         <p>{question.content}</p>
-        <pre>
+        {/* <pre>
           <code></code>
-        </pre>
+        </pre> */}
       </Body>
       <QuestionTags>
         {question.tags.map((tag, idx) => (
@@ -171,9 +186,21 @@ export const QuestionContent = () => {
       </QuestionTags>
       <Detail>
         <PostMenu>
+          {/* other */}
+          {/* <li>Share</li>
+          <li>
+            <a href={editUrl}>Edit</a>
+          </li>
+          <li>Follow</li> */}
+          {/* my */}
           <li>Share</li>
-          <li>Edit</li>
-          <li>Follow</li>
+          <li>
+            <a href={editUrl}>Edit</a>
+          </li>
+          <li className="delete-button">
+            <button>Delete</button>
+          </li>
+          <li>Flag</li>
         </PostMenu>
         <PostUser background="#D9EAF7">
           <h5>{question.create_at}</h5>

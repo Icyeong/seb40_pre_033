@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const RightSide = styled.div`
   /* margin 사이즈 수정 가능 */
-  margin-top: 75px;
-  margin-right: 25px;
+  padding: 24px 0;
+  margin-left: 24px;
   display: flex;
   flex-direction: column;
   width: 302px;

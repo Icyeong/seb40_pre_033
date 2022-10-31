@@ -30,7 +30,7 @@ const initialState = {
       tags: ['javascript', 'css'],
     },
     {
-      article_id: 2,
+      article_id: 3,
       title: '질문 제목3',
       content: '질문 내용2',
       vote: 2,

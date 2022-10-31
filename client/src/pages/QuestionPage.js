@@ -2,11 +2,26 @@ import styled from 'styled-components';
 import { QuestionHeader } from '../components/Question/QuestionHeader';
 import { QuestionTemplate } from '../components/Question/QuestionTemplate';
 import { Answers } from '../components/Answer/Answers';
+import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
+import { Header } from '../components/Home/Header/Header';
+import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
+import { Block } from './HomePage';
+import { Sidebar } from '../components/Home/Sidebar/Sidebar';
+import { SidebarMargin } from '../components/Home/Sidebar/SidebarMargin';
+import { Footer } from '../components/Home/Footer/Footer';
+// import { useDispatch } from 'react-redux';
+// import { getQuestion } from '../redux/actions/questionAction';
+// import { useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
 
 const Container = styled.div`
   width: calc(100% - 164px);
   max-width: 1100px;
   padding: 24px;
+
+  > div {
+    display: flex;
+  }
 
   // Mobile
   @media screen and (max-width: 640px) {
@@ -22,7 +37,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   width: calc(100% - 300px - 24px);
-  border: 2px solid aquamarine;
+  /* border: 2px solid aquamarine; */
 
   // Mobile
   @media screen and (max-width: 640px) {
@@ -35,13 +50,36 @@ const Content = styled.div`
 `;
 
 export const QuestionPage = () => {
+  // const dispatch = useDispatch();
+  // const { id } = useParams();
+
+  // useEffect(() => {
+  //   console.log('GET QUESTION');
+  //   dispatch(getQuestion(id));
+  // }, []);
+
   return (
-    <Container>
-      <QuestionHeader />
-      <Content>
-        <QuestionTemplate />
-        <Answers />
-      </Content>
-    </Container>
+    <>
+      <Header />
+      <HeaderMargin />
+      <Block>
+        <Sidebar />
+        <SidebarMargin />
+        <Container>
+          <QuestionHeader />
+          <div>
+            <Content>
+              <QuestionTemplate />
+              <Answers />
+            </Content>
+            <aside>
+              <section></section>
+              <SidebarWidget />
+            </aside>
+          </div>
+        </Container>
+      </Block>
+      <Footer />
+    </>
   );
 };
