@@ -3,8 +3,10 @@ import {
   DELETE_ANSWER,
   EDIT_ANSWER,
   GET_QUESTION,
-  VOTE_QUESTION,
-  VOTE_ANSWER,
+  VOTE_UP_QUESTION,
+  VOTE_DOWN_QUESTION,
+  VOTE_UP_ANSWER,
+  VOTE_DOWN_ANSWER,
 } from '../actions/questionAction';
 
 // const initialState = {
@@ -44,7 +46,7 @@ const initialState = {
   ],
 };
 
-export const postReducer = (state = initialState, action) => {
+export const questionReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_QUESTION:
       return { ...state, ...action.payload };
@@ -71,12 +73,29 @@ export const postReducer = (state = initialState, action) => {
           ),
         ],
       };
-    case VOTE_QUESTION:
+    case VOTE_UP_QUESTION:
       return {
         ...state,
         vote: action.payload,
       };
-    case VOTE_ANSWER:
+    case VOTE_DOWN_QUESTION:
+      return {
+        ...state,
+        vote: action.payload,
+      };
+    case VOTE_UP_ANSWER:
+      return {
+        ...state,
+        comments: [
+          state.comments.map((answer) => {
+            if (answer.comment_id === action.payload.comment_id)
+              answer.vote = action.payload.vote;
+
+            return answer;
+          }),
+        ],
+      };
+    case VOTE_DOWN_ANSWER:
       return {
         ...state,
         comments: [

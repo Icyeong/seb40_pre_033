@@ -8,17 +8,15 @@ import {
   PostUser,
   UserInfo,
 } from '../Question/QuestionContent';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useCallback } from 'react';
-import { deleteAnswer } from '../../redux/actions/postAction';
+import { deleteAnswer } from '../../redux/actions/questionAction';
 
 export const AnswerContent = (type) => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   let question = useSelector((state) => state.questionReducer);
-
-  const editUrl = `/questions/edit/${id}`;
 
   const handleDeleteAnswer = useCallback(() => {
     console.log('DELETE ANSWER');
@@ -38,15 +36,15 @@ export const AnswerContent = (type) => {
           {/* other */}
           {/* <li>Share</li>
           <li>
-            <a href={editUrl}>Edit</a>
+            <Link to={`/questions/edit/${id}`}>Edit</Link>
           </li>
           <li>Follow</li> */}
           {/* my */}
           <li>Share</li>
           <li>
-            <a href={editUrl}>Edit</a>
+            <Link to={`/questions/edit/${id}`}>Edit</Link>
           </li>
-          <li className="delete-button">
+          <li>
             <button onClick={handleDeleteAnswer}>Delete</button>
           </li>
           <li>Flag</li>

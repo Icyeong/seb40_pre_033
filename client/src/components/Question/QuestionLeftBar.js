@@ -7,7 +7,10 @@ import {
   BookmarkSvg,
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
-import { voteQuestion } from '../../redux/actions/postAction';
+import {
+  voteUpQuestion,
+  voteDownQuestion,
+} from '../../redux/actions/questionAction';
 import { useParams } from 'react-router-dom';
 
 export const Block = styled.div`
@@ -48,18 +51,23 @@ export const QuestionLeftBar = () => {
 
   let question = useSelector((state) => state.questionReducer);
 
-  const handleVoteQuestion = useCallback(() => {
-    console.log('VOTE QUESTION');
-    dispatch(voteQuestion(id));
+  const handleVoteUpQuestion = useCallback(() => {
+    console.log('VOTE UP QUESTION');
+    dispatch(voteUpQuestion(id));
+  }, []);
+
+  const handleVoteDownQuestion = useCallback(() => {
+    console.log('VOTE DOWN QUESTION');
+    dispatch(voteDownQuestion(id));
   }, []);
 
   return (
     <Block>
-      <button onClick={handleVoteQuestion}>
+      <button onClick={handleVoteUpQuestion}>
         <ArrowUpSvg />
       </button>
       <span>{question.vote}</span>
-      <button onClick={handleVoteQuestion}>
+      <button onClick={handleVoteDownQuestion}>
         <ArrowDownSvg />
       </button>
       <button>

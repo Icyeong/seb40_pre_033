@@ -7,7 +7,10 @@ import {
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
 import { useParams } from 'react-router-dom';
-import { voteAnswer } from '../../redux/actions/postAction';
+import {
+  voteUpAnswer,
+  voteDownAnswer,
+} from '../../redux/actions/questionAction';
 import { useCallback } from 'react';
 
 export const AnswerLeftBar = (type) => {
@@ -17,18 +20,23 @@ export const AnswerLeftBar = (type) => {
   let question = useSelector((state) => state.questionReducer);
   const idx = type.idx;
 
-  const handleVoteAnswer = useCallback(() => {
-    console.log('VOTE ANSWER');
-    dispatch(voteAnswer(id, question.comments[idx].comment_id));
+  const handleVoteUpAnswer = useCallback(() => {
+    console.log('VOTE UP ANSWER');
+    dispatch(voteUpAnswer(id, question.comments[idx].comment_id));
+  }, []);
+
+  const handleVoteDownAnswer = useCallback(() => {
+    console.log('VOTE DOWN ANSWER');
+    dispatch(voteDownAnswer(id, question.comments[idx].comment_id));
   }, []);
 
   return (
     <Block>
-      <button onClick={handleVoteAnswer}>
+      <button onClick={handleVoteUpAnswer}>
         <ArrowUpSvg />
       </button>
       <span>{question.comments[idx].vote}</span>
-      <button onClick={handleVoteAnswer}>
+      <button onClick={handleVoteDownAnswer}>
         <ArrowDownSvg />
       </button>
       <button>
