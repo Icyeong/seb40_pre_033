@@ -1,8 +1,10 @@
+// import axios from 'axios';
 import { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { BlueButton } from '../../assets/styles/LoginStyle';
-import { registerUser } from '../../redux/actions/userAction';
+// import useFetch from '../../hooks/useFetch';
+// import { registerUser } from '../../redux/actions/userAction';
 import Input from './Input';
 import OptionalInput from './OptionalInput';
 import Recaptcha from './Recaptcha';
@@ -18,10 +20,10 @@ const SignupForm = () => {
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   const emailFormEl = useRef();
   const passwordFormEl = useRef();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const navigate = useNavigate();
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     emailFormEl.current.classList.remove('inValid');
     passwordFormEl.current.classList.remove('inValid');
@@ -54,13 +56,39 @@ const SignupForm = () => {
 
     // 보낼 데이터
     let body = {
-      name,
+      nickname: 'hi',
       email,
       password,
-      opt,
     };
 
-    dispatch(registerUser(body));
+    console.log(JSON.stringify(body));
+
+    // const requestOptions = {
+    //   Headers: {
+    //     'Content-Type': 'application/json',
+    //     'ngrok-skip-browser-warning': 'any value',
+    //     'Access-Control-Allow-Origin': '*',
+    //   },
+    //   Body: JSON.stringify(body),
+    // };
+
+    const response = await fetch(
+      'https://d92f-114-205-132-181.jp.ngrok.io/auth/signup',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    ).then((res) => {
+      if (!res.ok) {
+        throw Error('에러발생');
+      }
+      return res;
+    });
+    console.log(response);
+    // dispatch(registerUser(body));
     //   alert('가입이 정상적으로 완료되었습니다.');
     //   navigate('/');
   };
