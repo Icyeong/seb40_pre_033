@@ -3,15 +3,10 @@ import {
   DELETE_ANSWER,
   EDIT_ANSWER,
   GET_QUESTION,
-<<<<<<< HEAD
   VOTE_UP_QUESTION,
   VOTE_DOWN_QUESTION,
   VOTE_UP_ANSWER,
   VOTE_DOWN_ANSWER,
-=======
-  VOTE_QUESTION,
-  VOTE_ANSWER,
->>>>>>> upstream/dev
 } from '../actions/questionAction';
 
 // const initialState = {

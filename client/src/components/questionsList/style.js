@@ -7,15 +7,12 @@ export const ListWrapper = styled.div`
   justify-content: center;
   width: calc(100% - 300px - 24px);
   font-size: 17px;
-  /* margin-left: 164px; */
   // Mobile
   @media screen and (max-width: 640px) {
-    margin-left: -8px;
     width: 100%;
   }
-  // tablet
-  @media screen and (max-width: 820px) {
-    margin-right: 16px;
+  // Tablet
+  @media screen and (max-width: 980px) {
     width: 100%;
   }
 `;
@@ -23,6 +20,15 @@ export const ListWrapper = styled.div`
 export const StyledQuestions = styled.div`
   flex: 1 1 80%;
   padding: 24px 0 24px 24px;
+  // Mobile
+  @media screen and (max-width: 640px) {
+    padding: 24px 16px;
+  }
+  // Tablet
+  @media screen and (max-width: 980px){
+    padding: 24px 16px;
+  }
+
   > .title {
     display: flex;
     justify-content: space-between;

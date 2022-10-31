@@ -73,10 +73,6 @@ export const PostMenu = styled.ul`
         color: var(--black-400);
       }
     }
-
-    a {
-      margin: 0;
-    }
   }
 
   /* .delete-button {

@@ -16,10 +16,6 @@ export const Block = styled.div`
   justify-content: space-between;
   margin: 0 auto;
 
-  a {
-    margin: 10px;
-  }
-
   aside {
     float: right;
   }

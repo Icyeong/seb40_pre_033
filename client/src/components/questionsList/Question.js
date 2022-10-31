@@ -37,13 +37,14 @@ export const Question = (type) => {
           </QuestionTags>
           <div className="question__avatar--wrapper">
             <img
+              src="https://via.placeholder.com/32"
+              alt="user-thumbnail"
               className="discussion__avatar--image"
-              src={questions[type.idx].image}
-              alt=""
             />
-            {`${
-              questions[type.idx].user
-            } asked ${new Date().toLocaleDateString()}`}
+
+            {`${questions[type.idx].email} asked ${
+              questions[type.idx].create_at
+            }`}
           </div>
         </div>
       </div>
