@@ -5,8 +5,10 @@ export const ADD_ANSWER = 'ADD_ANSWER';
 export const EDIT_ANSWER = 'EDIT_ANSWER';
 export const DELETE_ANSWER = 'DELETE_ANSWER';
 
-export const VOTE_QUESTION = 'VOTE_QUESTION';
-export const VOTE_ANSWER = 'VOTE_ANSWER';
+export const VOTE_UP_QUESTION = 'VOTE_UP_QUESTION';
+export const VOTE_DOWN_QUESTION = 'VOTE_DOWN_QUESTION';
+export const VOTE_UP_ANSWER = 'VOTE_UP_ANSWER';
+export const VOTE_DOWN_ANSWER = 'VOTE_DOWN_ANSWER';
 
 export const getQuestion = (questionId) => {
   try {
@@ -66,12 +68,12 @@ export const deleteAnswer = (questionId, answerId) => {
 
 // 🟢🟢🟢🟢🟢 투표
 
-export const voteQuestion = (questionId) => {
+export const voteUpQuestion = (questionId) => {
   try {
-    const res = axios.get(`/article/${questionId}/vote-quesion`);
+    const res = axios.get(`/article/${questionId}/vote-up-quesion`);
 
     return {
-      type: VOTE_QUESTION,
+      type: VOTE_UP_QUESTION,
       payload: res.data, // 질문 투표 수
     };
   } catch (err) {
@@ -79,14 +81,42 @@ export const voteQuestion = (questionId) => {
   }
 };
 
-export const voteAnswer = (questionId, answerId) => {
+export const voteDownQuestion = (questionId) => {
+  try {
+    const res = axios.get(`/article/${questionId}/vote-down-quesion`);
+
+    return {
+      type: VOTE_DOWN_QUESTION,
+      payload: res.data, // 질문 투표 수
+    };
+  } catch (err) {
+    throw new Error('질문 투표 GET 에러 발생');
+  }
+};
+
+export const voteUpAnswer = (questionId, answerId) => {
   try {
     const res = axios.get(
-      `/article/${questionId}/comment/${answerId}/vote-answer`
+      `/article/${questionId}/comment/${answerId}/vote-up-answer`
     );
 
     return {
-      type: VOTE_ANSWER,
+      type: VOTE_UP_ANSWER,
+      payload: res.data, // 답변 데이터 (투표 수 적용)
+    };
+  } catch (err) {
+    throw new Error('답변 투표 GET 에러 발생');
+  }
+};
+
+export const voteDownAnswer = (questionId, answerId) => {
+  try {
+    const res = axios.get(
+      `/article/${questionId}/comment/${answerId}/vote-down-answer`
+    );
+
+    return {
+      type: VOTE_DOWN_ANSWER,
       payload: res.data, // 답변 데이터 (투표 수 적용)
     };
   } catch (err) {
