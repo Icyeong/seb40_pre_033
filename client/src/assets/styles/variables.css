@@ -37,7 +37,11 @@
   --red-050: hsl(358, 75%, 97%);
   --red-100: hsl(358, 76%, 90%);
   --red-400: hsl(358, 68%, 59%);
-  --red-500: hsl(1, 50%, 54%);
+  --red-500: hsl(358, 62%, 52%);
+  --red-600: hsl(358, 62%, 47%);
+  --red-700: hsl(358, 64%, 41%);
+  --red-800: hsl(358, 64%, 35%);
+  --red-900: hsl(358, 67%, 29%);
 
   --theme-button-primary-color: var(--white);
   --theme-button-primary-background-color: var(--blue-500);

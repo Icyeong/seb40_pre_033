@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { TalentSvg } from '../../assets/images/LoginSvg';
 import { OptionsWrapper } from '../../assets/styles/LoginStyle';
 
@@ -7,12 +8,12 @@ const Options = (option) => {
       {option.signup ? (
         <p className="options">
           Already have an account?
-          <a href="https://naver.com">Log in</a>
+          <Link to="/users/login">Log in</Link>
         </p>
       ) : (
         <p className="options">
           Don t have an account?
-          <a href="https://naver.com">Sign up</a>
+          <Link to="/users/signup">Sign up</Link>
         </p>
       )}
       <p className="options">
