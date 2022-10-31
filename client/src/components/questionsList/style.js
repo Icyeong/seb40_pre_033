@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Tags } from '../Common/Tags';
 
 export const ListWrapper = styled.div`
   margin-top: 75px;
@@ -67,8 +68,8 @@ export const StyledQuestions = styled.div`
     padding-left: 10px;
     padding-top: 15px;
     border-top: 1px solid hsl(210, 8%, 90%);
-    border-bottom: 1px solid hsl(210, 8%, 90%); // #d6d9dc;
     font-size: 13px;
+    not
     // Mobile
     @media screen and (max-width: 640px) {
       display: flex;
@@ -149,43 +150,33 @@ export const StyledQuestions = styled.div`
 `;
 
 export const AskQuestion = styled.div`
-  width: 99px;
-  height: 39px;
+  width: 98px;
+  height: 37.8px;
   background-color: hsl(206, 100%, 52%);
   color: hsl(0, 0%, 100%);
   font-size: 13px;
   border: 1px solid transparent;
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
-  border-radius: 4px;
+  border-radius: 3px;
   display: flex;
+  flex-direction: column-reverse;
   :hover {
     background-color: #0074cc;
   }
 `;
 
-const Tags = styled.div`
-  display: inline-flex;
-`;
-
 export const QuestionTags = styled(Tags)`
-  margin: 0px 0 25px 10px;
+  margin: 10px 10px 25px 10px;
   li {
-    display: fixed;
-    height: 23.6px;
-    margin-right: 5px;
-    padding: 4px 6px;
-    color: hsl(205, 47%, 42%);
-    background-color: hsl(205, 46%, 92%);
-    border-radius: 3px;
-    font-size: 12px;
-    box-sizing: border-box;
+    margin: -8px;
   }
 `;
 
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap-reverse;
-  row-gap: 30px;
+  row-gap: 10px;
+  column-gap: 30px;
   justify-content: space-between;
   margin: 20px 0;
   > .pagination {
@@ -211,6 +202,7 @@ export const Container = styled.div`
       }
     }
     & > li.active {
+      border: none;
       color: #ffffff;
       background-color: hsl(27, 90%, 55%);
       cursor: default;
@@ -246,6 +238,7 @@ export const Container = styled.div`
         background-color: hsl(210, 8%, 85%);
       }
       &.btn-active {
+        border: none;
         color: #ffffff;
         background-color: hsl(27, 90%, 55%);
         cursor: default;
