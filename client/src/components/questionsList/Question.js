@@ -2,14 +2,13 @@ import { QuestionTags } from './style';
 import { useSelector } from 'react-redux';
 
 export const Question = (type) => {
-  let question = useSelector((state) => state.questionReducer);
   let posts = useSelector((state) => state.postsReducer);
 
   return (
     <div className="questions">
       <div className="post-summury">
-        <div>{question.vote} votes</div>
-        <div>{question.comments.length} answers</div>
+        <div>0 votes</div>
+        <div>0 answers</div>
         <div>0 views</div>
       </div>
       <div className="question-list">

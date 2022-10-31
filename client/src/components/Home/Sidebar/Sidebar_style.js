@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 export const SidebarContainer = styled.nav`
   // Mobile
-  @media screen and (max-width: 1160px) {
+  @media screen and (max-width: 640px) {
     display: none;
   }
   border-right: 1px solid #d6d9dc;
-  position: fixed;
+  position: sticky;
   display: flex;
   flex-flow: column nowrap;
   flex-direction: column;
@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   > div {
     color: hsl(210, 8%, 35%);
-    font-size: 13px;
+    font-size: 11px;
     margin: 24px 8px 0px 8px;
   }
   > .tab-menu {
@@ -47,8 +47,8 @@ export const NavLinkMenu = styled(NavLink)`
   text-decoration: none;
   display: flex;
   align-items: center;
-  height: 34px;
   padding-left: 8px;
+  padding: 8px 6px 8px 0;
   :hover {
     border: none;
     background-color: #e2e6e8;
@@ -66,7 +66,7 @@ export const NavLinkMenu = styled(NavLink)`
     font-weight: 700;
     color: hsl(210, 8%, 15%);
     margin-left: 0px;
-    width: 222px;
+    width: 163px;
     background-color: hsl(210, 8%, 95%);
     border-right: 3px solid hsl(27, 90%, 55%);
   }

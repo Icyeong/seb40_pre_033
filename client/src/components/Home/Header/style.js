@@ -56,7 +56,7 @@ export const NavBar = styled.div`
         background-color: #e2e6e8;
       }
       // Mobile
-      @media screen and (max-width: 1160px) {
+      @media screen and (max-width: 640px) {
         display: flex;
       }
     }

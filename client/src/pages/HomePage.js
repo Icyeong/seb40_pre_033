@@ -23,7 +23,7 @@ export const Block = styled.div`
 `;
 
 const HomeSidebarMargin = styled.div`
-  width: 204px;
+  /* width: 204px; */
 `;
 
 export const HomePage = () => {
@@ -36,7 +36,6 @@ export const HomePage = () => {
         <HomeSidebarMargin />
         <QuestionsList />
         <aside>
-          <section></section>
           <SidebarWidget />
         </aside>
       </Block>

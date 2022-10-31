@@ -3,14 +3,15 @@ import {
   GET_TAG_POSTS,
   ADD_POST,
   DELETE_POST,
-} from '../actions/postsAction';
+} from '../actions/questionsAction';
 
 const initialState = {
   posts: [
     {
       article_id: 1,
-      title: '질문 제목',
-      content: '질문 내용',
+      title: 'Sum values of specific rows if fields are the same',
+      content:
+        'Hi Im trying to sum values of one column if ID matches for all in a dataframe For example ID Gender value 1 Male 5 1',
       vote: 1,
       image:
         'https://lh3.googleusercontent.com/a-/AFdZucpXdOFmV8dt0puZhTxiEwikZdoIcbWGo_JHU05Q=k-s32',
