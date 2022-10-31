@@ -2,38 +2,72 @@ import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
 
 export const ListWrapper = styled.div`
-  margin-top: 75px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  max-width: 1300px;
+  width: calc(100% - 300px - 24px);
   font-size: 17px;
+  // Mobile
+  @media screen and (max-width: 640px) {
+    width: 100%;
+  }
+  // Tablet
+  @media screen and (max-width: 980px) {
+    width: 100%;
+  }
 `;
 
 export const StyledQuestions = styled.div`
   flex: 1 1 80%;
-  margin: 0 0 0 4px;
-  padding: 5px 23px;
-  width: 80%;
+  padding: 24px 0 24px 24px;
+  // Mobile
+  @media screen and (max-width: 640px) {
+    padding: 24px 16px;
+  }
+  // Tablet
+  @media screen and (max-width: 980px){
+    padding: 24px 16px;
+  }
+
   > .title {
     display: flex;
     justify-content: space-between;
     margin-bottom: 23px;
+    // Mobile
+    @media screen and (max-width: 640px) {
+      display: flex;
+      flex: 1 auto !important;
+    }
     > h1 {
       font-size: 27px;
+      // Mobile
+      @media screen and (max-width: 640px) {
+        font-size: 22px;
+      }
     }
   }
   > .sort {
     margin-bottom: 5px;
-    height: 43px;
     display: flex;
     justify-content: space-between;
+    @media screen and (max-width: 640px) {
+      font-size: 15.4px;
+      flex-direction: column !important;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
     > .question-sort {
       > button {
         font-size: 12px;
         border: 1px solid hsl(210, 8%, 55%);
         padding: 10px;
         color: hsl(210,8%,45%);
+        @media screen and (max-width: 640px) {
+          height: 35.44px;
+          padding-left: 0.4em;
+          padding-right: 0.4em;
+          flex-direction: column-reverse;
+        }
         cursor: pointer;
         :first-child {
           border-radius: 3px;
@@ -63,17 +97,16 @@ export const StyledQuestions = styled.div`
     }
   }
   > .questions {
-    margin-left: -27px;
     display: flex;
     padding-left: 10px;
     padding-top: 15px;
     border-top: 1px solid hsl(210, 8%, 90%);
     font-size: 13px;
-    not
     // Mobile
     @media screen and (max-width: 640px) {
       display: flex;
       flex-direction: column;
+      padding: 16px;
     }
     > .post-summury {
       display: flex;
@@ -128,13 +161,20 @@ export const StyledQuestions = styled.div`
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        margin-bottom: 15px;
 
         > .question__avatar--wrapper {
           margin-top: -5px;
-          margin-bottom: 15px;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+          justify-content: flex-end;
+          // Mobile
+          @media screen and (max-width: 640px) {
+            gap: 4px;
+            margin-left: 10px;
+            font-size: 12px;
+          }
           > img {
             margin: 2px 5px 0 0;
             width: 16px;
@@ -150,7 +190,7 @@ export const StyledQuestions = styled.div`
 `;
 
 export const AskQuestion = styled.div`
-  width: 98px;
+  width: 98.73px;
   height: 37.8px;
   background-color: hsl(206, 100%, 52%);
   color: hsl(0, 0%, 100%);
@@ -179,6 +219,11 @@ export const Container = styled.div`
   column-gap: 30px;
   justify-content: space-between;
   margin: 20px 0;
+  // Mobile
+  @media screen and (max-width: 640px) {
+    gap: 30px;
+    padding-left: 50px;
+  }
   > .pagination {
     margin: -10px;
     display: flex;

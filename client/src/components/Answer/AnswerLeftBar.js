@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Block } from '../Question/QuestionLeftBar';
 import {
   ArrowDownSvg,
@@ -6,18 +6,37 @@ import {
   BookmarkSvg,
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
+import { useParams } from 'react-router-dom';
+import {
+  voteUpAnswer,
+  voteDownAnswer,
+} from '../../redux/actions/questionAction';
+import { useCallback } from 'react';
 
 export const AnswerLeftBar = (type) => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
   let question = useSelector((state) => state.questionReducer);
   const idx = type.idx;
 
+  const handleVoteUpAnswer = useCallback(() => {
+    console.log('VOTE UP ANSWER');
+    dispatch(voteUpAnswer(id, question.comments[idx].comment_id));
+  }, []);
+
+  const handleVoteDownAnswer = useCallback(() => {
+    console.log('VOTE DOWN ANSWER');
+    dispatch(voteDownAnswer(id, question.comments[idx].comment_id));
+  }, []);
+
   return (
     <Block>
-      <button>
+      <button onClick={handleVoteUpAnswer}>
         <ArrowUpSvg />
       </button>
       <span>{question.comments[idx].vote}</span>
-      <button>
+      <button onClick={handleVoteDownAnswer}>
         <ArrowDownSvg />
       </button>
       <button>

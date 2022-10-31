@@ -5,9 +5,14 @@ export const ADD_ANSWER = 'ADD_ANSWER';
 export const EDIT_ANSWER = 'EDIT_ANSWER';
 export const DELETE_ANSWER = 'DELETE_ANSWER';
 
-export const getQuestion = async (questionId) => {
+export const VOTE_UP_QUESTION = 'VOTE_UP_QUESTION';
+export const VOTE_DOWN_QUESTION = 'VOTE_DOWN_QUESTION';
+export const VOTE_UP_ANSWER = 'VOTE_UP_ANSWER';
+export const VOTE_DOWN_ANSWER = 'VOTE_DOWN_ANSWER';
+
+export const getQuestion = (questionId) => {
   try {
-    const res = await axios.get(`/article/${questionId}`);
+    const res = axios.get(`/article/${questionId}`);
 
     return {
       type: GET_QUESTION,
@@ -18,9 +23,9 @@ export const getQuestion = async (questionId) => {
   }
 };
 
-export const addAnswer = async (questionId, answerData) => {
+export const addAnswer = (questionId, answerData) => {
   try {
-    const res = await axios.post(`/article/${questionId}/comment`, {
+    const res = axios.post(`/article/${questionId}/comment`, {
       answerData,
     });
 
@@ -33,14 +38,11 @@ export const addAnswer = async (questionId, answerData) => {
   }
 };
 
-export const editAnswer = async (questionId, answerId, answerData) => {
+export const editAnswer = (questionId, answerId, answerData) => {
   try {
-    const res = await axios.patch(
-      `/article/${questionId}/comment/${answerId}`,
-      {
-        answerData,
-      }
-    );
+    const res = axios.patch(`/article/${questionId}/comment/${answerId}`, {
+      answerData,
+    });
 
     return {
       type: EDIT_ANSWER,
@@ -51,17 +53,73 @@ export const editAnswer = async (questionId, answerId, answerData) => {
   }
 };
 
-export const deleteAnswer = async (questionId, answerId) => {
+export const deleteAnswer = (questionId, answerId) => {
   try {
-    const res = await axios.delete(
-      `/article/${questionId}/comment/${answerId}`
-    );
+    const res = axios.delete(`/article/${questionId}/comment/${answerId}`);
 
     return {
       type: DELETE_ANSWER,
-      payload: res.data, // 삭제한 답변 데이터(or id)
+      payload: res.data, // 삭제한 답변 id
     };
   } catch (err) {
     throw new Error('답변 DELETE 에러 발생');
+  }
+};
+
+// 🟢🟢🟢🟢🟢 투표
+
+export const voteUpQuestion = (questionId) => {
+  try {
+    const res = axios.get(`/article/${questionId}/vote-up-quesion`);
+
+    return {
+      type: VOTE_UP_QUESTION,
+      payload: res.data, // 질문 투표 수
+    };
+  } catch (err) {
+    throw new Error('질문 투표 GET 에러 발생');
+  }
+};
+
+export const voteDownQuestion = (questionId) => {
+  try {
+    const res = axios.get(`/article/${questionId}/vote-down-quesion`);
+
+    return {
+      type: VOTE_DOWN_QUESTION,
+      payload: res.data, // 질문 투표 수
+    };
+  } catch (err) {
+    throw new Error('질문 투표 GET 에러 발생');
+  }
+};
+
+export const voteUpAnswer = (questionId, answerId) => {
+  try {
+    const res = axios.get(
+      `/article/${questionId}/comment/${answerId}/vote-up-answer`
+    );
+
+    return {
+      type: VOTE_UP_ANSWER,
+      payload: res.data, // 답변 데이터 (투표 수 적용)
+    };
+  } catch (err) {
+    throw new Error('답변 투표 GET 에러 발생');
+  }
+};
+
+export const voteDownAnswer = (questionId, answerId) => {
+  try {
+    const res = axios.get(
+      `/article/${questionId}/comment/${answerId}/vote-down-answer`
+    );
+
+    return {
+      type: VOTE_DOWN_ANSWER,
+      payload: res.data, // 답변 데이터 (투표 수 적용)
+    };
+  } catch (err) {
+    throw new Error('답변 투표 GET 에러 발생');
   }
 };

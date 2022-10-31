@@ -1,6 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { deleteQuestion } from '../../redux/actions/questionsAction';
+import { useCallback } from 'react';
 
 export const Block = styled.div`
   padding-right: 16px;
@@ -61,7 +64,26 @@ export const PostMenu = styled.ul`
     &:active {
       color: var(--black-400);
     }
+
+    button {
+      color: var(--black-500);
+
+      &:hover,
+      &:active {
+        color: var(--black-400);
+      }
+    }
   }
+
+  /* .delete-button {
+    button {
+      color: var(--red-500);
+      &:active,
+      &:hover {
+        color: var(--red-400);
+      }
+    }
+  } */
 
   h6 {
     font-size: 11px;
@@ -151,15 +173,25 @@ export const Badge = styled.span`
 `;
 
 export const QuestionContent = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
+
   let question = useSelector((state) => state.questionReducer);
+
+  const handelDeleteQuestion = useCallback(() => {
+    console.log('DELETE QUESTION');
+    dispatch(deleteQuestion(id));
+    navigate('/');
+  }, []);
 
   return (
     <Block>
       <Body>
         <p>{question.content}</p>
-        <pre>
+        {/* <pre>
           <code></code>
-        </pre>
+        </pre> */}
       </Body>
       <QuestionTags>
         {question.tags.map((tag, idx) => (
@@ -171,9 +203,21 @@ export const QuestionContent = () => {
       </QuestionTags>
       <Detail>
         <PostMenu>
+          {/* other */}
+          {/* <li>Share</li>
+          <li>
+            <Link to={`/questions/edit/${id}`}>Edit</Link>
+          </li>
+          <li>Follow</li> */}
+          {/* my */}
           <li>Share</li>
-          <li>Edit</li>
-          <li>Follow</li>
+          <li>
+            <Link to={`/questions/edit/${id}`}>Edit</Link>
+          </li>
+          <li>
+            <button onClick={handelDeleteQuestion}>Delete</button>
+          </li>
+          <li>Flag</li>
         </PostMenu>
         <PostUser background="#D9EAF7">
           <h5>{question.create_at}</h5>

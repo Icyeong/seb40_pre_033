@@ -27,9 +27,6 @@ public class CommentService {
 
     // 답변 생성
     public Comment createComment(Comment comment) {
-        
-        // TODO 로그인 한 계정인지 확인
-
         return commentRepository.save(comment);
     }
 

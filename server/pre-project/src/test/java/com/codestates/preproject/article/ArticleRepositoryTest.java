@@ -1,9 +1,14 @@
 package com.codestates.preproject.article;
 
+import com.codestates.preproject.factory.ArticleFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+
+import java.util.List;
 
 import  static org.assertj.core.api.Assertions.*;
 
@@ -33,4 +38,5 @@ class ArticleRepositoryTest {
         assertThat(result.getContents()).isEqualTo("질문내용");
         assertThat(result.getTitle()).isEqualTo("질문제목");
     }
+
 }
