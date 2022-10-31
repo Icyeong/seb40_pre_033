@@ -2,9 +2,10 @@ package com.codestates.preproject.exception;
 
 import lombok.Getter;
 
-public class BusinessLogicException extends RuntimeException {
+public class BusinessLogicException extends RuntimeException{
+
     @Getter
-    private final ExceptionCode exceptionCode;
+    private ExceptionCode exceptionCode;
 
     public BusinessLogicException(ExceptionCode exceptionCode) {
         super(exceptionCode.getMessage());

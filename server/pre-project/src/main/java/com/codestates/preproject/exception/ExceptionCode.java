@@ -3,7 +3,8 @@ package com.codestates.preproject.exception;
 import lombok.Getter;
 
 public enum ExceptionCode {
-    ARTICLE_NOT_FOUND(404, "Article not found");
+    USER_NOT_FOUND(404, "유저 정보를 찾을 수 없습니다."),
+    USER_EXISTS(409, "유저가 이미 존재합니다.");
 
     @Getter
     private int status;

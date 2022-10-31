@@ -1,24 +1,45 @@
 import styled from 'styled-components';
+import { QuestionsList } from '../components/questionsList/QuestionsList';
+import { Footer } from '../components/Home/Footer/Footer';
+import { Header } from '../components/Home/Header/Header';
+import { Sidebar } from '../components/Home/Sidebar/Sidebar';
+import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
+import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 
-const Block = styled.div`
-  padding: 30px;
+export const Block = styled.div`
+  max-width: 1264px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  justify-content: space-between;
+  margin: 0 auto;
+
   a {
-    margin: 20px;
+    margin: 10px;
   }
+
+  aside {
+    float: right;
+  }
+`;
+
+const HomeSidebarMargin = styled.div`
+  /* width: 204px; */
 `;
 
 export const HomePage = () => {
   return (
-    <Block>
-      <a href="/">홈페이지로 이동</a>
-      <a href="/users/login">로그인 페이지로 이동</a>
-      <a href="/users/signup">회원가입 페이지로 이동</a>
-      <a href="/Questions/1">상세글 페이지로 이동</a>
-      <a href="/Questions/ask">질문글 작성 페이지로 이동</a>
-      <a href="/Questions/edit/1">질문글 수정 페이지로 이동</a>
-    </Block>
+    <div>
+      <Header />
+      <HeaderMargin />
+      <Block>
+        <Sidebar />
+        <HomeSidebarMargin />
+        <QuestionsList />
+        <aside>
+          <SidebarWidget />
+        </aside>
+      </Block>
+      <Footer />
+    </div>
   );
 };

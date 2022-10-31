@@ -18,9 +18,11 @@ export const Wrapper = styled.main`
   .logo {
     margin-bottom: 15px;
   }
-  .login-button-container {
+  .oauth-button-container {
     width: 100%;
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
   }
 
   form {
@@ -62,7 +64,9 @@ export const Wrapper = styled.main`
   }
   form input {
     width: 100%;
+    max-height: 32.59px;
     padding: 8px 32px 8px 9px;
+    font-size: 13px;
     background-color: white;
     border-radius: 3px;
     border: 1px solid var(--bc-darker);
@@ -104,15 +108,18 @@ export const Wrapper = styled.main`
     }
 
     + .inValid-txt {
-      color: red;
+      color: var(--red-500);
       font-size: 11px;
       margin: 2px 1px;
       display: block;
     }
   }
+  .inValid-password {
+    display: none;
+  }
 `;
 
-export const LoginButton = styled.button`
+export const BlueButton = styled.button`
   width: 100%;
   border-radius: 3px;
   border: none;
@@ -120,8 +127,8 @@ export const LoginButton = styled.button`
   color: var(--white);
   cursor: pointer;
   margin-top: 15px;
-  padding: 12px;
-
+  padding: 10px;
+  font-size: 13px;
   &:hover {
     background-color: var(--blue-600);
   }

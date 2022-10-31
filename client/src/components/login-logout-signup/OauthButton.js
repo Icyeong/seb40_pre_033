@@ -50,25 +50,25 @@ const FacebookButton = styled(Button)`
 
 const OauthButton = (type) => {
   const loginType = type.login;
-
+  const signup = type.signup;
   return (
     <>
       {loginType === 'Google' && (
         <GoogleButton>
           <GoogleSvg />
-          Log in with {loginType}
+          {signup ? 'Sign up' : 'Log in'} with {loginType}
         </GoogleButton>
       )}
       {loginType === 'GitHub' && (
         <GitHubButton>
           <GithubSvg />
-          Log in with {loginType}
+          {signup ? 'Sign up' : 'Log in'} with {loginType}
         </GitHubButton>
       )}
       {loginType === 'Facebook' && (
         <FacebookButton>
           <FacebookSvg />
-          Log in with {loginType}
+          {signup ? 'Sign up' : 'Log in'} with {loginType}
         </FacebookButton>
       )}
     </>

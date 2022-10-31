@@ -1,23 +1,24 @@
 import styled from 'styled-components';
 
 export const BlueButton = styled.button`
+  padding: 10.4px;
   border: 1px solid transparent;
   border-radius: 3px;
-  background-color: #0a95ff;
   font-size: 13px;
-  color: white;
+  color: var(--theme-button-primary-color);
+  background-color: var(--theme-button-primary-background-color);
+  box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
 
-  a {
-    padding: 10.4px;
+  &:active,
+  &:hover,
+  &:focus {
+    color: var(--theme-button-primary-hover-color);
+    background-color: var(--theme-button-primary-hover-background-color);
   }
 
   &:active {
-    background-color: #00b3bf;
-  }
-  &:hover {
-    background-color: #0074cc;
-  }
-  &:focus {
-    background-color: #0074cc;
+    background-color: var(
+      --theme-button-primary-active-background-color
+    ) !important;
   }
 `;
