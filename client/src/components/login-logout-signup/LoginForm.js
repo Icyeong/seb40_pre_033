@@ -17,7 +17,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   //   유효성 검사 후 로그인 실행
-  const loginHandler = (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
     emailFormEl.current.classList.remove('inValid');
     passwordFormEl.current.classList.remove('inValid');
@@ -34,8 +34,31 @@ const LoginForm = () => {
       return setInvalidEmail('The email is not a valid email address.');
     }
 
+    // 보낼 데이터
+    let body = {
+      email,
+      password,
+    };
+
+    const response = await fetch(
+      'https://d92f-114-205-132-181.jp.ngrok.io/auth/login',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    ).then((res) => {
+      if (!res.ok) {
+        throw Error('에러발생');
+      }
+      return res;
+    });
+    console.log(response);
+
     // const Data = useFetch('http://naver.com');
-    let test = 'success';
+    let test = 'successs';
     // 로그인이 성공되면 홈페이지로 페이지 변경
     if (test === 'success') {
       navigate('/');
