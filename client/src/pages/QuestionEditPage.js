@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
-import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
+import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
 
 //써머노트 install 명령어 "npm install summernote"
 
@@ -66,7 +66,7 @@ export const QuestionEditPage = () => {
                 </Box>
               </ContentsUserWrite>
               <ContentsUserHelp>
-                <SidebarWidget />
+                <EditWidget />
               </ContentsUserHelp>
             </MainContents>
             <Reviewbutton
