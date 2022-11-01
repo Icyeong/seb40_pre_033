@@ -1,6 +1,5 @@
 package com.codestates.preproject.comment.service;
 
-import com.codestates.preproject.article.Article;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
 import com.codestates.preproject.exception.BusinessLogicException;
@@ -62,5 +61,8 @@ public class CommentService {
 
         return findComment;
     }
+
+    // 답변 이미 존재
+    public ExceptionCode exceptionCode = ExceptionCode.COMMENT_EXIST;
 
 }
