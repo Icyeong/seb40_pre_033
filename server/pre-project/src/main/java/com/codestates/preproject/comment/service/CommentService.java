@@ -1,8 +1,13 @@
 package com.codestates.preproject.comment.service;
 
+import com.codestates.preproject.article.Article;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
+import com.codestates.preproject.exception.BusinessLogicException;
+import com.codestates.preproject.exception.ExceptionCode;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CommentService {
@@ -45,6 +50,18 @@ public class CommentService {
         Comment findComment = commentRepository.findByCommentId(commentId);
 
         commentRepository.delete(findComment);
+    }
+
+    //
+    private Comment findVerifiedComment(long commentId){
+
+        Optional<Comment> optionalComment = commentRepository.findById(commentId);
+
+        Comment findComment =
+                optionalComment.orElseThrow(() ->
+                        new BusinessLogicException(ExceptionCode.COMMENT_NOT_FOUND));
+
+        return findComment;
     }
 
 }
