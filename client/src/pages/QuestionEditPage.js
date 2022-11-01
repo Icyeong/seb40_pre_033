@@ -5,7 +5,6 @@ import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
-import LabTest from '../components/SummerNote/SummerText/LabTest';
 import { Block } from './HomePage';
 
 //써머노트 install 명령어 "npm install summernote"
@@ -59,9 +58,7 @@ export const QuestionEditPage = () => {
                       Include all the information someone would need to answer
                       your question
                     </AskText2>
-                    <SummerNotePreview>
-                      <LabTest />
-                    </SummerNotePreview>
+                    <SummerNotePreview>{/* <LabTest /> */}</SummerNotePreview>
                     <div>텍스트박스 밑 버튼?</div>
                   </Box>
                   <Userwrite>{useWrite}</Userwrite>
