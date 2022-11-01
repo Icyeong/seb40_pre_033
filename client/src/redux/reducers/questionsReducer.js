@@ -17,7 +17,7 @@ import {
 //   },
 // ];
 
-// dummy
+// dummy (질문 상세 - title, content, user)
 const initialState = [
   {
     article_id: 1,
@@ -44,56 +44,56 @@ const initialState = [
       },
     ],
   },
-  {
-    article_id: 2,
-    title: '질문 제목2',
-    content: '질문 내용2',
-    email: '질문 작성자 이메일2',
-    vote: 2,
-    create_at: 'Oct 27, 2022 at 15:34',
-    tags: ['python2', 'ios2'],
-    comments: [
-      {
-        comment_id: 1,
-        content: '댓글 내용1',
-        email: '댓글 작성자 이메일1',
-        vote: 2,
-        create_at: 'Oct 27, 2022 at 15:34',
-      },
-      {
-        comment_id: 2,
-        content: '댓글 내용2',
-        email: '댓글 작성자 이메일2',
-        vote: 3,
-        create_at: 'Oct 27, 2023 at 15:34',
-      },
-    ],
-  },
-  {
-    article_id: 3,
-    title: '질문 제목3',
-    content: '질문 내용3',
-    email: '질문 작성자 이메일3',
-    vote: 3,
-    create_at: 'Oct 27, 2023 at 15:34',
-    tags: ['python3', 'ios3'],
-    comments: [
-      {
-        comment_id: 1,
-        content: '댓글 내용1',
-        email: '댓글 작성자 이메일1',
-        vote: 2,
-        create_at: 'Oct 27, 2022 at 15:34',
-      },
-      {
-        comment_id: 2,
-        content: '댓글 내용2',
-        email: '댓글 작성자 이메일2',
-        vote: 3,
-        create_at: 'Oct 27, 2023 at 15:34',
-      },
-    ],
-  },
+  // {
+  //   article_id: 2,
+  //   title: '질문 제목2',
+  //   content: '질문 내용2',
+  //   email: '질문 작성자 이메일2',
+  //   vote: 2,
+  //   create_at: 'Oct 27, 2022 at 15:34',
+  //   tags: ['python2', 'ios2'],
+  //   comments: [
+  //     {
+  //       comment_id: 1,
+  //       content: '댓글 내용1',
+  //       email: '댓글 작성자 이메일1',
+  //       vote: 2,
+  //       create_at: 'Oct 27, 2022 at 15:34',
+  //     },
+  //     {
+  //       comment_id: 2,
+  //       content: '댓글 내용2',
+  //       email: '댓글 작성자 이메일2',
+  //       vote: 3,
+  //       create_at: 'Oct 27, 2023 at 15:34',
+  //     },
+  //   ],
+  // },
+  // {
+  //   article_id: 3,
+  //   title: '질문 제목3',
+  //   content: '질문 내용3',
+  //   email: '질문 작성자 이메일3',
+  //   vote: 3,
+  //   create_at: 'Oct 27, 2023 at 15:34',
+  //   tags: ['python3', 'ios3'],
+  //   comments: [
+  //     {
+  //       comment_id: 1,
+  //       content: '댓글 내용1',
+  //       email: '댓글 작성자 이메일1',
+  //       vote: 2,
+  //       create_at: 'Oct 27, 2022 at 15:34',
+  //     },
+  //     {
+  //       comment_id: 2,
+  //       content: '댓글 내용2',
+  //       email: '댓글 작성자 이메일2',
+  //       vote: 3,
+  //       create_at: 'Oct 27, 2023 at 15:34',
+  //     },
+  //   ],
+  // },
 ];
 
 export const questionsReducer = (state = initialState, action) => {
