@@ -11,7 +11,6 @@ import { BlueButton } from '../components/Common/BlueButton';
 import { CancelButton } from '../components/Common/CancelButton';
 import { Top, AskTitle, ButtonWrapper } from './QuestionEditPage';
 import {
-  AskText1,
   AsWrapper,
   Box,
   ContentsUserHelp,
@@ -19,6 +18,10 @@ import {
   SummerNotePreview,
   Wrapper,
 } from './QuestionWritePage';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { editAnswer } from '../redux/actions/questionAction';
 
 //써머노트 install 명령어 "npm install summernote"
 
@@ -30,7 +33,34 @@ const MainContents = styled.div`
   /* border: 5px solid red; */
 `;
 
+export const AskText1 = styled.div`
+  width: 400px;
+  height: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 15px 0px 10px 0;
+`;
+
 export const AnswerEdit = () => {
+  const dispatch = useDispatch();
+  const { qid, aid } = useParams();
+
+  let question = useSelector((state) => state.questionReducer);
+
+  const answer = question.comments.filter(
+    (answer) => answer.comment_id == aid
+  )[0];
+
+  const [body, setBody] = useState(answer.content);
+
+  const inputData = { body };
+
+  const handleEditAnswer = () => {
+    console.log('EDIT ANSWER');
+    console.log(inputData);
+    dispatch(editAnswer(qid, aid, inputData));
+  };
+
   return (
     <div>
       <Top>
@@ -57,7 +87,11 @@ export const AnswerEdit = () => {
                   <Box>
                     <AskText1>Body</AskText1>
                     <SummerNotePreview>
-                      <textarea placeholder="텍스트 에디터" />
+                      <textarea
+                        placeholder="텍스트 에디터"
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}
+                      />
                       {/* <LabTest /> */}
                     </SummerNotePreview>
                   </Box>
@@ -67,7 +101,7 @@ export const AnswerEdit = () => {
                 </ContentsUserHelp>
               </MainContents>
               <ButtonWrapper>
-                <BlueButton>Save Edits</BlueButton>
+                <BlueButton onClick={handleEditAnswer}>Save Edits</BlueButton>
                 <CancelButton>Cancel</CancelButton>
               </ButtonWrapper>
             </AsWrapper>

@@ -21,15 +21,28 @@ import {
   Userwrite,
   Wrapper,
 } from './QuestionWritePage';
+import { useDispatch, useSelector } from 'react-redux';
+import { editQuestion } from '../redux/actions/questionsAction';
+import { useParams } from 'react-router-dom';
 
 //써머노트 install 명령어 "npm install summernote"
 
 export const QuestionEditPage = () => {
-  //질문 작성 공간 글 하단에 똑같이 보여지는 기능
-  const [useWrite, setUseWrite] = useState('');
-  const userWriteFunction = (e) => {
-    setUseWrite(e.target.value);
-    console.log(e.target.value);
+  const dispatch = useDispatch();
+  const { qid } = useParams();
+
+  let question = useSelector((state) => state.questionReducer);
+
+  const [title, setTitle] = useState(question.title);
+  const [body, setBody] = useState(question.content);
+  // const [tags, setTags] = useState(question.tags);
+
+  const inputData = { title, body };
+
+  const handleEditQuestion = () => {
+    console.log('ADD QUESTION');
+    console.log(inputData);
+    dispatch(editQuestion(qid, inputData));
   };
 
   return (
@@ -64,7 +77,10 @@ export const QuestionEditPage = () => {
                       type="text"
                       className="TitleInput"
                       placeholder="e.g Is there an R function for finding the index of an element in a vector?"
-                      onChange={(e) => userWriteFunction(e)}
+                      value={title}
+                      onChange={(e) => {
+                        setTitle(e.target.value);
+                      }}
                     />
                   </Box>
                   <Box>
@@ -74,11 +90,19 @@ export const QuestionEditPage = () => {
                       your question
                     </AskText2>
                     <SummerNotePreview>
-                      <textarea placeholder="텍스트 에디터" />
+                      <textarea
+                        placeholder="텍스트 에디터"
+                        value={body}
+                        onChange={(e) => {
+                          setBody(e.target.value);
+                        }}
+                      />
                       {/* <LabTest /> */}
                     </SummerNotePreview>
                   </Box>
-                  <Userwrite>{useWrite}</Userwrite>
+                  <Userwrite>
+                    질문 작성 공간 글 하단에 똑같이 보여지는 기능
+                  </Userwrite>
                   <Box>
                     <AskText1>Tags</AskText1>
                     <AskText2>
@@ -96,7 +120,7 @@ export const QuestionEditPage = () => {
                 </ContentsUserHelp>
               </MainContents>
               <ButtonWrapper>
-                <BlueButton>Save Edits</BlueButton>
+                <BlueButton onClick={handleEditQuestion}>Save Edits</BlueButton>
                 <CancelButton>Cancel</CancelButton>
               </ButtonWrapper>
             </AsWrapper>

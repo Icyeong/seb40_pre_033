@@ -46,18 +46,18 @@ export const Block = styled.div`
 
 export const QuestionLeftBar = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { qid } = useParams();
 
   let question = useSelector((state) => state.questionReducer);
 
   const handleVoteUpQuestion = () => {
     console.log('VOTE UP QUESTION');
-    dispatch(voteUpQuestion(id));
+    dispatch(voteUpQuestion(qid));
   };
 
   const handleVoteDownQuestion = () => {
     console.log('VOTE DOWN QUESTION');
-    dispatch(voteDownQuestion(id));
+    dispatch(voteDownQuestion(qid));
   };
 
   return (

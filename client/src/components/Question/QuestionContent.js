@@ -174,13 +174,13 @@ export const Badge = styled.span`
 export const QuestionContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { qid } = useParams();
 
   let question = useSelector((state) => state.questionReducer);
 
   const handelDeleteQuestion = () => {
     console.log('DELETE QUESTION');
-    dispatch(deleteQuestion(id));
+    dispatch(deleteQuestion(qid));
     navigate('/');
   };
 
@@ -211,7 +211,7 @@ export const QuestionContent = () => {
           {/* my */}
           <li>Share</li>
           <li>
-            <Link to={`/questions/edit/${id}`}>Edit</Link>
+            <Link to={`/questions/edit/${qid}`}>Edit</Link>
           </li>
           <li>
             <button onClick={handelDeleteQuestion}>Delete</button>

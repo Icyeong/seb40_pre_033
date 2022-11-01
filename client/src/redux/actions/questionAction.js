@@ -40,9 +40,10 @@ export const addAnswer = (questionId, answerData) => {
 
 export const editAnswer = (questionId, answerId, answerData) => {
   try {
-    const res = axios.patch(`/article/${questionId}/comment/${answerId}`, {
-      answerData,
-    });
+    const res = axios.patch(
+      `/article/${questionId}/comment/${answerId}`,
+      answerData
+    );
 
     return {
       type: EDIT_ANSWER,

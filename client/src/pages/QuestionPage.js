@@ -50,11 +50,11 @@ const Content = styled.div`
 
 export const QuestionPage = () => {
   // const dispatch = useDispatch();
-  // const { id } = useParams();
+  // const { qid } = useParams();
 
   // useEffect(() => {
   //   console.log('GET QUESTION');
-  //   dispatch(getQuestion(id));
+  //   dispatch(getQuestion(qid));
   // }, []);
 
   return (

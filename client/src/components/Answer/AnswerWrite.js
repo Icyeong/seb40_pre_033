@@ -51,13 +51,13 @@ const PostAnswerButton = styled.button`
 
 export const AnswerWrite = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { qid } = useParams();
 
   const [answer, setAnswer] = useState();
 
   const handleAddAnswer = () => {
     console.log('ADD ANSWER');
-    dispatch(addAnswer(id, answer));
+    dispatch(addAnswer(qid, answer));
   };
 
   return (
