@@ -42,7 +42,13 @@ export const AnswerContent = (type) => {
           {/* my */}
           <li>Share</li>
           <li>
-            <Link to={`/questions/edit/${id}`}>Edit</Link>
+            <Link
+              to={`/questions/${id}/answer/edit/${
+                question.comments[type.idx].comment_id
+              }`}
+            >
+              Edit
+            </Link>
           </li>
           <li>
             <button onClick={handleDeleteAnswer}>Delete</button>

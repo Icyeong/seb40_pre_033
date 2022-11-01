@@ -6,6 +6,21 @@ import { Footer } from '../components/Home/Footer/Footer';
 import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { Block } from './HomePage';
+import { BlueButton } from '../components/Common/BlueButton';
+import { CancelButton } from '../components/Common/CancelButton';
+import {
+  AskText1,
+  AskText2,
+  AsWrapper,
+  Box,
+  ContentsUserHelp,
+  ContentsUserWrite,
+  MainContents,
+  SummerNotePreview,
+  TitleInput,
+  Userwrite,
+  Wrapper,
+} from './QuestionWritePage';
 
 //써머노트 install 명령어 "npm install summernote"
 
@@ -59,7 +74,7 @@ export const QuestionEditPage = () => {
                       your question
                     </AskText2>
                     <SummerNotePreview>
-                      <LabTest />
+                      LabTest{/* <LabTest /> */}
                     </SummerNotePreview>
                   </Box>
                   <Userwrite>{useWrite}</Userwrite>
@@ -79,8 +94,10 @@ export const QuestionEditPage = () => {
                   <EditWidget />
                 </ContentsUserHelp>
               </MainContents>
-              <Reviewbutton>Save Edits</Reviewbutton>
-              <Reviewbutton2>Cancel</Reviewbutton2>
+              <ButtonWrapper>
+                <BlueButton>Save Edits</BlueButton>
+                <CancelButton>Cancel</CancelButton>
+              </ButtonWrapper>
             </AsWrapper>
           </Wrapper>
         </Block>
@@ -99,16 +116,6 @@ export const Top = styled.div`
   padding: 0px 15px;
 `;
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 0px 0px 24px 24px;
-`;
-
-export const AsWrapper = styled.div`
-  width: 100%;
-`;
-
 export const AskTitle = styled.div`
   border: 1px solid red;
   width: 827px;
@@ -124,96 +131,6 @@ export const AskTitle = styled.div`
   line-height: 17px;
 `;
 
-export const MainContents = styled.div`
-  width: 100%;
-  height: 650px;
-  display: flex;
-  justify-content: space-between;
-  /* border: 5px solid red; */
-`;
-
-export const ContentsUserWrite = styled.div`
-  width: 827px;
-  padding: 16px 16px 16px 16px;
-  /* border: 1px solid red; */
-  background-color: #ffffff;
-  border-radius: 0.8%;
-  box-shadow: 0px 0px 4px #d6d9dc;
-`;
-
-export const ContentsUserHelp = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 40px;
-`;
-
-export const AskText1 = styled.div`
-  width: 400px;
-  height: 100%;
-  font-size: 15px;
-  font-weight: bold;
-  margin: 15px 0px 0px;
-`;
-
-export const AskText2 = styled.div`
-  width: 600px;
-  height: 100%;
-  font-size: 12px;
-  /* border: solid pink; */
-  display: flex;
-  justify-content: left;
-  align-items: baseline;
-  margin: 0px 0px 10px 0px;
-`;
-
-export const TitleInput = styled.input`
-  width: 100%;
-  height: 32.57px;
-  padding: 8px 10px;
-  border: 1px solid var(--bc-darker);
-  border-radius: var(--br-sm);
-  background-color: white;
-  color: var(--fc-dark);
-  font-size: 13px;
-  &:focus {
-    box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
-    border: none;
-    outline: 0;
-  }
-  border-radius: 2px;
-`;
-
-export const Box = styled.div``;
-
-export const Reviewbutton = styled.button`
-  width: 90px;
-  height: 32px;
-  background-color: #0a95ff;
-  border: solid #0a95ff;
-  font-size: 13.6px;
-  color: white;
-  margin-top: 20px;
-  margin-bottom: 50px;
-
-  border-radius: 4px;
-  /* box-shadow: 0px 0px 2px 2px rgba(107, 186, 247, 0.5); */
-`;
-
-export const Reviewbutton2 = styled.button`
-  width: 90px;
-  height: 32px;
-  font-size: 13.6px;
-  color: #0a95ff;
-  margin-top: 20px;
-  margin-bottom: 50px;
-  border-radius: 4px;
-`;
-
-export const Userwrite = styled.div`
-  font-size: 14px;
-`;
-
-export const SummerNotePreview = styled.div`
-  width: 100%;
-  height: 300px;
+export const ButtonWrapper = styled.div`
+  padding: 12px 0 16px 0;
 `;
