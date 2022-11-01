@@ -13,6 +13,9 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,13 +37,12 @@ class ArticleControllerTest {
         Article article = Article.builder()
                 .title("제목예시")
                 .contents("내용예시")
-                .vote(1)
                 .build();
         String content = gson.toJson(article);
         //when
         ResultActions actions =
                 mockMvc.perform(
-                        post("/v1/article")//
+                        post("/v1/article")
                                 .accept(MediaType.APPLICATION_JSON)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(content)
@@ -50,5 +52,6 @@ class ArticleControllerTest {
                 .andExpect(status().isCreated())
                 .andReturn();
     }
+
 
 }
