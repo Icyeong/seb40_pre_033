@@ -18,7 +18,7 @@ public class ArticleController {
     private final ArticleMapper mapper;
     private final ArticleService articleService;
 
-
+    /*게시글 등록*/
     @PostMapping
     public ResponseEntity<SingleResponseDto<ArticleResponse>> postArticle(@Valid @RequestBody ArticlePost articlePost) {
         Article article = articleService.createArticle(mapper.articlePostToArticle(articlePost));
@@ -26,8 +26,8 @@ public class ArticleController {
                 new SingleResponseDto<>(mapper.articleToArticleResponse(article))
                 , HttpStatus.CREATED);
     }
-
-/*    @PatchMapping("/{article-id}")
+    /*게시글 수정*/
+    @PatchMapping("/{article-id}")
     public ResponseEntity<SingleResponseDto<ArticleResponse>> patchArticle(@PathVariable("article-id") @Positive long articleId,
                                        @Valid @RequestBody ArticlePatch articlePatchDto) {
         articlePatchDto.setArticleId(articleId);
@@ -36,8 +36,8 @@ public class ArticleController {
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.articleToArticleResponse(updatedArticle)),
                 HttpStatus.OK);
-    }*/
-
+    }
+    /*게시글 1개 조회*/
     @GetMapping("/{article-id}")
     public ResponseEntity<SingleResponseDto<ArticleResponse>> getArticle(
             @PathVariable("article-id") @Positive long articleId) {

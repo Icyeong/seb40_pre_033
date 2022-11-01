@@ -7,8 +7,7 @@ import org.mapstruct.Mapping;
 public interface ArticleMapper {
     @Mapping(target="articleId", ignore = true)
     Article articlePostToArticle(ArticlePost articlePost);
-    //Article articlePatchToArticle(ArticlePatch articlePatch);
-
+    Article articlePatchToArticle(ArticlePatch articlePatch);
     ArticleResponse articleToArticleResponse(Article article);
 
 

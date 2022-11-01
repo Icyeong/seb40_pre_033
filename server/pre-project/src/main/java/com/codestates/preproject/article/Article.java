@@ -10,6 +10,7 @@ import java.util.List;
 
 
 @Getter
+@Setter
 @Table(name = "ARTICLE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -43,4 +44,6 @@ public class Article {
     public void addComment(Comment comment) {
         comments.add(comment);
     }
+
+
 }
