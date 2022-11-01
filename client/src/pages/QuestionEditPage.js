@@ -4,6 +4,9 @@ import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
+import { Sidebar } from '../components/Home/Sidebar/Sidebar';
+import LabTest from '../components/SummerNote/SummerText/LabTest';
+import { Block } from './HomePage';
 
 //써머노트 install 명령어 "npm install summernote"
 
@@ -19,63 +22,70 @@ export const QuestionEditPage = () => {
     <div>
       <Top>
         <Header />
-        <HeaderMargin></HeaderMargin>
-        <Wrapper>
-          <AsWrapper>
-            <AskImg>
-              <AskTitle>Ask public Question </AskTitle>
-              <AskTop></AskTop>
-            </AskImg>
-            <MainContents>
-              <ContentsUserWrite>
-                <Box>
-                  <AskText1>Title</AskText1>
-                  <AskText2>
-                    Be specific and imagine you’re asking a question to another
-                    person
-                  </AskText2>
-                  <TitleInput
-                    type="text"
-                    className="TitleInput"
-                    placeholder="e.g Is there an R function for finding the index of an element in a vector?"
-                    onChange={(e) => userWriteFunction(e)}
-                  />
-                </Box>
-                <Box>
-                  <AskText1>Body</AskText1>
-                  <AskText2>
-                    Include all the information someone would need to answer
-                    your question
-                  </AskText2>
-                  <SummerNotePreview>
-                    써머노트 텍스트박스 구간
-                  </SummerNotePreview>
-                  <div>텍스트박스 밑 버튼?</div>
-                </Box>
-                <Userwrite>{useWrite}</Userwrite>
-                <Box>
-                  <AskText1>Tags</AskText1>
-                  <AskText2>
-                    Add up to 5 tags to describe what your question is about
-                  </AskText2>
-                  <TitleInput
-                    type="text"
-                    className="TitleInput"
-                    placeholder="e.g (c linux r)"
-                  />
-                </Box>
-              </ContentsUserWrite>
-              <ContentsUserHelp>
-                <EditWidget />
-              </ContentsUserHelp>
-            </MainContents>
-            <Reviewbutton
-            // onClick={클릭 함수 추가구간}
-            >
-              Post your answer
-            </Reviewbutton>
-          </AsWrapper>
-        </Wrapper>
+        <HeaderMargin />
+        <Block>
+          <Sidebar />
+          <Wrapper>
+            <AsWrapper>
+              <AskTitle>
+                <p>
+                  Your edit will be placed in a queue until it is peer reviewed.
+                </p>
+                <p>
+                  We welcome edits that make the post easier to understand and
+                  more valuable for readers. Because community members review
+                  edits, please try to make the post substantially better than
+                  how you found it, for example, by fixing grammar or adding
+                  additional resources and hyperlinks.
+                </p>
+              </AskTitle>
+              <MainContents>
+                <ContentsUserWrite>
+                  <Box>
+                    <AskText1>Title</AskText1>
+                    <AskText2>
+                      Be specific and imagine you’re asking a question to person
+                    </AskText2>
+                    <TitleInput
+                      type="text"
+                      className="TitleInput"
+                      placeholder="e.g Is there an R function for finding the index of an element in a vector?"
+                      onChange={(e) => userWriteFunction(e)}
+                    />
+                  </Box>
+                  <Box>
+                    <AskText1>Body</AskText1>
+                    <AskText2>
+                      Include all the information someone would need to answer
+                      your question
+                    </AskText2>
+                    <SummerNotePreview>
+                      <LabTest />
+                    </SummerNotePreview>
+                    <div>텍스트박스 밑 버튼?</div>
+                  </Box>
+                  <Userwrite>{useWrite}</Userwrite>
+                  <Box>
+                    <AskText1>Tags</AskText1>
+                    <AskText2>
+                      Add up to 5 tags to describe what your question is about
+                    </AskText2>
+                    <TitleInput
+                      type="text"
+                      className="TitleInput"
+                      placeholder="e.g (c linux r)"
+                    />
+                  </Box>
+                </ContentsUserWrite>
+                <ContentsUserHelp>
+                  <EditWidget />
+                </ContentsUserHelp>
+              </MainContents>
+              <Reviewbutton>Save Edits</Reviewbutton>
+              <Reviewbutton2>Cancel</Reviewbutton2>
+            </AsWrapper>
+          </Wrapper>
+        </Block>
       </Top>
       <Footer></Footer>
     </div>
@@ -84,7 +94,6 @@ export const QuestionEditPage = () => {
 
 //스타일드 컴포넌트 (나중에 컴포넌트로 이동하기)
 const Top = styled.div`
-  background-color: rgb(242, 242, 243);
   display: flex;
   flex-flow: column wrap;
   -webkit-box-align: center;
@@ -102,28 +111,18 @@ const AsWrapper = styled.div`
   width: 100%;
 `;
 
-const AskTop = styled.div`
-  width: 600px;
-  height: 130.34px;
-  background: url(https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368);
-  background-repeat: no-repeat;
-`;
-
-const AskImg = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-
 const AskTitle = styled.div`
-  width: 400px;
-  height: 100px;
-  font-size: 27px;
-  font-weight: 650;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px;
+  border: 1px solid red;
+  width: 827px;
+  height: 119px;
+  margin-bottom: 30px;
+  padding: 16px;
+  color: rgb(59, 64, 69);
+  background-color: rgb(253, 247, 226);
+  border: 1px solid rgb(230, 207, 121);
+  border-radius: 3px;
+  font-size: 13px;
+  line-height: 17px;
 `;
 
 const MainContents = styled.div`
@@ -188,18 +187,27 @@ const TitleInput = styled.input`
 const Box = styled.div``;
 
 const Reviewbutton = styled.button`
-  width: 154px;
-  height: 40px;
+  width: 90px;
+  height: 32px;
   background-color: #0a95ff;
   border: solid #0a95ff;
-  font-size: 14px;
+  font-size: 13.6px;
   color: white;
-  /* border: 1px solid green; */
   margin-top: 20px;
   margin-bottom: 50px;
 
   border-radius: 4px;
   /* box-shadow: 0px 0px 2px 2px rgba(107, 186, 247, 0.5); */
+`;
+
+const Reviewbutton2 = styled.button`
+  width: 90px;
+  height: 32px;
+  font-size: 13.6px;
+  color: #0a95ff;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  border-radius: 4px;
 `;
 
 const Userwrite = styled.div`
@@ -209,5 +217,4 @@ const Userwrite = styled.div`
 const SummerNotePreview = styled.div`
   width: 100%;
   height: 300px;
-  /* border: solid black 5px; */
 `;
