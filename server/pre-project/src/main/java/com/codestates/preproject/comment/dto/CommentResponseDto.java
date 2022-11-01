@@ -15,8 +15,6 @@ public class CommentResponseDto {
     private String username;
     private String content;
 
-//    private LocalDateTime createAt;
-//    private LocalDateTime modifiedAt;
 
     public static CommentResponseDto of(Comment comment) {
         return new CommentResponseDto(comment.getCommentId(), comment.getUsername(), comment.getContent());
