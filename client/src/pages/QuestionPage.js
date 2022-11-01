@@ -8,6 +8,8 @@ import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Block } from './HomePage';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { Footer } from '../components/Home/Footer/Footer';
+import '../components/SummerText/Summernote.css';
+import 'jquery';
 // import { useDispatch } from 'react-redux';
 // import { getQuestion } from '../redux/actions/questionAction';
 // import { useEffect } from 'react';

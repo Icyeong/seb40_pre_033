@@ -1,4 +1,4 @@
-/*package com.codestates.preproject.user.controller;
+package com.codestates.preproject.user.controller;
 
 import com.codestates.preproject.user.dto.UserPostDto;
 import com.codestates.preproject.user.dto.UserResponseDto;
@@ -25,4 +25,4 @@ public class UserController {
     public ResponseEntity<UserResponseDto> signUp(@Valid @RequestBody UserPostDto request) {
         return new ResponseEntity<>(userService.createUser(request), HttpStatus.CREATED);
     }
-}*/
+}

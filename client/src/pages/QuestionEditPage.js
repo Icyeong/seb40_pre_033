@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
@@ -8,24 +7,23 @@ import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { Block } from './HomePage';
 import { BlueButton } from '../components/Common/BlueButton';
 import { CancelButton } from '../components/Common/CancelButton';
+import '../components/SummerText/Summernote.css';
+import 'jquery';
+import ReactSummernoteLite from '@easylogic/react-summernote';
 import {
   AskText1,
-  AskText2,
   AsWrapper,
   Box,
   ContentsUserHelp,
   ContentsUserWrite,
   MainContents,
-  SummerNotePreview,
   TitleInput,
-  Userwrite,
   Wrapper,
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
 import { editQuestion } from '../redux/actions/questionsAction';
 import { Link, useParams } from 'react-router-dom';
-
-//써머노트 install 명령어 "npm install summernote"
+import { useState } from 'react';
 
 export const QuestionEditPage = () => {
   const dispatch = useDispatch();
@@ -70,9 +68,6 @@ export const QuestionEditPage = () => {
                 <ContentsUserWrite>
                   <Box>
                     <AskText1>Title</AskText1>
-                    <AskText2>
-                      Be specific and imagine you’re asking a question to person
-                    </AskText2>
                     <TitleInput
                       type="text"
                       className="TitleInput"
@@ -85,29 +80,18 @@ export const QuestionEditPage = () => {
                   </Box>
                   <Box>
                     <AskText1>Body</AskText1>
-                    <AskText2>
-                      Include all the information someone would need to answer
-                      your question
-                    </AskText2>
-                    <SummerNotePreview>
-                      <textarea
-                        placeholder="텍스트 에디터"
-                        value={body}
-                        onChange={(e) => {
-                          setBody(e.target.value);
-                        }}
-                      />
-                      {/* <LabTest /> */}
-                    </SummerNotePreview>
+                    <ReactSummernoteLite
+                      id="sample"
+                      height={350}
+                      value={body}
+                      onChange={(e) => {
+                        console.log(e);
+                        setBody(e);
+                      }}
+                    />
                   </Box>
-                  <Userwrite>
-                    질문 작성 공간 글 하단에 똑같이 보여지는 기능
-                  </Userwrite>
                   <Box>
                     <AskText1>Tags</AskText1>
-                    <AskText2>
-                      Add up to 5 tags to describe what your question is about
-                    </AskText2>
                     <TitleInput
                       type="text"
                       className="TitleInput"

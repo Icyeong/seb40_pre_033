@@ -5,7 +5,6 @@ import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
-// import LabTest from '../components/SummerNote/SummerText/LabTest';
 import { Block } from './HomePage';
 import { BlueButton } from '../components/Common/BlueButton';
 import { CancelButton } from '../components/Common/CancelButton';
@@ -15,19 +14,17 @@ import {
   Box,
   ContentsUserHelp,
   ContentsUserWrite,
-  SummerNotePreview,
   Wrapper,
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { editAnswer } from '../redux/actions/questionAction';
-
-//써머노트 install 명령어 "npm install summernote"
+import ReactSummernoteLite from '@easylogic/react-summernote';
 
 const MainContents = styled.div`
   width: 100%;
-  /* height: 650px; */
+  height: 511px;
   display: flex;
   justify-content: space-between;
   /* border: 5px solid red; */
@@ -86,14 +83,15 @@ export const AnswerEdit = () => {
                 <ContentsUserWrite>
                   <Box>
                     <AskText1>Body</AskText1>
-                    <SummerNotePreview>
-                      <textarea
-                        placeholder="텍스트 에디터"
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                      />
-                      {/* <LabTest /> */}
-                    </SummerNotePreview>
+                    <ReactSummernoteLite
+                      id="sample"
+                      height={350}
+                      value={body}
+                      onChange={(e) => {
+                        console.log(e);
+                        setBody(e);
+                      }}
+                    />
                   </Box>
                 </ContentsUserWrite>
                 <ContentsUserHelp>

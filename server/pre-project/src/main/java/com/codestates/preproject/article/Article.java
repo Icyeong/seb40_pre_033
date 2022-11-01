@@ -1,8 +1,12 @@
 package com.codestates.preproject.article;
 
+import com.codestates.preproject.comment.entity.Comment;
+import com.codestates.preproject.user.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -22,10 +26,13 @@ public class Article {
     @Column(insertable = true, nullable= false)
     private String contents;
 
-    //추후 추가 예정
-    /*@ManyToOne @JoinColumn(name = "user_id")
-    private User writer;
-    */
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    @OneToMany(mappedBy = "article")
+    private List<Comment> comments = new ArrayList<>();
+
     @Builder
     public Article(Long articleId, String title, String contents) {
         this.articleId = articleId;
@@ -33,4 +40,7 @@ public class Article {
         this.contents = contents;
     }
 
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
 }

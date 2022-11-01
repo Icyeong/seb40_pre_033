@@ -1,4 +1,4 @@
-/*package com.codestates.preproject.user.service;
+package com.codestates.preproject.user.service;
 
 import com.codestates.preproject.exception.BusinessLogicException;
 import com.codestates.preproject.exception.ExceptionCode;
@@ -57,4 +57,4 @@ public class UserService {
                 .map(role -> new SimpleGrantedAuthority(role))
                 .collect(Collectors.toList());
     }
-}*/
+}

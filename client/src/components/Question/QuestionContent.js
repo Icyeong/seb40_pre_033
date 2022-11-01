@@ -6,6 +6,7 @@ import { deleteQuestion } from '../../redux/actions/questionsAction';
 
 export const Block = styled.div`
   padding-right: 16px;
+  width: 100%;
 `;
 
 export const Body = styled.div`
@@ -27,9 +28,11 @@ export const QuestionTags = styled(Tags)`
 `;
 
 export const Detail = styled.div`
+  width: 100%;
   display: flex;
-  align-items: flex-start;
   justify-content: flex-end;
+  align-items: flex-start;
+
   flex-wrap: wrap;
   margin: 16px 0;
   padding-top: 4px;

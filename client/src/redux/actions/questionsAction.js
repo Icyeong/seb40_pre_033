@@ -33,9 +33,7 @@ export const addQuestion = (questionData) => {
 
 export const editQuestion = (questionId, questionData) => {
   try {
-    const res = axios.patch(`/article/${questionId}`, {
-      questionData,
-    });
+    const res = axios.patch(`/article/${questionId}`, questionData);
 
     return {
       type: EDIT_QUESTION,

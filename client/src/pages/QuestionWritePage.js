@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
@@ -7,7 +6,10 @@ import { BlueButton } from '../components/Common/BlueButton';
 import { ButtonWrapper } from './QuestionEditPage';
 import { useDispatch } from 'react-redux';
 import { addQuestion } from '../redux/actions/questionsAction';
-// import LabTest from '../components/SummerNote/SummerText/LabTest';
+import '../components/SummerText/Summernote.css';
+import 'jquery';
+import ReactSummernoteLite from '@easylogic/react-summernote';
+import { useState } from 'react';
 
 //써머노트 install 명령어 "npm install summernote"
 
@@ -25,15 +27,6 @@ export const QuestionWritePage = () => {
     console.log(inputData);
     dispatch(addQuestion(inputData));
   };
-
-  // function Greeting(props) {
-  //   const isLoggedIn = props.isLoggedIn;
-  //   if (isLoggedIn) {
-  //     return <TitleInput />;
-  //   } else {
-  //     return <TitleInputErr />;
-  //   }
-  // }
 
   return (
     <div>
@@ -68,19 +61,16 @@ export const QuestionWritePage = () => {
                     Include all the information someone would need to answer
                     your question
                   </AskText2>
-                  <SummerNotePreview>
-                    <textarea
-                      placeholder="텍스트 에디터"
-                      value={body}
-                      onChange={(e) => setBody(e.target.value)}
-                    />
-                    {/* <LabTest /> */}
-                  </SummerNotePreview>
-                  <div>텍스트박스 밑 버튼?</div>
+                  <ReactSummernoteLite
+                    id="sample"
+                    height={300}
+                    value={body}
+                    onChange={(e) => {
+                      console.log(e);
+                      setBody(e.target.value);
+                    }}
+                  />
                 </Box>
-                <Userwrite>
-                  질문 작성 공간 글 하단에 똑같이 보여지는 기능
-                </Userwrite>
                 <Box>
                   <AskText1>Tags</AskText1>
                   <AskText2>
@@ -201,7 +191,7 @@ export const AskText1 = styled.div`
   height: 100%;
   font-size: 15px;
   font-weight: bold;
-  margin: 15px 0px 0px;
+  margin: 10px 0px 0px;
 `;
 
 export const AskText2 = styled.div`
