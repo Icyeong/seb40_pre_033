@@ -1,28 +1,31 @@
-// import { useState } from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
+
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
-import LabTest from '../components/SummerNote/SummerText/LabTest';
 import { Block } from './HomePage';
+import { BlueButton } from '../components/Common/BlueButton';
+import { CancelButton } from '../components/Common/CancelButton';
+import { Top, AskTitle, ButtonWrapper } from './QuestionEditPage';
 import {
-  Top,
-  Wrapper,
   AskText1,
   AsWrapper,
-  AskTitle,
-  MainContents,
-  ContentsUserWrite,
   Box,
-  SummerNotePreview,
   ContentsUserHelp,
-  Reviewbutton,
-  Reviewbutton2,
-} from './QuestionEditPage';
-// import styled from 'styled-components';
-//써머노트 install 명령어 "npm install summernote"
+  ContentsUserWrite,
+  SummerNotePreview,
+  Wrapper,
+} from './QuestionWritePage';
+
+const MainContents = styled.div`
+  width: 100%;
+  /* height: 650px; */
+  display: flex;
+  justify-content: space-between;
+  /* border: 5px solid red; */
+`;
 
 export const AnswerEdit = () => {
   return (
@@ -51,7 +54,8 @@ export const AnswerEdit = () => {
                   <Box>
                     <AskText1>Body</AskText1>
                     <SummerNotePreview>
-                      <LabTest />
+                      <textarea placeholder="텍스트 에디터" />
+                      {/* <LabTest /> */}
                     </SummerNotePreview>
                   </Box>
                 </ContentsUserWrite>
@@ -59,8 +63,10 @@ export const AnswerEdit = () => {
                   <EditWidget />
                 </ContentsUserHelp>
               </MainContents>
-              <Reviewbutton>Save Edits</Reviewbutton>
-              <Reviewbutton2>Cancel</Reviewbutton2>
+              <ButtonWrapper>
+                <BlueButton>Save Edits</BlueButton>
+                <CancelButton>Cancel</CancelButton>
+              </ButtonWrapper>
             </AsWrapper>
           </Wrapper>
         </Block>

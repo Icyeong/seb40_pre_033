@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const BlueButton = styled.button`
+  margin: 0 4px;
   padding: 10.4px;
   border: 1px solid transparent;
   border-radius: 3px;

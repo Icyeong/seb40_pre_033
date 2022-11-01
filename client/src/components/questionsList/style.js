@@ -47,9 +47,10 @@ export const StyledQuestions = styled.div`
     }
   }
   > .sort {
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     @media screen and (max-width: 640px) {
       font-size: 15.4px;
       flex-direction: column !important;
@@ -60,7 +61,7 @@ export const StyledQuestions = styled.div`
       > button {
         font-size: 12px;
         border: 1px solid hsl(210, 8%, 55%);
-        padding: 10px;
+        padding: 8px 10px;
         color: hsl(210,8%,45%);
         @media screen and (max-width: 640px) {
           height: 35.44px;
