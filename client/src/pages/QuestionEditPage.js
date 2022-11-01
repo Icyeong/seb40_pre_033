@@ -14,9 +14,14 @@ import {
   AskText1,
   AsWrapper,
   Box,
+  Button,
   ContentsUserHelp,
   ContentsUserWrite,
   MainContents,
+  TagBox,
+  TagInput,
+  TagItem,
+  Text,
   TitleInput,
   Wrapper,
 } from './QuestionWritePage';
@@ -33,14 +38,37 @@ export const QuestionEditPage = () => {
 
   const [title, setTitle] = useState(question.title);
   const [body, setBody] = useState(question.content);
-  // const [tags, setTags] = useState(question.tags);
 
-  const inputData = { title, body };
+  const [tagInput, setTagInput] = useState('');
+  const [tagArr, setTagArr] = useState(question.tags);
+
+  const inputData = { title, body, tagArr };
 
   const handleEditQuestion = () => {
     console.log('ADD QUESTION');
     console.log(inputData);
     dispatch(editQuestion(qid, inputData));
+  };
+
+  const TagInputChange = (e) => {
+    setTagInput(e.target.value);
+  };
+
+  const addTagInput = (e) => {
+    const filtered = tagArr.filter((el) => el === e.target.value);
+    if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
+      setTagArr([...tagArr, e.target.value]);
+      setTagInput('');
+      console.log(tagArr);
+    }
+  };
+
+  const deleteTags = (e) => {
+    const deleteTagItem = e.target.parentElement.firstChild.innerText;
+    const filteredTagList = tagArr.filter(
+      (tagItem) => tagItem !== deleteTagItem
+    );
+    setTagArr(filteredTagList);
   };
 
   return (
@@ -92,11 +120,26 @@ export const QuestionEditPage = () => {
                   </Box>
                   <Box>
                     <AskText1>Tags</AskText1>
-                    <TitleInput
-                      type="text"
-                      className="TitleInput"
-                      placeholder="e.g (c linux r)"
-                    />
+                    <TagBox>
+                      {tagArr.map((tagItem, index) => {
+                        return (
+                          <TagItem key={index}>
+                            <Text>{tagItem}</Text>
+                            <Button onClick={deleteTags}>X</Button>
+                          </TagItem>
+                        );
+                      })}
+                      <TagInput
+                        type="text"
+                        className="TitleInput"
+                        placeholder="e.g (c linux r)"
+                        value={tagInput}
+                        onChange={(e) => TagInputChange(e)}
+                        onKeyUp={(e) => addTagInput(e)}
+                        tagArr={tagArr}
+                        onClick={deleteTags}
+                      />
+                    </TagBox>
                   </Box>
                 </ContentsUserWrite>
                 <ContentsUserHelp>

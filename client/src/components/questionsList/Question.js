@@ -14,19 +14,11 @@ export const Question = (type) => {
       </div>
       <div className="question-list">
         <h2 className="question-title">
-          {/* /questions/id */}
           <Link to={`/questions/${questions[type.idx].article_id}`}>
-            {/* How to prevent 2 objects from splitting on top of another */}
             {questions[type.idx].title}
           </Link>
         </h2>
-        <div className="question-content">
-          {/* Hello so Im creating a game (since i recently started studying
-          javascript). The game is Asteroids the code is basically the same
-          as freeCodeCamp video only some differences are the scoring system
-          ... */}
-          {questions[type.idx].content}
-        </div>
+        <div className="question-content">{questions[type.idx].content}</div>
         <div className="question-information">
           <Tags>
             {questions[type.idx].tags.map((tag, idx) => (

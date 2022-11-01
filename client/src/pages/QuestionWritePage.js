@@ -18,14 +18,37 @@ export const QuestionWritePage = () => {
 
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  // const [tags, setTags] = useState('');
 
-  const inputData = { title, body };
+  const [tagInput, setTagInput] = useState('');
+  const [tagArr, setTagArr] = useState(['태', '그']);
+
+  const inputData = { title, body, tagArr };
 
   const handleAddQuestion = () => {
     console.log('ADD QUESTION');
     console.log(inputData);
     dispatch(addQuestion(inputData));
+  };
+
+  const TagInputChange = (e) => {
+    setTagInput(e.target.value);
+  };
+
+  const addTagInput = (e) => {
+    const filtered = tagArr.filter((el) => el === e.target.value);
+    if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
+      setTagArr([...tagArr, e.target.value]);
+      setTagInput('');
+      console.log(tagArr);
+    }
+  };
+
+  const deleteTags = (e) => {
+    const deleteTagItem = e.target.parentElement.firstChild.innerText;
+    const filteredTagList = tagArr.filter(
+      (tagItem) => tagItem !== deleteTagItem
+    );
+    setTagArr(filteredTagList);
   };
 
   return (
@@ -76,11 +99,26 @@ export const QuestionWritePage = () => {
                   <AskText2>
                     Add up to 5 tags to describe what your question is about
                   </AskText2>
-                  <TitleInput
-                    type="text"
-                    className="TitleInput"
-                    placeholder="e.g (c linux r)"
-                  />
+                  <TagBox>
+                    {tagArr.map((tagItem, index) => {
+                      return (
+                        <TagItem key={index}>
+                          <Text>{tagItem}</Text>
+                          <Button onClick={deleteTags}>X</Button>
+                        </TagItem>
+                      );
+                    })}
+                    <TagInput
+                      type="text"
+                      className="TitleInput"
+                      placeholder="e.g (c linux r)"
+                      value={tagInput}
+                      onChange={(e) => TagInputChange(e)}
+                      onKeyUp={(e) => addTagInput(e)}
+                      tagArr={tagArr}
+                      onClick={deleteTags}
+                    />
+                  </TagBox>
                 </Box>
               </ContentsUserWrite>
               <ContentsUserHelp>
@@ -165,7 +203,6 @@ const AskTitle = styled.div`
 
 export const MainContents = styled.div`
   width: 100%;
-  height: 650px;
   display: flex;
   justify-content: space-between;
   /* border: 5px solid red; */
@@ -289,4 +326,58 @@ const TextList = styled.ul`
 const Sidebarwidget3 = styled.div`
   margin-top: 37px;
   font-weight: bold;
+`;
+
+export const TagBox = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 50px;
+  margin: 10px;
+  padding: 0 10px;
+  border: 1px solid var(--bc-darker);
+  border-radius: var(--br-sm);
+  &:focus-within {
+    box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
+    border: none;
+    outline: 0;
+  }
+`;
+
+export const TagInput = styled.input`
+  border: 1px solid red;
+  cursor: text;
+  display: inline-flex;
+  min-width: 150px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: text;
+`;
+
+export const TagItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 5px;
+  background-color: rgb(225, 236, 244);
+  border-radius: 5px;
+  color: rgb(57, 115, 157);
+  font-size: 12px;
+  font-weight: 620;
+`;
+
+export const Text = styled.span``;
+
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+  border-radius: 50%;
+  color: rgb(57, 115, 157);
+  font-weight: 620;
 `;
