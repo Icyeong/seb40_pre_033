@@ -1,32 +1,15 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { BlueButton } from '../components/Common/BlueButton';
 import { ButtonWrapper } from './QuestionEditPage';
-// import LabTest from '../components/SummerNote/SummerText/LabTest';
-
-//써머노트 install 명령어 "npm install summernote"
+import '../components/SummerText/Summernote.css';
+import 'jquery';
+import ReactSummernoteLite from '@easylogic/react-summernote';
 
 export const QuestionWritePage = () => {
-  //질문 작성 공간 글 하단에 똑같이 보여지는 기능
-  const [useWrite, setUseWrite] = useState('');
-
-  const userWriteFunction = (e) => {
-    setUseWrite(e.target.value);
-    console.log(e.target.value);
-  };
-
-  // function Greeting(props) {
-  //   const isLoggedIn = props.isLoggedIn;
-  //   if (isLoggedIn) {
-  //     return <TitleInput />;
-  //   } else {
-  //     return <TitleInputErr />;
-  //   }
-  // }
-
   return (
     <div>
       <Top>
@@ -50,7 +33,6 @@ export const QuestionWritePage = () => {
                     type="text"
                     className="TitleInput"
                     placeholder="e.g Is there an R function for finding the index of an element in a vector?"
-                    onChange={(e) => userWriteFunction(e)}
                   />
                 </Box>
                 <Box>
@@ -59,13 +41,8 @@ export const QuestionWritePage = () => {
                     Include all the information someone would need to answer
                     your question
                   </AskText2>
-                  <SummerNotePreview>
-                    <textarea placeholder="텍스트 에디터" />
-                    {/* <LabTest /> */}
-                  </SummerNotePreview>
-                  <div>텍스트박스 밑 버튼?</div>
+                  <ReactSummernoteLite id="sample" height={300} />
                 </Box>
-                <Userwrite>{useWrite}</Userwrite>
                 <Box>
                   <AskText1>Tags</AskText1>
                   <AskText2>
@@ -188,7 +165,7 @@ export const AskText1 = styled.div`
   height: 100%;
   font-size: 15px;
   font-weight: bold;
-  margin: 15px 0px 0px;
+  margin: 10px 0px 0px;
 `;
 
 export const AskText2 = styled.div`

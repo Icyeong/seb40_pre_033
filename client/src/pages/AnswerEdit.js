@@ -5,7 +5,6 @@ import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
-// import LabTest from '../components/SummerNote/SummerText/LabTest';
 import { Block } from './HomePage';
 import { BlueButton } from '../components/Common/BlueButton';
 import { CancelButton } from '../components/Common/CancelButton';
@@ -19,8 +18,6 @@ import {
   SummerNotePreview,
   Wrapper,
 } from './QuestionWritePage';
-
-//써머노트 install 명령어 "npm install summernote"
 
 const MainContents = styled.div`
   width: 100%;

@@ -354,11 +354,11 @@
   background-color: #ebebeb;
   border-color: #dae0e5;
 }
-.note-btn:hover {
+/* .note-btn:hover {
   color: #333;
   background-color: #ebebeb;
   border-color: #dae0e5;
-}
+} */
 .note-btn.disabled:focus,
 .note-btn.disabled.focus,
 .note-btn[disabled]:focus,
