@@ -62,7 +62,6 @@ export const QuestionEditPage = () => {
                     <SummerNotePreview>
                       <LabTest />
                     </SummerNotePreview>
-                    <div>텍스트박스 밑 버튼?</div>
                   </Box>
                   <Userwrite>{useWrite}</Userwrite>
                   <Box>
@@ -93,7 +92,7 @@ export const QuestionEditPage = () => {
 };
 
 //스타일드 컴포넌트 (나중에 컴포넌트로 이동하기)
-const Top = styled.div`
+export const Top = styled.div`
   display: flex;
   flex-flow: column wrap;
   -webkit-box-align: center;
@@ -101,21 +100,22 @@ const Top = styled.div`
   padding: 0px 15px;
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 0px 0px 24px 24px;
 `;
 
-const AsWrapper = styled.div`
+export const AsWrapper = styled.div`
   width: 100%;
 `;
 
-const AskTitle = styled.div`
+export const AskTitle = styled.div`
   border: 1px solid red;
   width: 827px;
   height: 119px;
   margin-bottom: 30px;
+  margin-top: 30px;
   padding: 16px;
   color: rgb(59, 64, 69);
   background-color: rgb(253, 247, 226);
@@ -125,7 +125,7 @@ const AskTitle = styled.div`
   line-height: 17px;
 `;
 
-const MainContents = styled.div`
+export const MainContents = styled.div`
   width: 100%;
   height: 650px;
   display: flex;
@@ -133,7 +133,7 @@ const MainContents = styled.div`
   /* border: 5px solid red; */
 `;
 
-const ContentsUserWrite = styled.div`
+export const ContentsUserWrite = styled.div`
   width: 827px;
   padding: 16px 16px 16px 16px;
   /* border: 1px solid red; */
@@ -142,13 +142,13 @@ const ContentsUserWrite = styled.div`
   box-shadow: 0px 0px 4px #d6d9dc;
 `;
 
-const ContentsUserHelp = styled.div`
+export const ContentsUserHelp = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 40px;
 `;
 
-const AskText1 = styled.div`
+export const AskText1 = styled.div`
   width: 400px;
   height: 100%;
   font-size: 15px;
@@ -156,7 +156,7 @@ const AskText1 = styled.div`
   margin: 15px 0px 0px;
 `;
 
-const AskText2 = styled.div`
+export const AskText2 = styled.div`
   width: 600px;
   height: 100%;
   font-size: 12px;
@@ -167,7 +167,7 @@ const AskText2 = styled.div`
   margin: 0px 0px 10px 0px;
 `;
 
-const TitleInput = styled.input`
+export const TitleInput = styled.input`
   width: 100%;
   height: 32.57px;
   padding: 8px 10px;
@@ -184,9 +184,9 @@ const TitleInput = styled.input`
   border-radius: 2px;
 `;
 
-const Box = styled.div``;
+export const Box = styled.div``;
 
-const Reviewbutton = styled.button`
+export const Reviewbutton = styled.button`
   width: 90px;
   height: 32px;
   background-color: #0a95ff;
@@ -200,7 +200,7 @@ const Reviewbutton = styled.button`
   /* box-shadow: 0px 0px 2px 2px rgba(107, 186, 247, 0.5); */
 `;
 
-const Reviewbutton2 = styled.button`
+export const Reviewbutton2 = styled.button`
   width: 90px;
   height: 32px;
   font-size: 13.6px;
@@ -210,11 +210,11 @@ const Reviewbutton2 = styled.button`
   border-radius: 4px;
 `;
 
-const Userwrite = styled.div`
+export const Userwrite = styled.div`
   font-size: 14px;
 `;
 
-const SummerNotePreview = styled.div`
+export const SummerNotePreview = styled.div`
   width: 100%;
   height: 300px;
 `;
