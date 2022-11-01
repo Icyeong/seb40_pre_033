@@ -23,7 +23,7 @@ import {
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
 import { editQuestion } from '../redux/actions/questionsAction';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 //써머노트 install 명령어 "npm install summernote"
 
@@ -121,7 +121,9 @@ export const QuestionEditPage = () => {
               </MainContents>
               <ButtonWrapper>
                 <BlueButton onClick={handleEditQuestion}>Save Edits</BlueButton>
-                <CancelButton>Cancel</CancelButton>
+                <CancelButton>
+                  <Link to={`/questions/${qid}`}>Cancel</Link>
+                </CancelButton>
               </ButtonWrapper>
             </AsWrapper>
           </Wrapper>

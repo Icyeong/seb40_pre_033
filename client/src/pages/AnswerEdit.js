@@ -19,7 +19,7 @@ import {
   Wrapper,
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { editAnswer } from '../redux/actions/questionAction';
 
@@ -102,7 +102,9 @@ export const AnswerEdit = () => {
               </MainContents>
               <ButtonWrapper>
                 <BlueButton onClick={handleEditAnswer}>Save Edits</BlueButton>
-                <CancelButton>Cancel</CancelButton>
+                <CancelButton>
+                  <Link to={`/questions/${qid}`}>Cancel</Link>
+                </CancelButton>
               </ButtonWrapper>
             </AsWrapper>
           </Wrapper>
