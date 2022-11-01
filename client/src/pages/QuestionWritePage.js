@@ -12,6 +12,7 @@ import { ButtonWrapper } from './QuestionEditPage';
 export const QuestionWritePage = () => {
   //질문 작성 공간 글 하단에 똑같이 보여지는 기능
   const [useWrite, setUseWrite] = useState('');
+
   const userWriteFunction = (e) => {
     setUseWrite(e.target.value);
     console.log(e.target.value);
@@ -58,7 +59,10 @@ export const QuestionWritePage = () => {
                     Include all the information someone would need to answer
                     your question
                   </AskText2>
-                  <SummerNotePreview>{/* <LabTest /> */}</SummerNotePreview>
+                  <SummerNotePreview>
+                    <textarea placeholder="텍스트 에디터" />
+                    {/* <LabTest /> */}
+                  </SummerNotePreview>
                   <div>텍스트박스 밑 버튼?</div>
                 </Box>
                 <Userwrite>{useWrite}</Userwrite>

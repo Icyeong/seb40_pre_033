@@ -57,7 +57,8 @@ export const AnswerEdit = () => {
                   <Box>
                     <AskText1>Body</AskText1>
                     <SummerNotePreview>
-                      LabTest{/* <LabTest /> */}
+                      <textarea placeholder="텍스트 에디터" />
+                      {/* <LabTest /> */}
                     </SummerNotePreview>
                   </Box>
                 </ContentsUserWrite>

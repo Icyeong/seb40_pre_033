@@ -74,7 +74,8 @@ export const QuestionEditPage = () => {
                       your question
                     </AskText2>
                     <SummerNotePreview>
-                      LabTest{/* <LabTest /> */}
+                      <textarea placeholder="텍스트 에디터" />
+                      {/* <LabTest /> */}
                     </SummerNotePreview>
                   </Box>
                   <Userwrite>{useWrite}</Userwrite>
