@@ -14,9 +14,14 @@ import {
   AskText1,
   AsWrapper,
   Box,
+  Button,
   ContentsUserHelp,
   ContentsUserWrite,
   MainContents,
+  TagBox,
+  TagInput,
+  TagItem,
+  Text,
   TitleInput,
   Wrapper,
 } from './QuestionWritePage';
@@ -33,11 +38,17 @@ export const QuestionEditPage = () => {
 
   const [title, setTitle] = useState(question.title);
   const [body, setBody] = useState(question.content);
-  // const [tags, setTags] = useState(question.tags);
+
   const [tagInput, setTagInput] = useState('');
-  // let question = useSelector((state) => state.questionReducer);
-  const initags = ['python', 'ios'];
-  const [tagArr, setTagArr] = useState(initags);
+  const [tagArr, setTagArr] = useState(question.tags);
+
+  const inputData = { title, body, tagArr };
+
+  const handleEditQuestion = () => {
+    console.log('ADD QUESTION');
+    console.log(inputData);
+    dispatch(editQuestion(qid, inputData));
+  };
 
   const TagInputChange = (e) => {
     setTagInput(e.target.value);
@@ -58,14 +69,6 @@ export const QuestionEditPage = () => {
       (tagItem) => tagItem !== deleteTagItem
     );
     setTagArr(filteredTagList);
-  };
-
-  const inputData = { title, body };
-
-  const handleEditQuestion = () => {
-    console.log('ADD QUESTION');
-    console.log(inputData);
-    dispatch(editQuestion(qid, inputData));
   };
 
   return (
@@ -184,58 +187,4 @@ export const AskTitle = styled.div`
 
 export const ButtonWrapper = styled.div`
   padding: 12px 0 16px 0;
-`;
-
-export const TagBox = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  min-height: 50px;
-  margin: 10px;
-  padding: 0 10px;
-  border: 1px solid var(--bc-darker);
-  border-radius: var(--br-sm);
-  &:focus-within {
-    box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
-    border: none;
-    outline: 0;
-  }
-`;
-
-export const TagInput = styled.input`
-  border: 1px solid red;
-  cursor: text;
-  display: inline-flex;
-  min-width: 150px;
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: text;
-`;
-
-const TagItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 5px;
-  padding: 5px;
-  background-color: rgb(225, 236, 244);
-  border-radius: 5px;
-  color: rgb(57, 115, 157);
-  font-size: 12px;
-  font-weight: 620;
-`;
-
-const Text = styled.span``;
-
-const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 15px;
-  height: 15px;
-  margin-left: 5px;
-  border-radius: 50%;
-  color: rgb(57, 115, 157);
-  font-weight: 620;
 `;

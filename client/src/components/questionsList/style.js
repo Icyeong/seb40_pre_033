@@ -54,6 +54,7 @@ export const StyledQuestions = styled.div`
     @media screen and (max-width: 640px) {
       font-size: 15.4px;
       flex-direction: column !important;
+      align-items: flex-start;
       gap: 10px;
       margin-bottom: 10px;
     }
@@ -122,7 +123,6 @@ export const StyledQuestions = styled.div`
     @media screen and (max-width: 640px) {
       display: flex;
       flex-direction: row;
-      margin-left: 10px;
       margin-bottom: 5px;
       width: 100%;
     }

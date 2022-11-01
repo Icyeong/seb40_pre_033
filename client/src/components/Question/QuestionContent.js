@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { deleteQuestion } from '../../redux/actions/questionsAction';
-import { useCallback } from 'react';
 
 export const Block = styled.div`
   padding-right: 16px;
+  width: 100%;
 `;
 
 export const Body = styled.div`
@@ -28,9 +28,11 @@ export const QuestionTags = styled(Tags)`
 `;
 
 export const Detail = styled.div`
+  width: 100%;
   display: flex;
-  align-items: flex-start;
   justify-content: flex-end;
+  align-items: flex-start;
+
   flex-wrap: wrap;
   margin: 16px 0;
   padding-top: 4px;
@@ -175,15 +177,15 @@ export const Badge = styled.span`
 export const QuestionContent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { qid } = useParams();
 
   let question = useSelector((state) => state.questionReducer);
 
-  const handelDeleteQuestion = useCallback(() => {
+  const handelDeleteQuestion = () => {
     console.log('DELETE QUESTION');
-    dispatch(deleteQuestion(id));
+    dispatch(deleteQuestion(qid));
     navigate('/');
-  }, []);
+  };
 
   return (
     <Block>
@@ -212,7 +214,7 @@ export const QuestionContent = () => {
           {/* my */}
           <li>Share</li>
           <li>
-            <Link to={`/questions/edit/${id}`}>Edit</Link>
+            <Link to={`/questions/edit/${qid}`}>Edit</Link>
           </li>
           <li>
             <button onClick={handelDeleteQuestion}>Delete</button>

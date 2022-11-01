@@ -11,24 +11,23 @@ import {
   voteUpAnswer,
   voteDownAnswer,
 } from '../../redux/actions/questionAction';
-import { useCallback } from 'react';
 
 export const AnswerLeftBar = (type) => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { qid } = useParams();
 
   let question = useSelector((state) => state.questionReducer);
   const idx = type.idx;
 
-  const handleVoteUpAnswer = useCallback(() => {
+  const handleVoteUpAnswer = () => {
     console.log('VOTE UP ANSWER');
-    dispatch(voteUpAnswer(id, question.comments[idx].comment_id));
-  }, []);
+    dispatch(voteUpAnswer(qid, question.comments[idx].comment_id));
+  };
 
-  const handleVoteDownAnswer = useCallback(() => {
+  const handleVoteDownAnswer = () => {
     console.log('VOTE DOWN ANSWER');
-    dispatch(voteDownAnswer(id, question.comments[idx].comment_id));
-  }, []);
+    dispatch(voteDownAnswer(qid, question.comments[idx].comment_id));
+  };
 
   return (
     <Block>

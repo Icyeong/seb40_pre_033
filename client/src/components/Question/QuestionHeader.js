@@ -35,7 +35,7 @@ export const AskQuestionButton = styled(BlueButton)`
 
   // Mobile
   @media screen and (max-width: 640px) {
-    margin: 0 0 22.4px 0;
+    margin: 0 0 8px 0;
   }
 `;
 

@@ -10,24 +10,54 @@ import { BlueButton } from '../components/Common/BlueButton';
 import { CancelButton } from '../components/Common/CancelButton';
 import { Top, AskTitle, ButtonWrapper } from './QuestionEditPage';
 import {
-  AskText1,
   AsWrapper,
   Box,
   ContentsUserHelp,
   ContentsUserWrite,
-  SummerNotePreview,
   Wrapper,
 } from './QuestionWritePage';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { editAnswer } from '../redux/actions/questionAction';
+import ReactSummernoteLite from '@easylogic/react-summernote';
 
 const MainContents = styled.div`
   width: 100%;
-  /* height: 650px; */
+  height: 511px;
   display: flex;
   justify-content: space-between;
   /* border: 5px solid red; */
 `;
 
+export const AskText1 = styled.div`
+  width: 400px;
+  height: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 15px 0px 10px 0;
+`;
+
 export const AnswerEdit = () => {
+  const dispatch = useDispatch();
+  const { qid, aid } = useParams();
+
+  let question = useSelector((state) => state.questionReducer);
+
+  const answer = question.comments.filter(
+    (answer) => answer.comment_id == aid
+  )[0];
+
+  const [body, setBody] = useState(answer.content);
+
+  const inputData = { body };
+
+  const handleEditAnswer = () => {
+    console.log('EDIT ANSWER');
+    console.log(inputData);
+    dispatch(editAnswer(qid, aid, inputData));
+  };
+
   return (
     <div>
       <Top>
@@ -53,10 +83,15 @@ export const AnswerEdit = () => {
                 <ContentsUserWrite>
                   <Box>
                     <AskText1>Body</AskText1>
-                    <SummerNotePreview>
-                      <textarea placeholder="텍스트 에디터" />
-                      {/* <LabTest /> */}
-                    </SummerNotePreview>
+                    <ReactSummernoteLite
+                      id="sample"
+                      height={350}
+                      value={body}
+                      onChange={(e) => {
+                        console.log(e);
+                        setBody(e);
+                      }}
+                    />
                   </Box>
                 </ContentsUserWrite>
                 <ContentsUserHelp>
@@ -64,8 +99,10 @@ export const AnswerEdit = () => {
                 </ContentsUserHelp>
               </MainContents>
               <ButtonWrapper>
-                <BlueButton>Save Edits</BlueButton>
-                <CancelButton>Cancel</CancelButton>
+                <BlueButton onClick={handleEditAnswer}>Save Edits</BlueButton>
+                <CancelButton>
+                  <Link to={`/questions/${qid}`}>Cancel</Link>
+                </CancelButton>
               </ButtonWrapper>
             </AsWrapper>
           </Wrapper>
