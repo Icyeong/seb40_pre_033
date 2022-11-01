@@ -1,9 +1,10 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { addAnswer } from '../../redux/actions/questionAction';
+import ReactSummernoteLite from '@easylogic/react-summernote';
 
 const Block = styled.div`
   h2 {
@@ -12,9 +13,7 @@ const Block = styled.div`
     font-size: 19px;
   }
 
-  > textarea {
-    width: 100%;
-    height: 284.333px;
+  > div {
     margin-bottom: 16px;
   }
 
@@ -51,23 +50,26 @@ const PostAnswerButton = styled.button`
 
 export const AnswerWrite = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { qid } = useParams();
 
   const [answer, setAnswer] = useState();
 
-  const handleAddAnswer = useCallback(() => {
+  const handleAddAnswer = () => {
     console.log('ADD ANSWER');
-    dispatch(addAnswer(id, answer));
-  }, []);
+    dispatch(addAnswer(qid, answer));
+  };
 
   return (
     <Block>
       <h2>Your Answer</h2>
-      <textarea
+      <ReactSummernoteLite
+        id="sample"
+        height={300}
         value={answer}
-        onChange={(e) => setAnswer(e.target.value)}
-        placeholder="텍스트 에디터"
-        style={{ resize: 'none' }}
+        onChange={(e) => {
+          console.log(e);
+          setAnswer(e);
+        }}
       />
       <PostAnswerButton onClick={handleAddAnswer}>
         Post Your Answer

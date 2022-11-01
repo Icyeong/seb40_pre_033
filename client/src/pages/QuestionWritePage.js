@@ -1,20 +1,34 @@
-// import { useState } from 'react';
 import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { BlueButton } from '../components/Common/BlueButton';
 import { ButtonWrapper } from './QuestionEditPage';
+import { useDispatch } from 'react-redux';
+import { addQuestion } from '../redux/actions/questionsAction';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
 import ReactSummernoteLite from '@easylogic/react-summernote';
 import { useState } from 'react';
 
+//써머노트 install 명령어 "npm install summernote"
+
 export const QuestionWritePage = () => {
+  const dispatch = useDispatch();
+
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+
   const [tagInput, setTagInput] = useState('');
-  // let question = useSelector((state) => state.questionReducer);
-  const initags = ['python', 'ios'];
-  const [tagArr, setTagArr] = useState(initags);
+  const [tagArr, setTagArr] = useState(['태', '그']);
+
+  const inputData = { title, body, tagArr };
+
+  const handleAddQuestion = () => {
+    console.log('ADD QUESTION');
+    console.log(inputData);
+    dispatch(addQuestion(inputData));
+  };
 
   const TagInputChange = (e) => {
     setTagInput(e.target.value);
@@ -36,6 +50,7 @@ export const QuestionWritePage = () => {
     );
     setTagArr(filteredTagList);
   };
+
   return (
     <div>
       <Top>
@@ -59,6 +74,8 @@ export const QuestionWritePage = () => {
                     type="text"
                     className="TitleInput"
                     placeholder="e.g Is there an R function for finding the index of an element in a vector?"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </Box>
                 <Box>
@@ -67,7 +84,15 @@ export const QuestionWritePage = () => {
                     Include all the information someone would need to answer
                     your question
                   </AskText2>
-                  <ReactSummernoteLite id="sample" height={300} />
+                  <ReactSummernoteLite
+                    id="sample"
+                    height={300}
+                    value={body}
+                    onChange={(e) => {
+                      console.log(e);
+                      setBody(e.target.value);
+                    }}
+                  />
                 </Box>
                 <Box>
                   <AskText1>Tags</AskText1>
@@ -120,9 +145,7 @@ export const QuestionWritePage = () => {
               </ContentsUserHelp>
             </MainContents>
             <ButtonWrapper>
-              <BlueButton
-              // onClick={클릭 함수 추가구간}
-              >
+              <BlueButton onClick={handleAddQuestion}>
                 Post your answer
               </BlueButton>
             </ButtonWrapper>
@@ -180,7 +203,6 @@ const AskTitle = styled.div`
 
 export const MainContents = styled.div`
   width: 100%;
-  height: 650px;
   display: flex;
   justify-content: space-between;
   /* border: 5px solid red; */
@@ -333,7 +355,7 @@ export const TagInput = styled.input`
   cursor: text;
 `;
 
-const TagItem = styled.div`
+export const TagItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -346,9 +368,9 @@ const TagItem = styled.div`
   font-weight: 620;
 `;
 
-const Text = styled.span``;
+export const Text = styled.span``;
 
-const Button = styled.button`
+export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

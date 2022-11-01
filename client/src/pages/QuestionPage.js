@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { QuestionHeader } from '../components/Question/QuestionHeader';
 import { QuestionTemplate } from '../components/Question/QuestionTemplate';
-// import { Answers } from '../components/Answer/Answers';
+import { Answers } from '../components/Answer/Answers';
 import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
@@ -10,7 +10,6 @@ import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { Footer } from '../components/Home/Footer/Footer';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
-import ReactSummernoteLite from '@easylogic/react-summernote';
 // import { useDispatch } from 'react-redux';
 // import { getQuestion } from '../redux/actions/questionAction';
 // import { useEffect } from 'react';
@@ -53,11 +52,11 @@ const Content = styled.div`
 
 export const QuestionPage = () => {
   // const dispatch = useDispatch();
-  // const { id } = useParams();
+  // const { qid } = useParams();
 
   // useEffect(() => {
   //   console.log('GET QUESTION');
-  //   dispatch(getQuestion(id));
+  //   dispatch(getQuestion(qid));
   // }, []);
 
   return (
@@ -71,7 +70,7 @@ export const QuestionPage = () => {
           <div>
             <Content>
               <QuestionTemplate />
-              <ReactSummernoteLite id="sample" height={300} />
+              <Answers />
             </Content>
             <aside>
               <section></section>

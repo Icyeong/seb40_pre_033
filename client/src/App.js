@@ -19,11 +19,11 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/users/login" element={<Login />} />
           <Route path="/users/signup" element={<Signup />} />
-          <Route path="/questions/:id" element={<QuestionPage />} />
+          <Route path="/questions/:qid" element={<QuestionPage />} />
           <Route path="/questions/ask" element={<QuestionWritePage />} />
-          <Route path="/questions/edit/:id" element={<QuestionEditPage />} />
+          <Route path="/questions/edit/:qid" element={<QuestionEditPage />} />
           <Route
-            path="/questions/:id/answer/edit/:id"
+            path="/questions/:qid/answer/edit/:aid"
             element={<AnswerEdit />}
           />
         </Routes>

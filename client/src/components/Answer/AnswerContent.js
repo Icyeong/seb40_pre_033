@@ -9,19 +9,18 @@ import {
   UserInfo,
 } from '../Question/QuestionContent';
 import { useParams, Link } from 'react-router-dom';
-import { useCallback } from 'react';
 import { deleteAnswer } from '../../redux/actions/questionAction';
 
 export const AnswerContent = (type) => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { qid } = useParams();
 
   let question = useSelector((state) => state.questionReducer);
 
-  const handleDeleteAnswer = useCallback(() => {
+  const handleDeleteAnswer = () => {
     console.log('DELETE ANSWER');
-    dispatch(deleteAnswer(id, question.comments[type.idx].comment_id));
-  }, []);
+    dispatch(deleteAnswer(qid, question.comments[type.idx].comment_id));
+  };
 
   return (
     <Block>
@@ -43,7 +42,7 @@ export const AnswerContent = (type) => {
           <li>Share</li>
           <li>
             <Link
-              to={`/questions/${id}/answer/edit/${
+              to={`/questions/${qid}/answer/edit/${
                 question.comments[type.idx].comment_id
               }`}
             >
