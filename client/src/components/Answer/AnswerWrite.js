@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -55,10 +55,10 @@ export const AnswerWrite = () => {
 
   const [answer, setAnswer] = useState();
 
-  const handleAddAnswer = useCallback(() => {
+  const handleAddAnswer = () => {
     console.log('ADD ANSWER');
     dispatch(addAnswer(id, answer));
-  }, []);
+  };
 
   return (
     <Block>

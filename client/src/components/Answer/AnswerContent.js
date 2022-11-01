@@ -9,7 +9,6 @@ import {
   UserInfo,
 } from '../Question/QuestionContent';
 import { useParams, Link } from 'react-router-dom';
-import { useCallback } from 'react';
 import { deleteAnswer } from '../../redux/actions/questionAction';
 
 export const AnswerContent = (type) => {
@@ -18,10 +17,10 @@ export const AnswerContent = (type) => {
 
   let question = useSelector((state) => state.questionReducer);
 
-  const handleDeleteAnswer = useCallback(() => {
+  const handleDeleteAnswer = () => {
     console.log('DELETE ANSWER');
     dispatch(deleteAnswer(id, question.comments[type.idx].comment_id));
-  }, []);
+  };
 
   return (
     <Block>

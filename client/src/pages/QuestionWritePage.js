@@ -5,17 +5,25 @@ import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { BlueButton } from '../components/Common/BlueButton';
 import { ButtonWrapper } from './QuestionEditPage';
+import { useDispatch } from 'react-redux';
+import { addQuestion } from '../redux/actions/questionsAction';
 // import LabTest from '../components/SummerNote/SummerText/LabTest';
 
 //써머노트 install 명령어 "npm install summernote"
 
 export const QuestionWritePage = () => {
-  //질문 작성 공간 글 하단에 똑같이 보여지는 기능
-  const [useWrite, setUseWrite] = useState('');
+  const dispatch = useDispatch();
 
-  const userWriteFunction = (e) => {
-    setUseWrite(e.target.value);
-    console.log(e.target.value);
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  // const [tags, setTags] = useState('');
+
+  const inputData = { title, body };
+
+  const handleAddQuestion = () => {
+    console.log('ADD QUESTION');
+    console.log(inputData);
+    dispatch(addQuestion(inputData));
   };
 
   // function Greeting(props) {
@@ -50,7 +58,8 @@ export const QuestionWritePage = () => {
                     type="text"
                     className="TitleInput"
                     placeholder="e.g Is there an R function for finding the index of an element in a vector?"
-                    onChange={(e) => userWriteFunction(e)}
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </Box>
                 <Box>
@@ -60,12 +69,18 @@ export const QuestionWritePage = () => {
                     your question
                   </AskText2>
                   <SummerNotePreview>
-                    <textarea placeholder="텍스트 에디터" />
+                    <textarea
+                      placeholder="텍스트 에디터"
+                      value={body}
+                      onChange={(e) => setBody(e.target.value)}
+                    />
                     {/* <LabTest /> */}
                   </SummerNotePreview>
                   <div>텍스트박스 밑 버튼?</div>
                 </Box>
-                <Userwrite>{useWrite}</Userwrite>
+                <Userwrite>
+                  질문 작성 공간 글 하단에 똑같이 보여지는 기능
+                </Userwrite>
                 <Box>
                   <AskText1>Tags</AskText1>
                   <AskText2>
@@ -102,9 +117,7 @@ export const QuestionWritePage = () => {
               </ContentsUserHelp>
             </MainContents>
             <ButtonWrapper>
-              <BlueButton
-              // onClick={클릭 함수 추가구간}
-              >
+              <BlueButton onClick={handleAddQuestion}>
                 Post your answer
               </BlueButton>
             </ButtonWrapper>

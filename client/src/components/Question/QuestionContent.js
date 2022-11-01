@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { deleteQuestion } from '../../redux/actions/questionsAction';
-import { useCallback } from 'react';
 
 export const Block = styled.div`
   padding-right: 16px;
@@ -179,11 +178,11 @@ export const QuestionContent = () => {
 
   let question = useSelector((state) => state.questionReducer);
 
-  const handelDeleteQuestion = useCallback(() => {
+  const handelDeleteQuestion = () => {
     console.log('DELETE QUESTION');
     dispatch(deleteQuestion(id));
     navigate('/');
-  }, []);
+  };
 
   return (
     <Block>

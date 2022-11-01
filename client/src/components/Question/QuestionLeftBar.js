@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import {
@@ -51,15 +50,15 @@ export const QuestionLeftBar = () => {
 
   let question = useSelector((state) => state.questionReducer);
 
-  const handleVoteUpQuestion = useCallback(() => {
+  const handleVoteUpQuestion = () => {
     console.log('VOTE UP QUESTION');
     dispatch(voteUpQuestion(id));
-  }, []);
+  };
 
-  const handleVoteDownQuestion = useCallback(() => {
+  const handleVoteDownQuestion = () => {
     console.log('VOTE DOWN QUESTION');
     dispatch(voteDownQuestion(id));
-  }, []);
+  };
 
   return (
     <Block>

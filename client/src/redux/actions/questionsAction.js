@@ -20,9 +20,7 @@ export const getQuestions = () => {
 
 export const addQuestion = (questionData) => {
   try {
-    const res = axios.post(`/article`, {
-      questionData,
-    });
+    const res = axios.post(`/article`, questionData);
 
     return {
       type: ADD_QUESTION,
