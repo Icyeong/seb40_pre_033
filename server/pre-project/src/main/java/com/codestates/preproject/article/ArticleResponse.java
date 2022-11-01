@@ -4,6 +4,8 @@ import lombok.*;
 
 @Getter
 @AllArgsConstructor
+@Builder
+@NoArgsConstructor
 public class ArticleResponse {
     private long articleId;
     private String title;

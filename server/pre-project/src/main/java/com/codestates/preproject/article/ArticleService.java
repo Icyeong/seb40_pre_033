@@ -2,6 +2,9 @@ package com.codestates.preproject.article;
 
 import com.codestates.preproject.exception.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -50,6 +53,10 @@ public class ArticleService {
 
         articleRepository.delete(foundArticle);
     }*/
+
+    public Page<Article> findArticles(int page, int size) {
+        return articleRepository.findAll(PageRequest.of(page, size, Sort.by("articleId").descending()));
+    }
 
 
 
