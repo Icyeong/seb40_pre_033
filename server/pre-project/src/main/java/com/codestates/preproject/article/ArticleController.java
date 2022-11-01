@@ -1,8 +1,7 @@
 package com.codestates.preproject.article;
 
-import com.codestates.preproject.common.SingleResponseDto;
+import com.codestates.preproject.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

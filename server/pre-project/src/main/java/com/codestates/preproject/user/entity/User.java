@@ -1,14 +1,14 @@
 package com.codestates.preproject.user.entity;
 
+import com.codestates.preproject.article.Article;
 import com.codestates.preproject.audit.BaseTime;
+import com.codestates.preproject.comment.entity.Comment;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.domain.Auditable;
 
 import javax.persistence.*;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +38,12 @@ public class User extends BaseTime {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Article> articles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments = new ArrayList<>();
+
     @Builder
     public User(String email, String password, String nickname, List<String> roles) {
         this.email = email;
@@ -57,5 +63,13 @@ public class User extends BaseTime {
         UserStatus(String status) {
             this.status = status;
         }
+    }
+
+    public void addAticle(Article article) {
+        articles.add(article);
+    }
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
     }
 }
