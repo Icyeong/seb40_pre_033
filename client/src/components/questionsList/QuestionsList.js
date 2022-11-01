@@ -5,9 +5,21 @@ import { ListWrapper, StyledQuestions, Container } from './style';
 import { Question } from './Question';
 import { AskQuestionButton } from '../Question/QuestionHeader';
 import { Link } from 'react-router-dom';
+// import axios from 'axios';
 
 export const QuestionsList = () => {
   let questions = useSelector((state) => state.questionsReducer);
+
+  // const [mydata, setData] = useState([]);
+
+  // axios
+  //   .get('https://7193b487-9896-42b5-a29f-6ddbb18132f5.mock.pstmn.io/list')
+  //   .then((result) => {
+  //     setData(result.data);
+  //     console.log('#1', result.data);
+  //     console.log('#2', mydata);
+  //   })
+  //   .catch(() => {});
 
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState('newest');
@@ -65,6 +77,9 @@ export const QuestionsList = () => {
         {questions.map((post, idx) => (
           <Question key={post.article_id} idx={idx} />
         ))}
+        {/* {mydata.map((i) => {
+          return <Question key={i.article_id} />;
+        })} */}
         <Container>
           <Pagination
             activePage={page}

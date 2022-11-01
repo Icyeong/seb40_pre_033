@@ -65,4 +65,8 @@
   --theme-tag-hover-background-color: hsl(205, 53%, 88%);
   --theme-link-color: var(--blue-600);
   --theme-link-color-hover: var(--blue-500);
+  --theme-button-color: hsl(206, 100%, 40%);
+  --theme-button-hover-color: hsl(209, 100%, 37.5%);
+  --theme-button-hover-background-color: hsl(206, 100%, 97%);
+  --theme-button-active-background-color: hsl(206, 96%, 90%);
 }

@@ -1,29 +1,41 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
-import LabTest from '../components/SummerNote/SummerText/LabTest';
-
-//써머노트 install 명령어 "npm install summernote"
+import { BlueButton } from '../components/Common/BlueButton';
+import { ButtonWrapper } from './QuestionEditPage';
+import '../components/SummerText/Summernote.css';
+import 'jquery';
+import ReactSummernoteLite from '@easylogic/react-summernote';
+import { useState } from 'react';
 
 export const QuestionWritePage = () => {
-  //질문 작성 공간 글 하단에 똑같이 보여지는 기능
-  const [useWrite, setUseWrite] = useState('');
-  const userWriteFunction = (e) => {
-    setUseWrite(e.target.value);
-    console.log(e.target.value);
+  const [tagInput, setTagInput] = useState('');
+  // let question = useSelector((state) => state.questionReducer);
+  const initags = ['python', 'ios'];
+  const [tagArr, setTagArr] = useState(initags);
+
+  const TagInputChange = (e) => {
+    setTagInput(e.target.value);
   };
 
-  // function Greeting(props) {
-  //   const isLoggedIn = props.isLoggedIn;
-  //   if (isLoggedIn) {
-  //     return <TitleInput />;
-  //   } else {
-  //     return <TitleInputErr />;
-  //   }
-  // }
+  const addTagInput = (e) => {
+    const filtered = tagArr.filter((el) => el === e.target.value);
+    if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
+      setTagArr([...tagArr, e.target.value]);
+      setTagInput('');
+      console.log(tagArr);
+    }
+  };
 
+  const deleteTags = (e) => {
+    const deleteTagItem = e.target.parentElement.firstChild.innerText;
+    const filteredTagList = tagArr.filter(
+      (tagItem) => tagItem !== deleteTagItem
+    );
+    setTagArr(filteredTagList);
+  };
   return (
     <div>
       <Top>
@@ -47,7 +59,6 @@ export const QuestionWritePage = () => {
                     type="text"
                     className="TitleInput"
                     placeholder="e.g Is there an R function for finding the index of an element in a vector?"
-                    onChange={(e) => userWriteFunction(e)}
                   />
                 </Box>
                 <Box>
@@ -56,22 +67,33 @@ export const QuestionWritePage = () => {
                     Include all the information someone would need to answer
                     your question
                   </AskText2>
-                  <SummerNotePreview>
-                    <LabTest />
-                  </SummerNotePreview>
-                  <div>텍스트박스 밑 버튼?</div>
+                  <ReactSummernoteLite id="sample" height={300} />
                 </Box>
-                <Userwrite>{useWrite}</Userwrite>
                 <Box>
                   <AskText1>Tags</AskText1>
                   <AskText2>
                     Add up to 5 tags to describe what your question is about
                   </AskText2>
-                  <TitleInput
-                    type="text"
-                    className="TitleInput"
-                    placeholder="e.g (c linux r)"
-                  />
+                  <TagBox>
+                    {tagArr.map((tagItem, index) => {
+                      return (
+                        <TagItem key={index}>
+                          <Text>{tagItem}</Text>
+                          <Button onClick={deleteTags}>X</Button>
+                        </TagItem>
+                      );
+                    })}
+                    <TagInput
+                      type="text"
+                      className="TitleInput"
+                      placeholder="e.g (c linux r)"
+                      value={tagInput}
+                      onChange={(e) => TagInputChange(e)}
+                      onKeyUp={(e) => addTagInput(e)}
+                      tagArr={tagArr}
+                      onClick={deleteTags}
+                    />
+                  </TagBox>
                 </Box>
               </ContentsUserWrite>
               <ContentsUserHelp>
@@ -97,11 +119,13 @@ export const QuestionWritePage = () => {
                 </SidebarBox>
               </ContentsUserHelp>
             </MainContents>
-            <Reviewbutton
-            // onClick={클릭 함수 추가구간}
-            >
-              Post your answer
-            </Reviewbutton>
+            <ButtonWrapper>
+              <BlueButton
+              // onClick={클릭 함수 추가구간}
+              >
+                Post your answer
+              </BlueButton>
+            </ButtonWrapper>
           </AsWrapper>
         </Wrapper>
       </Top>
@@ -120,13 +144,13 @@ const Top = styled.div`
   padding: 0px 15px;
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 0px 0px 24px 24px;
 `;
 
-const AsWrapper = styled.div`
+export const AsWrapper = styled.div`
   width: 100%;
 `;
 
@@ -154,7 +178,7 @@ const AskTitle = styled.div`
   margin: 10px;
 `;
 
-const MainContents = styled.div`
+export const MainContents = styled.div`
   width: 100%;
   height: 650px;
   display: flex;
@@ -162,7 +186,7 @@ const MainContents = styled.div`
   /* border: 5px solid red; */
 `;
 
-const ContentsUserWrite = styled.div`
+export const ContentsUserWrite = styled.div`
   width: 827px;
   padding: 16px 16px 16px 16px;
   /* border: 1px solid red; */
@@ -171,21 +195,21 @@ const ContentsUserWrite = styled.div`
   box-shadow: 0px 0px 4px #d6d9dc;
 `;
 
-const ContentsUserHelp = styled.div`
+export const ContentsUserHelp = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 40px;
 `;
 
-const AskText1 = styled.div`
+export const AskText1 = styled.div`
   width: 400px;
   height: 100%;
   font-size: 15px;
   font-weight: bold;
-  margin: 15px 0px 0px;
+  margin: 10px 0px 0px;
 `;
 
-const AskText2 = styled.div`
+export const AskText2 = styled.div`
   width: 600px;
   height: 100%;
   font-size: 12px;
@@ -196,7 +220,7 @@ const AskText2 = styled.div`
   margin: 0px 0px 10px 0px;
 `;
 
-const TitleInput = styled.input`
+export const TitleInput = styled.input`
   width: 100%;
   height: 32.57px;
   padding: 8px 10px;
@@ -230,28 +254,13 @@ const TitleInput = styled.input`
 //   border-radius: 2px;
 // `;
 
-const Box = styled.div``;
+export const Box = styled.div``;
 
-const Reviewbutton = styled.button`
-  width: 154px;
-  height: 40px;
-  background-color: #0a95ff;
-  border: solid #0a95ff;
-  font-size: 14px;
-  color: white;
-  /* border: 1px solid green; */
-  margin-top: 20px;
-  margin-bottom: 50px;
-
-  border-radius: 4px;
-  /* box-shadow: 0px 0px 2px 2px rgba(107, 186, 247, 0.5); */
-`;
-
-const Userwrite = styled.div`
+export const Userwrite = styled.div`
   font-size: 14px;
 `;
 
-const SummerNotePreview = styled.div`
+export const SummerNotePreview = styled.div`
   width: 100%;
   height: 300px;
   /* border: solid black 5px; */
@@ -295,4 +304,58 @@ const TextList = styled.ul`
 const Sidebarwidget3 = styled.div`
   margin-top: 37px;
   font-weight: bold;
+`;
+
+export const TagBox = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 50px;
+  margin: 10px;
+  padding: 0 10px;
+  border: 1px solid var(--bc-darker);
+  border-radius: var(--br-sm);
+  &:focus-within {
+    box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
+    border: none;
+    outline: 0;
+  }
+`;
+
+export const TagInput = styled.input`
+  border: 1px solid red;
+  cursor: text;
+  display: inline-flex;
+  min-width: 150px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: text;
+`;
+
+const TagItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 5px;
+  background-color: rgb(225, 236, 244);
+  border-radius: 5px;
+  color: rgb(57, 115, 157);
+  font-size: 12px;
+  font-weight: 620;
+`;
+
+const Text = styled.span``;
+
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+  border-radius: 50%;
+  color: rgb(57, 115, 157);
+  font-weight: 620;
 `;
