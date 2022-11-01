@@ -3,13 +3,16 @@ import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
-import LabTest from '../components/SummerNote/SummerText/LabTest';
+import { BlueButton } from '../components/Common/BlueButton';
+import { ButtonWrapper } from './QuestionEditPage';
+// import LabTest from '../components/SummerNote/SummerText/LabTest';
 
 //써머노트 install 명령어 "npm install summernote"
 
 export const QuestionWritePage = () => {
   //질문 작성 공간 글 하단에 똑같이 보여지는 기능
   const [useWrite, setUseWrite] = useState('');
+
   const userWriteFunction = (e) => {
     setUseWrite(e.target.value);
     console.log(e.target.value);
@@ -57,7 +60,8 @@ export const QuestionWritePage = () => {
                     your question
                   </AskText2>
                   <SummerNotePreview>
-                    <LabTest />
+                    <textarea placeholder="텍스트 에디터" />
+                    {/* <LabTest /> */}
                   </SummerNotePreview>
                   <div>텍스트박스 밑 버튼?</div>
                 </Box>
@@ -97,11 +101,13 @@ export const QuestionWritePage = () => {
                 </SidebarBox>
               </ContentsUserHelp>
             </MainContents>
-            <Reviewbutton
-            // onClick={클릭 함수 추가구간}
-            >
-              Post your answer
-            </Reviewbutton>
+            <ButtonWrapper>
+              <BlueButton
+              // onClick={클릭 함수 추가구간}
+              >
+                Post your answer
+              </BlueButton>
+            </ButtonWrapper>
           </AsWrapper>
         </Wrapper>
       </Top>
@@ -120,13 +126,13 @@ const Top = styled.div`
   padding: 0px 15px;
 `;
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 0px 0px 24px 24px;
 `;
 
-const AsWrapper = styled.div`
+export const AsWrapper = styled.div`
   width: 100%;
 `;
 
@@ -154,7 +160,7 @@ const AskTitle = styled.div`
   margin: 10px;
 `;
 
-const MainContents = styled.div`
+export const MainContents = styled.div`
   width: 100%;
   height: 650px;
   display: flex;
@@ -162,7 +168,7 @@ const MainContents = styled.div`
   /* border: 5px solid red; */
 `;
 
-const ContentsUserWrite = styled.div`
+export const ContentsUserWrite = styled.div`
   width: 827px;
   padding: 16px 16px 16px 16px;
   /* border: 1px solid red; */
@@ -171,13 +177,13 @@ const ContentsUserWrite = styled.div`
   box-shadow: 0px 0px 4px #d6d9dc;
 `;
 
-const ContentsUserHelp = styled.div`
+export const ContentsUserHelp = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 40px;
 `;
 
-const AskText1 = styled.div`
+export const AskText1 = styled.div`
   width: 400px;
   height: 100%;
   font-size: 15px;
@@ -185,7 +191,7 @@ const AskText1 = styled.div`
   margin: 15px 0px 0px;
 `;
 
-const AskText2 = styled.div`
+export const AskText2 = styled.div`
   width: 600px;
   height: 100%;
   font-size: 12px;
@@ -196,7 +202,7 @@ const AskText2 = styled.div`
   margin: 0px 0px 10px 0px;
 `;
 
-const TitleInput = styled.input`
+export const TitleInput = styled.input`
   width: 100%;
   height: 32.57px;
   padding: 8px 10px;
@@ -230,28 +236,13 @@ const TitleInput = styled.input`
 //   border-radius: 2px;
 // `;
 
-const Box = styled.div``;
+export const Box = styled.div``;
 
-const Reviewbutton = styled.button`
-  width: 154px;
-  height: 40px;
-  background-color: #0a95ff;
-  border: solid #0a95ff;
-  font-size: 14px;
-  color: white;
-  /* border: 1px solid green; */
-  margin-top: 20px;
-  margin-bottom: 50px;
-
-  border-radius: 4px;
-  /* box-shadow: 0px 0px 2px 2px rgba(107, 186, 247, 0.5); */
-`;
-
-const Userwrite = styled.div`
+export const Userwrite = styled.div`
   font-size: 14px;
 `;
 
-const SummerNotePreview = styled.div`
+export const SummerNotePreview = styled.div`
   width: 100%;
   height: 300px;
   /* border: solid black 5px; */
