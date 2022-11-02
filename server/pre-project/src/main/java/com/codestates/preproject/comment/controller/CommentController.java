@@ -2,7 +2,9 @@ package com.codestates.preproject.comment.controller;
 
 //import com.codestates.preproject.article.ArticleService;
 
+import com.codestates.preproject.article.Article;
 import com.codestates.preproject.article.ArticleService;
+import com.codestates.preproject.comment.dto.CommentDeleteDto;
 import com.codestates.preproject.comment.dto.CommentPatchDto;
 import com.codestates.preproject.comment.dto.CommentPostDto;
 import com.codestates.preproject.comment.dto.CommentVoteDto;
@@ -55,7 +57,7 @@ public class CommentController {
 
     // 답변 생성
     @PostMapping("{article-id}")
-    public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto) {
+    public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto/*, long articleId*/) {
 
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info(email);
@@ -63,6 +65,9 @@ public class CommentController {
         commentPostDto.setUserEmail(email);
 
         Comment comment = commentService.createComment(commentMapper.commentPostToComment(commentPostDto), email);
+//
+//        Article article = articleService.findArticle(articleId);
+//        comment.setArticle(article);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(comment)),
@@ -92,12 +97,11 @@ public class CommentController {
     public ResponseEntity deleteComment(
             @PathVariable("comment-id") @Positive long commentId) {
 
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        // TODO 같은 유저인지 확인
+        // TODO 같은 유저인지 확인 필요
 
         commentService.deleteComment(commentId);
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(new CommentDeleteDto(commentId), HttpStatus.OK);
 
     }
 
