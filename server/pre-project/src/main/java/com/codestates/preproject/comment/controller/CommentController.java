@@ -1,8 +1,11 @@
 package com.codestates.preproject.comment.controller;
 
 //import com.codestates.preproject.article.ArticleService;
+
+import com.codestates.preproject.article.ArticleService;
 import com.codestates.preproject.comment.dto.CommentPatchDto;
 import com.codestates.preproject.comment.dto.CommentPostDto;
+import com.codestates.preproject.comment.dto.CommentVoteDto;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.SingleResponseDto;
@@ -16,6 +19,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @RestController
@@ -26,11 +30,14 @@ public class CommentController {
 
     private final CommentService commentService;
     private final CommentMapper commentMapper;
+    private final UserService userService;
+    private final ArticleService articleService;
 
-
-    public CommentController(CommentService commentService, CommentMapper commentMapper) {
+    public CommentController(CommentService commentService, CommentMapper commentMapper, UserService userService, ArticleService articleService) {
         this.commentService = commentService;
         this.commentMapper = commentMapper;
+        this.userService = userService;
+        this.articleService = articleService;
     }
 
     // 답변 조회
@@ -47,7 +54,7 @@ public class CommentController {
     }
 
     // 답변 생성
-    @PostMapping("/1")/*("{article-id}")*/
+    @PostMapping("{article-id}")
     public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto) {
 
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -94,4 +101,15 @@ public class CommentController {
 
     }
 
+    @PatchMapping("/vote/{comment-id}")
+    public ResponseEntity voteComment(@PathVariable("comment-id") @Positive @NotNull long commentId,
+                                      @Valid @RequestBody CommentVoteDto commentVoteDto) {
+
+        Comment votedComment = commentService.voteComment(commentId, commentVoteDto.getVote());
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(commentMapper.commentToCommentResponse(votedComment)),
+                HttpStatus.OK
+        );
+    }
 }
