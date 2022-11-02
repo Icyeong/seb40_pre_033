@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { BlueButton } from '../../assets/styles/LoginStyle';
+import useFetch from '../../hooks/useFetch';
+import { getmyInfo } from '../../redux/actions/userAction';
 import Input from './Input';
-// import useFetch from '../../hooks/useFetch';
 
 const LoginForm = () => {
   // 폼 상태관리
@@ -18,7 +19,7 @@ const LoginForm = () => {
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   let isEmailValid = regExp.test(email);
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   //   input 변경값 저장
   const inputHandler = (e) => {
@@ -57,30 +58,12 @@ const LoginForm = () => {
       email,
       password,
     };
-    // fetchOption -> 리팩토링 필요
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    };
-
-    // // 로그인 요청
-    const response = await fetch('/auth/login', requestOptions).then((res) => {
-      if (!res.ok) {
-        throw Error('에러발생');
-      } else if (res.ok) {
-        const accessToken = res.headers.get('authorization');
-        const refreshToken = res.headers.get('refresh');
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
-        // console.log(accessToken, refreshToken);
-        navigate('/');
-      }
-      return res;
-    });
-    console.log(response);
+    // 로그인
+    const res = await useFetch('POST', '/auth/login', body);
+    console.log(res);
+    // // 내 정보 가져오기
+    const myInfo = await useFetch('GET', '/user/me');
+    dispatch(getmyInfo(myInfo));
   };
 
   return (

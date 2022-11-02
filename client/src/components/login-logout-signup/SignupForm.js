@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BlueButton } from '../../assets/styles/LoginStyle';
-// import useFetch from '../../hooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 import Input from './Input';
 import OptionalInput from './OptionalInput';
 import Recaptcha from './Recaptcha';
@@ -115,26 +115,12 @@ const SignupForm = () => {
       password,
       opt,
     };
-    // fetchOption -> 리팩토링 필요
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    };
 
     // 회원가입 요청
-    // useFetch('POST', '/auth/signup', body);
-    const response = await fetch('/auth/signup', requestOptions).then((res) => {
-      if (!res.ok) {
-        throw Error('에러발생');
-      } else if (res.ok) {
-        navigate('/users/signup/success');
-      }
-      return res.json();
-    });
-    console.log(response);
+    const res = await useFetch('POST', '/auth/signup', body);
+    console.log(res);
+    // 페이지 전환
+    navigate('/users/signup/success');
   };
 
   return (
