@@ -32,8 +32,8 @@ public class ArticleService {
         Optional.ofNullable(article.getTitle())
                 .ifPresent(title -> foundArticle.setTitle(title)); //To Do: setter패턴 builder로 변경
 
-        Optional.ofNullable(article.getContents())
-                .ifPresent(contents -> foundArticle.setContents(contents));//To Do: setter패턴 builder로 변경
+        Optional.ofNullable(article.getContent())
+                .ifPresent(contents -> foundArticle.setContent(contents));//To Do: setter패턴 builder로 변경
 
         return articleRepository.save(foundArticle);
 
@@ -48,11 +48,11 @@ public class ArticleService {
         return foundArticle;
     }
 
-    /*public void deleteArticle(long memberId) {
+    public void deleteArticle(long memberId) {
         Article foundArticle = findVerifiedArticle(memberId);
 
         articleRepository.delete(foundArticle);
-    }*/
+    }
 
     public Page<Article> findArticles(int page, int size) {
         return articleRepository.findAll(PageRequest.of(page, size, Sort.by("articleId").descending()));

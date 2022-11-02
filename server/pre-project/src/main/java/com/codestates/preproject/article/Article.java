@@ -1,5 +1,6 @@
 package com.codestates.preproject.article;
 
+import com.codestates.preproject.audit.BaseTime;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.user.entity.User;
 import lombok.*;
@@ -14,9 +15,8 @@ import java.util.List;
 @Table(name = "ARTICLE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Article {
-    // merge 이후 extends BaseTime 추가
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)//기본키 자동생성 목적
+public class Article extends BaseTime {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="article_id")
     private Long articleId;
 
@@ -25,7 +25,7 @@ public class Article {
 
     @Lob
     @Column(insertable = true, nullable= false)
-    private String contents;
+    private String content;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
@@ -35,10 +35,10 @@ public class Article {
     private List<Comment> comments = new ArrayList<>();
 
     @Builder
-    public Article(Long articleId, String title, String contents) {
+    public Article(Long articleId, String title, String content) {
         this.articleId = articleId;
         this.title = title;
-        this.contents = contents;
+        this.content = content;
     }
 
     public void addComment(Comment comment) {

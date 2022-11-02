@@ -11,7 +11,7 @@ public class ArticlePatch {
 
     private String title;
 
-    private String contents;
+    private String content;
 
 /*    @Builder
     public ArticlePatch(Long articleId) {
@@ -21,7 +21,7 @@ public class ArticlePatch {
 
     public ArticlePatch(String title, String contents) {
         this.title = title;
-        this.contents = contents;
+        this.content = contents;
     }
 
     public void setArticleId(Long articleId) {
