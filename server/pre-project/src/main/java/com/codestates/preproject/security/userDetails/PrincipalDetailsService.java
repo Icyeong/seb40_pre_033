@@ -33,10 +33,11 @@ public final class PrincipalDetailsService implements UserDetailsService {
         return new PrincipalDetails(findUser);
     }
 
-    private final class PrincipalDetails extends User implements UserDetails {
+    public final class PrincipalDetails extends User implements UserDetails {
         public PrincipalDetails(User user) {
             setUserId(user.getUserId());
             setEmail(user.getEmail());
+            setNickname(user.getNickname());
             setPassword(user.getPassword());
             setRoles(user.getRoles());
         }

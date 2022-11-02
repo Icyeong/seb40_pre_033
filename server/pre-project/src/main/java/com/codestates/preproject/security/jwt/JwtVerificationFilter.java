@@ -26,7 +26,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter { // OncePerRequ
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        String authorization = request.getHeader("Authrization");
+        String authorization = request.getHeader("Authorization");
 
         return authorization == null || !authorization.startsWith("Bearer");
     }
@@ -41,7 +41,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter { // OncePerRequ
 
     // JWT 검증
     private Map<String, Object> verifyJws(HttpServletRequest request) {
-        String jws = request.getHeader("Authoriaztion").replace("Bearer ", "");
+        String jws = request.getHeader("Authorization").replace("Bearer ", "");
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
         // claims를 파싱할 수 있다는 것은 서명 검증에 성공했다는 의미
         Map<String, Object> claims = jwtTokenizer.getClaims(jws, base64EncodedSecretKey).getBody();

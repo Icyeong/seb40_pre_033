@@ -18,6 +18,5 @@ public class UserPostDto {
     @NotBlank
     private String password;
 
-    @NotBlank
     private String nickname;
 }
