@@ -3,6 +3,7 @@ package com.codestates.preproject.article;
 import com.codestates.preproject.response.MultiResponseDto;
 import com.codestates.preproject.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping
 @Validated
+@Slf4j
 public class ArticleController {
     private final ArticleMapper mapper;
     private final ArticleService articleService;
@@ -26,7 +28,10 @@ public class ArticleController {
     @PostMapping("/article")
     public ResponseEntity<SingleResponseDto<ArticleResponse>> postArticle(@Valid @RequestBody ArticlePost articlePost) {
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Article article = articleService.createArticle(mapper.articlePostToArticle(articlePost));
+        log.info(email);
+        articlePost.setUserEmail(email);
+
+        Article article = articleService.createArticle(mapper.articlePostToArticle(articlePost),email);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.articleToArticleResponse(article))
                 , HttpStatus.CREATED);
@@ -38,6 +43,7 @@ public class ArticleController {
                                                                            @Valid @RequestBody ArticlePatch articlePatchDto) {
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         articlePatchDto.setArticleId(articleId);
+        articlePatchDto.setUserEmail(email);
         Article updatedArticle = articleService.updateArticle(mapper.articlePatchToArticle(articlePatchDto));
 
         return new ResponseEntity<>(

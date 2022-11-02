@@ -2,6 +2,8 @@ package com.codestates.preproject.article;
 
 import com.codestates.preproject.exception.BusinessLogicException;
 import com.codestates.preproject.exception.ExceptionCode;
+import com.codestates.preproject.user.entity.User;
+import com.codestates.preproject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,10 +17,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ArticleService {
     private final ArticleRepository articleRepository;
-    @Transactional(readOnly = true)
-    public Article createArticle(Article article) {
+    private final UserRepository userRepository;
+
+    @Transactional
+    public Article createArticle(Article article, String email)    {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+        /*에러가 뜨면 에러 던지고 아닌 경우 받아옴*/
+        article.setUser(findUser);
+
+        article.setEmail(email);
+
         return articleRepository.save(article);
     }
+
     @Transactional(readOnly = true)
     public Article findArticle(long articleId) {
         return findVerifiedArticle(articleId);
@@ -28,6 +40,7 @@ public class ArticleService {
     @Transactional(readOnly = true)
     public Article updateArticle(Article article) {
         Article foundArticle = findVerifiedArticle(article.getArticleId());
+
 
         Optional.ofNullable(article.getTitle())
                 .ifPresent(title -> foundArticle.setTitle(title)); //To Do: setter패턴 builder로 변경

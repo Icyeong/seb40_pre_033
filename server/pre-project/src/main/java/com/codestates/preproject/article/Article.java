@@ -27,9 +27,13 @@ public class Article extends BaseTime {
     @Column(insertable = true, nullable= false)
     private String content;
 
+    @Column
+    private String email;
+
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
+
 
     @OneToMany(mappedBy = "article")
     private List<Comment> comments = new ArrayList<>();
@@ -44,6 +48,8 @@ public class Article extends BaseTime {
     public void addComment(Comment comment) {
         comments.add(comment);
     }
+
+
 
 
 }
