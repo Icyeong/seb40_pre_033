@@ -1,38 +1,29 @@
-import { useState, useEffect } from 'react';
+const useFetch = (method, url, data) => {
+  const accessToken = localStorage.getItem('accessToken');
 
-const useFetch = (method, url, fetchData) => {
-  useEffect(() => {
-    const [data, setData] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
+  // 기본 옵션
+  const defaultOptions = {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+      'ngrok-skip-browser-warning': 'skip',
+      Authorization: accessToken,
+    },
+    body: JSON.stringify(data),
+  };
 
-    const requestOptions = {
-      method: method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(fetchData),
-    };
+  return fetch(url, defaultOptions).then(async (res) => {
+    if (!res.ok) {
+      throw Error('에러발생');
 
-    fetch(url, requestOptions)
-      .then((res) => {
-        if (!res.ok) {
-          throw Error('could not fetch the data for that resource');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setIsPending(false);
-        setData(data);
-        setError(null);
-      })
-      .catch((err) => {
-        setIsPending(false);
-        setError(err.message);
-      });
-
-    return [data, isPending, error];
-  }, [url]);
+      // 토큰이 있는 경우 (로그인)
+    } else if (res.headers.get('authorization')) {
+      localStorage.setItem('accessToken', res.headers.get('authorization'));
+      localStorage.setItem('refreshToken', res.headers.get('refresh'));
+      return res;
+    }
+    return res.json();
+  });
 };
 
 export default useFetch;
