@@ -13,11 +13,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class CommentPostDto {
 
-    // TODO @NotBlank
-    private long commentId;
-
-    private String username;
-
+    @NotBlank(message="내용을 입력해주세요.")
     private String content;
 
 }
