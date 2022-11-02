@@ -22,8 +22,9 @@ public class Comment extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long commentId;
 
-    @Column(name = "user_name")
-    private String username;
+    @Column(name = "email")
+    private String email;
+    // commentWriter
 
     @Column(name = "comment_content", nullable = false, columnDefinition = "TEXT")
     private String content;
@@ -47,8 +48,8 @@ public class Comment extends BaseTime {
     }
 
     @Builder
-    public Comment(String username, String content) {
-        this.username = username;
+    public Comment(Long commentId, String content) {
+        this.commentId = commentId;
         this.content = content;
     }
 
