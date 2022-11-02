@@ -53,7 +53,10 @@ public class Comment extends BaseTime {
         this.content = content;
     }
 
-//    // 투표
+    // 투표
+    @Column(nullable = false)
+    private int vote;
+
 //    @OneToOne
 //    @JoinColumn(name = "Comment_like", nullable = false, columnDefinition = "INT")
 //    private User positiveVote;
