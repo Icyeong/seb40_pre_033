@@ -70,6 +70,18 @@ public class CommentService {
         commentRepository.delete(findComment);
     }
 
+    // 투표
+    public Comment voteComment(long commentId, int vote) {
+
+        Comment findComment = findVerifiedComment(commentId);
+
+        findComment.setVote(vote);
+
+        Comment updatedComment = commentRepository.save(findComment);
+
+        return updatedComment;
+    }
+
     // 답변 조회 실패
     public Comment findVerifiedComment(long commentId){
 
