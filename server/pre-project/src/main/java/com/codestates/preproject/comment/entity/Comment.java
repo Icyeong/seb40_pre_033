@@ -4,10 +4,8 @@ import com.codestates.preproject.article.Article;
 import com.codestates.preproject.audit.BaseTime;
 import com.codestates.preproject.user.entity.User;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity(name = "COMMENTS")
 @Getter
@@ -24,8 +22,9 @@ public class Comment extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long commentId;
 
-    @Column(name = "user_name")
-    private String username;
+    @Column(name = "email")
+    private String email;
+    // commentWriter
 
     @Column(name = "comment_content", nullable = false, columnDefinition = "TEXT")
     private String content;
@@ -49,14 +48,10 @@ public class Comment extends BaseTime {
     }
 
     @Builder
-    public Comment(String username, String content) {
-        this.username = username;
+    public Comment(Long commentId, String content) {
+        this.commentId = commentId;
         this.content = content;
     }
-
-    @Column(name = "created_at")
-    @CreatedDate
-    private LocalDateTime createdAt;
 
 //    // 투표
 //    @OneToOne
