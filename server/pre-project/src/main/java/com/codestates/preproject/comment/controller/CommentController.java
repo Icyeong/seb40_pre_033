@@ -1,11 +1,13 @@
 package com.codestates.preproject.comment.controller;
 
+import com.codestates.preproject.article.ArticleService;
 import com.codestates.preproject.comment.dto.CommentPatchDto;
 import com.codestates.preproject.comment.dto.CommentPostDto;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.SingleResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
+import com.codestates.preproject.user.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -23,13 +25,14 @@ public class CommentController {
     private final CommentService commentService;
     private final CommentMapper commentMapper;
 
-    //에러 방지를 위해 일단 주석처리 했습니다.
-    //private final ArticleService articleService;
-    //private final UserService userService;
+    private final ArticleService articleService;
+    private final UserService userService;
 
-    public CommentController(CommentService commentService, CommentMapper commentMapper) {
+    public CommentController(CommentService commentService, CommentMapper commentMapper, ArticleService articleService, UserService userService) {
         this.commentService = commentService;
         this.commentMapper = commentMapper;
+        this.articleService = articleService;
+        this.userService = userService;
     }
 
     // 답변 조회
