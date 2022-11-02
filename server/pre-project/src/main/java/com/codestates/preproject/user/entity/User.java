@@ -28,7 +28,7 @@ public class User extends BaseTime {
     @Column(nullable = false)
     private String password;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     private String nickname;
 
     @Enumerated(value = EnumType.STRING)
@@ -45,10 +45,9 @@ public class User extends BaseTime {
     private List<Comment> comments = new ArrayList<>();
 
     @Builder
-    public User(String email, String password, String nickname, List<String> roles) {
+    public User(String email, String password, List<String> roles) {
         this.email = email;
         this.password = password;
-        this.nickname = nickname;
         this.roles = roles;
     }
 

@@ -1,57 +1,75 @@
 package com.codestates.preproject.article;
 
+import com.codestates.preproject.response.MultiResponseDto;
 import com.codestates.preproject.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/article")//인입 url설정
+@RequestMapping
 @Validated
+@Slf4j
 public class ArticleController {
     private final ArticleMapper mapper;
     private final ArticleService articleService;
 
-
-    @PostMapping
+    /*게시글 등록*/
+    @PostMapping("/article")
     public ResponseEntity<SingleResponseDto<ArticleResponse>> postArticle(@Valid @RequestBody ArticlePost articlePost) {
-        Article article = articleService.createArticle(mapper.articlePostToArticle(articlePost));
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        log.info(email);
+        articlePost.setUserEmail(email);
+
+        Article article = articleService.createArticle(mapper.articlePostToArticle(articlePost),email);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.articleToArticleResponse(article))
                 , HttpStatus.CREATED);
     }
 
-/*    @PatchMapping("/{article-id}")
+    /*게시글 수정*/
+    @PatchMapping("/article/{article-id}")
     public ResponseEntity<SingleResponseDto<ArticleResponse>> patchArticle(@PathVariable("article-id") @Positive long articleId,
-                                       @Valid @RequestBody ArticlePatch articlePatchDto) {
+                                                                           @Valid @RequestBody ArticlePatch articlePatchDto) {
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         articlePatchDto.setArticleId(articleId);
+        articlePatchDto.setUserEmail(email);
         Article updatedArticle = articleService.updateArticle(mapper.articlePatchToArticle(articlePatchDto));
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.articleToArticleResponse(updatedArticle)),
                 HttpStatus.OK);
-    }*/
+    }
 
-    @GetMapping("/{article-id}")
+    /*게시글 1개 조회*/
+    @GetMapping("/article/{article-id}")
     public ResponseEntity<SingleResponseDto<ArticleResponse>> getArticle(
             @PathVariable("article-id") @Positive long articleId) {
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Article article = articleService.findArticle(articleId);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.articleToArticleResponse(article))
                 , HttpStatus.OK);
     }
-/*    @GetMapping("/articles")
-    public ResponseEntity getArticles(@Positive@RequestParam("page") int page,
-                                      @Positive@RequestParam("size") int size,
-                                      @RequestParam("sort") String sort){
-        Page<Article> articlePage = articleService.findArticles();
-    }*/
 
+    @GetMapping("/articles")
+    public ResponseEntity<MultiResponseDto<ArticleResponse>> getArticles(@Positive @RequestParam(value = "page",defaultValue = "0") int page,
+                                                                         @Positive @RequestParam(value = "size",defaultValue = "15") int size) {
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Page<Article> articlesInPage = articleService.findArticles(page - 1, size);
+        List<Article> articles = articlesInPage.getContent();
 
+        return new ResponseEntity<MultiResponseDto<ArticleResponse>>(new MultiResponseDto<>(mapper.articlesToArticleResponses(articles), articlesInPage), HttpStatus.OK);
     }
+
+}
