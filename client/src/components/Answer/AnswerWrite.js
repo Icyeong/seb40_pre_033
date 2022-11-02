@@ -52,11 +52,13 @@ export const AnswerWrite = () => {
   const dispatch = useDispatch();
   const { qid } = useParams();
 
-  const [answer, setAnswer] = useState();
+  const [body, setBody] = useState();
+
+  const inputData = { content: body };
 
   const handleAddAnswer = () => {
     console.log('ADD ANSWER');
-    dispatch(addAnswer(qid, answer));
+    dispatch(addAnswer(qid, inputData));
   };
 
   return (
@@ -65,10 +67,10 @@ export const AnswerWrite = () => {
       <ReactSummernoteLite
         id="sample"
         height={300}
-        value={answer}
+        value={body}
         onChange={(e) => {
           console.log(e);
-          setAnswer(e);
+          setBody(e);
         }}
       />
       <PostAnswerButton onClick={handleAddAnswer}>

@@ -5,13 +5,15 @@ export const ADD_QUESTION = 'ADD_QUESTION';
 export const EDIT_QUESTION = 'EDIT_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTION';
 
-export const getQuestions = () => {
+export const getQuestions = (page, size) => {
   try {
-    const res = axios.get(`/article`);
+    const res = axios.get(`/articles`, {
+      params: { page, size },
+    });
 
     return {
       type: GET_QUESTIONS,
-      payload: res.data, // 질문 리스트 데이터
+      payload: res.data, // 질문 리스트 데이터, 페이지 정보
     };
   } catch (err) {
     throw new Error('질문리스트 GET 에러 발생');

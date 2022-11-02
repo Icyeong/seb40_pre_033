@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Tags } from '../Common/Tags';
 
 export const Question = (type) => {
-  let questions = useSelector((state) => state.questionsReducer);
+  let questions = useSelector((state) => state.questionsReducer.data);
 
   return (
     <div className="questions">

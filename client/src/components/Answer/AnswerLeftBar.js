@@ -6,7 +6,6 @@ import {
   BookmarkSvg,
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
-import { useParams } from 'react-router-dom';
 import {
   voteUpAnswer,
   voteDownAnswer,
@@ -14,19 +13,18 @@ import {
 
 export const AnswerLeftBar = (type) => {
   const dispatch = useDispatch();
-  const { qid } = useParams();
 
   let question = useSelector((state) => state.questionReducer);
   const idx = type.idx;
 
   const handleVoteUpAnswer = () => {
     console.log('VOTE UP ANSWER');
-    dispatch(voteUpAnswer(qid, question.comments[idx].comment_id));
+    dispatch(voteUpAnswer(question.comments[idx].comment_id));
   };
 
   const handleVoteDownAnswer = () => {
     console.log('VOTE DOWN ANSWER');
-    dispatch(voteDownAnswer(qid, question.comments[idx].comment_id));
+    dispatch(voteDownAnswer(question.comments[idx].comment_id));
   };
 
   return (

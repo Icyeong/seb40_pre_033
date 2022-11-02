@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 // import axios from 'axios';
 
 export const QuestionsList = () => {
-  let questions = useSelector((state) => state.questionsReducer);
+  let questions = useSelector((state) => state.questionsReducer.data);
 
   // const [mydata, setData] = useState([]);
 

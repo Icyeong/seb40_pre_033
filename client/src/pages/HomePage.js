@@ -28,9 +28,12 @@ const HomeSidebarMargin = styled.div`
 export const HomePage = () => {
   // const dispatch = useDispatch();
 
+  // const initPage = 1;
+  // const initSize = 10;
+
   // useEffect(() => {
   //   console.log('GET QUESTIONS');
-  //   dispatch(getQuestions());
+  //   dispatch(getQuestions(initPage, initSize));
   // }, []);
 
   return (
