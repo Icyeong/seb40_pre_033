@@ -17,7 +17,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping
 @Validated
 @Slf4j
 public class ArticleController {
