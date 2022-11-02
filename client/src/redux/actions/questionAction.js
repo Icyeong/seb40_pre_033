@@ -51,7 +51,7 @@ export const editAnswer = (questionId, answerData) => {
 
 export const deleteAnswer = (answerId) => {
   try {
-    const res = axios.delete(`comment/${answerId}`);
+    const res = axios.delete(`/comment/${answerId}`);
 
     return {
       type: DELETE_ANSWER,
@@ -92,7 +92,7 @@ export const voteDownQuestion = (questionId) => {
 
 export const voteUpAnswer = (answerId) => {
   try {
-    const res = axios.get(`comment/${answerId}/like`);
+    const res = axios.get(`/comment/${answerId}/like`);
 
     return {
       type: VOTE_UP_ANSWER,
