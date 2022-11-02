@@ -47,7 +47,7 @@ public class CommentController {
 
 
     // 답변 생성
-    @PostMapping
+    @PostMapping("{article-id}")
     public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto) {
 
         Comment comment = commentMapper.commentPostToComment(commentPostDto);
