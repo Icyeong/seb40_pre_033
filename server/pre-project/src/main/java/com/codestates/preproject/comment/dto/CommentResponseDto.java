@@ -18,5 +18,6 @@ public class CommentResponseDto {
     private String email;
     private int vote;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
 }
