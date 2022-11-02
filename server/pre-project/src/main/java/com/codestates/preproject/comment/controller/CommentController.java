@@ -1,8 +1,13 @@
 package com.codestates.preproject.comment.controller;
 
 //import com.codestates.preproject.article.ArticleService;
+
+import com.codestates.preproject.article.Article;
+import com.codestates.preproject.article.ArticleService;
+import com.codestates.preproject.comment.dto.CommentDeleteDto;
 import com.codestates.preproject.comment.dto.CommentPatchDto;
 import com.codestates.preproject.comment.dto.CommentPostDto;
+import com.codestates.preproject.comment.dto.CommentVoteDto;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.SingleResponseDto;
@@ -16,6 +21,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
 @RestController
@@ -26,11 +32,14 @@ public class CommentController {
 
     private final CommentService commentService;
     private final CommentMapper commentMapper;
+    private final UserService userService;
+    private final ArticleService articleService;
 
-
-    public CommentController(CommentService commentService, CommentMapper commentMapper) {
+    public CommentController(CommentService commentService, CommentMapper commentMapper, UserService userService, ArticleService articleService) {
         this.commentService = commentService;
         this.commentMapper = commentMapper;
+        this.userService = userService;
+        this.articleService = articleService;
     }
 
     // 답변 조회
@@ -47,8 +56,8 @@ public class CommentController {
     }
 
     // 답변 생성
-    @PostMapping("/1")/*("{article-id}")*/
-    public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto) {
+    @PostMapping("{article-id}")
+    public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto/*, long articleId*/) {
 
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info(email);
@@ -56,6 +65,9 @@ public class CommentController {
         commentPostDto.setUserEmail(email);
 
         Comment comment = commentService.createComment(commentMapper.commentPostToComment(commentPostDto), email);
+//
+//        Article article = articleService.findArticle(articleId);
+//        comment.setArticle(article);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(comment)),
@@ -85,13 +97,23 @@ public class CommentController {
     public ResponseEntity deleteComment(
             @PathVariable("comment-id") @Positive long commentId) {
 
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        // TODO 같은 유저인지 확인
+        // TODO 같은 유저인지 확인 필요
 
         commentService.deleteComment(commentId);
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(new CommentDeleteDto(commentId), HttpStatus.OK);
 
     }
 
+    @PatchMapping("/vote/{comment-id}")
+    public ResponseEntity voteComment(@PathVariable("comment-id") @Positive @NotNull long commentId,
+                                      @Valid @RequestBody CommentVoteDto commentVoteDto) {
+
+        Comment votedComment = commentService.voteComment(commentId, commentVoteDto.getVote());
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(commentMapper.commentToCommentResponse(votedComment)),
+                HttpStatus.OK
+        );
+    }
 }
