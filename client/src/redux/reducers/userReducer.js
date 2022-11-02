@@ -1,9 +1,11 @@
-import { REGISTER_USER } from '../actions/userAction';
+import { GET_MYINFO } from '../actions/userAction';
 
-export const userReducer = (state = {}, action) => {
+const initialState = {};
+
+export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REGISTER_USER:
-      return { ...state, loginSuccess: action.payload };
+    case GET_MYINFO:
+      return { ...state, ...action.payload };
 
     default:
       return state;
