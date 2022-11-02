@@ -40,9 +40,9 @@ export const QuestionEditPage = () => {
   const [body, setBody] = useState(question.content);
 
   const [tagInput, setTagInput] = useState('');
-  const [tagArr, setTagArr] = useState(question.tags);
+  const [tags, setTagArr] = useState(question.tags);
 
-  const inputData = { title, body, tagArr };
+  const inputData = { title, content: body, tags };
 
   const handleEditQuestion = () => {
     console.log('ADD QUESTION');
@@ -55,19 +55,17 @@ export const QuestionEditPage = () => {
   };
 
   const addTagInput = (e) => {
-    const filtered = tagArr.filter((el) => el === e.target.value);
+    const filtered = tags.filter((el) => el === e.target.value);
     if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
-      setTagArr([...tagArr, e.target.value]);
+      setTagArr([...tags, e.target.value]);
       setTagInput('');
-      console.log(tagArr);
+      console.log(tags);
     }
   };
 
   const deleteTags = (e) => {
     const deleteTagItem = e.target.parentElement.firstChild.innerText;
-    const filteredTagList = tagArr.filter(
-      (tagItem) => tagItem !== deleteTagItem
-    );
+    const filteredTagList = tags.filter((tagItem) => tagItem !== deleteTagItem);
     setTagArr(filteredTagList);
   };
 
@@ -121,7 +119,7 @@ export const QuestionEditPage = () => {
                   <Box>
                     <AskText1>Tags</AskText1>
                     <TagBox>
-                      {tagArr.map((tagItem, index) => {
+                      {tags.map((tagItem, index) => {
                         return (
                           <TagItem key={index}>
                             <Text>{tagItem}</Text>
@@ -136,7 +134,7 @@ export const QuestionEditPage = () => {
                         value={tagInput}
                         onChange={(e) => TagInputChange(e)}
                         onKeyUp={(e) => addTagInput(e)}
-                        tagArr={tagArr}
+                        tags={tags}
                         onClick={deleteTags}
                       />
                     </TagBox>

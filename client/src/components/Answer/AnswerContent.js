@@ -19,7 +19,7 @@ export const AnswerContent = (type) => {
 
   const handleDeleteAnswer = () => {
     console.log('DELETE ANSWER');
-    dispatch(deleteAnswer(qid, question.comments[type.idx].comment_id));
+    dispatch(deleteAnswer(question.comments[type.idx].comment_id));
   };
 
   return (

@@ -50,12 +50,12 @@ export const AnswerEdit = () => {
 
   const [body, setBody] = useState(answer.content);
 
-  const inputData = { body };
+  const inputData = { content: body };
 
   const handleEditAnswer = () => {
     console.log('EDIT ANSWER');
     console.log(inputData);
-    dispatch(editAnswer(qid, aid, inputData));
+    dispatch(editAnswer(qid, inputData));
   };
 
   return (

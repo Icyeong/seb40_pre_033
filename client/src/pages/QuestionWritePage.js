@@ -20,9 +20,9 @@ export const QuestionWritePage = () => {
   const [body, setBody] = useState('');
 
   const [tagInput, setTagInput] = useState('');
-  const [tagArr, setTagArr] = useState(['태', '그']);
+  const [tags, setTags] = useState(['태', '그']);
 
-  const inputData = { title, body, tagArr };
+  const inputData = { title, content: body, tags };
 
   const handleAddQuestion = () => {
     console.log('ADD QUESTION');
@@ -35,20 +35,18 @@ export const QuestionWritePage = () => {
   };
 
   const addTagInput = (e) => {
-    const filtered = tagArr.filter((el) => el === e.target.value);
+    const filtered = tags.filter((el) => el === e.target.value);
     if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
-      setTagArr([...tagArr, e.target.value]);
+      setTags([...tags, e.target.value]);
       setTagInput('');
-      console.log(tagArr);
+      console.log(tags);
     }
   };
 
   const deleteTags = (e) => {
     const deleteTagItem = e.target.parentElement.firstChild.innerText;
-    const filteredTagList = tagArr.filter(
-      (tagItem) => tagItem !== deleteTagItem
-    );
-    setTagArr(filteredTagList);
+    const filteredTagList = tags.filter((tagItem) => tagItem !== deleteTagItem);
+    setTags(filteredTagList);
   };
 
   return (
@@ -90,7 +88,7 @@ export const QuestionWritePage = () => {
                     value={body}
                     onChange={(e) => {
                       console.log(e);
-                      setBody(e.target.value);
+                      setBody(e);
                     }}
                   />
                 </Box>
@@ -100,7 +98,7 @@ export const QuestionWritePage = () => {
                     Add up to 5 tags to describe what your question is about
                   </AskText2>
                   <TagBox>
-                    {tagArr.map((tagItem, index) => {
+                    {tags.map((tagItem, index) => {
                       return (
                         <TagItem key={index}>
                           <Text>{tagItem}</Text>
@@ -115,7 +113,7 @@ export const QuestionWritePage = () => {
                       value={tagInput}
                       onChange={(e) => TagInputChange(e)}
                       onKeyUp={(e) => addTagInput(e)}
-                      tagArr={tagArr}
+                      tags={tags}
                       onClick={deleteTags}
                     />
                   </TagBox>
