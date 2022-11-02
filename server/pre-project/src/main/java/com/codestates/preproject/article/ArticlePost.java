@@ -11,8 +11,4 @@ public class ArticlePost implements Serializable {
     private String title;
     @NotEmpty(message="내용을 입력해주세요.")
     private String content;
-
-
-    //private int vote; ERD 수정 후 반영 예정
-
 }

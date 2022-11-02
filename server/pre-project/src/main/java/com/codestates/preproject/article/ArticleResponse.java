@@ -2,6 +2,8 @@ package com.codestates.preproject.article;
 
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
 @Builder
@@ -11,4 +13,5 @@ public class ArticleResponse {
     private String title;
     private String content;
     private int vote;
+    private LocalDateTime createdAt;
 }
