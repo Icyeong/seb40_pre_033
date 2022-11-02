@@ -11,6 +11,20 @@ import { getQuestions } from '../../redux/actions/questionsAction';
 export const QuestionsList = () => {
   const dispatch = useDispatch();
 
+  // 🔥 userReducer 리팩토링
+  const isLoginUser = {
+    email: 'a',
+    nickname: 'b',
+    userId: 1,
+  };
+  // const isNotLoginUser = {
+  //   email: '',
+  //   nickname: '',
+  //   userId: 0,
+  // };
+  let { email } = isLoginUser;
+
+  // let { email } = useSelector((state) => state.userReducer);
   let questions = useSelector((state) => state.questionsReducer.data);
   let { page, size, totalElements, totalPages } = useSelector(
     (state) => state.questionsReducer.pageInfo
@@ -72,7 +86,9 @@ export const QuestionsList = () => {
         <div className="title">
           <h1>All Questions</h1>
           <AskQuestionButton>
-            <Link to="/questions/ask">Ask Question</Link>
+            <Link to={email ? '/questions/ask' : '/users/login'}>
+              Ask Question
+            </Link>
           </AskQuestionButton>
         </div>
         <div className="sort">

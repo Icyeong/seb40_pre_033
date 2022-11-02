@@ -5,10 +5,15 @@ export const ADD_QUESTION = 'ADD_QUESTION';
 export const EDIT_QUESTION = 'EDIT_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTION';
 
+const accessToken = localStorage.getItem('authorization');
+
 export const getQuestions = (page, size) => {
   try {
     const res = axios.get(`/articles`, {
       params: { page, size },
+      headers: {
+        Authorization: accessToken,
+      },
     });
 
     return {
@@ -22,7 +27,11 @@ export const getQuestions = (page, size) => {
 
 export const addQuestion = (questionData) => {
   try {
-    const res = axios.post(`/article`, questionData);
+    const res = axios.post(`/article`, questionData, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: ADD_QUESTION,
@@ -35,7 +44,11 @@ export const addQuestion = (questionData) => {
 
 export const editQuestion = (questionId, questionData) => {
   try {
-    const res = axios.patch(`/article/${questionId}`, questionData);
+    const res = axios.patch(`/article/${questionId}`, questionData, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: EDIT_QUESTION,
@@ -48,7 +61,11 @@ export const editQuestion = (questionId, questionData) => {
 
 export const deleteQuestion = (questionId) => {
   try {
-    const res = axios.delete(`/article/${questionId}`);
+    const res = axios.delete(`/article/${questionId}`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: DELETE_QUESTION,
