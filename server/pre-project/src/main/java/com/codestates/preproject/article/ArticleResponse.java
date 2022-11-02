@@ -10,4 +10,5 @@ public class ArticleResponse {
     private long articleId;
     private String title;
     private String content;
+    private int vote;
 }
