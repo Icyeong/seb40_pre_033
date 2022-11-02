@@ -15,7 +15,7 @@ public class CommentResponseDto {
 
     private long commentId;
     private String content;
-    private User email;
+    private String email;
     private int vote;
     private LocalDateTime createdAt;
 
