@@ -134,6 +134,7 @@ export const StyledQuestions = styled.div`
       border: 1px solid hsl(210, 8%, 55%);
     }
     > .question-list {
+      width: 100%;
       > .question-title {
         > a {
           color: hsl(206, 100%, 40%);
@@ -157,6 +158,7 @@ export const StyledQuestions = styled.div`
         }
       }
       > .question-information {
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -170,11 +172,12 @@ export const StyledQuestions = styled.div`
           flex-direction: row;
           flex-wrap: wrap;
           justify-content: flex-end;
+          margin-top: 10px;
+
           // Mobile
           @media screen and (max-width: 640px) {
             gap: 4px;
             font-size: 12px;
-            margin-top: 10px;
           }
           > img {
             margin: 2px 5px 0 0;

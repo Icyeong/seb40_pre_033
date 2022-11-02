@@ -1,8 +1,10 @@
 package com.codestates.preproject.security.jwt;
 
 import com.codestates.preproject.user.dto.UserLoginDto;
+import com.codestates.preproject.user.dto.UserResponseDto;
 import com.codestates.preproject.user.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -51,6 +53,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.setHeader("Authorization", "Bearer " + accessToken);
         response.setHeader("Refresh", refreshToken);
+
+        response.setContentType("application/json");
+        Gson gson = new Gson();
+        response.getWriter().write(gson.toJson(UserResponseDto.of(user)));
 
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }

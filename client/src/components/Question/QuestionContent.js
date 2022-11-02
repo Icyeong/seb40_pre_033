@@ -67,6 +67,7 @@ export const PostMenu = styled.ul`
       color: var(--black-400);
     }
 
+    a,
     button {
       color: var(--black-500);
 
@@ -179,6 +180,20 @@ export const QuestionContent = () => {
   const navigate = useNavigate();
   const { qid } = useParams();
 
+  // 🔥 userReducer 리팩토링
+  const isLoginUser = {
+    email: '질문 작성자 이메일',
+    nickname: 'b',
+    userId: 1,
+  };
+  // const isNotLoginUser = {
+  //   email: '',
+  //   nickname: '',
+  //   userId: 0,
+  // };
+  let { email } = isLoginUser;
+
+  // let { email } = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
   const handelDeleteQuestion = () => {
@@ -205,21 +220,20 @@ export const QuestionContent = () => {
       </QuestionTags>
       <Detail>
         <PostMenu>
-          {/* other */}
-          {/* <li>Share</li>
-          <li>
-            <Link to={`/questions/edit/${id}`}>Edit</Link>
-          </li>
-          <li>Follow</li> */}
-          {/* my */}
           <li>Share</li>
-          <li>
-            <Link to={`/questions/edit/${qid}`}>Edit</Link>
-          </li>
-          <li>
-            <button onClick={handelDeleteQuestion}>Delete</button>
-          </li>
-          <li>Flag</li>
+          {email === question.email ? (
+            <>
+              <li>
+                <Link to={`/questions/edit/${qid}`}>Edit</Link>
+              </li>
+              <li>
+                <button onClick={handelDeleteQuestion}>Delete</button>
+              </li>
+              <li>Flag</li>
+            </>
+          ) : (
+            <li>Follow</li>
+          )}
         </PostMenu>
         <PostUser background="#D9EAF7">
           <h5>{question.create_at}</h5>
