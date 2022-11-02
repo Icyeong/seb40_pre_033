@@ -39,8 +39,8 @@ public class ArticleService {
 
     }
     @Transactional(readOnly = true)
-    public Article findVerifiedArticle(long coffeeId) {
-        Optional<Article> optionalArticle = articleRepository.findById(coffeeId);
+    public Article findVerifiedArticle(long articleId) {
+        Optional<Article> optionalArticle = articleRepository.findById(articleId);
         Article foundArticle =
                 optionalArticle.orElseThrow(() ->
                         new BusinessLogicException(ExceptionCode.ARTICLE_NOT_FOUND));
@@ -48,8 +48,8 @@ public class ArticleService {
         return foundArticle;
     }
     @Transactional(readOnly = true)
-    public void deleteArticle(long memberId) {
-        Article foundArticle = findVerifiedArticle(memberId);
+    public void deleteArticle(long articleId) {
+        Article foundArticle = findVerifiedArticle(articleId);
 
         articleRepository.delete(foundArticle);
     }
