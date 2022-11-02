@@ -5,13 +5,20 @@ export const ADD_QUESTION = 'ADD_QUESTION';
 export const EDIT_QUESTION = 'EDIT_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTION';
 
-export const getQuestions = () => {
+const accessToken = localStorage.getItem('authorization');
+
+export const getQuestions = (page, size) => {
   try {
-    const res = axios.get(`/article`);
+    const res = axios.get(`/articles`, {
+      params: { page, size },
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: GET_QUESTIONS,
-      payload: res.data, // 질문 리스트 데이터
+      payload: res.data, // 질문 리스트 데이터, 페이지 정보
     };
   } catch (err) {
     throw new Error('질문리스트 GET 에러 발생');
@@ -20,7 +27,11 @@ export const getQuestions = () => {
 
 export const addQuestion = (questionData) => {
   try {
-    const res = axios.post(`/article`, questionData);
+    const res = axios.post(`/article`, questionData, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: ADD_QUESTION,
@@ -33,7 +44,11 @@ export const addQuestion = (questionData) => {
 
 export const editQuestion = (questionId, questionData) => {
   try {
-    const res = axios.patch(`/article/${questionId}`, questionData);
+    const res = axios.patch(`/article/${questionId}`, questionData, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: EDIT_QUESTION,
@@ -46,7 +61,11 @@ export const editQuestion = (questionId, questionData) => {
 
 export const deleteQuestion = (questionId) => {
   try {
-    const res = axios.delete(`/article/${questionId}`);
+    const res = axios.delete(`/article/${questionId}`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: DELETE_QUESTION,

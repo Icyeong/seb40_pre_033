@@ -1,14 +1,34 @@
 import Pagination from 'react-js-pagination';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ListWrapper, StyledQuestions, Container } from './style';
 import { Question } from './Question';
 import { AskQuestionButton } from '../Question/QuestionHeader';
 import { Link } from 'react-router-dom';
+import { getQuestions } from '../../redux/actions/questionsAction';
 // import axios from 'axios';
 
 export const QuestionsList = () => {
-  let questions = useSelector((state) => state.questionsReducer);
+  const dispatch = useDispatch();
+
+  // 🔥 userReducer 리팩토링
+  const isLoginUser = {
+    email: 'a',
+    nickname: 'b',
+    userId: 1,
+  };
+  // const isNotLoginUser = {
+  //   email: '',
+  //   nickname: '',
+  //   userId: 0,
+  // };
+  let { email } = isLoginUser;
+
+  // let { email } = useSelector((state) => state.userReducer);
+  let questions = useSelector((state) => state.questionsReducer.data);
+  let { page, size, totalElements, totalPages } = useSelector(
+    (state) => state.questionsReducer.pageInfo
+  );
 
   // const [mydata, setData] = useState([]);
 
@@ -21,8 +41,9 @@ export const QuestionsList = () => {
   //   })
   //   .catch(() => {});
 
-  const [page, setPage] = useState(1);
+  // ✨ 정렬
   const [selected, setSelected] = useState('newest');
+
   // redux?
   const sortClick = (e) => {
     switch (e.target.value) {
@@ -36,22 +57,38 @@ export const QuestionsList = () => {
         break;
     }
   };
-  const questionCount = [15, 30, 50];
-  const [btnClick, setBtnClick] = useState(2);
-  const pageClick = (e) => {
-    setBtnClick(Number(e.target.value));
+
+  // ✨ 페이지네이션
+  const [currentPage, setCurrentPage] = useState(page); // 현재 페이지 번호
+  const [perPageCount, setPerPageCount] = useState(size); // 페이지 당 글 개수
+
+  const perPageCountList = [10, 15, 20];
+
+  const handleCurrentPageChange = (e) => {
+    console.log('현재 페이지 번호 체인지');
+
+    setCurrentPage(e);
+
+    dispatch(getQuestions(e, perPageCount));
   };
 
-  const handleChange = (page) => {
-    setPage(page);
+  const perPageCountClick = (e) => {
+    console.log('페이지 당 글 개수 체인지');
+
+    setPerPageCount(Number(e.target.value));
+
+    dispatch(getQuestions(currentPage, e.target.value));
   };
+
   return (
     <ListWrapper>
       <StyledQuestions>
         <div className="title">
           <h1>All Questions</h1>
           <AskQuestionButton>
-            <Link to="/questions/ask">Ask Question</Link>
+            <Link to={email ? '/questions/ask' : '/users/login'}>
+              Ask Question
+            </Link>
           </AskQuestionButton>
         </div>
         <div className="sort">
@@ -82,22 +119,23 @@ export const QuestionsList = () => {
         })} */}
         <Container>
           <Pagination
-            activePage={page}
-            itemsCountPerPage={20}
+            activePage={currentPage}
+            itemsCountPerPage={size}
             // 한 페이지 당 20개 * 5페이지 = 100
-            totalItemsCount={100}
-            onChange={handleChange}
+            totalItemsCount={totalElements}
+            pageRangeDisplayed={totalPages}
+            onChange={handleCurrentPageChange}
             prevPageText="Prev"
             nextPageText="Next"
           />
           <div className="btn-per-page">
-            {questionCount.map((el, idx) => {
+            {perPageCountList.map((el, idx) => {
               return (
                 <button
                   key={idx}
                   value={el}
-                  className={el === btnClick ? 'btn-active' : ''}
-                  onClick={pageClick}
+                  className={el === perPageCount ? 'btn-active' : ''}
+                  onClick={perPageCountClick}
                 >
                   {el}
                 </button>

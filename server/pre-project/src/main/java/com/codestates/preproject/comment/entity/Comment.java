@@ -1,4 +1,3 @@
-
 package com.codestates.preproject.comment.entity;
 
 import com.codestates.preproject.article.Article;
@@ -8,10 +7,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "COMMENTS")
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "COMMENTS")
 public class Comment extends BaseTime {
 
@@ -21,8 +22,9 @@ public class Comment extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long commentId;
 
-    @Column(name = "user_name")
-    private String username;
+    @Column(name = "email")
+    private String email;
+    // commentWriter
 
     @Column(name = "comment_content", nullable = false, columnDefinition = "TEXT")
     private String content;
@@ -37,7 +39,7 @@ public class Comment extends BaseTime {
     }
 
     // 게시글
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id")
     private Article article;
 
@@ -46,12 +48,15 @@ public class Comment extends BaseTime {
     }
 
     @Builder
-    public Comment(String username, String content) {
-        this.username = username;
+    public Comment(Long commentId, String content) {
+        this.commentId = commentId;
         this.content = content;
     }
 
-//    // 투표
+    // 투표
+    @Column(nullable = false)
+    private int vote;
+
 //    @OneToOne
 //    @JoinColumn(name = "Comment_like", nullable = false, columnDefinition = "INT")
 //    private User positiveVote;

@@ -2,20 +2,31 @@ package com.codestates.preproject.article;
 
 
 import lombok.Getter;
-
-import java.util.Optional;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class ArticlePatch {
     private Long articleId;
 
-    private Optional<String> title = Optional.empty();
+    private String title;
 
-    private Optional<String> contents = Optional.empty();
+    private String content;
+    private String email;
+
+    public ArticlePatch(String title, String contents) {
+        this.title = title;
+        this.content = contents;
+    }
+
+    public void setArticleId(Long articleId) {
+        this.articleId = articleId;
+    }
+    public void setUserEmail(String email) {
+        this.email = this.email;
+    }
 
     /*DTO의 경우 원래 setter가 필요없지만, patch 시 path variable 설정이 필요*/
 
-    public void setArticleId(long articleId) {
-        this.articleId = articleId;
-    }
+
 }

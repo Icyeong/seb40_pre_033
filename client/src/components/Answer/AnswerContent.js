@@ -15,11 +15,25 @@ export const AnswerContent = (type) => {
   const dispatch = useDispatch();
   const { qid } = useParams();
 
+  // 🔥 userReducer 리팩토링
+  const isLoginUser = {
+    email: '댓글 작성자 이메일1',
+    nickname: 'b',
+    userId: 1,
+  };
+  // const isNotLoginUser = {
+  //   email: '',
+  //   nickname: '',
+  //   userId: 0,
+  // };
+  let { email } = isLoginUser;
+
+  // let { email } = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
   const handleDeleteAnswer = () => {
     console.log('DELETE ANSWER');
-    dispatch(deleteAnswer(qid, question.comments[type.idx].comment_id));
+    dispatch(deleteAnswer(question.comments[type.idx].comment_id));
   };
 
   return (
@@ -32,27 +46,26 @@ export const AnswerContent = (type) => {
       </Body>
       <Detail>
         <PostMenu>
-          {/* other */}
-          {/* <li>Share</li>
-          <li>
-            <Link to={`/questions/edit/${id}`}>Edit</Link>
-          </li>
-          <li>Follow</li> */}
-          {/* my */}
           <li>Share</li>
-          <li>
-            <Link
-              to={`/questions/${qid}/answer/edit/${
-                question.comments[type.idx].comment_id
-              }`}
-            >
-              Edit
-            </Link>
-          </li>
-          <li>
-            <button onClick={handleDeleteAnswer}>Delete</button>
-          </li>
-          <li>Flag</li>
+          {email === question.comments[type.idx].email ? (
+            <>
+              <li>
+                <Link
+                  to={`/questions/${qid}/answer/edit/${
+                    question.comments[type.idx].comment_id
+                  }`}
+                >
+                  Edit
+                </Link>
+              </li>
+              <li>
+                <button onClick={handleDeleteAnswer}>Delete</button>
+              </li>
+              <li>Flag</li>
+            </>
+          ) : (
+            <li>Follow</li>
+          )}
         </PostMenu>
         <PostUser>
           <h5>{question.comments[type.idx].create_at}</h5>

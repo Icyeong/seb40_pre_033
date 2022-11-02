@@ -9,25 +9,60 @@ import { addQuestion } from '../redux/actions/questionsAction';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
 import ReactSummernoteLite from '@easylogic/react-summernote';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { ErrorMessage } from '../components/Question/ErrorMessage';
+import { HasErrorSvg } from '../assets/images/LoginSvg';
 
 //써머노트 install 명령어 "npm install summernote"
 
 export const QuestionWritePage = () => {
   const dispatch = useDispatch();
 
+  const titleRef = useRef();
+  const bodyRef = useRef();
+  const tagsRef = useRef();
+
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
   const [tagInput, setTagInput] = useState('');
-  const [tagArr, setTagArr] = useState(['태', '그']);
+  const [tags, setTags] = useState([]);
 
-  const inputData = { title, body, tagArr };
+  const [titleError, setTitleError] = useState(false);
+  const [bodyError, setBodyError] = useState(false);
+  const [tagsError, setTagsError] = useState(false);
+
+  // const inputData = { title, content: body, tags };
+  const inputData = { title, content: body };
 
   const handleAddQuestion = () => {
-    console.log('ADD QUESTION');
-    console.log(inputData);
-    dispatch(addQuestion(inputData));
+    setTitleError(false);
+    setBodyError(false);
+    setTagsError(false);
+
+    titleRef.current.classList.remove('error');
+    bodyRef.current.classList.remove('error');
+    tagsRef.current.classList.remove('error');
+
+    // 유효성 검사
+    if (title.length < 15 || body.length < 30 || tags.length < 1) {
+      if (title.length < 15) {
+        setTitleError(true);
+        titleRef.current.classList.add('error');
+      }
+      if (body.length < 30) {
+        setBodyError(true);
+        bodyRef.current.classList.add('error');
+      }
+      if (tags.length < 1) {
+        setTagsError(true);
+        tagsRef.current.classList.add('error');
+      }
+    } else {
+      console.log('ADD QUESTION');
+      console.log(inputData);
+      dispatch(addQuestion(inputData));
+    }
   };
 
   const TagInputChange = (e) => {
@@ -35,20 +70,18 @@ export const QuestionWritePage = () => {
   };
 
   const addTagInput = (e) => {
-    const filtered = tagArr.filter((el) => el === e.target.value);
+    const filtered = tags.filter((el) => el === e.target.value);
     if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
-      setTagArr([...tagArr, e.target.value]);
+      setTags([...tags, e.target.value]);
       setTagInput('');
-      console.log(tagArr);
+      console.log(tags);
     }
   };
 
   const deleteTags = (e) => {
     const deleteTagItem = e.target.parentElement.firstChild.innerText;
-    const filteredTagList = tagArr.filter(
-      (tagItem) => tagItem !== deleteTagItem
-    );
-    setTagArr(filteredTagList);
+    const filteredTagList = tags.filter((tagItem) => tagItem !== deleteTagItem);
+    setTags(filteredTagList);
   };
 
   return (
@@ -76,7 +109,16 @@ export const QuestionWritePage = () => {
                     placeholder="e.g Is there an R function for finding the index of an element in a vector?"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    ref={titleRef}
                   />
+                  {titleError && (
+                    <>
+                      <ErrorMessage text="Title must be at least 15 characters." />
+                      <TitleErrorIcon>
+                        <HasErrorSvg />
+                      </TitleErrorIcon>
+                    </>
+                  )}
                 </Box>
                 <Box>
                   <AskText1>Body</AskText1>
@@ -84,23 +126,33 @@ export const QuestionWritePage = () => {
                     Include all the information someone would need to answer
                     your question
                   </AskText2>
-                  <ReactSummernoteLite
-                    id="sample"
-                    height={300}
-                    value={body}
-                    onChange={(e) => {
-                      console.log(e);
-                      setBody(e.target.value);
-                    }}
-                  />
+                  <SummerNoteWrapper ref={bodyRef}>
+                    <ReactSummernoteLite
+                      id="sample"
+                      height={300}
+                      value={body}
+                      onChange={(e) => {
+                        console.log(e);
+                        setBody(e);
+                      }}
+                    />
+                  </SummerNoteWrapper>
+                  {bodyError && (
+                    <>
+                      <ErrorMessage text="Body must be at least 30 characters." />
+                      <BodyErrorIcon>
+                        <HasErrorSvg />
+                      </BodyErrorIcon>
+                    </>
+                  )}
                 </Box>
                 <Box>
                   <AskText1>Tags</AskText1>
                   <AskText2>
                     Add up to 5 tags to describe what your question is about
                   </AskText2>
-                  <TagBox>
-                    {tagArr.map((tagItem, index) => {
+                  <TagBox ref={tagsRef}>
+                    {tags.map((tagItem, index) => {
                       return (
                         <TagItem key={index}>
                           <Text>{tagItem}</Text>
@@ -115,10 +167,18 @@ export const QuestionWritePage = () => {
                       value={tagInput}
                       onChange={(e) => TagInputChange(e)}
                       onKeyUp={(e) => addTagInput(e)}
-                      tagArr={tagArr}
+                      tags={tags}
                       onClick={deleteTags}
                     />
                   </TagBox>
+                  {tagsError && (
+                    <>
+                      <ErrorMessage text="Please enter at least one tag; see a list of popular tags." />
+                      <TagsErrorIcon>
+                        <HasErrorSvg />
+                      </TagsErrorIcon>
+                    </>
+                  )}
                 </Box>
               </ContentsUserWrite>
               <ContentsUserHelp>
@@ -251,32 +311,23 @@ export const TitleInput = styled.input`
   background-color: white;
   color: var(--fc-dark);
   font-size: 13px;
+  border-radius: 2px;
+
+  &.error {
+    border: 1px solid rgb(222, 79, 84);
+    outline: rgb(249, 210, 211) solid 4px;
+  }
+
   &:focus {
     box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
     border: none;
     outline: 0;
   }
-  border-radius: 2px;
 `;
 
-// const TitleInputErr = styled.input`
-//   width: 100%;
-//   height: 32.57px;
-//   padding: 8px 10px;
-//   border: 1px solid var(--bc-darker);
-//   border-radius: var(--br-sm);
-//   background-color: white;
-//   color: var(--fc-dark);
-//   font-size: 13px;
-//   &:focus {
-//     box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
-//     border: none;
-//     outline: 0;
-//   }
-//   border-radius: 2px;
-// `;
-
-export const Box = styled.div``;
+export const Box = styled.div`
+  position: relative;
+`;
 
 export const Userwrite = styled.div`
   font-size: 14px;
@@ -333,10 +384,16 @@ export const TagBox = styled.div`
   align-items: center;
   flex-wrap: wrap;
   min-height: 50px;
-  margin: 10px;
+  margin: 10px 0;
   padding: 0 10px;
   border: 1px solid var(--bc-darker);
   border-radius: var(--br-sm);
+
+  &.error {
+    border: 1px solid rgb(222, 79, 84);
+    outline: rgb(249, 210, 211) solid 4px;
+  }
+
   &:focus-within {
     box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
     border: none;
@@ -380,4 +437,29 @@ export const Button = styled.button`
   border-radius: 50%;
   color: rgb(57, 115, 157);
   font-weight: 620;
+`;
+
+export const SummerNoteWrapper = styled.div`
+  &.error {
+    border: 1px solid rgb(222, 79, 84);
+    outline: rgb(249, 210, 211) solid 4px;
+  }
+`;
+
+const TitleErrorIcon = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 51px;
+`;
+
+const BodyErrorIcon = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 214px;
+`;
+
+const TagsErrorIcon = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 60px;
 `;

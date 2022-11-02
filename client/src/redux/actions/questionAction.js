@@ -10,9 +10,15 @@ export const VOTE_DOWN_QUESTION = 'VOTE_DOWN_QUESTION';
 export const VOTE_UP_ANSWER = 'VOTE_UP_ANSWER';
 export const VOTE_DOWN_ANSWER = 'VOTE_DOWN_ANSWER';
 
+const accessToken = localStorage.getItem('authorization');
+
 export const getQuestion = (questionId) => {
   try {
-    const res = axios.get(`/article/${questionId}`);
+    const res = axios.get(`/article/${questionId}`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: GET_QUESTION,
@@ -25,8 +31,10 @@ export const getQuestion = (questionId) => {
 
 export const addAnswer = (questionId, answerData) => {
   try {
-    const res = axios.post(`/article/${questionId}/comment`, {
-      answerData,
+    const res = axios.post(`/comment/${questionId}`, answerData, {
+      headers: {
+        Authorization: accessToken,
+      },
     });
 
     return {
@@ -38,12 +46,13 @@ export const addAnswer = (questionId, answerData) => {
   }
 };
 
-export const editAnswer = (questionId, answerId, answerData) => {
+export const editAnswer = (questionId, answerData) => {
   try {
-    const res = axios.patch(
-      `/article/${questionId}/comment/${answerId}`,
-      answerData
-    );
+    const res = axios.patch(`/comment/${questionId}`, answerData, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: EDIT_ANSWER,
@@ -54,9 +63,13 @@ export const editAnswer = (questionId, answerId, answerData) => {
   }
 };
 
-export const deleteAnswer = (questionId, answerId) => {
+export const deleteAnswer = (answerId) => {
   try {
-    const res = axios.delete(`/article/${questionId}/comment/${answerId}`);
+    const res = axios.delete(`/comment/${answerId}`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: DELETE_ANSWER,
@@ -71,7 +84,11 @@ export const deleteAnswer = (questionId, answerId) => {
 
 export const voteUpQuestion = (questionId) => {
   try {
-    const res = axios.get(`/article/${questionId}/vote-up-quesion`);
+    const res = axios.get(`/article/${questionId}/like`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: VOTE_UP_QUESTION,
@@ -84,7 +101,11 @@ export const voteUpQuestion = (questionId) => {
 
 export const voteDownQuestion = (questionId) => {
   try {
-    const res = axios.get(`/article/${questionId}/vote-down-quesion`);
+    const res = axios.get(`/article/${questionId}/dislike`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: VOTE_DOWN_QUESTION,
@@ -95,11 +116,13 @@ export const voteDownQuestion = (questionId) => {
   }
 };
 
-export const voteUpAnswer = (questionId, answerId) => {
+export const voteUpAnswer = (answerId) => {
   try {
-    const res = axios.get(
-      `/article/${questionId}/comment/${answerId}/vote-up-answer`
-    );
+    const res = axios.get(`/comment/${answerId}/like`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: VOTE_UP_ANSWER,
@@ -110,11 +133,13 @@ export const voteUpAnswer = (questionId, answerId) => {
   }
 };
 
-export const voteDownAnswer = (questionId, answerId) => {
+export const voteDownAnswer = (answerId) => {
   try {
-    const res = axios.get(
-      `/article/${questionId}/comment/${answerId}/vote-down-answer`
-    );
+    const res = axios.get(`/comment/${answerId}/dislike`, {
+      headers: {
+        Authorization: accessToken,
+      },
+    });
 
     return {
       type: VOTE_DOWN_ANSWER,

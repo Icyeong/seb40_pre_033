@@ -25,7 +25,7 @@ export const StyledQuestions = styled.div`
     padding: 24px 16px;
   }
   // Tablet
-  @media screen and (max-width: 980px){
+  @media screen and (max-width: 980px) {
     padding: 24px 16px;
   }
 
@@ -63,7 +63,7 @@ export const StyledQuestions = styled.div`
         font-size: 12px;
         border: 1px solid hsl(210, 8%, 55%);
         padding: 8px 10px;
-        color: hsl(210,8%,45%);
+        color: hsl(210, 8%, 45%);
         @media screen and (max-width: 640px) {
           height: 35.44px;
           padding-left: 0.4em;
@@ -85,14 +85,14 @@ export const StyledQuestions = styled.div`
           border-right: none;
         }
         :hover {
-        background-color: hsl(210, 8%, 97.5%);
+          background-color: hsl(210, 8%, 97.5%);
         }
         &.is-selected {
-          background-color: hsl(210,8%,90%);
-          color: hsl(210,8%,25%);
+          background-color: hsl(210, 8%, 90%);
+          color: hsl(210, 8%, 25%);
           border: 1px solid hsl(210, 8%, 55%);
           :not(:last-child) {
-          border-right: none;
+            border-right: none;
           }
         }
       }
@@ -120,12 +120,12 @@ export const StyledQuestions = styled.div`
       row-gap: 7px;
       column-gap: 4px;
       // Mobile
-    @media screen and (max-width: 640px) {
-      display: flex;
-      flex-direction: row;
-      margin-bottom: 5px;
-      width: 100%;
-    }
+      @media screen and (max-width: 640px) {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 5px;
+        width: 100%;
+      }
     }
     /* 클릭 시 색 변경 */
     &.is-selected {
@@ -134,14 +134,15 @@ export const StyledQuestions = styled.div`
       border: 1px solid hsl(210, 8%, 55%);
     }
     > .question-list {
+      width: 100%;
       > .question-title {
         > a {
           color: hsl(206, 100%, 40%);
           font-size: 17px;
-        // Mobile
-        @media screen and (max-width: 640px) {
-          font-size: 14.38px;
-        }
+          // Mobile
+          @media screen and (max-width: 640px) {
+            font-size: 14.38px;
+          }
         }
         > a:hover {
           color: hsl(206, 100%, 52%);
@@ -157,6 +158,7 @@ export const StyledQuestions = styled.div`
         }
       }
       > .question-information {
+        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -170,10 +172,11 @@ export const StyledQuestions = styled.div`
           flex-direction: row;
           flex-wrap: wrap;
           justify-content: flex-end;
+          margin-top: 10px;
+
           // Mobile
           @media screen and (max-width: 640px) {
             gap: 4px;
-            margin-left: 10px;
             font-size: 12px;
           }
           > img {
@@ -187,7 +190,6 @@ export const StyledQuestions = styled.div`
       }
     }
   }
-}
 `;
 
 export const AskQuestion = styled.div`

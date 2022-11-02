@@ -65,6 +65,20 @@ const Detail = styled.ul`
 `;
 
 export const QuestionHeader = () => {
+  // 🔥 userReducer 리팩토링
+  const isLoginUser = {
+    email: 'a',
+    nickname: 'b',
+    userId: 1,
+  };
+  // const isNotLoginUser = {
+  //   email: '',
+  //   nickname: '',
+  //   userId: 0,
+  // };
+  let { email } = isLoginUser;
+
+  // let { email } = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
   return (
@@ -72,7 +86,9 @@ export const QuestionHeader = () => {
       <Title>
         <h1>{question.title}</h1>
         <AskQuestionButton>
-          <Link to="/questions/ask">Ask Question</Link>
+          <Link to={email ? '/questions/ask' : '/users/login'}>
+            Ask Question
+          </Link>
         </AskQuestionButton>
       </Title>
       <Detail>
