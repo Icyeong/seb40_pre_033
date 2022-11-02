@@ -56,18 +56,17 @@ public class CommentController {
     }
 
     // 답변 생성
-    @PostMapping("{article-id}")
-    public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto/*, long articleId*/) {
+    @PostMapping("/{article-id}")
+    public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto,
+                                      @PathVariable("article-id") long articleId) {
 
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info(email);
 
         commentPostDto.setUserEmail(email);
+        commentPostDto.setArticleId(articleId);
 
         Comment comment = commentService.createComment(commentMapper.commentPostToComment(commentPostDto), email);
-//
-//        Article article = articleService.findArticle(articleId);
-//        comment.setArticle(article);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(comment)),
