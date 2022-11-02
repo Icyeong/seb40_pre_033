@@ -15,9 +15,4 @@ public class CommentResponseDto {
     private String username;
     private String content;
 
-
-    public static CommentResponseDto of(Comment comment) {
-        return new CommentResponseDto(comment.getCommentId(), comment.getUsername(), comment.getContent());
-    }
-
 }
