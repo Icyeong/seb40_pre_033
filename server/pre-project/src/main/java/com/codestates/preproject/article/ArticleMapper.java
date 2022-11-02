@@ -9,10 +9,10 @@ import java.util.List;
 public interface ArticleMapper {
     @Mapping(target="articleId", ignore = true)
     Article articlePostToArticle(ArticlePost articlePost);
+
     Article articlePatchToArticle(ArticlePatch articlePatch);
-
-    List<ArticleResponse> articlesToArticleResponses(List<Article> articles);
+    //ArticleResponse articleToArticleResponse(Article article);
     ArticleResponse articleToArticleResponse(Article article);
-
+    List<ArticleResponse> articlesToArticleResponses(List<Article> articles);
 
 }

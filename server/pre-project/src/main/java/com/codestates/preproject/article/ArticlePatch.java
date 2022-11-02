@@ -11,21 +11,19 @@ public class ArticlePatch {
 
     private String title;
 
-    private String contents;
-
-/*    @Builder
-    public ArticlePatch(Long articleId) {
-        this.articleId = articleId;
-    } 학습 후 추가할 예정 */
-
+    private String content;
+    private String email;
 
     public ArticlePatch(String title, String contents) {
         this.title = title;
-        this.contents = contents;
+        this.content = contents;
     }
 
     public void setArticleId(Long articleId) {
         this.articleId = articleId;
+    }
+    public void setUserEmail(String email) {
+        this.email = this.email;
     }
 
     /*DTO의 경우 원래 setter가 필요없지만, patch 시 path variable 설정이 필요*/

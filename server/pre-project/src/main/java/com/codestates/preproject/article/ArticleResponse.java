@@ -1,6 +1,13 @@
 package com.codestates.preproject.article;
 
-import lombok.*;
+import com.codestates.preproject.comment.entity.Comment;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -9,5 +16,9 @@ import lombok.*;
 public class ArticleResponse {
     private long articleId;
     private String title;
-    private String contents;
+    private String content;
+    private String email;
+    private int vote;
+    private LocalDateTime createdAt;
+    private List<Comment> comments;
 }
