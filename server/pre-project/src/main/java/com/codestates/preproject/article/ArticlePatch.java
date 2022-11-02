@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ArticlePatch {
     private Long articleId;
-
     private String title;
-
     private String content;
     private String email;
 

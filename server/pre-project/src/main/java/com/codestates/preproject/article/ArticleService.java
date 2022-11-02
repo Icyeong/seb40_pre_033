@@ -24,8 +24,8 @@ public class ArticleService {
         Optional<User> optionalUser = userRepository.findByEmail(email);
         User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
         /*에러가 뜨면 에러 던지고 아닌 경우 받아옴*/
-        article.setUser(findUser);
 
+        article.setUser(findUser);
         article.setEmail(email);
 
         return articleRepository.save(article);
@@ -37,11 +37,11 @@ public class ArticleService {
     }
 
 
-    @Transactional(readOnly = true)
-    public Article updateArticle(Article article) {
+    @Transactional
+    public Article updateArticle(Article article,String email) {
         Article foundArticle = findVerifiedArticle(article.getArticleId());
-
-
+        //user 찾아오고 없으면 에러
+        //checkUserEmail(article, email);
         Optional.ofNullable(article.getTitle())
                 .ifPresent(title -> foundArticle.setTitle(title)); //To Do: setter패턴 builder로 변경
 
@@ -60,34 +60,25 @@ public class ArticleService {
 
         return foundArticle;
     }
-    @Transactional(readOnly = true)
-    public void deleteArticle(long articleId) {
-        Article foundArticle = findVerifiedArticle(articleId);
+    @Transactional
+    public void deleteArticle(long articleId,String email) {
 
+        Article foundArticle = findVerifiedArticle(articleId);
         articleRepository.delete(foundArticle);
     }
     @Transactional(readOnly = true)
     public Page<Article> findArticles(int page, int size) {
         return articleRepository.findAll(PageRequest.of(page, size, Sort.by("articleId").descending()));
     }
-
-/*    @Transactional(readOnly = true)
-    public List<CommentResponseDto> findComments(String email) {
-        User findUser = userRepository.findByEmail(email).orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
-
-        List<Comment> comments = commentRepository.findAllByUser_userId(findUser.getUserId());
-
-        return comments.stream()
-                .map(comment -> CommentResponseDto.builder()
-                        .commentId(comment.getCommentId())
-                        .username(comment.getUsername())
-                        .content(comment.getContent())
-                        .build())
-                .collect(Collectors.toList());
+/*
+    //들어온 이메일과 게시글의 이메일을 비교해 다르다면 예외처리
+    public User checkUserEmail(Article article, String email) throws Exception{
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+        User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
+        String savedEmail= article.getEmail();
+        //현재 포스트의 email과 인입된 email 대조
+        return findUser = findUser.stream().filter(u -> u.getEmail().equals(savedEmail))
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.PERMISSION_DENIED));
     }*/
-
-
-
-
 
 }

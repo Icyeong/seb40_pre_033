@@ -17,7 +17,6 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping
 @Validated
 @Slf4j
 public class ArticleController {
@@ -29,7 +28,7 @@ public class ArticleController {
     public ResponseEntity<SingleResponseDto<ArticleResponse>> postArticle(@Valid @RequestBody ArticlePost articlePost) {
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info(email);
-        articlePost.setUserEmail(email);
+        articlePost.setUserEmail(email); //email을 set으로 할 것인가 create 시에 넣어줄 것인가?
 
         Article article = articleService.createArticle(mapper.articlePostToArticle(articlePost),email);
         return new ResponseEntity<>(
@@ -44,7 +43,7 @@ public class ArticleController {
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         articlePatchDto.setArticleId(articleId);
         articlePatchDto.setUserEmail(email);
-        Article updatedArticle = articleService.updateArticle(mapper.articlePatchToArticle(articlePatchDto));
+        Article updatedArticle = articleService.updateArticle(mapper.articlePatchToArticle(articlePatchDto), email);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.articleToArticleResponse(updatedArticle)),
@@ -55,7 +54,6 @@ public class ArticleController {
     @GetMapping("/article/{article-id}")
     public ResponseEntity<SingleResponseDto<ArticleResponse>> getArticle(
             @PathVariable("article-id") @Positive long articleId) {
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Article article = articleService.findArticle(articleId);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.articleToArticleResponse(article))
@@ -65,11 +63,18 @@ public class ArticleController {
     @GetMapping("/articles")
     public ResponseEntity<MultiResponseDto<ArticleResponse>> getArticles(@Positive @RequestParam(value = "page",defaultValue = "0") int page,
                                                                          @Positive @RequestParam(value = "size",defaultValue = "15") int size) {
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Page<Article> articlesInPage = articleService.findArticles(page - 1, size);
         List<Article> articles = articlesInPage.getContent();
 
         return new ResponseEntity<MultiResponseDto<ArticleResponse>>(new MultiResponseDto<>(mapper.articlesToArticleResponses(articles), articlesInPage), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/article/{article-id}")
+    public ResponseEntity<ArticleDeleteResponse> deleteArticle(@PathVariable("article-id") @Positive long articleId){
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        articleService.deleteArticle(articleId,email);
+        return new ResponseEntity<>(
+                new ArticleDeleteResponse(articleId), HttpStatus.OK);
     }
 
 }
