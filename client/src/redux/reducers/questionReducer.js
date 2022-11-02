@@ -3,6 +3,10 @@ import {
   DELETE_ANSWER,
   EDIT_ANSWER,
   GET_QUESTION,
+  VOTE_UP_QUESTION,
+  VOTE_DOWN_QUESTION,
+  VOTE_UP_ANSWER,
+  VOTE_DOWN_ANSWER,
 } from '../actions/questionAction';
 
 // const initialState = {
@@ -65,8 +69,42 @@ export const questionReducer = (state = initialState, action) => {
         ...state,
         comments: [
           state.comments.filter(
-            (answer) => answer.comment_id !== action.payload.comment_id
+            (answer) => answer.comment_id !== action.payload
           ),
+        ],
+      };
+    case VOTE_UP_QUESTION:
+      return {
+        ...state,
+        vote: action.payload,
+      };
+    case VOTE_DOWN_QUESTION:
+      return {
+        ...state,
+        vote: action.payload,
+      };
+    case VOTE_UP_ANSWER:
+      return {
+        ...state,
+        comments: [
+          state.comments.map((answer) => {
+            if (answer.comment_id === action.payload.comment_id)
+              answer.vote = action.payload.vote;
+
+            return answer;
+          }),
+        ],
+      };
+    case VOTE_DOWN_ANSWER:
+      return {
+        ...state,
+        comments: [
+          state.comments.map((answer) => {
+            if (answer.comment_id === action.payload.comment_id)
+              answer.vote = action.payload.vote;
+
+            return answer;
+          }),
         ],
       };
     default:

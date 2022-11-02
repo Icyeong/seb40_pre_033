@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
 export const LogoSvg = () => {
   return (
-    <a href="https://naver.com" className="logo">
+    <Link to="/" className="logo">
       <svg
         aria-hidden="true"
         className="native svg-icon iconLogoGlyphMd"
@@ -14,7 +16,7 @@ export const LogoSvg = () => {
           fill="#F48024"
         />
       </svg>
-    </a>
+    </Link>
   );
 };
 

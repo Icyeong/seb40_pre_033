@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { BlueButton } from '../Common/BlueButton';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Title = styled.div`
   display: flex;
@@ -24,13 +25,17 @@ const Title = styled.div`
   }
 `;
 
-const AskQuestionButton = styled(BlueButton)`
+export const AskQuestionButton = styled(BlueButton)`
   margin-left: 12px;
   min-width: 100.115px;
 
+  a {
+    color: var(--theme-button-primary-color);
+  }
+
   // Mobile
   @media screen and (max-width: 640px) {
-    margin: 0 0 22.4px 0;
+    margin: 0 0 8px 0;
   }
 `;
 
@@ -67,7 +72,7 @@ export const QuestionHeader = () => {
       <Title>
         <h1>{question.title}</h1>
         <AskQuestionButton>
-          <a href="/questions/ask">Ask Question</a>
+          <Link to="/questions/ask">Ask Question</Link>
         </AskQuestionButton>
       </Title>
       <Detail>

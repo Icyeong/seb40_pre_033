@@ -24,8 +24,8 @@
   --fc-ligth: hsl(210, 8%, 45%);
   --fc-dark: hsl(210, 8%, 5%);
   --bc-darker: var(--black-200);
-  --fc-dark: hsl(210,8%,5%);
-  --fc-light: hsl(210,8%,45%);
+  --fc-dark: hsl(210, 8%, 5%);
+  --fc-light: hsl(210, 8%, 45%);
   --blue-050: hsl(206, 100%, 97%);
   --blue-060: hsl(205, 46%, 92%);
   --blue-100: hsl(206, 96%, 90%);
@@ -37,11 +37,22 @@
   --red-050: hsl(358, 75%, 97%);
   --red-100: hsl(358, 76%, 90%);
   --red-400: hsl(358, 68%, 59%);
-  --red-500: hsl(358,62%,52%);
-  --red-600: hsl(358,62%,47%);
-  --red-700: hsl(358,64%,41%);
-  --red-800: hsl(358,64%,35%);
-  --red-900: hsl(358,67%,29%);
+  --red-500: hsl(358, 62%, 52%);
+  --red-600: hsl(358, 62%, 47%);
+  --red-700: hsl(358, 64%, 41%);
+  --red-800: hsl(358, 64%, 35%);
+  --red-900: hsl(358, 67%, 29%);
+  --green-025: hsl(140,42%,95%);
+  --green-050: hsl(140,40%,90%);
+  --green-100: hsl(140,40%,85%);
+  --green-200: hsl(140,40%,75%);
+  --green-300: hsl(140,40%,65%);
+  --green-400: hsl(140,40%,55%);
+  --green-500: hsl(140,40%,47%);
+  --green-600: hsl(140,40%,40%);
+  --green-700: hsl(140,41%,31%);
+  --green-800: hsl(140,40%,27%);
+  --green-900: hsl(140,40%,20%);
 
   --theme-button-primary-color: var(--white);
   --theme-button-primary-background-color: var(--blue-500);
@@ -54,4 +65,8 @@
   --theme-tag-hover-background-color: hsl(205, 53%, 88%);
   --theme-link-color: var(--blue-600);
   --theme-link-color-hover: var(--blue-500);
+  --theme-button-color: hsl(206, 100%, 40%);
+  --theme-button-hover-color: hsl(209, 100%, 37.5%);
+  --theme-button-hover-background-color: hsl(206, 100%, 97%);
+  --theme-button-active-background-color: hsl(206, 96%, 90%);
 }

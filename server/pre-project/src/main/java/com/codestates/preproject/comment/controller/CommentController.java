@@ -11,13 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 
 @RestController
 @Validated
 @RequestMapping("/comment")
+// TODO 주입 방법 공부
 public class CommentController {
 
     private final CommentService commentService;
@@ -26,19 +26,6 @@ public class CommentController {
     //에러 방지를 위해 일단 주석처리 했습니다.
     //private final ArticleService articleService;
     //private final UserService userService;
-
-    /* -------------------------- 1번 게시물 -------------------------- */
-
-    @PostConstruct
-    public void init() {
-        Comment comment = Comment.builder()
-                .commentId(1)
-                .username("김씨")
-                .content("안녕하세요. 안녕히가세요.")
-                .build();
-        commentService.createComment(comment);
-    }
-
 
     public CommentController(CommentService commentService, CommentMapper commentMapper) {
         this.commentService = commentService;

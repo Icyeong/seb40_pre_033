@@ -8,12 +8,24 @@ const Wrapper = styled.div`
   margin: 6px 0;
   padding: 5px 0px;
   align-items: center;
+  flex-direction: row !important;
+  justify-content: center;
+  .captcha-required {
+    width: 102px;
+    font-size: 12px;
+    color: var(--red-500);
+    display: none;
+  }
+  .captcha-required.inValid {
+    display: block;
+  }
 `;
 
 const Box = styled.div`
   width: 156px;
   height: 136px;
   padding: 15px 0 5px 0;
+  margin-right: 5px !important;
   background-color: #f9f9f9;
   border-radius: 3px;
   border: 1px solid #d3d3d3;
@@ -32,6 +44,23 @@ const Box = styled.div`
       width: 24px;
       height: 24px;
       margin-right: 10px;
+      display: none;
+    }
+    #robotCheck:checked + .recaptcha-checkBox {
+      background: #b2b2b2;
+    }
+    .recaptcha-checkBox {
+      width: 25px;
+      height: 25px;
+      border-radius: 2px;
+      /* background-image: url(../assets/); */
+      background-color: white;
+      border: 2px solid #c1c1c1;
+      margin: 0 8px 0 0;
+      &:hover {
+        border: 2px solid #b2b2b2;
+        box-shadow: inset 0px 1px 1px rgb(0 0 0 /10%);
+      }
     }
     label {
       font-size: 14px;
@@ -72,13 +101,19 @@ const Box = styled.div`
   }
 `;
 
-const Recaptcha = () => {
+const Recaptcha = ({ robotCheck, setRobotCheck, myRef }) => {
   // const captchaRef = useRef(null);
   return (
     <Wrapper>
       <Box>
         <div className="flex">
-          <input id="robotCheck" type="checkbox" name="recaptcha" />
+          <input
+            id="robotCheck"
+            type="radio"
+            name="recaptcha"
+            onChange={() => setRobotCheck(!robotCheck)}
+          />
+          <div className="recaptcha-checkBox"></div>
           <label htmlFor="robotCheck">{"I'm not a robot"}</label>
         </div>
         <div className="flex">
@@ -105,6 +140,9 @@ const Recaptcha = () => {
           </a>
         </div>
       </Box>
+      <p ref={myRef} className="captcha-required">
+        CAPTCHA response required.
+      </p>
       {/* <ReCAPTCHA
         ref={captchaRef}
         sitekey="6LcJErgiAAAAACInPwXKtBY-4jgDd_xqMAY8UWfJ"

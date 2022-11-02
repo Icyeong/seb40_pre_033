@@ -1,7 +1,9 @@
 package com.codestates.preproject.security;
 
+import com.codestates.preproject.security.handler.UserAuthenticationEntryPoint;
 import com.codestates.preproject.security.handler.UserAuthenticationFailureHandler;
 import com.codestates.preproject.security.handler.UserAuthenticationSucessHandler;
+import com.codestates.preproject.security.handler.UserDeniedHandler;
 import com.codestates.preproject.security.jwt.JwtAuthenticationFilter;
 import com.codestates.preproject.security.jwt.JwtTokenizer;
 import com.codestates.preproject.security.jwt.JwtVerificationFilter;
@@ -16,6 +18,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -43,6 +47,10 @@ public class SecurityConfig{
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new UserAuthenticationEntryPoint())
+                .accessDeniedHandler(new UserDeniedHandler())
+                .and()
                 .apply(new JwtFilterConfigurer()) // Custom Configurer 구성해 추가
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
@@ -78,7 +86,8 @@ public class SecurityConfig{
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList("*", "http://localhost:3000"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -86,4 +95,10 @@ public class SecurityConfig{
 
         return source;
     }
+
+    @Bean
+    public HttpFirewall httpFirewall() {
+        return new DefaultHttpFirewall();
+    }
+
 }
