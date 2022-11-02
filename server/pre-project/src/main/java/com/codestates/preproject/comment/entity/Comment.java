@@ -1,4 +1,3 @@
-
 package com.codestates.preproject.comment.entity;
 
 import com.codestates.preproject.article.Article;
@@ -8,10 +7,12 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "COMMENTS")
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "COMMENTS")
 public class Comment extends BaseTime {
 
@@ -37,7 +38,7 @@ public class Comment extends BaseTime {
     }
 
     // 게시글
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id")
     private Article article;
 
