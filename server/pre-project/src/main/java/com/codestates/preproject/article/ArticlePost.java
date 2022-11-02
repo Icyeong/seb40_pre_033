@@ -6,10 +6,6 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Getter
-@ToString
-@AllArgsConstructor
-@Builder
-@NoArgsConstructor
 public class ArticlePost implements Serializable {
     @NotEmpty(message="제목을 입력해주세요.")
     private String title;

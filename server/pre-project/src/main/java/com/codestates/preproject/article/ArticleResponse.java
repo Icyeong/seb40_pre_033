@@ -3,7 +3,6 @@ package com.codestates.preproject.article;
 import lombok.*;
 
 @Getter
-@ToString
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
