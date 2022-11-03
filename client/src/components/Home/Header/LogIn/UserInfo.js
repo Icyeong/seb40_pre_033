@@ -14,9 +14,11 @@ export const Box = styled.div`
 export const UserIcon = styled.div`
   width: 25px;
   height: 25px;
-  border-radius: 10px;
+  border-radius: 3px;
   overflow: hidden;
-  background-color: hsl(210, 8%, 85%);
+  background-image: url(https://source.unsplash.com/random);
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 // 클릭 시 card 이동
@@ -32,8 +34,9 @@ export const UserName = styled.span`
   font-weight: 700;
 `;
 
-export const UserInfo = () => {
+export const UserInfo = ({ user }) => {
   const [openCard, setOpencard] = useState(false);
+  console.log(user);
 
   return (
     <Box>
@@ -43,8 +46,8 @@ export const UserInfo = () => {
           onClick={() => setOpencard((prev) => !prev)}
         />
       </UserIcon>
-      {openCard && <Card setOpencard={setOpencard} />}
-      <UserName>nickname</UserName>
+      {openCard && <Card user={user} setOpencard={setOpencard} />}
+      <UserName>{user.nickname}</UserName>
     </Box>
   );
 };

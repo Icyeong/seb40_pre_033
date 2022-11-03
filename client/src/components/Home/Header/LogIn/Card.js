@@ -1,4 +1,7 @@
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { getLoginStatus } from '../../../../redux/actions/userAction';
 
 export const Box = styled.div`
   display: flex;
@@ -27,7 +30,9 @@ export const UImg = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 30px;
-  background-color: hsl(210, 8%, 85%);
+  background-image: url(https://source.unsplash.com/random);
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 export const UName = styled.div`
@@ -50,15 +55,27 @@ export const Logoutbutton = styled.div`
   cursor: pointer;
 `;
 
-export const Card = () => {
+export const Card = ({ user }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // let { email } = useSelector((state) => state.userReducer);
+
+  // 로그아웃
+  const logoutHandler = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    dispatch(getLoginStatus({ isLogin: false }));
+    navigate('/');
+    window.location.reload();
+  };
+
   return (
     <Box>
       <UImg />
-      <UName>nickname</UName>
+      <UName>{user.nickname}</UName>
       {/* <p>{email}</p> */}
-      <p>nickname@gmail.com</p>
-      <Logoutbutton>Log out</Logoutbutton>
+      <p>{user.email}</p>
+      <Logoutbutton onClick={logoutHandler}>Log out</Logoutbutton>
     </Box>
   );
 };
