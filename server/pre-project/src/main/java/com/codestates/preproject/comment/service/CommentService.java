@@ -47,12 +47,15 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
+    // 더미 사용
+    public Comment createComment(Comment comment) {
+        return commentRepository.save(comment);
+    }
+
     // 답변 수정
     @Transactional
     public Comment updateComment(Comment comment) {
-
-//        Comment findComment = commentRepository.findByCommentId(comment.getCommentId());
-//        findComment.setContent(comment.getContent());
+        
         Comment findComment = findVerifiedComment(comment.getCommentId());
 
         Optional.ofNullable(comment.getContent())
