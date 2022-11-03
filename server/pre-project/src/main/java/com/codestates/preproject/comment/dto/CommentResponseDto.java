@@ -1,8 +1,5 @@
 package com.codestates.preproject.comment.dto;
 
-import com.codestates.preproject.audit.BaseTime;
-import com.codestates.preproject.comment.entity.Comment;
-import com.codestates.preproject.user.entity.User;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,6 +15,8 @@ public class CommentResponseDto {
     private String email;
     private int vote;
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private LocalDateTime modifiedAt;
+
+    private Long articleId;
 
 }

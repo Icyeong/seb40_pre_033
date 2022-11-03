@@ -27,7 +27,7 @@ public class CommentPostDto {
         this.email = email;
     }
 
-    public void setArticle() {
+    public void setArticleId(Long articleId) {
         this.articleId = articleId;
     }
 
