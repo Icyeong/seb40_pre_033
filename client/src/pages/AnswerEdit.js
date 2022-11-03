@@ -21,6 +21,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { editAnswer } from '../redux/actions/questionAction';
 import ReactSummernoteLite from '@easylogic/react-summernote';
+import useFetch from '../hooks/useFetch';
 
 const MainContents = styled.div`
   width: 100%;
@@ -52,10 +53,12 @@ export const AnswerEdit = () => {
 
   const inputData = { content: body };
 
-  const handleEditAnswer = () => {
+  const handleEditAnswer = async () => {
     console.log('EDIT ANSWER');
     console.log(inputData);
-    dispatch(editAnswer(qid, inputData));
+
+    const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
+    dispatch(editAnswer(res));
   };
 
   return (

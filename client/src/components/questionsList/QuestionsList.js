@@ -6,6 +6,7 @@ import { Question } from './Question';
 import { AskQuestionButton } from '../Question/QuestionHeader';
 import { Link } from 'react-router-dom';
 import { getQuestions } from '../../redux/actions/questionsAction';
+import useFetch from '../../hooks/useFetch';
 // import axios from 'axios';
 
 export const QuestionsList = () => {
@@ -64,20 +65,28 @@ export const QuestionsList = () => {
 
   const perPageCountList = [10, 15, 20];
 
-  const handleCurrentPageChange = (e) => {
+  const handleCurrentPageChange = async (e) => {
     console.log('현재 페이지 번호 체인지');
 
     setCurrentPage(e);
 
-    dispatch(getQuestions(e, perPageCount));
+    const res = await useFetch(
+      'GET',
+      `/articles?page=${e}&size=${perPageCount}`
+    );
+    dispatch(getQuestions(res));
   };
 
-  const perPageCountClick = (e) => {
+  const perPageCountClick = async (e) => {
     console.log('페이지 당 글 개수 체인지');
 
     setPerPageCount(Number(e.target.value));
 
-    dispatch(getQuestions(currentPage, e.target.value));
+    const res = await useFetch(
+      'GET',
+      `/articles?page=${currentPage}&size=${e.target.value}`
+    );
+    dispatch(getQuestions(res));
   };
 
   return (

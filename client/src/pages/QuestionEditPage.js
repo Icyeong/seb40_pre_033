@@ -29,6 +29,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editQuestion } from '../redux/actions/questionsAction';
 import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import useFetch from '../hooks/useFetch';
 
 export const QuestionEditPage = () => {
   const dispatch = useDispatch();
@@ -44,10 +45,12 @@ export const QuestionEditPage = () => {
 
   const inputData = { title, content: body, tags };
 
-  const handleEditQuestion = () => {
+  const handleEditQuestion = async () => {
     console.log('ADD QUESTION');
     console.log(inputData);
-    dispatch(editQuestion(qid, inputData));
+
+    const res = await useFetch('PATCH', `/article/${qid}`, inputData);
+    dispatch(editQuestion(res));
   };
 
   const TagInputChange = (e) => {

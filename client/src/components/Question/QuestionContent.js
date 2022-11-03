@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { deleteQuestion } from '../../redux/actions/questionsAction';
+import useFetch from '../../hooks/useFetch';
 
 export const Block = styled.div`
   padding-right: 16px;
@@ -196,9 +197,11 @@ export const QuestionContent = () => {
   // let { email } = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
-  const handelDeleteQuestion = () => {
+  const handelDeleteQuestion = async () => {
     console.log('DELETE QUESTION');
-    dispatch(deleteQuestion(qid));
+
+    const res = await useFetch('DELETE', `/article/${qid}`);
+    dispatch(deleteQuestion(res));
     navigate('/');
   };
 

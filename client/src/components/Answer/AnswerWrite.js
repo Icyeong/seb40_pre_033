@@ -1,10 +1,10 @@
 import { useState } from 'react';
-
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { addAnswer } from '../../redux/actions/questionAction';
 import ReactSummernoteLite from '@easylogic/react-summernote';
+import useFetch from '../../hooks/useFetch';
 
 const Block = styled.div`
   h2 {
@@ -56,9 +56,11 @@ export const AnswerWrite = () => {
 
   const inputData = { content: body };
 
-  const handleAddAnswer = () => {
+  const handleAddAnswer = async () => {
     console.log('ADD ANSWER');
-    dispatch(addAnswer(qid, inputData));
+
+    const res = await useFetch('POST', `/comment/${qid}`, inputData);
+    dispatch(addAnswer(res));
   };
 
   return (

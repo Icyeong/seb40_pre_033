@@ -10,10 +10,11 @@ import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { Footer } from '../components/Home/Footer/Footer';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
-// import { useDispatch } from 'react-redux';
-// import { getQuestion } from '../redux/actions/questionAction';
-// import { useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getQuestion } from '../redux/actions/questionAction';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
 
 const Container = styled.div`
   width: calc(100% - 164px);
@@ -51,13 +52,15 @@ const Content = styled.div`
 `;
 
 export const QuestionPage = () => {
-  // const dispatch = useDispatch();
-  // const { qid } = useParams();
+  const dispatch = useDispatch();
+  const { qid } = useParams();
 
-  // useEffect(() => {
-  //   console.log('GET QUESTION');
-  //   dispatch(getQuestion(qid));
-  // }, []);
+  useEffect(async () => {
+    console.log('GET QUESTION');
+
+    const res = await useFetch('GET', `/article/${qid}`);
+    dispatch(getQuestion(res));
+  }, []);
 
   return (
     <>
