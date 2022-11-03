@@ -1,14 +1,18 @@
 package com.codestates.preproject.comment.service;
 
+import com.codestates.preproject.article.Article;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
 import com.codestates.preproject.exception.BusinessLogicException;
 import com.codestates.preproject.exception.ExceptionCode;
 import com.codestates.preproject.user.entity.User;
 import com.codestates.preproject.user.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,14 +32,19 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
-    // 답변 조회
+    // 답변 1개 조회
     public Comment findComment(long commentId) {
         return commentRepository.findByCommentId(commentId);
+    }
+    
+    // 답변 전체 조회
+    public List<Comment> findComments() {
+        return commentRepository.findAll();
     }
 
     // 답변 생성
     @Transactional
-    public Comment createComment(Comment comment, String email) {
+    public Comment createComment(Comment comment, String email, Long articleId) {
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
         User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
@@ -43,16 +52,20 @@ public class CommentService {
 
         comment.setUser(findUser);
         comment.setEmail(email);
+        comment.setArticleId(articleId);
 
+        return commentRepository.save(comment);
+    }
+
+    // 더미 사용
+    public Comment createComment(Comment comment) {
         return commentRepository.save(comment);
     }
 
     // 답변 수정
     @Transactional
     public Comment updateComment(Comment comment) {
-
-//        Comment findComment = commentRepository.findByCommentId(comment.getCommentId());
-//        findComment.setContent(comment.getContent());
+        
         Comment findComment = findVerifiedComment(comment.getCommentId());
 
         Optional.ofNullable(comment.getContent())

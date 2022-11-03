@@ -49,16 +49,16 @@ const initialState = {
 export const questionReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_QUESTION:
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload.data };
     case ADD_ANSWER:
-      return { ...state, comments: [...state.comments, action.payload] };
+      return { ...state, comments: [...state.comments, action.payload.data] };
     case EDIT_ANSWER:
       return {
         ...state,
         comments: [
           state.comments.map((answer) => {
-            if (answer.comment_id === action.payload.comment_id)
-              answer = action.payload;
+            if (answer.comment_id === action.payload.data.comment_id)
+              answer = action.payload.data;
 
             return answer;
           }),
@@ -69,27 +69,27 @@ export const questionReducer = (state = initialState, action) => {
         ...state,
         comments: [
           state.comments.filter(
-            (answer) => answer.comment_id !== action.payload
+            (answer) => answer.comment_id !== action.payload.data
           ),
         ],
       };
     case VOTE_UP_QUESTION:
       return {
         ...state,
-        vote: action.payload,
+        vote: action.payload.data,
       };
     case VOTE_DOWN_QUESTION:
       return {
         ...state,
-        vote: action.payload,
+        vote: action.payload.data,
       };
     case VOTE_UP_ANSWER:
       return {
         ...state,
         comments: [
           state.comments.map((answer) => {
-            if (answer.comment_id === action.payload.comment_id)
-              answer.vote = action.payload.vote;
+            if (answer.comment_id === action.payload.data.comment_id)
+              answer.vote = action.payload.data.vote;
 
             return answer;
           }),
@@ -100,8 +100,8 @@ export const questionReducer = (state = initialState, action) => {
         ...state,
         comments: [
           state.comments.map((answer) => {
-            if (answer.comment_id === action.payload.comment_id)
-              answer.vote = action.payload.vote;
+            if (answer.comment_id === action.payload.data.comment_id)
+              answer.vote = action.payload.data.vote;
 
             return answer;
           }),

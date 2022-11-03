@@ -11,6 +11,7 @@ import {
   voteDownQuestion,
 } from '../../redux/actions/questionAction';
 import { useParams } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
 
 export const Block = styled.div`
   display: flex;
@@ -50,14 +51,18 @@ export const QuestionLeftBar = () => {
 
   let question = useSelector((state) => state.questionReducer);
 
-  const handleVoteUpQuestion = () => {
+  const handleVoteUpQuestion = async () => {
     console.log('VOTE UP QUESTION');
-    dispatch(voteUpQuestion(qid));
+
+    const res = await useFetch('GET', `/article/${qid}/like`);
+    dispatch(voteUpQuestion(res));
   };
 
-  const handleVoteDownQuestion = () => {
+  const handleVoteDownQuestion = async () => {
     console.log('VOTE DOWN QUESTION');
-    dispatch(voteDownQuestion(qid));
+
+    const res = await useFetch('GET', `/article/${qid}/dislike`);
+    dispatch(voteDownQuestion(res));
   };
 
   return (

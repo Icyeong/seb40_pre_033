@@ -5,9 +5,10 @@ import { Header } from '../components/Home/Header/Header';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
+import useFetch from '../hooks/useFetch';
 // import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { getQuestions } from '../redux/actions/questionsAction';
+import { useDispatch } from 'react-redux';
+import { getQuestions } from '../redux/actions/questionsAction';
 
 export const Block = styled.div`
   max-width: 1264px;
@@ -26,15 +27,34 @@ const HomeSidebarMargin = styled.div`
 `;
 
 export const HomePage = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const initPage = 1;
-  // const initSize = 10;
+  const initPage = 1;
+  const initSize = 10;
 
-  // useEffect(() => {
+  // useEffect(async () => {
   //   console.log('GET QUESTIONS');
-  //   dispatch(getQuestions(initPage, initSize));
+
+  //   const res = await useFetch(
+  //     'GET',
+  //     `/articles?page=${initPage}&size=${initSize}`
+  //   );
+  //   dispatch(getQuestions(res));
   // }, []);
+
+  const load = async () => {
+    console.log('GET QUESTIONS');
+
+    const res = await useFetch(
+      'GET',
+      `/articles?page=${initPage}&size=${initSize}`
+    );
+
+    console.log('getQuestions res', res);
+    dispatch(getQuestions(res));
+  };
+
+  load();
 
   return (
     <div>

@@ -5,6 +5,9 @@ import { Tags } from '../Common/Tags';
 export const Question = (type) => {
   let questions = useSelector((state) => state.questionsReducer.data);
 
+  // 태그 바꾸기
+  const tags = ['임시'];
+
   return (
     <div className="questions">
       <div className="post-summury">
@@ -21,7 +24,7 @@ export const Question = (type) => {
         <div className="question-content">{questions[type.idx].content}</div>
         <div className="question-information">
           <Tags>
-            {questions[type.idx].tags.map((tag, idx) => (
+            {tags.map((tag, idx) => (
               <li key={idx}>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a href="#">{tag}</a>

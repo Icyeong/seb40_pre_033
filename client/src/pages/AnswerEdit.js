@@ -19,10 +19,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import ReactSummernoteLite from '@easylogic/react-summernote';
+import useFetch from '../hooks/useFetch';
 import { useState, useRef } from 'react';
-import { addQuestion } from '../redux/actions/questionsAction';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
+import { editAnswer } from '../redux/actions/questionAction';
 
 const MainContents = styled.div`
   width: 100%;
@@ -56,7 +57,7 @@ export const AnswerEdit = () => {
 
   const inputData = { content: body };
 
-  const handleEditAnswer = () => {
+  const handleEditAnswer = async () => {
     // 요청 검사할때 한 번만 데이터를 넣어줌
     setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
 
@@ -68,9 +69,11 @@ export const AnswerEdit = () => {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
-      console.log('ADD QUESTION');
+      console.log('EDIT ANSWER');
       console.log(inputData);
-      dispatch(addQuestion(inputData));
+
+      const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
+      dispatch(editAnswer(res));
     }
   };
 

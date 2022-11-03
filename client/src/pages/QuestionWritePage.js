@@ -12,6 +12,7 @@ import ReactSummernoteLite from '@easylogic/react-summernote';
 import { useState, useRef } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
+import useFetch from '../hooks/useFetch';
 
 //써머노트 install 명령어 "npm install summernote"
 
@@ -35,10 +36,9 @@ export const QuestionWritePage = () => {
   // const inputData = { title, content: body, tags };
   const inputData = { title, content: body };
 
-  const handleAddQuestion = () => {
+  const handleAddQuestion = async () => {
     // 요청 검사할때 한 번만 데이터를 넣어줌
     setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
-
     setTitleError(false);
     setBodyError(false);
     setTagsError(false);
@@ -64,7 +64,10 @@ export const QuestionWritePage = () => {
     } else {
       console.log('ADD QUESTION');
       console.log(inputData);
-      dispatch(addQuestion(inputData));
+
+      const res = await useFetch('POST', '/article', inputData);
+      console.log('add question res', res);
+      dispatch(addQuestion(res));
     }
   };
 
@@ -447,7 +450,7 @@ const TitleErrorIcon = styled.div`
   top: 51px;
 `;
 
-const BodyErrorIcon = styled.div`
+export const BodyErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 214px;
