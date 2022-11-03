@@ -3,9 +3,12 @@ import { GrMenu, GrClose } from 'react-icons/gr'; // 햄버거 버튼, x 버튼
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { Dropdown } from '../Sidebar/Dropdown';
-import { NavBar, NavLink } from './style';
+import { NavBar } from './style';
+import { LoggedIn } from './LogIn/LoggedIn';
+// import { Auth } from './Auth';
 
 export const Header = () => {
+  // let { email } = useSelector((state) => state.userReducer);
   const location = useLocation().pathname;
   const [click, setClick] = useState(false);
 
@@ -46,12 +49,8 @@ export const Header = () => {
             />
           </div>
         </form>
-        <NavLink to="/users/login" className="button-login">
-          Log in
-        </NavLink>
-        <NavLink to="/users/signup" className="button-signup">
-          Sign up
-        </NavLink>
+        {/* {email ? <LoggedIn /> : <Auth />} */}
+        <LoggedIn />
       </div>
     </NavBar>
   );

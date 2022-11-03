@@ -36,11 +36,10 @@ export const QuestionsList = () => {
   // const [mydata, setData] = useState([]);
 
   // axios
-  //   .get('https://7193b487-9896-42b5-a29f-6ddbb18132f5.mock.pstmn.io/list')
+  //   .get('/articles?page=1&size=10')
   //   .then((result) => {
-  //     setData(result.data);
-  //     console.log('#1', result.data);
-  //     console.log('#2', mydata);
+  //     // setData(result.data);
+  //     console.log('#1', result);
   //   })
   //   .catch(() => {});
 

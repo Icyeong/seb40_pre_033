@@ -14,14 +14,20 @@ import {
   Box,
   ContentsUserHelp,
   ContentsUserWrite,
+  SummerNoteWrapper,
   Wrapper,
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { useState } from 'react';
-import { editAnswer } from '../redux/actions/questionAction';
 import ReactSummernoteLite from '@easylogic/react-summernote';
+<<<<<<< HEAD
 import useFetch from '../hooks/useFetch';
+=======
+import { useState, useRef } from 'react';
+import { addQuestion } from '../redux/actions/questionsAction';
+import { ErrorMessage } from '../components/Question/ErrorMessage';
+import { HasErrorSvg } from '../assets/images/LoginSvg';
+>>>>>>> upstream/dev
 
 const MainContents = styled.div`
   width: 100%;
@@ -42,6 +48,8 @@ export const AskText1 = styled.div`
 export const AnswerEdit = () => {
   const dispatch = useDispatch();
   const { qid, aid } = useParams();
+  const bodyRef = useRef();
+  const [bodyError, setBodyError] = useState(false);
 
   let question = useSelector((state) => state.questionReducer);
 
@@ -53,12 +61,21 @@ export const AnswerEdit = () => {
 
   const inputData = { content: body };
 
-  const handleEditAnswer = async () => {
-    console.log('EDIT ANSWER');
-    console.log(inputData);
+    const handleEditAnswer = () => {
+    setBodyError(false);
 
-    const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
-    dispatch(editAnswer(res));
+    bodyRef.current.classList.remove('error');
+
+    if (body.length < 30) {
+      setBodyError(true);
+      bodyRef.current.classList.add('error');
+    } else {
+      console.log('EDIT ANSWER');
+      console.log(inputData);
+  
+      const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
+      dispatch(editAnswer(res));
+    }
   };
 
   return (
@@ -86,15 +103,25 @@ export const AnswerEdit = () => {
                 <ContentsUserWrite>
                   <Box>
                     <AskText1>Body</AskText1>
-                    <ReactSummernoteLite
-                      id="sample"
-                      height={350}
-                      value={body}
-                      onChange={(e) => {
-                        console.log(e);
-                        setBody(e);
-                      }}
-                    />
+                    <SummerNoteWrapper ref={bodyRef}>
+                      <ReactSummernoteLite
+                        id="sample"
+                        height={300}
+                        value={body}
+                        onChange={(e) => {
+                          console.log(e);
+                          setBody(e);
+                        }}
+                      />
+                    </SummerNoteWrapper>
+                    {bodyError && (
+                      <>
+                        <ErrorMessage text="Body must be at least 30 characters." />
+                        <BodyErrorIcon>
+                          <HasErrorSvg />
+                        </BodyErrorIcon>
+                      </>
+                    )}
                   </Box>
                 </ContentsUserWrite>
                 <ContentsUserHelp>
@@ -115,3 +142,9 @@ export const AnswerEdit = () => {
     </div>
   );
 };
+
+const BodyErrorIcon = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 214px;
+`;
