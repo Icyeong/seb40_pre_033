@@ -79,6 +79,8 @@ export const AnswerWrite = () => {
       console.log('ADD ANSWER');
 
       const res = await useFetch('POST', `/comment/${qid}`, inputData);
+
+      console.log('add answer res', res);
       dispatch(addAnswer(res));
     }
   };

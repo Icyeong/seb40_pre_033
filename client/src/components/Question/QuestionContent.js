@@ -183,7 +183,7 @@ export const QuestionContent = () => {
 
   // 🔥 userReducer 리팩토링
   const isLoginUser = {
-    email: '질문 작성자 이메일',
+    email: 'c@c.com',
     nickname: 'b',
     userId: 1,
   };
@@ -201,9 +201,13 @@ export const QuestionContent = () => {
     console.log('DELETE QUESTION');
 
     const res = await useFetch('DELETE', `/article/${qid}`);
+    console.log('delete question res', res);
     dispatch(deleteQuestion(res));
     navigate('/');
   };
+
+  // 태그 바꾸기
+  const tags = ['임시'];
 
   return (
     <Block>
@@ -214,7 +218,7 @@ export const QuestionContent = () => {
         </pre> */}
       </Body>
       <QuestionTags>
-        {question.tags.map((tag, idx) => (
+        {tags.map((tag, idx) => (
           <li key={idx}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href="#">{tag}</a>

@@ -66,6 +66,8 @@ export const QuestionPage = () => {
     console.log('GET QUESTION');
 
     const res = await useFetch('GET', `/article/${qid}`);
+
+    console.log('get question res', res);
     dispatch(getQuestion(res));
   };
 

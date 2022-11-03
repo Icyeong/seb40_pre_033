@@ -26,7 +26,7 @@ import {
   TitleInput,
   Wrapper,
 } from './QuestionWritePage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { editQuestion } from '../redux/actions/questionsAction';
 import { Link, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
@@ -44,13 +44,13 @@ export const QuestionEditPage = () => {
 
   const { qid } = useParams();
 
-  // let question = useSelector((state) => state.questionReducer);
+  let question = useSelector((state) => state.questionReducer);
 
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [title, setTitle] = useState(question.title);
+  const [body, setBody] = useState(question.content);
 
   const [tagInput, setTagInput] = useState('');
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(['임시']);
 
   const [titleError, setTitleError] = useState(false);
   const [bodyError, setBodyError] = useState(false);
@@ -85,6 +85,7 @@ export const QuestionEditPage = () => {
       console.log(inputData);
 
       const res = await useFetch('PATCH', `/article/${qid}`, inputData);
+      console.log('edit question res', res);
       dispatch(editQuestion(res));
     }
   };

@@ -62,24 +62,28 @@ export const questionsReducer = (state = initialState, action) => {
       };
     case ADD_QUESTION:
       return {
-        data: [...state.data, action.payload],
+        data: [...state.data, action.payload.data],
       };
     case EDIT_QUESTION:
       return {
         data: [
-          ...state.map((question) => {
-            if (question.article_id === action.payload.article_id)
-              question = action.payload;
+          ...state.data.map((question) => {
+            if (question.article_id === action.payload.data.article_id)
+              question = action.payload.data;
 
             return question;
           }),
         ],
+        pageInfo: { ...state.pageInfo },
       };
     case DELETE_QUESTION:
       return {
         data: [
-          ...state.filter((question) => question.article_id !== action.payload),
+          ...state.data.filter(
+            (question) => question.article_id !== action.payload
+          ),
         ],
+        pageInfo: { ...state.pageInfo },
       };
     default:
       return state;

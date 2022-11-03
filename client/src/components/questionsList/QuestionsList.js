@@ -28,7 +28,6 @@ export const QuestionsList = () => {
   // let { email } = useSelector((state) => state.userReducer);
   let questions = useSelector((state) => state.questionsReducer.data);
 
-  console.log('#2', questions);
   let { page, size, totalElements, totalPages } = useSelector(
     (state) => state.questionsReducer.pageInfo
   );

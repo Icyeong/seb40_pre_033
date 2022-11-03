@@ -18,7 +18,7 @@ export const AnswerContent = (type) => {
 
   // 🔥 userReducer 리팩토링
   const isLoginUser = {
-    email: '댓글 작성자 이메일1',
+    email: 'c@c.com',
     nickname: 'b',
     userId: 1,
   };

@@ -50,7 +50,7 @@ export const HomePage = () => {
       `/articles?page=${initPage}&size=${initSize}`
     );
 
-    console.log('#1', res);
+    console.log('getQuestions res', res);
     dispatch(getQuestions(res));
   };
 
