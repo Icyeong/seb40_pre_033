@@ -12,6 +12,10 @@ const Signup = () => {
       <SignupWrapper>
         <SignupTxt />
         <main>
+          <h1>
+            Create your Stack Overflow account. It’s free and only takes a
+            minute.
+          </h1>
           <div className="oauth-button-container">
             <OauthButton login="Google" signup="true" />
             <OauthButton login="GitHub" signup="true" />

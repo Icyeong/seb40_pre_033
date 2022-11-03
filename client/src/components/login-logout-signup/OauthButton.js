@@ -7,12 +7,12 @@ import {
 
 const Button = styled.button`
   width: 100%;
+  height: 37.78px;
   margin: 4px 0;
   font-size: 13px;
   border-radius: 7px;
   background-color: white;
   color: #3b4045;
-  padding: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
