@@ -17,7 +17,7 @@ public class CommentPostDto {
     @NotBlank(message="내용을 입력해주세요.")
     private String content;
 
-    private long articleId;
+    private Long articleId;
 
     public CommentPostDto(String content) {
         this.content = content;
