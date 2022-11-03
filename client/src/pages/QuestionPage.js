@@ -12,7 +12,7 @@ import '../components/SummerText/Summernote.css';
 import 'jquery';
 import { useDispatch } from 'react-redux';
 import { getQuestion } from '../redux/actions/questionAction';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 
@@ -55,12 +55,21 @@ export const QuestionPage = () => {
   const dispatch = useDispatch();
   const { qid } = useParams();
 
-  useEffect(async () => {
+  // useEffect(async () => {
+  //   console.log('GET QUESTION');
+
+  //   const res = await useFetch('GET', `/article/${qid}`);
+  //   dispatch(getQuestion(res));
+  // }, []);
+
+  const load = async () => {
     console.log('GET QUESTION');
 
     const res = await useFetch('GET', `/article/${qid}`);
     dispatch(getQuestion(res));
-  }, []);
+  };
+
+  load();
 
   return (
     <>

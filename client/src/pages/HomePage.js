@@ -6,7 +6,7 @@ import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import useFetch from '../hooks/useFetch';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getQuestions } from '../redux/actions/questionsAction';
 
@@ -32,15 +32,29 @@ export const HomePage = () => {
   const initPage = 1;
   const initSize = 10;
 
-  useEffect(async () => {
+  // useEffect(async () => {
+  //   console.log('GET QUESTIONS');
+
+  //   const res = await useFetch(
+  //     'GET',
+  //     `/articles?page=${initPage}&size=${initSize}`
+  //   );
+  //   dispatch(getQuestions(res));
+  // }, []);
+
+  const load = async () => {
     console.log('GET QUESTIONS');
 
     const res = await useFetch(
       'GET',
       `/articles?page=${initPage}&size=${initSize}`
     );
+
+    console.log('#1', res);
     dispatch(getQuestions(res));
-  }, []);
+  };
+
+  load();
 
   return (
     <div>

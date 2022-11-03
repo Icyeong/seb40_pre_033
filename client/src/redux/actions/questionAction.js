@@ -17,7 +17,7 @@ export const getQuestion = (res) => {
 
   return {
     type: GET_QUESTION,
-    payload: res.data, // 질문 데이터
+    payload: res, // 질문 데이터
   };
 };
 
@@ -30,7 +30,7 @@ export const addAnswer = (res) => {
 
   return {
     type: ADD_ANSWER,
-    payload: res.data, // 생성한 답변 데이터
+    payload: res, // 생성한 답변 데이터
   };
 };
 
@@ -43,7 +43,7 @@ export const editAnswer = (res) => {
 
   return {
     type: EDIT_ANSWER,
-    payload: res.data, // 수정한 답변 데이터
+    payload: res, // 수정한 답변 데이터
   };
 };
 
@@ -56,7 +56,7 @@ export const deleteAnswer = (res) => {
 
   return {
     type: DELETE_ANSWER,
-    payload: res.data, // 삭제한 답변 id
+    payload: res, // 삭제한 답변 id
   };
 };
 
@@ -71,7 +71,7 @@ export const voteUpQuestion = (res) => {
 
   return {
     type: VOTE_UP_QUESTION,
-    payload: res.data, // 질문 투표 수
+    payload: res, // 질문 투표 수
   };
 };
 
@@ -84,7 +84,7 @@ export const voteDownQuestion = (res) => {
 
   return {
     type: VOTE_DOWN_QUESTION,
-    payload: res.data, // 질문 투표 수
+    payload: res, // 질문 투표 수
   };
 };
 
@@ -97,7 +97,7 @@ export const voteUpAnswer = (res) => {
 
   return {
     type: VOTE_UP_ANSWER,
-    payload: res.data, // 답변 데이터 (투표 수 적용)
+    payload: res, // 답변 데이터 (투표 수 적용)
   };
 };
 
@@ -110,6 +110,6 @@ export const voteDownAnswer = (res) => {
 
   return {
     type: VOTE_DOWN_ANSWER,
-    payload: res.data, // 답변 데이터 (투표 수 적용)
+    payload: res, // 답변 데이터 (투표 수 적용)
   };
 };
