@@ -455,7 +455,7 @@ const TitleErrorIcon = styled.div`
   top: 51px;
 `;
 
-const BodyErrorIcon = styled.div`
+export const BodyErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 214px;

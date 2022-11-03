@@ -20,14 +20,11 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import ReactSummernoteLite from '@easylogic/react-summernote';
-<<<<<<< HEAD
 import useFetch from '../hooks/useFetch';
-=======
 import { useState, useRef } from 'react';
-import { addQuestion } from '../redux/actions/questionsAction';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
->>>>>>> upstream/dev
+import { editAnswer } from '../redux/actions/questionAction';
 
 const MainContents = styled.div`
   width: 100%;
@@ -61,7 +58,7 @@ export const AnswerEdit = () => {
 
   const inputData = { content: body };
 
-    const handleEditAnswer = () => {
+  const handleEditAnswer = async () => {
     setBodyError(false);
 
     bodyRef.current.classList.remove('error');
@@ -72,7 +69,7 @@ export const AnswerEdit = () => {
     } else {
       console.log('EDIT ANSWER');
       console.log(inputData);
-  
+
       const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
       dispatch(editAnswer(res));
     }
