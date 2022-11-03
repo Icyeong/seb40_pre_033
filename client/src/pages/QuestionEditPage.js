@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
@@ -33,6 +32,7 @@ import { useState, useRef } from 'react';
 import { addQuestion } from '../redux/actions/questionsAction';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
+import { Header } from '../components/Home/Header/Header';
 
 export const QuestionEditPage = () => {
   const dispatch = useDispatch();
