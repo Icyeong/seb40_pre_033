@@ -10,6 +10,7 @@ import {
 } from '../Question/QuestionContent';
 import { useParams, Link } from 'react-router-dom';
 import { deleteAnswer } from '../../redux/actions/questionAction';
+import useFetch from '../../hooks/useFetch';
 
 export const AnswerContent = (type) => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const AnswerContent = (type) => {
 
   // 🔥 userReducer 리팩토링
   const isLoginUser = {
-    email: '댓글 작성자 이메일1',
+    email: 'c@c.com',
     nickname: 'b',
     userId: 1,
   };
@@ -31,9 +32,14 @@ export const AnswerContent = (type) => {
   // let { email } = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
-  const handleDeleteAnswer = () => {
+  const handleDeleteAnswer = async () => {
     console.log('DELETE ANSWER');
-    dispatch(deleteAnswer(question.comments[type.idx].comment_id));
+
+    const res = await useFetch(
+      'DELETE',
+      `/comment/${question.comments[type.idx].comment_id}`
+    );
+    dispatch(deleteAnswer(res));
   };
 
   return (

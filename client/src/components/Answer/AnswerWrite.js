@@ -1,10 +1,16 @@
-import { useState } from 'react';
-
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { addAnswer } from '../../redux/actions/questionAction';
 import ReactSummernoteLite from '@easylogic/react-summernote';
+import useFetch from '../../hooks/useFetch';
+import {
+  BodyErrorIcon,
+  SummerNoteWrapper,
+} from '../../pages/QuestionWritePage';
+import { ErrorMessage } from '../Question/ErrorMessage';
+import { HasErrorSvg } from '../../assets/images/LoginSvg';
 
 const Block = styled.div`
   h2 {
@@ -52,27 +58,55 @@ export const AnswerWrite = () => {
   const dispatch = useDispatch();
   const { qid } = useParams();
 
+  const bodyRef = useRef();
+
   const [body, setBody] = useState();
+
+  const [bodyError, setBodyError] = useState(false);
 
   const inputData = { content: body };
 
-  const handleAddAnswer = () => {
-    console.log('ADD ANSWER');
-    dispatch(addAnswer(qid, inputData));
+  const handleAddAnswer = async () => {
+    setBodyError(false);
+
+    bodyRef.current.classList.remove('error');
+
+    // 유효성 검사
+    if (body.length < 30) {
+      setBodyError(true);
+      bodyRef.current.classList.add('error');
+    } else {
+      console.log('ADD ANSWER');
+
+      const res = await useFetch('POST', `/comment/${qid}`, inputData);
+
+      console.log('add answer res', res);
+      dispatch(addAnswer(res));
+    }
   };
 
   return (
     <Block>
       <h2>Your Answer</h2>
-      <ReactSummernoteLite
-        id="sample"
-        height={300}
-        value={body}
-        onChange={(e) => {
-          console.log(e);
-          setBody(e);
-        }}
-      />
+      <SummerNoteWrapper ref={bodyRef}>
+        <ReactSummernoteLite
+          id="sample"
+          height={300}
+          value={body}
+          onChange={(e) => {
+            console.log(e);
+            setBody(e);
+          }}
+        />
+      </SummerNoteWrapper>
+      {bodyError && (
+        <>
+          <ErrorMessage text="Body must be at least 30 characters." />
+          <BodyErrorIcon>
+            <HasErrorSvg />
+          </BodyErrorIcon>
+        </>
+      )}
       <PostAnswerButton onClick={handleAddAnswer}>
         Post Your Answer
       </PostAnswerButton>

@@ -26,13 +26,14 @@ import {
   TitleInput,
   Wrapper,
 } from './QuestionWritePage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { editQuestion } from '../redux/actions/questionsAction';
 import { Link, useParams } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
 import { useState, useRef } from 'react';
-import { addQuestion } from '../redux/actions/questionsAction';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
+import { editQuestion } from '../redux/actions/questionsAction';
 
 export const QuestionEditPage = () => {
   const dispatch = useDispatch();
@@ -43,20 +44,20 @@ export const QuestionEditPage = () => {
 
   const { qid } = useParams();
 
-  // let question = useSelector((state) => state.questionReducer);
+  let question = useSelector((state) => state.questionReducer);
 
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [title, setTitle] = useState(question.title);
+  const [body, setBody] = useState(question.content);
 
   const [tagInput, setTagInput] = useState('');
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(['임시']);
 
   const [titleError, setTitleError] = useState(false);
   const [bodyError, setBodyError] = useState(false);
   const [tagsError, setTagsError] = useState(false);
   const inputData = { title, content: body, tags };
 
-  const handleEditQuestion = () => {
+  const handleEditQuestion = async () => {
     setTitleError(false);
     setBodyError(false);
     setTagsError(false);
@@ -82,7 +83,10 @@ export const QuestionEditPage = () => {
     } else {
       console.log('ADD QUESTION');
       console.log(inputData);
-      dispatch(addQuestion(inputData));
+
+      const res = await useFetch('PATCH', `/article/${qid}`, inputData);
+      console.log('edit question res', res);
+      dispatch(editQuestion(res));
     }
   };
 

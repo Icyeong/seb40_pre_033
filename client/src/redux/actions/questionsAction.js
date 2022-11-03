@@ -1,77 +1,57 @@
-import axios from 'axios';
-
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
 export const EDIT_QUESTION = 'EDIT_QUESTION';
 export const DELETE_QUESTION = 'DELETE_QUESTION';
 
-const accessToken = localStorage.getItem('authorization');
+export const getQuestions = (res) => {
+  // const res = axios.get(`/articles`, {
+  //   params: { page, size },
+  //   headers: {
+  //     Authorization: accessToken,
+  //   },
+  // });
 
-export const getQuestions = (page, size) => {
-  try {
-    const res = axios.get(`/articles`, {
-      params: { page, size },
-      headers: {
-        Authorization: accessToken,
-      },
-    });
-
-    return {
-      type: GET_QUESTIONS,
-      payload: res.data, // 질문 리스트 데이터, 페이지 정보
-    };
-  } catch (err) {
-    throw new Error('질문리스트 GET 에러 발생');
-  }
+  return {
+    type: GET_QUESTIONS,
+    payload: res, // 질문 리스트 데이터, 페이지 정보
+  };
 };
 
-export const addQuestion = (questionData) => {
-  try {
-    const res = axios.post(`/article`, questionData, {
-      headers: {
-        Authorization: accessToken,
-      },
-    });
+export const addQuestion = (res) => {
+  // const res = axios.post(`/article`, questionData, {
+  //   headers: {
+  //     Authorization: accessToken,
+  //   },
+  // });
 
-    return {
-      type: ADD_QUESTION,
-      payload: res.data, // 생성한 질문 데이터
-    };
-  } catch (err) {
-    throw new Error('질문 POST 에러 발생');
-  }
+  return {
+    type: ADD_QUESTION,
+    payload: res, // 생성한 질문 데이터
+  };
 };
 
-export const editQuestion = (questionId, questionData) => {
-  try {
-    const res = axios.patch(`/article/${questionId}`, questionData, {
-      headers: {
-        Authorization: accessToken,
-      },
-    });
+export const editQuestion = (res) => {
+  // const res = axios.patch(`/article/${questionId}`, questionData, {
+  //   headers: {
+  //     Authorization: accessToken,
+  //   },
+  // });
 
-    return {
-      type: EDIT_QUESTION,
-      payload: res.data, // 수정한 질문 데이터
-    };
-  } catch (err) {
-    throw new Error('질문 PATCH 에러 발생');
-  }
+  return {
+    type: EDIT_QUESTION,
+    payload: res, // 수정한 질문 데이터
+  };
 };
 
-export const deleteQuestion = (questionId) => {
-  try {
-    const res = axios.delete(`/article/${questionId}`, {
-      headers: {
-        Authorization: accessToken,
-      },
-    });
+export const deleteQuestion = (res) => {
+  // const res = axios.delete(`/article/${questionId}`, {
+  //   headers: {
+  //     Authorization: accessToken,
+  //   },
+  // });
 
-    return {
-      type: DELETE_QUESTION,
-      payload: res.data, // 삭제한 질문 id
-    };
-  } catch (err) {
-    throw new Error('질문 DELETE 에러 발생');
-  }
+  return {
+    type: DELETE_QUESTION,
+    payload: res, // 삭제한 질문 id
+  };
 };

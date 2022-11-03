@@ -10,6 +10,7 @@ import {
   voteUpAnswer,
   voteDownAnswer,
 } from '../../redux/actions/questionAction';
+import useFetch from '../../hooks/useFetch';
 
 export const AnswerLeftBar = (type) => {
   const dispatch = useDispatch();
@@ -17,14 +18,24 @@ export const AnswerLeftBar = (type) => {
   let question = useSelector((state) => state.questionReducer);
   const idx = type.idx;
 
-  const handleVoteUpAnswer = () => {
+  const handleVoteUpAnswer = async () => {
     console.log('VOTE UP ANSWER');
-    dispatch(voteUpAnswer(question.comments[idx].comment_id));
+
+    const res = await useFetch(
+      'GET',
+      `/comment/${question.comments[idx].comment_id}/like`
+    );
+    dispatch(voteUpAnswer(res));
   };
 
-  const handleVoteDownAnswer = () => {
+  const handleVoteDownAnswer = async () => {
     console.log('VOTE DOWN ANSWER');
-    dispatch(voteDownAnswer(question.comments[idx].comment_id));
+
+    const res = await useFetch(
+      'GET',
+      `/comment/${question.comments[idx].comment_id}/dislike`
+    );
+    dispatch(voteDownAnswer(res));
   };
 
   return (
