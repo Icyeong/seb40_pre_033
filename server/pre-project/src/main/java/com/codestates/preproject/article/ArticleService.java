@@ -81,4 +81,10 @@ public class ArticleService {
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.PERMISSION_DENIED));
     }*/
 
+    // 더미 데이터 사용 용도
+    public Article createArticle(Article article)    {
+
+        return articleRepository.save(article);
+    }
+
 }
