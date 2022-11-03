@@ -1,13 +1,18 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GrMenu, GrClose } from 'react-icons/gr'; // 햄버거 버튼, x 버튼
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { Dropdown } from '../Sidebar/Dropdown';
 import { NavBar, NavLink } from './style';
+import { getLoginStatus } from '../../../redux/actions/userAction';
+import { useDispatch } from 'react-redux';
 
 export const Header = () => {
   const location = useLocation().pathname;
   const [click, setClick] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setClick(false);
@@ -16,6 +21,14 @@ export const Header = () => {
   const handleClick = () => {
     console.log('햄버거 클릭');
     setClick(!click);
+  };
+
+  // 로그아웃
+  const logoutHandler = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    dispatch(getLoginStatus({ isLogin: false }));
+    navigate('/');
   };
   return (
     <NavBar>
@@ -46,6 +59,8 @@ export const Header = () => {
             />
           </div>
         </form>
+        <button onClick={logoutHandler}>testestest</button>
+
         <NavLink to="/users/login" className="button-login">
           Log in
         </NavLink>
