@@ -40,12 +40,15 @@ public class Comment extends BaseTime {
 
     // 게시글
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article_id")
+    @JoinColumn
     private Article article;
 
     public void addArticle(Article article) {
         this.article = article;
     }
+
+    @Column(name = "article_id")
+    private Long articleId;
 
     @Builder
     public Comment(Long commentId, String content) {

@@ -1,5 +1,6 @@
 package com.codestates.preproject.comment.service;
 
+import com.codestates.preproject.article.Article;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
 import com.codestates.preproject.exception.BusinessLogicException;
@@ -35,7 +36,7 @@ public class CommentService {
 
     // 답변 생성
     @Transactional
-    public Comment createComment(Comment comment, String email) {
+    public Comment createComment(Comment comment, String email, Long articleId) {
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
         User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
@@ -43,6 +44,7 @@ public class CommentService {
 
         comment.setUser(findUser);
         comment.setEmail(email);
+        comment.setArticleId(articleId);
 
         return commentRepository.save(comment);
     }

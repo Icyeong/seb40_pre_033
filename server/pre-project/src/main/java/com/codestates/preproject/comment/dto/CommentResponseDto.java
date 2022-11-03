@@ -17,4 +17,6 @@ public class CommentResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 
+    private Long articleId;
+
 }

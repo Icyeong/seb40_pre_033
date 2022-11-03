@@ -3,6 +3,7 @@ package com.codestates.preproject.comment.controller;
 //import com.codestates.preproject.article.ArticleService;
 
 import com.codestates.preproject.article.Article;
+import com.codestates.preproject.article.ArticleMapper;
 import com.codestates.preproject.article.ArticleService;
 import com.codestates.preproject.comment.dto.CommentDeleteDto;
 import com.codestates.preproject.comment.dto.CommentPatchDto;
@@ -32,13 +33,14 @@ public class CommentController {
 
     private final CommentService commentService;
     private final CommentMapper commentMapper;
-    private final UserService userService;
+
+    private final ArticleMapper articleMapper;
     private final ArticleService articleService;
 
-    public CommentController(CommentService commentService, CommentMapper commentMapper, UserService userService, ArticleService articleService) {
+    public CommentController(CommentService commentService, CommentMapper commentMapper, ArticleMapper articleMapper, ArticleService articleService) {
         this.commentService = commentService;
         this.commentMapper = commentMapper;
-        this.userService = userService;
+        this.articleMapper = articleMapper;
         this.articleService = articleService;
     }
 
@@ -58,7 +60,7 @@ public class CommentController {
     // 답변 생성
     @PostMapping("/{article-id}")
     public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto,
-                                      @PathVariable("article-id") long articleId) {
+                                      @PathVariable("article-id") Long articleId) {
 
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info(email);
@@ -66,7 +68,9 @@ public class CommentController {
         commentPostDto.setUserEmail(email);
         commentPostDto.setArticleId(articleId);
 
-        Comment comment = commentService.createComment(commentMapper.commentPostToComment(commentPostDto), email);
+        Article article = articleService.findArticle(articleId);
+
+        Comment comment = commentService.createComment(commentMapper.commentPostToComment(commentPostDto), email, articleId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(comment)),
@@ -97,6 +101,7 @@ public class CommentController {
             @PathVariable("comment-id") @Positive long commentId) {
 
         // TODO 같은 유저인지 확인 필요
+
 
         commentService.deleteComment(commentId);
 
