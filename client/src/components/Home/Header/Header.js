@@ -4,10 +4,12 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { Dropdown } from '../Sidebar/Dropdown';
 import { NavBar, NavLink } from './style';
+import { LoggedIn } from './LogIn/LoggedIn';
 import { getLoginStatus } from '../../../redux/actions/userAction';
 import { useDispatch } from 'react-redux';
 
 export const Header = () => {
+  // let { email } = useSelector((state) => state.userReducer);
   const location = useLocation().pathname;
   const [click, setClick] = useState(false);
 
@@ -59,14 +61,13 @@ export const Header = () => {
             />
           </div>
         </form>
-        <button onClick={logoutHandler}>testestest</button>
-
         <NavLink to="/users/login" className="button-login">
           Log in
         </NavLink>
         <NavLink to="/users/signup" className="button-signup">
           Sign up
         </NavLink>
+        <LoggedIn />
       </div>
     </NavBar>
   );
