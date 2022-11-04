@@ -111,7 +111,7 @@ export const NavBar = styled.div`
       padding: 0 12px;
       width: 100%;
       max-width: 700px;
-      border: 1px solid green;
+      /* border: 1px solid green; */
       @media screen and (max-width: 875px) {
         position: absolute;
         left: 0;
@@ -145,6 +145,12 @@ export const NavBar = styled.div`
           :focus {
             outline: none;
           }
+        }
+
+        > .search-hints {
+          position: absolute;
+          top: 31px;
+          background-color: white;
         }
       }
     }
