@@ -1,6 +1,5 @@
 package com.codestates.preproject.comment.service;
 
-import com.codestates.preproject.article.Article;
 import com.codestates.preproject.article.ArticleRepository;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
@@ -8,9 +7,6 @@ import com.codestates.preproject.exception.BusinessLogicException;
 import com.codestates.preproject.exception.ExceptionCode;
 import com.codestates.preproject.user.entity.User;
 import com.codestates.preproject.user.repository.UserRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,16 +29,15 @@ public class CommentService {
     }
 
     // 답변 1개 조회
+//    @Transactional(readOnly = true)
     public Comment findComment(long commentId) {
         return commentRepository.findByCommentId(commentId);
     }
 
     // 답변 전체 조회
-    public Page<Comment> findComments(Long articleId, int page, int size) {
+    public List<Comment> findComments() {
 
-        Article findArticle = articleRepository.findById(articleId).orElseThrow();
-
-        return commentRepository.findAllByArticle(findArticle, PageRequest.of(page, size));
+        return commentRepository.findAll();
     }
 
     // 답변 생성

@@ -42,8 +42,9 @@ public class Comment extends BaseTime {
     }
 
     // 게시글
+    // 아티클 아이디 한 개로
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn/*(name = "article_id")*/
+    @JoinColumn(name = "article")
     private Article article;
 
     public void addArticle(Article article) {
@@ -58,7 +59,7 @@ public class Comment extends BaseTime {
     private int vote;
 
     // 대댓
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "comment", cascade = {CascadeType.ALL})
     private List<Reply> replies = new ArrayList<>();
 
     @Builder

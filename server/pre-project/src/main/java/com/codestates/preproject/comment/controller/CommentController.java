@@ -1,20 +1,15 @@
 package com.codestates.preproject.comment.controller;
 
-import com.codestates.preproject.article.Article;
-import com.codestates.preproject.article.ArticleMapper;
-import com.codestates.preproject.article.ArticleResponse;
 import com.codestates.preproject.article.ArticleService;
 import com.codestates.preproject.comment.dto.*;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
-import com.codestates.preproject.response.MultiResponseDto;
 import com.codestates.preproject.response.SingleResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.security.userDetails.PrincipalDetailsService;
 import com.codestates.preproject.user.repository.UserRepository;
 import com.codestates.preproject.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -64,17 +59,13 @@ public class CommentController {
     }
 
     // 답변 전체 조회
-    @GetMapping("/{article-id}")
-    public ResponseEntity<MultiResponseDto<CommentResponseDto>> getComments(
-            @PathVariable("article-id") @Positive Long articleId,
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "1") int size) {
+    @GetMapping("/all")
+    public ResponseEntity getComments() {
 
-        Page<Comment> pageComments = commentService.findComments(articleId, page - 1, size);
-        List<Comment> comments = pageComments.getContent();
+        List<Comment> comments = commentService.findComments();
 
-        return new ResponseEntity<MultiResponseDto<CommentResponseDto>>(
-                new MultiResponseDto<>(commentMapper.commentsToCommentResponse(comments), pageComments),
+        return new ResponseEntity<>(
+                commentMapper.commentsToCommentResponse(comments),
                 HttpStatus.OK
         );
     }

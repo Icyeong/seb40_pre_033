@@ -1,9 +1,11 @@
 package com.codestates.preproject.comment.dto;
 
 import com.codestates.preproject.article.Article;
+import com.codestates.preproject.reply.entity.Reply;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,6 +20,8 @@ public class CommentPostDto {
     private String content;
 
     private Long articleId;
+
+    private List<Reply> replies;
 
     public CommentPostDto(String content) {
         this.content = content;
