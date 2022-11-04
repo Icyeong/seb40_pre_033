@@ -148,6 +148,7 @@ export const NavBar = styled.div`
         }
 
         > .search-hints {
+          display: none;
           position: absolute;
           top: 31px;
           background-color: white;
