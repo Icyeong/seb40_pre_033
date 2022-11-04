@@ -46,10 +46,10 @@ public class UserService {
         // user email이 이미 존재하는지 검사
         Optional<User> user = userRepository.findByEmail(request.getEmail());
         if (user.isPresent()) {
-            if (passwordEncoder.matches(request.getPassword(), user.get().getPassword()) && user.get().getNickname().equals(request.getNickname())) {
+            if (passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
                 return null;
             }
-            throw new BusinessLogicException(ExceptionCode.USER_LOGIN_POSSIBLE);
+            throw new BusinessLogicException(ExceptionCode.USER_EXISTS);
         }
 
         User newUser = User.builder()
