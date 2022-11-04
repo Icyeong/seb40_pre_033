@@ -2,18 +2,21 @@ package com.codestates.preproject.comment.entity;
 
 import com.codestates.preproject.article.Article;
 import com.codestates.preproject.audit.BaseTime;
+import com.codestates.preproject.reply.entity.Reply;
 import com.codestates.preproject.user.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity(name = "COMMENTS")
+@Entity(name = "COMMENT")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "COMMENTS")
+@Table(name = "COMMENT")
 public class Comment extends BaseTime {
 
     // 답변
@@ -40,7 +43,7 @@ public class Comment extends BaseTime {
 
     // 게시글
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn/*(name = "article_id")*/
     private Article article;
 
     public void addArticle(Article article) {
@@ -50,22 +53,18 @@ public class Comment extends BaseTime {
     @Column(name = "article_id")
     private Long articleId;
 
-    @Builder
-    public Comment(Long commentId, String content) {
-        this.commentId = commentId;
-        this.content = content;
-    }
-
     // 투표
     @Column(nullable = false)
     private int vote;
 
-//    @OneToOne
-//    @JoinColumn(name = "Comment_like", nullable = false, columnDefinition = "INT")
-//    private User positiveVote;
-//
-//    @OneToOne
-//    @JoinColumn(name = "Comment_dislike", nullable = false, columnDefinition = "INT")
-//    private User negativeVote;
-//
+    // 대댓
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.REMOVE)
+    private List<Reply> replies = new ArrayList<>();
+
+    @Builder
+    public Comment(long commentId, String content) {
+        this.commentId = commentId;
+        this.content = content;
+    }
+
 }
