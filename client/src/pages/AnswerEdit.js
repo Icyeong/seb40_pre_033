@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
@@ -59,6 +58,9 @@ export const AnswerEdit = () => {
   const inputData = { content: body };
 
   const handleEditAnswer = async () => {
+    // 요청 검사할때 한 번만 데이터를 넣어줌
+    setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
+
     setBodyError(false);
 
     bodyRef.current.classList.remove('error');
@@ -101,15 +103,7 @@ export const AnswerEdit = () => {
                   <Box>
                     <AskText1>Body</AskText1>
                     <SummerNoteWrapper ref={bodyRef}>
-                      <ReactSummernoteLite
-                        id="sample"
-                        height={300}
-                        value={body}
-                        onChange={(e) => {
-                          console.log(e);
-                          setBody(e);
-                        }}
-                      />
+                      <ReactSummernoteLite id="sample" height={300} />
                     </SummerNoteWrapper>
                     {bodyError && (
                       <>

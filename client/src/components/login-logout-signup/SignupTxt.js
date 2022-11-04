@@ -6,7 +6,7 @@ import {
   VottingSvg,
 } from '../../assets/images/SignupSvg';
 
-const TxtWrapper = styled.section`
+export const TxtWrapper = styled.section`
   width: 420px;
   height: auto;
   margin: 0 48px 128px 0;
@@ -36,6 +36,10 @@ const TxtWrapper = styled.section`
         color: var(--theme-link-color-hover);
       }
     }
+  }
+
+  @media screen and (max-width: 817px) {
+    display: none;
   }
 `;
 

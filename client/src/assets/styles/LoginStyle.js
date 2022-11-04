@@ -4,6 +4,7 @@ export const Wrapper = styled.section`
   width: 100%;
   height: 100%;
   padding-top: 70px;
+  padding: 70px 24px 24px;
   min-height: 100vh;
   background-color: var(--black-050);
   display: flex;
@@ -34,7 +35,7 @@ export const Wrapper = styled.section`
     border-radius: 7px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 20px 2px rgba(0, 0, 0, 0.15);
   }
 
   form label {
@@ -58,6 +59,8 @@ export const Wrapper = styled.section`
     font-size: 11px;
     cursor: pointer;
     color: #0074cc;
+    margin-bottom: 0;
+    align-self: flex-end;
 
     &:hover {
       color: var(--blue-500);
@@ -76,14 +79,6 @@ export const Wrapper = styled.section`
       border: 1px solid var(--blue-600);
       outline: 3px solid var(--blue-100);
     }
-
-    /* &.inValid {
-      border: 1px solid var(--red-400);
-
-      &:focus {
-        outline: 3px solid var(--red-050);
-      }
-    } */
   }
   form svg {
     position: absolute;
@@ -122,13 +117,13 @@ export const Wrapper = styled.section`
 
 export const BlueButton = styled.button`
   width: 100%;
+  height: 37.78px;
   border-radius: 3px;
   border: none;
   background-color: var(--blue-500);
   color: var(--white);
   cursor: pointer;
   margin-top: 15px;
-  padding: 10px;
   font-size: 13px;
   &:hover {
     background-color: var(--blue-600);
@@ -143,6 +138,7 @@ export const OptionsWrapper = styled.section`
   p {
     display: flex;
     justify-content: center;
+    margin-bottom: 10px;
   }
 
   a {
@@ -162,5 +158,8 @@ export const OptionsWrapper = styled.section`
 
   a svg {
     margin-left: 3px;
+  }
+  @media screen and (max-width: 300px) {
+    width: 100%;
   }
 `;
