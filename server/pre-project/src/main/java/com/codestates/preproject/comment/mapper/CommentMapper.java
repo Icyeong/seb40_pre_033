@@ -8,12 +8,14 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
+// 빌더
+
 @Mapper(componentModel = "spring")
 public interface CommentMapper {
 
     Comment commentPostToComment(CommentPostDto commentPostDto);
 
-    Comment commentPatchToComment(CommentPatchDto commentPatchDto);
+    Comment commentPatchToComment(long commentId, CommentPatchDto commentPatchDto);
 
     CommentResponseDto commentToCommentResponse(Comment comment);
 
