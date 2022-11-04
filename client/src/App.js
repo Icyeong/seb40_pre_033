@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { getLoginStatus } from './redux/actions/userAction';
 import jwt_decode from 'jwt-decode';
 import { refreshToken } from './hooks/refreshToken';
+import { UsersPage } from './pages/UsersPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/users" element={<UsersPage />} />
           <Route path="/users/login" element={<Login />} />
           <Route path="/users/signup" element={<Signup />} />
           <Route path="/users/signup/success" element={<SignupSuccess />} />
