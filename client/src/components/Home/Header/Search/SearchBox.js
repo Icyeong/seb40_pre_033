@@ -31,7 +31,7 @@ export const SearchBox = () => {
           onFocus={onFocusInput}
           onBlur={onBlurInput}
         />
-        <div ref={modalRef}>
+        <div ref={modalRef} className="search-hints">
           <SearchHints />
         </div>
       </div>

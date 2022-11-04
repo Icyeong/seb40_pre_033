@@ -17,7 +17,7 @@ import {
   Wrapper,
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import ReactSummernoteLite from '@easylogic/react-summernote';
 import useFetch from '../hooks/useFetch';
 import { useState, useRef } from 'react';
@@ -43,6 +43,8 @@ export const AskText1 = styled.div`
 
 export const AnswerEdit = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { qid, aid } = useParams();
   const bodyRef = useRef();
   const [bodyError, setBodyError] = useState(false);
@@ -74,6 +76,8 @@ export const AnswerEdit = () => {
 
       const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
       dispatch(editAnswer(res));
+
+      navigate(`/article/${qid}`);
     }
   };
 

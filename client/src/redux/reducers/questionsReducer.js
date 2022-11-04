@@ -63,6 +63,7 @@ export const questionsReducer = (state = initialState, action) => {
     case ADD_QUESTION:
       return {
         data: [...state.data, action.payload.data],
+        pageInfo: { ...state.pageInfo },
       };
     case EDIT_QUESTION:
       return {

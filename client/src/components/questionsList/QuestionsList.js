@@ -7,10 +7,12 @@ import { AskQuestionButton } from '../Question/QuestionHeader';
 import { Link } from 'react-router-dom';
 import { getQuestions } from '../../redux/actions/questionsAction';
 import useFetch from '../../hooks/useFetch';
-// import axios from 'axios';
+import { Loading } from '../Common/Loading';
 
 export const QuestionsList = () => {
   const dispatch = useDispatch();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   // 🔥 userReducer 리팩토링
   const isLoginUser = {
@@ -31,16 +33,6 @@ export const QuestionsList = () => {
   let { page, size, totalElements, totalPages } = useSelector(
     (state) => state.questionsReducer.pageInfo
   );
-
-  // const [mydata, setData] = useState([]);
-
-  // axios
-  //   .get('/articles?page=1&size=10')
-  //   .then((result) => {
-  //     // setData(result.data);
-  //     console.log('#1', result);
-  //   })
-  //   .catch(() => {});
 
   // ✨ 정렬
   const [selected, setSelected] = useState('newest');
@@ -68,92 +60,100 @@ export const QuestionsList = () => {
   const handleCurrentPageChange = async (e) => {
     console.log('현재 페이지 번호 체인지');
 
+    setIsLoading(true);
     setCurrentPage(e);
 
     const res = await useFetch(
       'GET',
       `/articles?page=${e}&size=${perPageCount}`
-    );
+    ).finally(() => {
+      setIsLoading(false);
+    });
+
     dispatch(getQuestions(res));
   };
 
   const perPageCountClick = async (e) => {
     console.log('페이지 당 글 개수 체인지');
 
+    setIsLoading(true);
     setPerPageCount(Number(e.target.value));
 
     const res = await useFetch(
       'GET',
       `/articles?page=${currentPage}&size=${e.target.value}`
-    );
+    ).finally(() => {
+      setIsLoading(false);
+    });
+
     dispatch(getQuestions(res));
   };
 
   return (
-    <ListWrapper>
-      <StyledQuestions>
-        <div className="title">
-          <h1>All Questions</h1>
-          <AskQuestionButton>
-            <Link to={email ? '/questions/ask' : '/users/login'}>
-              Ask Question
-            </Link>
-          </AskQuestionButton>
-        </div>
-        <div className="sort">
-          <div>{questions.length} questions</div>
-          <div className="question-sort">
-            <button
-              onClick={sortClick}
-              className={selected === 'newest' ? 'is-selected' : ''}
-              value={'newest'}
-            >
-              Newest
-            </button>
-            <button
-              onClick={sortClick}
-              className={selected === 'votes' ? 'is-selected' : ''}
-              value={'votes'}
-            >
-              Votes
-            </button>
+    <>
+      <ListWrapper>
+        <StyledQuestions>
+          <div className="title">
+            <h1>All Questions</h1>
+            <AskQuestionButton>
+              <Link to={email ? '/questions/ask' : '/users/login'}>
+                Ask Question
+              </Link>
+            </AskQuestionButton>
           </div>
-        </div>
-        {/* 글 받아오는 부분 */}
-        {questions.map((post, idx) => (
-          <Question key={post.article_id} idx={idx} />
-        ))}
-        {/* {mydata.map((i) => {
-          return <Question key={i.article_id} />;
-        })} */}
-        <Container>
-          <Pagination
-            activePage={currentPage}
-            itemsCountPerPage={size}
-            // 한 페이지 당 20개 * 5페이지 = 100
-            totalItemsCount={totalElements}
-            pageRangeDisplayed={totalPages}
-            onChange={handleCurrentPageChange}
-            prevPageText="Prev"
-            nextPageText="Next"
-          />
-          <div className="btn-per-page">
-            {perPageCountList.map((el, idx) => {
-              return (
-                <button
-                  key={idx}
-                  value={el}
-                  className={el === perPageCount ? 'btn-active' : ''}
-                  onClick={perPageCountClick}
-                >
-                  {el}
-                </button>
-              );
-            })}
-            <p>per page</p>
+          <div className="sort">
+            <div>{questions.length} questions</div>
+            <div className="question-sort">
+              <button
+                onClick={sortClick}
+                className={selected === 'newest' ? 'is-selected' : ''}
+                value={'newest'}
+              >
+                Newest
+              </button>
+              <button
+                onClick={sortClick}
+                className={selected === 'votes' ? 'is-selected' : ''}
+                value={'votes'}
+              >
+                Votes
+              </button>
+            </div>
           </div>
-        </Container>
-      </StyledQuestions>
-    </ListWrapper>
+          {/* 글 받아오는 부분 */}
+          {questions.map((post, idx) => (
+            <Question key={post.article_id} idx={idx} />
+          ))}
+          <Container>
+            <Pagination
+              activePage={currentPage}
+              itemsCountPerPage={size}
+              // 한 페이지 당 20개 * 5페이지 = 100
+              totalItemsCount={totalElements}
+              pageRangeDisplayed={totalPages}
+              onChange={handleCurrentPageChange}
+              prevPageText="Prev"
+              nextPageText="Next"
+            />
+            <div className="btn-per-page">
+              {perPageCountList.map((el, idx) => {
+                return (
+                  <button
+                    key={idx}
+                    value={el}
+                    className={el === perPageCount ? 'btn-active' : ''}
+                    onClick={perPageCountClick}
+                  >
+                    {el}
+                  </button>
+                );
+              })}
+              <p>per page</p>
+            </div>
+          </Container>
+        </StyledQuestions>
+      </ListWrapper>
+      {isLoading && <Loading />}
+    </>
   );
 };

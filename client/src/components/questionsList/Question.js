@@ -21,7 +21,9 @@ export const Question = (type) => {
             {questions[type.idx].title}
           </Link>
         </h2>
-        <div className="question-content">{questions[type.idx].content}</div>
+        <div className="question-content">
+          {questions[type.idx].content.innerText}
+        </div>
         <div className="question-information">
           <Tags>
             {tags.map((tag, idx) => (

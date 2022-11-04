@@ -28,6 +28,7 @@ const Title = styled.div`
 export const AskQuestionButton = styled(BlueButton)`
   margin-left: 12px;
   min-width: 100.115px;
+  height: 42px;
 
   a {
     color: var(--theme-button-primary-color);
