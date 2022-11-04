@@ -16,7 +16,7 @@ public class ReplyPostDto {
     @NotBlank(message="내용을 입력해주세요.")
     private String replyContent;
 
-    private long replyId;
+    private long commentId;
 
     public ReplyPostDto(String replyContent) {
         this.replyContent = replyContent;
@@ -26,8 +26,8 @@ public class ReplyPostDto {
         this.email = email;
     }
 
-    public void setReplyId(long replyId) {
-        this.replyId = replyId;
+    public void setCommentId(long commentId) {
+        this.commentId = commentId;
     }
 
 }

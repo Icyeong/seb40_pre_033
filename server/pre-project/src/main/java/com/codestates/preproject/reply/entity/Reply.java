@@ -42,7 +42,7 @@ public class Reply extends BaseTime {
     @JoinColumn
     private Comment comment;
 
-    public void addArticle(Comment comment) {
+    public void addComment(Comment comment) {
         this.comment = comment;
     }
 

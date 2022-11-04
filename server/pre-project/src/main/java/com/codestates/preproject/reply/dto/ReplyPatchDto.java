@@ -24,4 +24,8 @@ public class ReplyPatchDto {
         this.replyId = replyId;
     }
 
+    public void setEmail(String email)  {
+        this.email = email;
+    }
+
 }

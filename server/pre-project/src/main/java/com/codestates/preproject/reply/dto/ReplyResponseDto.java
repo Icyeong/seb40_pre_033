@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReplyResponseDto {
 
-    private long nestedCommentId;
-    private String nestedContent;
+    private long replyId;
+    private String replyContent;
     private String email;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
