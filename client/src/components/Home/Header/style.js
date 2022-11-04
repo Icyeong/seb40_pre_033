@@ -111,6 +111,14 @@ export const NavBar = styled.div`
       padding: 0 12px;
       width: 100%;
       max-width: 700px;
+      border: 1px solid green;
+      @media screen and (max-width: 875px) {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        max-width: 100%;
+      }
       > .input-search {
         display: flex;
         flex-direction: row;
