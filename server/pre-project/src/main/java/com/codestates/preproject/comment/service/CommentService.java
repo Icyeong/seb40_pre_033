@@ -1,6 +1,7 @@
 package com.codestates.preproject.comment.service;
 
 import com.codestates.preproject.article.Article;
+import com.codestates.preproject.article.ArticleRepository;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
 import com.codestates.preproject.exception.BusinessLogicException;
@@ -9,6 +10,7 @@ import com.codestates.preproject.user.entity.User;
 import com.codestates.preproject.user.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,28 +20,29 @@ import java.util.Optional;
 @Service
 public class CommentService {
 
-    // TODO 유저 관련 메서드 생성 필요
-
-    // TODO 로그인 한 계정인지 확인하는 메서드 추가 필요
-
     private final CommentRepository commentRepository;
 
     private final UserRepository userRepository;
+    private final ArticleRepository articleRepository;
 
-    public CommentService(UserRepository userRepository, CommentRepository commentRepository) {
+    public CommentService(UserRepository userRepository, CommentRepository commentRepository, ArticleRepository articleRepository) {
 
         this.userRepository = userRepository;
         this.commentRepository = commentRepository;
+        this.articleRepository = articleRepository;
     }
 
     // 답변 1개 조회
     public Comment findComment(long commentId) {
         return commentRepository.findByCommentId(commentId);
     }
-    
+
     // 답변 전체 조회
-    public List<Comment> findComments() {
-        return commentRepository.findAll();
+    public Page<Comment> findComments(Long articleId, int page, int size) {
+
+        Article findArticle = articleRepository.findById(articleId).orElseThrow();
+
+        return commentRepository.findAllByArticle(findArticle, PageRequest.of(page, size));
     }
 
     // 답변 생성
@@ -57,15 +60,12 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    // 더미 사용
-    public Comment createComment(Comment comment) {
-        return commentRepository.save(comment);
-    }
-
     // 답변 수정
     @Transactional
-    public Comment updateComment(Comment comment) {
-        
+    public Comment updateComment(Comment comment, Long userId) {
+
+        verifiedWriter(userId, comment.getCommentId());
+
         Comment findComment = findVerifiedComment(comment.getCommentId());
 
         Optional.ofNullable(comment.getContent())
@@ -76,11 +76,12 @@ public class CommentService {
 
     // 답변 삭제
     @Transactional
-    public void deleteComment(long commentId) {
+    public void deleteComment(long commentId, Long userId) {
 
-        Comment findComment = commentRepository.findByCommentId(commentId);
+        verifiedWriter(userId, commentId);
+//        Comment findComment = commentRepository.findByCommentId(commentId);
 
-        commentRepository.delete(findComment);
+        commentRepository.deleteById(commentId);
     }
 
     // 투표
@@ -93,6 +94,17 @@ public class CommentService {
         Comment updatedComment = commentRepository.save(findComment);
 
         return updatedComment;
+    }
+
+    // 작성자 확인
+    private void verifiedWriter(Long userId, long commentId) {
+
+        Comment comment = findComment(commentId);
+
+        Long writerId = comment.getUser().getUserId();
+        if (!writerId.equals(userId)) {
+            throw new BusinessLogicException(ExceptionCode.ACCESS_FORBIDDEN);
+        }
     }
 
     // 답변 조회 실패
@@ -108,5 +120,10 @@ public class CommentService {
 
     // 답변 이미 존재
     public ExceptionCode exceptionCode = ExceptionCode.COMMENT_EXIST;
+
+    // 더미 사용
+    public Comment createComment(Comment comment) {
+        return commentRepository.save(comment);
+    }
 
 }
