@@ -27,6 +27,7 @@ const useFetch = (method, url, data) => {
       localStorage.setItem('refreshToken', res.headers.get('refresh'));
       return res;
     }
+
     return res.json();
   });
 };

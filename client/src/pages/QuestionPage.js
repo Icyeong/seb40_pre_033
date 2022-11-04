@@ -12,9 +12,10 @@ import '../components/SummerText/Summernote.css';
 import 'jquery';
 import { useDispatch } from 'react-redux';
 import { getQuestion } from '../redux/actions/questionAction';
-// import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import { useEffect, useState } from 'react';
+import { Loading } from '../components/Common/Loading';
 
 const Container = styled.div`
   width: calc(100% - 164px);
@@ -55,23 +56,24 @@ export const QuestionPage = () => {
   const dispatch = useDispatch();
   const { qid } = useParams();
 
-  // useEffect(async () => {
-  //   console.log('GET QUESTION');
-
-  //   const res = await useFetch('GET', `/article/${qid}`);
-  //   dispatch(getQuestion(res));
-  // }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
   const load = async () => {
     console.log('GET QUESTION');
 
-    const res = await useFetch('GET', `/article/${qid}`);
+    setIsLoading(true);
+
+    const res = await useFetch('GET', `/article/${qid}`).finally(() => {
+      setIsLoading(false);
+    });
 
     console.log('get question res', res);
     dispatch(getQuestion(res));
   };
 
-  load();
+  useEffect(() => {
+    load();
+  }, []);
 
   return (
     <>
@@ -94,6 +96,7 @@ export const QuestionPage = () => {
         </Container>
       </Block>
       <Footer />
+      {isLoading && <Loading />}
     </>
   );
 };
