@@ -2,6 +2,8 @@ package com.codestates.preproject.comment.repository;
 
 import com.codestates.preproject.article.Article;
 import com.codestates.preproject.comment.entity.Comment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -15,5 +17,6 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
 
     List<Comment> findAllByUser_userId(@Param(value = "userId") Long userId);
 
+    Page<Comment> findAllByArticle(Article article, Pageable pageable);
 
 }
