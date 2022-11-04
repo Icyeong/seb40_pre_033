@@ -1,11 +1,11 @@
 import { useLocation } from 'react-router-dom';
 import { GrMenu, GrClose } from 'react-icons/gr'; // 햄버거 버튼, x 버튼
-import { AiOutlineSearch } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { Dropdown } from '../Sidebar/Dropdown';
 import { NavBar, NavLink } from './style';
 import { LoggedIn } from './LogIn/LoggedIn';
 import { useSelector } from 'react-redux';
+import { SearchBox } from './Search/SearchBox';
 
 export const Header = () => {
   const user = useSelector((state) => state.userReducer);
@@ -35,16 +35,7 @@ export const Header = () => {
         <div className="nav-items">About</div>
         <div className="nav-items">Products</div>
         <div className="nav-items">For Teams</div>
-        <form className="search">
-          <div className="input-search">
-            <AiOutlineSearch size={20} color="#838C95" />
-            <input
-              type="text"
-              className="logo-search"
-              placeholder="Search..."
-            />
-          </div>
-        </form>
+        <SearchBox />
         {user.isLogin ? (
           <LoggedIn user={user} />
         ) : (
