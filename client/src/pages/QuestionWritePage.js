@@ -37,6 +37,8 @@ export const QuestionWritePage = () => {
   const inputData = { title, content: body };
 
   const handleAddQuestion = async () => {
+    // 요청 검사할때 한 번만 데이터를 넣어줌
+    setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
     setTitleError(false);
     setBodyError(false);
     setTagsError(false);
@@ -131,15 +133,7 @@ export const QuestionWritePage = () => {
                     your question
                   </AskText2>
                   <SummerNoteWrapper ref={bodyRef}>
-                    <ReactSummernoteLite
-                      id="sample"
-                      height={300}
-                      value={body}
-                      onChange={(e) => {
-                        console.log(e);
-                        setBody(e);
-                      }}
-                    />
+                    <ReactSummernoteLite id="sample" height={300} />
                   </SummerNoteWrapper>
                   {bodyError && (
                     <>

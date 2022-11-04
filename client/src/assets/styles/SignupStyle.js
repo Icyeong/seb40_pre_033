@@ -4,6 +4,10 @@ import { Wrapper } from './LoginStyle';
 export const SignupWrapper = styled(Wrapper)`
   main {
     width: 316px;
+    min-width: 316px;
+    h1 {
+      display: none;
+    }
 
     .inValid-password {
       display: block;
@@ -11,6 +15,7 @@ export const SignupWrapper = styled(Wrapper)`
     .req-txt {
       font-size: 12px;
       margin: 4px 0;
+      line-height: 16px;
       color: var(--fc-light);
     }
 
@@ -65,6 +70,24 @@ export const SignupWrapper = styled(Wrapper)`
           color: var(--blue-500);
         }
       }
+    }
+    @media screen and (max-width: 817px) {
+      h1 {
+        width: 421px;
+        font-size: 21px;
+        margin-bottom: 24px;
+        text-align: center;
+        font-weight: 400;
+        line-height: 27px;
+        display: block;
+      }
+    }
+    @media screen and (max-width: 640px) {
+      min-width: 0;
+      width: 267px;
+    }
+    @media screen and (max-width: 300px) {
+      width: 100%;
     }
   }
 `;

@@ -95,6 +95,7 @@ export const NavBar = styled.div`
       font-size: 13px;
       margin: 2px;
       padding: 6px 12px;
+      cursor: pointer;
       :hover {
         border: none;
         background-color: #e2e6e8;
