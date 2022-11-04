@@ -9,6 +9,7 @@ import { QuestionPage } from './pages/QuestionPage';
 import { QuestionWritePage } from './pages/QuestionWritePage';
 import { QuestionEditPage } from './pages/QuestionEditPage';
 import { AnswerEdit } from './pages/AnswerEdit';
+import { TagesPage } from './pages/TagesPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             element={<AnswerEdit />}
           />
         </Routes>
+        <Route path="/tagesPage" element={<TagesPage />} />
       </Router>
     </>
   );

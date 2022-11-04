@@ -229,12 +229,26 @@ const Top = styled.div`
   -webkit-box-align: center;
   align-items: center;
   padding: 0px 15px;
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    > h2 {
+      font-size: 14.3846px;
+    }
+  }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 0px 0px 24px 24px;
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    > h2 {
+      font-size: 14.3846px;
+    }
+  }
 `;
 
 export const AsWrapper = styled.div`
