@@ -57,9 +57,7 @@ public class CommentService {
 
     // 답변 수정
     @Transactional
-    public Comment updateComment(Comment comment, Long userId) {
-
-        verifiedWriter(userId, comment.getCommentId());
+    public Comment updateComment(Comment comment) {
 
         Comment findComment = findVerifiedComment(comment.getCommentId());
 
@@ -71,10 +69,9 @@ public class CommentService {
 
     // 답변 삭제
     @Transactional
-    public void deleteComment(long commentId, Long userId) {
+    public void deleteComment(long commentId) {
 
-        verifiedWriter(userId, commentId);
-//        Comment findComment = commentRepository.findByCommentId(commentId);
+        Comment findComment = commentRepository.findByCommentId(commentId);
 
         commentRepository.deleteById(commentId);
     }

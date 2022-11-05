@@ -4,6 +4,7 @@ import { Tags } from '../Common/Tags';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { deleteQuestion } from '../../redux/actions/questionsAction';
 import useFetch from '../../hooks/useFetch';
+import { useRef } from 'react';
 
 export const Block = styled.div`
   padding-right: 16px;
@@ -11,17 +12,7 @@ export const Block = styled.div`
 `;
 
 export const Body = styled.div`
-  p {
-    margin: 0 0 16.5px 0;
-    font-size: 15px;
-  }
-  pre {
-    margin: 0;
-    padding: 12px;
-    background-color: #f6f6f6;
-    font-size: 13px;
-    border-radius: 5px;
-  }
+  font-size: 15px;
 `;
 
 export const QuestionTags = styled(Tags)`
@@ -181,21 +172,15 @@ export const QuestionContent = () => {
   const navigate = useNavigate();
   const { qid } = useParams();
 
-  // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'c@c.com',
-    nickname: 'b',
-    userId: 1,
-  };
-  // const isNotLoginUser = {
-  //   email: '',
-  //   nickname: '',
-  //   userId: 0,
-  // };
-  let { email } = isLoginUser;
-
-  // let { email } = useSelector((state) => state.userReducer);
+  let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
+
+  const bodyRef = useRef();
+
+  if (bodyRef.current) {
+    bodyRef.current.innerHTML = question.content;
+    console.log('#1', bodyRef.current);
+  }
 
   const handelDeleteQuestion = async () => {
     console.log('DELETE QUESTION');
@@ -212,12 +197,7 @@ export const QuestionContent = () => {
 
   return (
     <Block>
-      <Body>
-        <p>{question.content}</p>
-        {/* <pre>
-          <code></code>
-        </pre> */}
-      </Body>
+      <Body ref={bodyRef}></Body>
       <QuestionTags>
         {tags.map((tag, idx) => (
           <li key={idx}>
@@ -229,7 +209,7 @@ export const QuestionContent = () => {
       <Detail>
         <PostMenu>
           <li>Share</li>
-          {email === question.email ? (
+          {user.data && user.data.email === question.email ? (
             <>
               <li>
                 <Link to={`/questions/edit/${qid}`}>Edit</Link>
