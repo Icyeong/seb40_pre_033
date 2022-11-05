@@ -5,14 +5,19 @@ const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   margin: 0;
   padding: 0;
   flex-flow: wrap;
+  margin-bottom: 20px;
   @media screen and (max-width: 982px) {
     display: flex;
     row-gap: 12px;
     flex-direction: column;
+    margin-bottom: 10px;
+  }
+  @media screen and (max-width: 640px) {
+    margin-bottom: 0px;
   }
   > .input-search {
     display: flex;
@@ -37,10 +42,11 @@ const FilterContainer = styled.div`
     }
 
     > input {
+      color: hsl(210, 8%, 5%);
       font-size: 12px;
-      width: 100%;
       flex-grow: 1;
-      height: 14.994px;
+
+      margin: 0;
       border: none;
       :focus {
         outline: none;
@@ -48,8 +54,6 @@ const FilterContainer = styled.div`
     }
   }
   > .sort {
-    /* 우측 정렬 */
-    margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -61,16 +65,12 @@ const FilterContainer = styled.div`
       margin-bottom: 10px;
     }
     > .question-sort {
-      margin-bottom: 12px;
       > button {
-        font-size: 12px;
+        font-size: 13px;
         border: 1px solid hsl(210, 8%, 55%);
         padding: 8px 10px;
         color: hsl(210, 8%, 45%);
         @media screen and (max-width: 640px) {
-          height: 35.44px;
-          padding-left: 0.4em;
-          padding-right: 0.4em;
           flex-direction: column-reverse;
         }
         cursor: pointer;

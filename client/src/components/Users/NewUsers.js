@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 const Container = styled.div`
   display: flex;
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
   flex-direction: column-reverse;
   align-items: flex-end;
   @media screen and (max-width: 980px) {
@@ -50,12 +50,12 @@ const Container = styled.div`
 `;
 export const NewUsers = () => {
   // ✨ 정렬
-  const [clicked, setclicked] = useState('Reputation');
+  const [clicked, setclicked] = useState('creation date');
   // redux?
   const sortClick = (e) => {
     switch (e.target.value) {
-      case 'Reputation':
-        setclicked('Reputation');
+      case 'reputation':
+        setclicked('reputation');
         break;
       case 'creation date':
         setclicked('creation date');
@@ -70,11 +70,11 @@ export const NewUsers = () => {
         <div className="user-sort">
           <button
             type="button"
-            className={clicked === 'Reputation' ? 'is-clicked' : ''}
+            className={clicked === 'reputation' ? 'is-clicked' : ''}
             onClick={sortClick}
-            value={'Reputation'}
+            value={'reputation'}
           >
-            Reputation
+            reputation
           </button>
           <button
             type="button"
