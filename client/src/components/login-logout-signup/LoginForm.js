@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BlueButton } from '../../assets/styles/LoginStyle';
 import useFetch from '../../hooks/useFetch';
-import { getLoginStatus, getmyInfo } from '../../redux/actions/userAction';
+import { getLoginStatus } from '../../redux/actions/userAction';
 import Input from './Input';
 
 const LoginForm = () => {
@@ -66,8 +66,8 @@ const LoginForm = () => {
     console.log(res);
 
     // // 내 정보 가져오기
-    const myInfo = await useFetch('GET', '/user/me');
-    dispatch(getmyInfo(myInfo));
+    // const myInfo = await useFetch('GET', '/user/me');
+    // dispatch(getmyInfo(myInfo));
 
     navigate('/');
   };
