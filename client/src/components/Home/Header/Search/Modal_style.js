@@ -42,6 +42,7 @@ export const Bottom = styled.div`
   font-size: 11px;
   @media screen and (max-width: 875px) {
     display: flex;
+    flex-flow: row wrap;
   }
 `;
 export const SearchLink = styled.div`

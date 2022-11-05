@@ -9,7 +9,6 @@ import { SearchBox } from './Search/SearchBox';
 
 export const Header = () => {
   const user = useSelector((state) => state.userReducer);
-  // let { email } = useSelector((state) => state.userReducer);
   const location = useLocation().pathname;
   const [click, setClick] = useState(false);
 
