@@ -9,6 +9,8 @@ import useFetch from '../hooks/useFetch';
 // import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getQuestions } from '../redux/actions/questionsAction';
+import { useEffect, useState } from 'react';
+import { Loading } from '../components/Common/Loading';
 
 export const Block = styled.div`
   max-width: 1264px;
@@ -29,46 +31,47 @@ const HomeSidebarMargin = styled.div`
 export const HomePage = () => {
   const dispatch = useDispatch();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const initPage = 1;
   const initSize = 10;
-
-  // useEffect(async () => {
-  //   console.log('GET QUESTIONS');
-
-  //   const res = await useFetch(
-  //     'GET',
-  //     `/articles?page=${initPage}&size=${initSize}`
-  //   );
-  //   dispatch(getQuestions(res));
-  // }, []);
 
   const load = async () => {
     console.log('GET QUESTIONS');
 
+    setIsLoading(true);
+
     const res = await useFetch(
       'GET',
       `/articles?page=${initPage}&size=${initSize}`
-    );
+    ).finally(() => {
+      setIsLoading(false);
+    });
 
     console.log('getQuestions res', res);
     dispatch(getQuestions(res));
   };
 
-  load();
+  useEffect(() => {
+    load();
+  }, []);
 
   return (
-    <div>
-      <Header />
-      <HeaderMargin />
-      <Block>
-        <Sidebar />
-        <HomeSidebarMargin />
-        <QuestionsList />
-        <aside>
-          <SidebarWidget />
-        </aside>
-      </Block>
-      <Footer />
-    </div>
+    <>
+      <div>
+        <Header />
+        <HeaderMargin />
+        <Block>
+          <Sidebar />
+          <HomeSidebarMargin />
+          <QuestionsList />
+          <aside>
+            <SidebarWidget />
+          </aside>
+        </Block>
+        <Footer />
+      </div>
+      {isLoading && <Loading />}
+    </>
   );
 };

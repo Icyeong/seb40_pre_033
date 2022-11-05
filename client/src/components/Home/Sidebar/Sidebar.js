@@ -1,4 +1,5 @@
-import { InfoSvg, StarSvg } from '../../../assets/images/HomeSvg';
+import { Link } from 'react-router-dom';
+import { InfoSvg, StarSvg, EarthSvg } from '../../../assets/images/HomeSvg';
 import { SidebarContainer, Wrapper, NavLinkMenu, Teams } from './Sidebar_style';
 
 export const Sidebar = () => {
@@ -7,11 +8,13 @@ export const Sidebar = () => {
       <Wrapper>
         <div>PUBLIC</div>
         <NavLinkMenu to="/" className="question-menu">
-          <StarSvg />
+          <EarthSvg />
           Questions
         </NavLinkMenu>
         <div className="tab-menu">Tags</div>
-        <div className="tab-menu">Users</div>
+        <div className="tab-menu">
+          <Link to="/users">Users</Link>
+        </div>
         <div>
           COLLECTIVES
           <InfoSvg />

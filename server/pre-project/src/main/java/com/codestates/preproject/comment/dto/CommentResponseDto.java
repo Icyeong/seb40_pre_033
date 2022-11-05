@@ -1,8 +1,11 @@
 package com.codestates.preproject.comment.dto;
 
+import com.codestates.preproject.comment.entity.Comment;
+import com.codestates.preproject.reply.entity.Reply;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Builder
@@ -18,5 +21,7 @@ public class CommentResponseDto {
     private LocalDateTime modifiedAt;
 
     private Long articleId;
+
+    private List<Reply> replies;
 
 }

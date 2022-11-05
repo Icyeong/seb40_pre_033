@@ -82,6 +82,8 @@ export const AnswerWrite = () => {
 
       console.log('add answer res', res);
       dispatch(addAnswer(res));
+
+      setBody('');
     }
   };
 

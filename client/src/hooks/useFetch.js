@@ -23,6 +23,7 @@ const useFetch = (method, url, fetchData) => {
       localStorage.setItem('refreshToken', res.headers.get('refresh'));
       return res;
     }
+
     return res.json();
   });
 };
