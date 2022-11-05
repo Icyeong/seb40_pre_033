@@ -1,11 +1,13 @@
 package com.codestates.preproject.comment.controller;
 
+import com.codestates.preproject.article.Article;
 import com.codestates.preproject.article.ArticleService;
 import com.codestates.preproject.comment.dto.*;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.SingleResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
+import com.codestates.preproject.security.userDetails.PrincipalDetails;
 import com.codestates.preproject.security.userDetails.PrincipalDetailsService;
 import com.codestates.preproject.user.repository.UserRepository;
 import com.codestates.preproject.user.service.UserService;
@@ -81,6 +83,8 @@ public class CommentController {
         commentPostDto.setUserEmail(email);
         commentPostDto.setArticleId(articleId);
 
+        Article article = articleService.findArticle(articleId);
+
         Comment comment = commentService.createComment(commentMapper.commentPostToComment(commentPostDto), email, articleId);
 
         return new ResponseEntity<>(
@@ -94,18 +98,13 @@ public class CommentController {
     public ResponseEntity patchComment(
             @PathVariable("comment-id") @Positive long commentId,
             @Valid @RequestBody CommentPatchDto commentPatchDto,
-            @AuthenticationPrincipal PrincipalDetailsService.PrincipalDetails principalDetails) {
+            @AuthenticationPrincipal PrincipalDetails principal) {
 
-//        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        commentPatchDto.setCommentId(commentId);
-//        commentPatchDto.setUserEmail(email);
+        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        commentPatchDto.setCommentId(commentId);
+        commentPatchDto.setUserEmail(email);
 
-//        Comment comment = commentService.updateComment(commentMapper.commentPatchToComment(commentPatchDto));
-
-        Comment comment = commentMapper.commentPatchToComment(commentId, commentPatchDto);
-        Long userId = principalDetails.getUserId();
-
-        commentService.updateComment(comment, userId);
+        Comment comment = commentService.updateComment(commentMapper.commentPatchToComment(commentId, commentPatchDto));
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(comment)),
@@ -116,11 +115,9 @@ public class CommentController {
     @DeleteMapping("/{comment-id}")
     public ResponseEntity deleteComment(
             @PathVariable("comment-id") @Positive long commentId,
-            @AuthenticationPrincipal PrincipalDetailsService.PrincipalDetails principalDetails) {
+            @AuthenticationPrincipal PrincipalDetails principal) {
 
-        Long userId = principalDetails.getUserId();
-
-        commentService.deleteComment(commentId, userId);
+        commentService.deleteComment(commentId);
 
         return new ResponseEntity<>(new CommentDeleteDto(commentId), HttpStatus.OK);
 
