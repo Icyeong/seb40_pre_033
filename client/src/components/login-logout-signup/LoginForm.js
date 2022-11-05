@@ -61,9 +61,8 @@ const LoginForm = () => {
       password,
     };
     // 로그인
-    const res = await useFetch('POST', '/auth/login', body);
+    await useFetch('POST', '/auth/login', body);
     dispatch(getLoginStatus({ isLogin: true }));
-    console.log(res);
 
     // // 내 정보 가져오기
     const myInfo = await useFetch('GET', '/user/me');

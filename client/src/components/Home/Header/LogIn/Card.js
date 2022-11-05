@@ -72,9 +72,9 @@ export const Card = ({ user }) => {
   return (
     <Box>
       <UImg />
-      <UName>{user.nickname}</UName>
+      <UName>{user && user.nickname}</UName>
       {/* <p>{email}</p> */}
-      <p>{user.email}</p>
+      <p>{user && user.email}</p>
       <Logoutbutton onClick={logoutHandler}>Log out</Logoutbutton>
     </Box>
   );
