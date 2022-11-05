@@ -13,7 +13,6 @@ export const Box = styled.div`
   // Mobile
   @media screen and (max-width: 640px) {
     gap: 30px;
-    padding-left: 50px;
   }
   > .reputation-link {
     color: hsl(206, 100%, 40%);
@@ -77,7 +76,7 @@ export const PaiginationContainer = () => {
         className="reputation-link"
         href="https://stackexchange.com/leagues/1/week/stackoverflow"
       >
-        weekly / monthly /quarterly reputation leagues
+        weekly / monthly / quarterly reputation leagues
       </a>
       {/* usersReducer 부분과 연결 */}
       <Pagination
