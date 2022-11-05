@@ -14,7 +14,7 @@ export const QuestionsList = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  let user = useSelector((state) => state.userReducer.data);
+  let user = useSelector((state) => state.userReducer);
   let questions = useSelector((state) => state.questionsReducer.data);
 
   let { page, size, totalElements, totalPages } = useSelector(
@@ -83,7 +83,7 @@ export const QuestionsList = () => {
           <div className="title">
             <h1>All Questions</h1>
             <AskQuestionButton>
-              <Link to={user ? '/questions/ask' : '/users/login'}>
+              <Link to={user.isLogin ? '/questions/ask' : '/users/login'}>
                 Ask Question
               </Link>
             </AskQuestionButton>

@@ -181,7 +181,7 @@ export const QuestionContent = () => {
   const navigate = useNavigate();
   const { qid } = useParams();
 
-  let user = useSelector((state) => state.userReducer.data);
+  let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
   const handelDeleteQuestion = async () => {
@@ -216,7 +216,7 @@ export const QuestionContent = () => {
       <Detail>
         <PostMenu>
           <li>Share</li>
-          {user.email === question.email ? (
+          {user.data && user.data.email === question.email ? (
             <>
               <li>
                 <Link to={`/questions/edit/${qid}`}>Edit</Link>

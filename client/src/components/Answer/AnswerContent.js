@@ -16,7 +16,7 @@ export const AnswerContent = (type) => {
   const dispatch = useDispatch();
   const { qid } = useParams();
 
-  let user = useSelector((state) => state.userReducer.data);
+  let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
   const handleDeleteAnswer = async () => {
@@ -40,7 +40,8 @@ export const AnswerContent = (type) => {
       <Detail>
         <PostMenu>
           <li>Share</li>
-          {user.email === question.comments[type.idx].email ? (
+          {user.data &&
+          user.data.email === question.comments[type.idx].email ? (
             <>
               <li>
                 <Link

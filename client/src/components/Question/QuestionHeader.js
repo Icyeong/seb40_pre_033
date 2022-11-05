@@ -66,7 +66,7 @@ const Detail = styled.ul`
 `;
 
 export const QuestionHeader = () => {
-  let user = useSelector((state) => state.userReducer.data);
+  let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
   return (
@@ -74,7 +74,7 @@ export const QuestionHeader = () => {
       <Title>
         <h1>{question.title}</h1>
         <AskQuestionButton>
-          <Link to={user ? '/questions/ask' : '/users/login'}>
+          <Link to={user.isLogin ? '/questions/ask' : '/users/login'}>
             Ask Question
           </Link>
         </AskQuestionButton>
