@@ -28,6 +28,7 @@ export const HeaderWrapper = styled.div`
       font-size: 15px;
       white-space: normal;
       overflow: auto;
+      max-width: calc(8rem * 6);
     }
     > a {
       border: 1px solid red;
@@ -48,28 +49,4 @@ export const Tagbox = styled.div`
   border: 2px black solid;
   margin: 12px;
   overflow: auto;
-
-  > .title {
-    width: 50%;
-    border: 2px solid blue;
-    display: flex;
-    justify-content: center;
-    font-size: 12px;
-    margin: 12px 0px 12px 0px;
-  }
-
-  > .body {
-    width: 80%;
-    border: 2px solid red;
-    overflow: auto;
-  }
-
-  > .click {
-    width: 50%;
-    border: 1px purple solid;
-    margin-top: 10px;
-    font-size: 13px;
-    display: flex;
-    justify-content: center;
-  }
 `;

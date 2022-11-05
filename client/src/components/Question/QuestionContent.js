@@ -203,6 +203,7 @@ export const QuestionContent = () => {
     const res = await useFetch('DELETE', `/article/${qid}`);
     console.log('delete question res', res);
     dispatch(deleteQuestion(res));
+
     navigate('/');
   };
 

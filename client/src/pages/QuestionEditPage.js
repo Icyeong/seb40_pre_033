@@ -27,7 +27,7 @@ import {
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
 // import { editQuestion } from '../redux/actions/questionsAction';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { useState, useRef } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
@@ -37,6 +37,7 @@ import { editQuestion } from '../redux/actions/questionsAction';
 
 export const QuestionEditPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const titleRef = useRef();
   const bodyRef = useRef();
@@ -88,6 +89,8 @@ export const QuestionEditPage = () => {
       console.log('edit question res', res);
       dispatch(editQuestion(res));
     }
+
+    navigate(`/article/${qid}`);
   };
 
   const TagInputChange = (e) => {

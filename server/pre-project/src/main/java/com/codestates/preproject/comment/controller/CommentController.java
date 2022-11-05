@@ -1,21 +1,18 @@
 package com.codestates.preproject.comment.controller;
 
-import com.codestates.preproject.article.Article;
-import com.codestates.preproject.article.ArticleMapper;
 import com.codestates.preproject.article.ArticleService;
-import com.codestates.preproject.comment.dto.CommentDeleteDto;
-import com.codestates.preproject.comment.dto.CommentPatchDto;
-import com.codestates.preproject.comment.dto.CommentPostDto;
-import com.codestates.preproject.comment.dto.CommentVoteDto;
+import com.codestates.preproject.comment.dto.*;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.SingleResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
+import com.codestates.preproject.security.userDetails.PrincipalDetailsService;
 import com.codestates.preproject.user.repository.UserRepository;
 import com.codestates.preproject.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +46,7 @@ public class CommentController {
     }
 
     // 답변 한명 조회
-    @GetMapping("/{comment-id}")
+    @GetMapping("/read/{comment-id}")
     public ResponseEntity getComment(
             @PathVariable("comment-id") @Positive long commentId) {
 
@@ -84,8 +81,6 @@ public class CommentController {
         commentPostDto.setUserEmail(email);
         commentPostDto.setArticleId(articleId);
 
-//        Article article = articleService.findArticle(articleId);
-
         Comment comment = commentService.createComment(commentMapper.commentPostToComment(commentPostDto), email, articleId);
 
         return new ResponseEntity<>(
@@ -98,13 +93,19 @@ public class CommentController {
     @PatchMapping("/{comment-id}")
     public ResponseEntity patchComment(
             @PathVariable("comment-id") @Positive long commentId,
-            @Valid @RequestBody CommentPatchDto commentPatchDto) {
+            @Valid @RequestBody CommentPatchDto commentPatchDto,
+            @AuthenticationPrincipal PrincipalDetailsService.PrincipalDetails principalDetails) {
 
-        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        commentPatchDto.setCommentId(commentId);
-        commentPatchDto.setUserEmail(email);
+//        String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        commentPatchDto.setCommentId(commentId);
+//        commentPatchDto.setUserEmail(email);
 
-        Comment comment = commentService.updateComment(commentMapper.commentPatchToComment(commentPatchDto));
+//        Comment comment = commentService.updateComment(commentMapper.commentPatchToComment(commentPatchDto));
+
+        Comment comment = commentMapper.commentPatchToComment(commentId, commentPatchDto);
+        Long userId = principalDetails.getUserId();
+
+        commentService.updateComment(comment, userId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(comment)),
@@ -114,12 +115,12 @@ public class CommentController {
     // 답변 삭제
     @DeleteMapping("/{comment-id}")
     public ResponseEntity deleteComment(
-            @PathVariable("comment-id") @Positive long commentId) {
+            @PathVariable("comment-id") @Positive long commentId,
+            @AuthenticationPrincipal PrincipalDetailsService.PrincipalDetails principalDetails) {
 
-        // TODO 같은 유저인지 확인 필요
+        Long userId = principalDetails.getUserId();
 
-
-        commentService.deleteComment(commentId);
+        commentService.deleteComment(commentId, userId);
 
         return new ResponseEntity<>(new CommentDeleteDto(commentId), HttpStatus.OK);
 

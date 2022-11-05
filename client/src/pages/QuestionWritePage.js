@@ -13,11 +13,13 @@ import { useState, useRef } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import useFetch from '../hooks/useFetch';
+import { useNavigate } from 'react-router-dom';
 
 //써머노트 install 명령어 "npm install summernote"
 
 export const QuestionWritePage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const titleRef = useRef();
   const bodyRef = useRef();
@@ -68,6 +70,8 @@ export const QuestionWritePage = () => {
       const res = await useFetch('POST', '/article', inputData);
       console.log('add question res', res);
       dispatch(addQuestion(res));
+
+      navigate('/');
     }
   };
 

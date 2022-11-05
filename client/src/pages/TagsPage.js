@@ -6,13 +6,7 @@ import { Block } from './HomePage';
 import { TagsHeader } from '../components/Tags/TagsHeader';
 import { Footer } from '../components/Home/Footer/Footer';
 import { TagsSection } from '../components/Tags/TagsSection';
-
-const Box = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 3px solid yellow;
-`;
-
+import { TagsTab } from '../components/Tags/TagsTab';
 const Container = styled.div`
   width: 100%;
   border-left-width: 1px;
@@ -35,17 +29,18 @@ const Container = styled.div`
 
 export const TagsPage = () => {
   return (
-    <Box>
+    <>
       <Header />
       <HeaderMargin />
       <Block>
         <Sidebar />
         <Container>
           <TagsHeader />
+          <TagsTab />
           <TagsSection />
         </Container>
       </Block>
       <Footer />
-    </Box>
+    </>
   );
 };
