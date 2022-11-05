@@ -6,7 +6,6 @@ const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  border: 1px solid pink;
   margin: 0;
   padding: 0;
   flex-flow: wrap;
