@@ -6,7 +6,7 @@ const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  margin: 0;
+  margin-top: 18px;
   padding: 0;
   flex-flow: wrap;
   @media screen and (max-width: 982px) {

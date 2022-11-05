@@ -29,6 +29,7 @@ export const HeaderWrapper = styled.div`
       width: 100%;
       color: hsl(206, 100%, 40%);
       margin: calc(6 / 2);
+      font-size: 13px;
     }
   }
 `;
