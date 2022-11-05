@@ -9,7 +9,7 @@ import { addQuestion } from '../redux/actions/questionsAction';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
 import ReactSummernoteLite from '@easylogic/react-summernote';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import useFetch from '../hooks/useFetch';
@@ -38,9 +38,11 @@ export const QuestionWritePage = () => {
   // const inputData = { title, content: body, tags };
   const inputData = { title, content: body };
 
+  useEffect(() => {
+    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+  });
+
   const handleAddQuestion = async () => {
-    // 요청 검사할때 한 번만 데이터를 넣어줌
-    setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
     setTitleError(false);
     setBodyError(false);
     setTagsError(false);
@@ -137,7 +139,16 @@ export const QuestionWritePage = () => {
                     your question
                   </AskText2>
                   <SummerNoteWrapper ref={bodyRef}>
-                    <ReactSummernoteLite id="sample" height={300} />
+                    <ReactSummernoteLite
+                      id="sample"
+                      height={300}
+                      onBlur={() => {
+                        setBody(
+                          bodyRef.current.querySelector('.note-editable')
+                            .innerHTML
+                        );
+                      }}
+                    />
                   </SummerNoteWrapper>
                   {bodyError && (
                     <>

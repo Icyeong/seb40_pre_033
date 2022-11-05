@@ -1,9 +1,17 @@
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Tags } from '../Common/Tags';
 
 export const Question = (type) => {
+  const bodyRef = useRef();
+
   let questions = useSelector((state) => state.questionsReducer.data);
+
+  if (bodyRef.current) {
+    bodyRef.current.innerHTML = questions[type.idx].content;
+    console.log('#1', bodyRef.current);
+  }
 
   // 태그 바꾸기
   const tags = ['임시'];
@@ -21,9 +29,7 @@ export const Question = (type) => {
             {questions[type.idx].title}
           </Link>
         </h2>
-        <div className="question-content">
-          {questions[type.idx].content.innerText}
-        </div>
+        <div className="question-content" ref={bodyRef}></div>
         <div className="question-information">
           <Tags>
             {tags.map((tag, idx) => (

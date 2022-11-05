@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
@@ -69,6 +69,10 @@ export const AnswerWrite = () => {
 
   const inputData = { content: body };
 
+  useEffect(() => {
+    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+  });
+
   const handleAddAnswer = async () => {
     setBodyError(false);
 
@@ -97,10 +101,8 @@ export const AnswerWrite = () => {
         <ReactSummernoteLite
           id="sample"
           height={300}
-          value={body}
-          onChange={(e) => {
-            console.log(e);
-            setBody(e);
+          onBlur={() => {
+            setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
           }}
         />
       </SummerNoteWrapper>
