@@ -48,6 +48,7 @@ public class Comment extends BaseTime {
     private Article article;
 
     public void addArticle(Article article) {
+        article.addComment(this);
         this.article = article;
     }
 
@@ -59,7 +60,7 @@ public class Comment extends BaseTime {
     private int vote;
 
     // 대댓
-    @OneToMany(mappedBy = "comment", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.PERSIST)
     private List<Reply> replies = new ArrayList<>();
 
     @Builder
