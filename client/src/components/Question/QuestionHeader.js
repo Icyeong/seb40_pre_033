@@ -29,8 +29,10 @@ export const AskQuestionButton = styled(BlueButton)`
   margin-left: 12px;
   min-width: 100.115px;
   height: 42px;
+  padding: 0;
 
   a {
+    padding: 10.4px;
     color: var(--theme-button-primary-color);
   }
 

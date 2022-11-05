@@ -26,7 +26,6 @@ import {
   Wrapper,
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
-// import { editQuestion } from '../redux/actions/questionsAction';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { useState, useRef, useEffect } from 'react';
