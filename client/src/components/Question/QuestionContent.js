@@ -181,20 +181,7 @@ export const QuestionContent = () => {
   const navigate = useNavigate();
   const { qid } = useParams();
 
-  // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'c@c.com',
-    nickname: 'b',
-    userId: 1,
-  };
-  // const isNotLoginUser = {
-  //   email: '',
-  //   nickname: '',
-  //   userId: 0,
-  // };
-  let { email } = isLoginUser;
-
-  // let { email } = useSelector((state) => state.userReducer);
+  let user = useSelector((state) => state.userReducer.data);
   let question = useSelector((state) => state.questionReducer);
 
   const handelDeleteQuestion = async () => {
@@ -229,7 +216,7 @@ export const QuestionContent = () => {
       <Detail>
         <PostMenu>
           <li>Share</li>
-          {email === question.email ? (
+          {user.email === question.email ? (
             <>
               <li>
                 <Link to={`/questions/edit/${qid}`}>Edit</Link>

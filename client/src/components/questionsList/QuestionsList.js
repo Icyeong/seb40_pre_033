@@ -14,20 +14,7 @@ export const QuestionsList = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'a',
-    nickname: 'b',
-    userId: 1,
-  };
-  // const isNotLoginUser = {
-  //   email: '',
-  //   nickname: '',
-  //   userId: 0,
-  // };
-  let { email } = isLoginUser;
-
-  // let { email } = useSelector((state) => state.userReducer);
+  let user = useSelector((state) => state.userReducer.data);
   let questions = useSelector((state) => state.questionsReducer.data);
 
   let { page, size, totalElements, totalPages } = useSelector(
@@ -96,7 +83,7 @@ export const QuestionsList = () => {
           <div className="title">
             <h1>All Questions</h1>
             <AskQuestionButton>
-              <Link to={email ? '/questions/ask' : '/users/login'}>
+              <Link to={user ? '/questions/ask' : '/users/login'}>
                 Ask Question
               </Link>
             </AskQuestionButton>

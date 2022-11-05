@@ -16,20 +16,7 @@ export const AnswerContent = (type) => {
   const dispatch = useDispatch();
   const { qid } = useParams();
 
-  // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'c@c.com',
-    nickname: 'b',
-    userId: 1,
-  };
-  // const isNotLoginUser = {
-  //   email: '',
-  //   nickname: '',
-  //   userId: 0,
-  // };
-  let { email } = isLoginUser;
-
-  // let { email } = useSelector((state) => state.userReducer);
+  let user = useSelector((state) => state.userReducer.data);
   let question = useSelector((state) => state.questionReducer);
 
   const handleDeleteAnswer = async () => {
@@ -53,7 +40,7 @@ export const AnswerContent = (type) => {
       <Detail>
         <PostMenu>
           <li>Share</li>
-          {email === question.comments[type.idx].email ? (
+          {user.email === question.comments[type.idx].email ? (
             <>
               <li>
                 <Link

@@ -11,15 +11,25 @@ import { QuestionEditPage } from './pages/QuestionEditPage';
 import { AnswerEdit } from './pages/AnswerEdit';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getLoginStatus } from './redux/actions/userAction';
+import { getLoginStatus, getmyInfo } from './redux/actions/userAction';
 import jwt_decode from 'jwt-decode';
 import { refreshToken } from './hooks/refreshToken';
 import { UsersPage } from './pages/UsersPage';
+import useFetch from './hooks/useFetch';
 
 function App() {
   const dispatch = useDispatch();
 
+  const userLoad = async () => {
+    // 내 정보 가져오기
+    const myInfo = await useFetch('GET', '/user/me');
+    dispatch(getmyInfo(myInfo));
+    console.log('myInfo res', myInfo);
+  };
+
   useEffect(() => {
+    userLoad();
+
     const token = localStorage.getItem('accessToken');
     if (token) {
       try {
@@ -51,6 +61,7 @@ function App() {
       }
     }
   });
+
   return (
     <>
       <GlobalStyle />
