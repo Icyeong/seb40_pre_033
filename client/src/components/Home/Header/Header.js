@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { GrMenu, GrClose } from 'react-icons/gr'; // 햄버거 버튼, x 버튼
 import { useEffect, useState } from 'react';
 import { Dropdown } from '../Sidebar/Dropdown';
@@ -28,15 +28,15 @@ export const Header = () => {
           {click ? <GrClose /> : <GrMenu />}
         </button>
         <div className="dropdown-menu2">{click ? <Dropdown /> : null}</div>
-        <a href="/" className="logo-wrapper">
-          <div className="logo" />
-        </a>
+        <Link to="/" className="logo-wrapper">
+          <div className="logo"></div>
+        </Link>
         <div className="nav-items">About</div>
         <div className="nav-items">Products</div>
         <div className="nav-items">For Teams</div>
         <SearchBox />
         {user.isLogin ? (
-          <LoggedIn user={user} />
+          <LoggedIn />
         ) : (
           <>
             <NavLink to="/users/login" className="button-login">

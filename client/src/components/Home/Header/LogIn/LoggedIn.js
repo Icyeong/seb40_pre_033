@@ -1,10 +1,9 @@
 import { UserInfo } from './UserInfo';
 
-export const LoggedIn = ({ user }) => {
-  // let { email } = useSelector((state) => state.userReducer);
+export const LoggedIn = () => {
   return (
     <>
-      <UserInfo user={user} />
+      <UserInfo />
     </>
   );
 };
