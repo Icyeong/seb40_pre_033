@@ -32,13 +32,16 @@ const Block = styled.div`
 `;
 
 const PostAnswerButton = styled.button`
-  padding: 10.4px;
   border: 1px solid transparent;
   border-radius: 3px;
   font-size: 13px;
   color: var(--theme-button-primary-color);
   background-color: var(--theme-button-primary-background-color);
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+
+  a {
+    padding: 10.4px;
+  }
 
   &:active,
   &:hover,
