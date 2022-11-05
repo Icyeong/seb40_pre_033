@@ -10,6 +10,9 @@ export const TagsHeader = () => {
           similar questions. Using the right tags makes it easier for others to
           find and answer your question.
         </p>
+        <a href="https://stackoverflow.com/tags?page=2&tab=popular">
+          Show all tag synonyms
+        </a>
         <div></div>
       </div>
     </HeaderWrapper>

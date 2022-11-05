@@ -17,7 +17,7 @@ const FilterContainer = styled.div`
   }
   > .input-search {
     display: flex;
-    max-width: calc(8rem * 3);
+    max-width: calc(4rem * 3);
     margin: 0;
     flex-direction: row;
     align-items: stretch;

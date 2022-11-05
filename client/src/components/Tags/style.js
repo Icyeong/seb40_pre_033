@@ -4,7 +4,6 @@ export const HeaderWrapper = styled.div`
   display: flex;
   height: 30%;
   width: 90%;
-  border: 4px solid blue;
 
   > .title {
     margin-bottom: 10px;
@@ -31,7 +30,7 @@ export const HeaderWrapper = styled.div`
       max-width: calc(8rem * 6);
     }
     > a {
-      border: 1px solid red;
+      color: hsl(206, 100%, 40%);
     }
   }
 `;
