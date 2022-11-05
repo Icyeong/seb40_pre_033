@@ -8,6 +8,10 @@ const Container = styled.div`
   border: 1px solid yellowgreen;
   flex-direction: column-reverse;
   align-items: flex-end;
+  @media screen and (max-width: 980px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
   > .sort {
     /* 우측 정렬 */
     margin-bottom: 12px;
