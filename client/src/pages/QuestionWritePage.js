@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
-import { BlueButton } from '../components/Common/BlueButton';
-import { ButtonWrapper } from './QuestionEditPage';
 import { useDispatch } from 'react-redux';
 import { addQuestion } from '../redux/actions/questionsAction';
 import '../components/SummerText/Summernote.css';
@@ -14,6 +12,7 @@ import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import useFetch from '../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
+import { PostAnswerButton } from '../components/Answer/AnswerWrite';
 
 //써머노트 install 명령어 "npm install summernote"
 
@@ -217,11 +216,9 @@ export const QuestionWritePage = () => {
                 </SidebarBox>
               </ContentsUserHelp>
             </MainContents>
-            <ButtonWrapper>
-              <BlueButton onClick={handleAddQuestion}>
-                Post your answer
-              </BlueButton>
-            </ButtonWrapper>
+            <PostAnswerButton onClick={handleAddQuestion}>
+              Post your Question
+            </PostAnswerButton>
           </AsWrapper>
         </Wrapper>
       </Top>
@@ -283,6 +280,7 @@ export const MainContents = styled.div`
 
 export const ContentsUserWrite = styled.div`
   width: 827px;
+  margin-bottom: 16px;
   padding: 16px 16px 16px 16px;
   /* border: 1px solid red; */
   background-color: #ffffff;

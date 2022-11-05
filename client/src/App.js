@@ -16,6 +16,7 @@ import jwt_decode from 'jwt-decode';
 import { refreshToken } from './hooks/refreshToken';
 import { UsersPage } from './pages/UsersPage';
 import useFetch from './hooks/useFetch';
+import { ScrollToTop } from './components/Common/ScrollToTop';
 
 function App() {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ function App() {
     <>
       <GlobalStyle />
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/users" element={<UsersPage />} />
