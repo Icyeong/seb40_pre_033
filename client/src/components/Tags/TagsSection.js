@@ -65,10 +65,12 @@ export const TagInfo = styled.div`
       max-width: 227px;
       max-height: 67px;
       overflow: auto;
+
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      word-break: break-all;
     }
   }
 `;
