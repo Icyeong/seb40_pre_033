@@ -56,7 +56,7 @@ export const AnswerEdit = () => {
   const [bodyError, setBodyError] = useState(false);
 
   const answer = question.comments.filter(
-    (answer) => answer.comment_id == aid
+    (answer) => answer.commentId == aid
   )[0];
 
   const inputData = { content: body };
@@ -84,7 +84,9 @@ export const AnswerEdit = () => {
       const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
       dispatch(editAnswer(res));
 
-      navigate(`/article/${qid}`);
+      console.log('edit answer res', res);
+
+      navigate(`/questions/${qid}`);
     }
   };
 

@@ -32,9 +32,11 @@ export const AnswerContent = (type) => {
 
     const res = await useFetch(
       'DELETE',
-      `/comment/${question.comments[type.idx].comment_id}`
+      `/comment/${question.comments[type.idx].commentId}`
     );
     dispatch(deleteAnswer(res));
+
+    console.log('delete answer res', res);
   };
 
   return (
@@ -49,7 +51,7 @@ export const AnswerContent = (type) => {
               <li>
                 <Link
                   to={`/questions/${qid}/answer/edit/${
-                    question.comments[type.idx].comment_id
+                    question.comments[type.idx].commentId
                   }`}
                 >
                   Edit
