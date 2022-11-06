@@ -56,7 +56,7 @@ export const UserInfo = () => {
 
   return (
     <Box>
-      <Link to="/users" className="user-button">
+      <Link to="/users/user" className="user-button">
         <UserIcon />
       </Link>
       <UserName>{user && user.nickname}</UserName>

@@ -2,6 +2,7 @@ package com.codestates.preproject.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.Encoders;
@@ -65,13 +66,12 @@ public class JwtTokenizer {
                 .compact();
     }
 
-    public Jws<Claims> getClaims(String jws, String base64EncodedSecretKey) {
+    public Jws<Claims> getClaims(String jws, String base64EncodedSecretKey) throws IllegalArgumentException{
         Key key = getKeyFromBase64EncodedKey(base64EncodedSecretKey);
-
-        Jws<Claims> claims = Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(jws);
+        Jws<Claims> claims =  Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(jws);
 
         return claims;
     }
