@@ -1,5 +1,7 @@
 package com.codestates.preproject.article;
 
+import com.codestates.preproject.comment.entity.Comment;
+import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.MultiResponseDto;
 import com.codestates.preproject.response.SingleResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -22,15 +24,14 @@ import java.util.List;
 public class ArticleController {
     private final ArticleMapper mapper;
     private final ArticleService articleService;
+    private final CommentService commentService;
 
     /*게시글 등록*/
     @PostMapping("/article")
     public ResponseEntity<SingleResponseDto<ArticleResponse>> postArticle(@Valid @RequestBody ArticlePost articlePost) {
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        log.info(email);
         articlePost.setUserEmail(email); //email을 set으로 할 것인가 create 시에 넣어줄 것인가?
-
-        Article article = articleService.createArticle(mapper.articlePostToArticle(articlePost),email);
+        Article article = articleService.makeArticle(mapper.articlePostToArticle(articlePost),email);
         return new ResponseEntity<>(
                 new SingleResponseDto<>(mapper.articleToArticleResponse(article))
                 , HttpStatus.CREATED);
@@ -41,8 +42,10 @@ public class ArticleController {
     public ResponseEntity<SingleResponseDto<ArticleResponse>> patchArticle(@PathVariable("article-id") @Positive long articleId,
                                                                            @Valid @RequestBody ArticlePatch articlePatchDto) {
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //dto에 id 넣기
+        //set은 다 해야 하고, 코멘트 아티클아이디로 조회해야 함
         articlePatchDto.setArticleId(articleId);
-        articlePatchDto.setUserEmail(email);
+//        articlePatchDto
         Article updatedArticle = articleService.updateArticle(mapper.articlePatchToArticle(articlePatchDto), email);
 
         return new ResponseEntity<>(
@@ -55,8 +58,10 @@ public class ArticleController {
     public ResponseEntity<SingleResponseDto<ArticleResponse>> getArticle(
             @PathVariable("article-id") @Positive long articleId) {
         Article article = articleService.findArticle(articleId);
+        Page<Comment> commentPage =commentService.findComments(articleId,0,10);
+
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.articleToArticleResponse(article))
+                new SingleResponseDto<>(ArticleResponse.of(article, commentPage))
                 , HttpStatus.OK);
     }
 
@@ -66,7 +71,7 @@ public class ArticleController {
         Page<Article> articlesInPage = articleService.findArticles(page - 1, size);
         List<Article> articles = articlesInPage.getContent();
 
-        return new ResponseEntity<MultiResponseDto<ArticleResponse>>(new MultiResponseDto<>(mapper.articlesToArticleResponses(articles), articlesInPage), HttpStatus.OK);
+        return new ResponseEntity<>(new MultiResponseDto<>(mapper.articlesToArticleResponses(articles), articlesInPage), HttpStatus.OK);
     }
 
     @DeleteMapping("/article/{article-id}")

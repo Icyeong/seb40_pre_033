@@ -6,6 +6,7 @@ import com.codestates.preproject.article.ArticleResponse;
 import com.codestates.preproject.comment.dto.CommentResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
+import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.exception.BusinessLogicException;
 import com.codestates.preproject.exception.ExceptionCode;
 import com.codestates.preproject.user.dto.UserPostDto;
@@ -33,13 +34,15 @@ public class UserService {
     private final CustomAuthorityUtils authorityUtils;
     private final ArticleRepository articleRepository;
     private final CommentRepository commentRepository;
+    private final CommentService commentService;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils, ArticleRepository articleRepository, CommentRepository commentRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, CustomAuthorityUtils authorityUtils, ArticleRepository articleRepository, CommentRepository commentRepository,CommentService commentService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityUtils = authorityUtils;
         this.articleRepository = articleRepository;
         this.commentRepository = commentRepository;
+        this.commentService = commentService;
     }
 
     public UserResponseDto createUser(UserPostDto request) {
@@ -89,7 +92,9 @@ public class UserService {
                         .articleId(article.getArticleId())
                         .title(article.getTitle())
                         .content(article.getContent())
-                        .comments(article.getComments())
+                        .comments(commentService.findComments(article.getArticleId(),0,10).stream()
+                                .map(comment -> CommentResponseDto.of(comment))
+                                .collect(Collectors.toList()))
                         .createdAt(article.getCreatedAt())
                         .build())
                 .collect(Collectors.toList());
@@ -108,7 +113,7 @@ public class UserService {
                         .content(comment.getContent())
                         .createdAt(comment.getCreatedAt())
                         .vote(comment.getVote())
-                        .updatedAt(comment.getModifiedAt())
+                        .modifiedAt(comment.getModifiedAt())
                         .build())
                 .collect(Collectors.toList());
     }

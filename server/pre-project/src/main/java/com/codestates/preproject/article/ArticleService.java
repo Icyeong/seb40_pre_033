@@ -20,13 +20,12 @@ public class ArticleService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Article createArticle(Article article, String email)    {
+    public Article makeArticle(Article article, String email)    {
+        //email 받아오기
+        //email로 user 조회해서 article에 저장
         Optional<User> optionalUser = userRepository.findByEmail(email);
         User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
-        /*에러가 뜨면 에러 던지고 아닌 경우 받아옴*/
-
         article.setUser(findUser);
-        article.setEmail(email);
 
         return articleRepository.save(article);
     }

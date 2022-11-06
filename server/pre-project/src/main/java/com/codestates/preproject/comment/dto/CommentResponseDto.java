@@ -1,5 +1,6 @@
 package com.codestates.preproject.comment.dto;
 
+import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.reply.entity.Reply;
 
 import lombok.*;
@@ -24,11 +25,20 @@ public class CommentResponseDto {
 
     private List<Reply> replies;
 
+    public CommentResponseDto(String content, String email){
+        this.content = content;
+        this.email =email;
+    }
+
 //    public CommentResponseDto(Reply reply) {
 //
 //        reply.getReplyId();
 //        reply.getReplyContent();
 //        reply.getCommentId();
 //    }
+
+    public static CommentResponseDto of(Comment comment) {
+        return new CommentResponseDto(comment.getContent(),comment.getEmail());
+    }
 
 }
