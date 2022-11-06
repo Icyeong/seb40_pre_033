@@ -1,20 +1,25 @@
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { SearchHints } from './SearchHints';
 
 export const SearchBox = () => {
   const modalRef = useRef();
   const searchRef = useRef();
 
-  const modalHandler = (e) => {
-    if (searchRef.current.contains(e.target)) {
+  const modalHandler = ({ target }) => {
+    if (searchRef.current.contains(target)) {
       modalRef.current.style.display = 'block';
     } else {
       modalRef.current.style.display = 'none';
     }
   };
 
-  window.addEventListener('click', modalHandler);
+  useEffect(() => {
+    window.addEventListener('click', modalHandler);
+    return () => {
+      window.removeEventListener('click', modalHandler);
+    };
+  });
 
   return (
     <form ref={searchRef} className="search">
