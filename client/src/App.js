@@ -83,7 +83,7 @@ function App() {
             path="/questions/:qid/answer/edit/:aid"
             element={<AnswerEdit />}
           />
-          <Route path="/users" element={<User />} />
+          <Route path="/users/user" element={<User />} />
         </Routes>
       </Router>
     </>
