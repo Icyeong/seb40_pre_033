@@ -7,6 +7,7 @@ import com.codestates.preproject.security.handler.UserDeniedHandler;
 import com.codestates.preproject.security.jwt.JwtAuthenticationFilter;
 import com.codestates.preproject.security.jwt.JwtTokenizer;
 import com.codestates.preproject.security.jwt.JwtVerificationFilter;
+import com.codestates.preproject.security.userDetails.PrincipalDetailsService;
 import com.codestates.preproject.utils.CustomAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,10 +31,16 @@ import java.util.Arrays;
 public class SecurityConfig{
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils;
+    private final UserAuthenticationSucessHandler userAuthenticationSucessHandler;
+    private final UserAuthenticationFailureHandler userAuthenticationFailureHandler;
+    private final PrincipalDetailsService principalDetailsService;
 
-    public SecurityConfig(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils) {
+    public SecurityConfig(JwtTokenizer jwtTokenizer, CustomAuthorityUtils authorityUtils, UserAuthenticationSucessHandler userAuthenticationSucessHandler, UserAuthenticationFailureHandler userAuthenticationFailureHandler, PrincipalDetailsService principalDetailsService) {
         this.jwtTokenizer = jwtTokenizer;
         this.authorityUtils = authorityUtils;
+        this.userAuthenticationSucessHandler = userAuthenticationSucessHandler;
+        this.userAuthenticationFailureHandler = userAuthenticationFailureHandler;
+        this.principalDetailsService = principalDetailsService;
     }
 
     @Bean
@@ -65,10 +72,10 @@ public class SecurityConfig{
         @Override
         public void configure(HttpSecurity builder) throws Exception {
             AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class); // getSharedObject를 통해 스프링 시큐리티 설정을 구성하는 SecurityConfigurer 간의 공유 객체 얻을 수 있음
-            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
+            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer, principalDetailsService);
             jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
-            jwtAuthenticationFilter.setAuthenticationSuccessHandler(new UserAuthenticationSucessHandler());
-            jwtAuthenticationFilter.setAuthenticationFailureHandler(new UserAuthenticationFailureHandler());
+            jwtAuthenticationFilter.setAuthenticationSuccessHandler(userAuthenticationSucessHandler);
+            jwtAuthenticationFilter.setAuthenticationFailureHandler(userAuthenticationFailureHandler);
 
             JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils);
             // 스프링 시큐리티 필터 체인에 추가
