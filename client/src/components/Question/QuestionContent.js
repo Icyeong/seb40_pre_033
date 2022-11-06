@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { deleteQuestion } from '../../redux/actions/questionsAction';
+import useFetch from '../../hooks/useFetch';
+import { useRef } from 'react';
 
 export const Block = styled.div`
   padding-right: 16px;
@@ -10,17 +12,7 @@ export const Block = styled.div`
 `;
 
 export const Body = styled.div`
-  p {
-    margin: 0 0 16.5px 0;
-    font-size: 15px;
-  }
-  pre {
-    margin: 0;
-    padding: 12px;
-    background-color: #f6f6f6;
-    font-size: 13px;
-    border-radius: 5px;
-  }
+  font-size: 15px;
 `;
 
 export const QuestionTags = styled(Tags)`
@@ -180,9 +172,10 @@ export const QuestionContent = () => {
   const navigate = useNavigate();
   const { qid } = useParams();
 
+
   // 🔥 userReducer 리팩토링
   const isLoginUser = {
-    email: '질문 작성자 이메일',
+    email: 'ggg@ggg.com',
     nickname: 'b',
     userId: 1,
   };
@@ -194,24 +187,35 @@ export const QuestionContent = () => {
   let { email } = isLoginUser;
 
   // let { email } = useSelector((state) => state.userReducer);
+  let user = useSelector((state) => state.userReducer);
+
   let question = useSelector((state) => state.questionReducer);
 
-  const handelDeleteQuestion = () => {
+  const bodyRef = useRef();
+
+  if (bodyRef.current) {
+    bodyRef.current.innerHTML = question.content;
+    console.log('#1', bodyRef.current);
+  }
+
+  const handelDeleteQuestion = async () => {
     console.log('DELETE QUESTION');
-    dispatch(deleteQuestion(qid));
+
+    const res = await useFetch('DELETE', `/article/${qid}`);
+    console.log('delete question res', res);
+    dispatch(deleteQuestion(res));
+
     navigate('/');
   };
 
+  // 태그 바꾸기
+  const tags = ['임시'];
+
   return (
     <Block>
-      <Body>
-        <p>{question.content}</p>
-        {/* <pre>
-          <code></code>
-        </pre> */}
-      </Body>
+      <Body ref={bodyRef}></Body>
       <QuestionTags>
-        {question.tags.map((tag, idx) => (
+        {tags.map((tag, idx) => (
           <li key={idx}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href="#">{tag}</a>
@@ -221,7 +225,7 @@ export const QuestionContent = () => {
       <Detail>
         <PostMenu>
           <li>Share</li>
-          {email === question.email ? (
+          {user.data && user.data.email === question.email ? (
             <>
               <li>
                 <Link to={`/questions/edit/${qid}`}>Edit</Link>

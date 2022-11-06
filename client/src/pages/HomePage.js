@@ -5,9 +5,11 @@ import { Header } from '../components/Home/Header/Header';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { getQuestions } from '../redux/actions/questionsAction';
+import useFetch from '../hooks/useFetch';
+import { useDispatch } from 'react-redux';
+import { getQuestions } from '../redux/actions/questionsAction';
+import { useEffect, useState } from 'react';
+import { Loading } from '../components/Common/Loading';
 
 export const Block = styled.div`
   max-width: 1264px;
@@ -26,29 +28,49 @@ const HomeSidebarMargin = styled.div`
 `;
 
 export const HomePage = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const initPage = 1;
-  // const initSize = 10;
+  const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect(() => {
-  //   console.log('GET QUESTIONS');
-  //   dispatch(getQuestions(initPage, initSize));
-  // }, []);
+  const initPage = 1;
+  const initSize = 10;
+
+  const load = async () => {
+    console.log('GET QUESTIONS');
+
+    setIsLoading(true);
+
+    // 질문 리스트 가져오기
+    const res = await useFetch(
+      'GET',
+      `/articles?page=${initPage}&size=${initSize}`
+    ).finally(() => {
+      setIsLoading(false);
+    });
+    console.log('getQuestions res', res);
+    dispatch(getQuestions(res));
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
 
   return (
-    <div>
-      <Header />
-      <HeaderMargin />
-      <Block>
-        <Sidebar />
-        <HomeSidebarMargin />
-        <QuestionsList />
-        <aside>
-          <SidebarWidget />
-        </aside>
-      </Block>
-      <Footer />
-    </div>
+    <>
+      <div>
+        <Header />
+        <HeaderMargin />
+        <Block>
+          <Sidebar />
+          <HomeSidebarMargin />
+          <QuestionsList />
+          <aside>
+            <SidebarWidget />
+          </aside>
+        </Block>
+        <Footer />
+      </div>
+      {isLoading && <Loading />}
+    </>
   );
 };

@@ -1,4 +1,4 @@
-const useFetch = (method, url, data) => {
+const useFetch = (method, url, fetchData) => {
   const accessToken = localStorage.getItem('accessToken');
 
   // 기본 옵션
@@ -9,12 +9,13 @@ const useFetch = (method, url, data) => {
       'ngrok-skip-browser-warning': 'skip',
       Authorization: accessToken,
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(fetchData),
   };
 
   return fetch(url, defaultOptions).then(async (res) => {
     if (!res.ok) {
-      throw Error('에러발생');
+      return res.status;
+      // throw Error('에러발생');
 
       // 토큰이 있는 경우 (로그인)
     } else if (res.headers.get('authorization')) {
@@ -22,6 +23,7 @@ const useFetch = (method, url, data) => {
       localStorage.setItem('refreshToken', res.headers.get('refresh'));
       return res;
     }
+
     return res.json();
   });
 };

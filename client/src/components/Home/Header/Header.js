@@ -1,11 +1,14 @@
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { GrMenu, GrClose } from 'react-icons/gr'; // 햄버거 버튼, x 버튼
-import { AiOutlineSearch } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { Dropdown } from '../Sidebar/Dropdown';
 import { NavBar, NavLink } from './style';
+import { LoggedIn } from './LogIn/LoggedIn';
+import { useSelector } from 'react-redux';
+import { SearchBox } from './Search/SearchBox';
 
 export const Header = () => {
+  const user = useSelector((state) => state.userReducer);
   const location = useLocation().pathname;
   const [click, setClick] = useState(false);
 
@@ -17,6 +20,7 @@ export const Header = () => {
     console.log('햄버거 클릭');
     setClick(!click);
   };
+
   return (
     <NavBar>
       <div className="navbar-wrapper">
@@ -24,34 +28,25 @@ export const Header = () => {
           {click ? <GrClose /> : <GrMenu />}
         </button>
         <div className="dropdown-menu2">{click ? <Dropdown /> : null}</div>
-        <a href="/" className="logo-wrapper">
-          <div className="logo" />
-        </a>
-        <a href="https://stackoverflow.co/" className="nav-items">
-          About
-        </a>
-        <a href="/" className="nav-items">
-          Products
-        </a>
-        <a href="https://stackoverflow.co/teams/" className="nav-items">
-          For Teams
-        </a>
-        <form className="search">
-          <div className="input-search">
-            <AiOutlineSearch size={20} color="#838C95" />
-            <input
-              type="text"
-              className="logo-search"
-              placeholder="Search..."
-            />
-          </div>
-        </form>
-        <NavLink to="/users/login" className="button-login">
-          Log in
-        </NavLink>
-        <NavLink to="/users/signup" className="button-signup">
-          Sign up
-        </NavLink>
+        <Link to="/" className="logo-wrapper">
+          <div className="logo"></div>
+        </Link>
+        <div className="nav-items">About</div>
+        <div className="nav-items">Products</div>
+        <div className="nav-items">For Teams</div>
+        <SearchBox />
+        {user.isLogin ? (
+          <LoggedIn />
+        ) : (
+          <>
+            <NavLink to="/users/login" className="button-login">
+              Log in
+            </NavLink>
+            <NavLink to="/users/signup" className="button-signup">
+              Sign up
+            </NavLink>
+          </>
+        )}
       </div>
     </NavBar>
   );

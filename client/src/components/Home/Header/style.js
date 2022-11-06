@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export const NavBar = styled.div`
   padding-right: 12px;
   position: fixed;
+  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -84,6 +85,10 @@ export const NavBar = styled.div`
         width: 146px;
         height: 30px;
       }
+      // Mobile
+      @media screen and (max-width: 580px) {
+        display: none;
+      }
     }
 
     > .nav-items {
@@ -95,13 +100,14 @@ export const NavBar = styled.div`
       font-size: 13px;
       margin: 2px;
       padding: 6px 12px;
+      cursor: pointer;
       :hover {
         border: none;
         background-color: #e2e6e8;
         border-radius: 15px;
       }
       // Mobile
-      @media screen and (max-width: 640px) {
+      @media screen and (max-width: 910px) {
         display: none;
       }
     }
@@ -110,6 +116,13 @@ export const NavBar = styled.div`
       padding: 0 12px;
       width: 100%;
       max-width: 700px;
+      @media screen and (max-width: 910px) {
+        /* position: absolute; */
+        left: 0;
+        right: 0;
+        top: 100%;
+        max-width: 100%;
+      }
       > .input-search {
         display: flex;
         flex-direction: row;
@@ -137,6 +150,21 @@ export const NavBar = styled.div`
             outline: none;
           }
         }
+
+        > .search-hints {
+          display: none;
+          position: absolute;
+          top: 31px;
+          margin-left: -5px;
+          width: 100%;
+          background-color: white;
+          box-shadow: 0 1px 3px hsla(0, 0%, 0%, 0.06),
+            0 2px 6px hsla(0, 0%, 0%, 0.06), 0 3px 8px hsla(0, 0%, 0%, 0.09);
+          z-index: 2000;
+          border-radius: 5px;
+          border: 1px solid hsl(210, 8%, 85%);
+          white-space: normal;
+        }
       }
     }
 
@@ -151,6 +179,10 @@ export const NavBar = styled.div`
       border-radius: 4px;
       :hover {
         background-color: #b3d3ea;
+      }
+      // Mobile
+      @media screen and (max-width: 910px) {
+        display: inline-block;
       }
     }
 

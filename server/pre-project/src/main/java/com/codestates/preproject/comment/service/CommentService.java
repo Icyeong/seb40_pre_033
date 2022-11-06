@@ -1,5 +1,6 @@
 package com.codestates.preproject.comment.service;
 
+import com.codestates.preproject.article.ArticleRepository;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.repository.CommentRepository;
 import com.codestates.preproject.exception.BusinessLogicException;
@@ -9,33 +10,39 @@ import com.codestates.preproject.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CommentService {
 
-    // TODO 유저 관련 메서드 생성 필요
-
-    // TODO 로그인 한 계정인지 확인하는 메서드 추가 필요
-
     private final CommentRepository commentRepository;
 
     private final UserRepository userRepository;
+    private final ArticleRepository articleRepository;
 
-    public CommentService(UserRepository userRepository, CommentRepository commentRepository) {
+    public CommentService(UserRepository userRepository, CommentRepository commentRepository, ArticleRepository articleRepository) {
 
         this.userRepository = userRepository;
         this.commentRepository = commentRepository;
+        this.articleRepository = articleRepository;
     }
 
-    // 답변 조회
+    // 답변 1개 조회
+//    @Transactional(readOnly = true)
     public Comment findComment(long commentId) {
         return commentRepository.findByCommentId(commentId);
     }
 
+    // 답변 전체 조회
+    public List<Comment> findComments() {
+
+        return commentRepository.findAll();
+    }
+
     // 답변 생성
     @Transactional
-    public Comment createComment(Comment comment, String email) {
+    public Comment createComment(Comment comment, String email, Long articleId) {
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
         User findUser = optionalUser.orElseThrow(() -> new BusinessLogicException(ExceptionCode.USER_NOT_FOUND));
@@ -43,6 +50,7 @@ public class CommentService {
 
         comment.setUser(findUser);
         comment.setEmail(email);
+        comment.setArticleId(articleId);
 
         return commentRepository.save(comment);
     }
@@ -51,8 +59,6 @@ public class CommentService {
     @Transactional
     public Comment updateComment(Comment comment) {
 
-//        Comment findComment = commentRepository.findByCommentId(comment.getCommentId());
-//        findComment.setContent(comment.getContent());
         Comment findComment = findVerifiedComment(comment.getCommentId());
 
         Optional.ofNullable(comment.getContent())
@@ -67,7 +73,7 @@ public class CommentService {
 
         Comment findComment = commentRepository.findByCommentId(commentId);
 
-        commentRepository.delete(findComment);
+        commentRepository.deleteById(commentId);
     }
 
     // 투표
@@ -80,6 +86,17 @@ public class CommentService {
         Comment updatedComment = commentRepository.save(findComment);
 
         return updatedComment;
+    }
+
+    // 작성자 확인
+    private void verifiedWriter(Long userId, long commentId) {
+
+        Comment comment = findComment(commentId);
+
+        Long writerId = comment.getUser().getUserId();
+        if (!writerId.equals(userId)) {
+            throw new BusinessLogicException(ExceptionCode.ACCESS_FORBIDDEN);
+        }
     }
 
     // 답변 조회 실패
@@ -95,5 +112,10 @@ public class CommentService {
 
     // 답변 이미 존재
     public ExceptionCode exceptionCode = ExceptionCode.COMMENT_EXIST;
+
+    // 더미 사용
+    public Comment createComment(Comment comment) {
+        return commentRepository.save(comment);
+    }
 
 }

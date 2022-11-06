@@ -2,21 +2,23 @@ import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
-import { BlueButton } from '../components/Common/BlueButton';
-import { ButtonWrapper } from './QuestionEditPage';
 import { useDispatch } from 'react-redux';
 import { addQuestion } from '../redux/actions/questionsAction';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
 import ReactSummernoteLite from '@easylogic/react-summernote';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
+import useFetch from '../hooks/useFetch';
+import { useNavigate } from 'react-router-dom';
+import { PostAnswerButton } from '../components/Answer/AnswerWrite';
 
 //써머노트 install 명령어 "npm install summernote"
 
 export const QuestionWritePage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const titleRef = useRef();
   const bodyRef = useRef();
@@ -35,7 +37,11 @@ export const QuestionWritePage = () => {
   // const inputData = { title, content: body, tags };
   const inputData = { title, content: body };
 
-  const handleAddQuestion = () => {
+  useEffect(() => {
+    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+  });
+
+  const handleAddQuestion = async () => {
     setTitleError(false);
     setBodyError(false);
     setTagsError(false);
@@ -61,7 +67,12 @@ export const QuestionWritePage = () => {
     } else {
       console.log('ADD QUESTION');
       console.log(inputData);
-      dispatch(addQuestion(inputData));
+
+      const res = await useFetch('POST', '/article', inputData);
+      console.log('add question res', res);
+      dispatch(addQuestion(res));
+
+      navigate('/');
     }
   };
 
@@ -130,10 +141,11 @@ export const QuestionWritePage = () => {
                     <ReactSummernoteLite
                       id="sample"
                       height={300}
-                      value={body}
-                      onChange={(e) => {
-                        console.log(e);
-                        setBody(e);
+                      onBlur={() => {
+                        setBody(
+                          bodyRef.current.querySelector('.note-editable')
+                            .innerHTML
+                        );
                       }}
                     />
                   </SummerNoteWrapper>
@@ -204,11 +216,9 @@ export const QuestionWritePage = () => {
                 </SidebarBox>
               </ContentsUserHelp>
             </MainContents>
-            <ButtonWrapper>
-              <BlueButton onClick={handleAddQuestion}>
-                Post your answer
-              </BlueButton>
-            </ButtonWrapper>
+            <PostAnswerButton onClick={handleAddQuestion}>
+              Post your Question
+            </PostAnswerButton>
           </AsWrapper>
         </Wrapper>
       </Top>
@@ -225,12 +235,26 @@ const Top = styled.div`
   -webkit-box-align: center;
   align-items: center;
   padding: 0px 15px;
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    > h2 {
+      font-size: 14.3846px;
+    }
+  }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 0px 0px 24px 24px;
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    > h2 {
+      font-size: 14.3846px;
+    }
+  }
 `;
 
 export const AsWrapper = styled.div`
@@ -270,6 +294,7 @@ export const MainContents = styled.div`
 
 export const ContentsUserWrite = styled.div`
   width: 827px;
+  margin-bottom: 16px;
   padding: 16px 16px 16px 16px;
   /* border: 1px solid red; */
   background-color: #ffffff;
@@ -452,7 +477,7 @@ const TitleErrorIcon = styled.div`
   top: 51px;
 `;
 
-const BodyErrorIcon = styled.div`
+export const BodyErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 214px;

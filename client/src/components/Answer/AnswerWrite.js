@@ -1,10 +1,16 @@
-import { useState } from 'react';
-
+import { useRef, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { addAnswer } from '../../redux/actions/questionAction';
 import ReactSummernoteLite from '@easylogic/react-summernote';
+import useFetch from '../../hooks/useFetch';
+import {
+  BodyErrorIcon,
+  SummerNoteWrapper,
+} from '../../pages/QuestionWritePage';
+import { ErrorMessage } from '../Question/ErrorMessage';
+import { HasErrorSvg } from '../../assets/images/LoginSvg';
 
 const Block = styled.div`
   h2 {
@@ -25,14 +31,14 @@ const Block = styled.div`
   }
 `;
 
-const PostAnswerButton = styled.button`
-  padding: 10.4px;
+export const PostAnswerButton = styled.button`
   border: 1px solid transparent;
   border-radius: 3px;
   font-size: 13px;
   color: var(--theme-button-primary-color);
   background-color: var(--theme-button-primary-background-color);
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+  padding: 10.4px;
 
   &:active,
   &:hover,
@@ -52,27 +58,59 @@ export const AnswerWrite = () => {
   const dispatch = useDispatch();
   const { qid } = useParams();
 
+  const bodyRef = useRef();
+
   const [body, setBody] = useState();
+
+  const [bodyError, setBodyError] = useState(false);
 
   const inputData = { content: body };
 
-  const handleAddAnswer = () => {
-    console.log('ADD ANSWER');
-    dispatch(addAnswer(qid, inputData));
+  useEffect(() => {
+    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+  });
+
+  const handleAddAnswer = async () => {
+    setBodyError(false);
+
+    bodyRef.current.classList.remove('error');
+
+    // 유효성 검사
+    if (body.length < 30) {
+      setBodyError(true);
+      bodyRef.current.classList.add('error');
+    } else {
+      console.log('ADD ANSWER');
+
+      const res = await useFetch('POST', `/comment/${qid}`, inputData);
+
+      console.log('add answer res', res);
+      dispatch(addAnswer(res));
+
+      setBody('');
+    }
   };
 
   return (
     <Block>
       <h2>Your Answer</h2>
-      <ReactSummernoteLite
-        id="sample"
-        height={300}
-        value={body}
-        onChange={(e) => {
-          console.log(e);
-          setBody(e);
-        }}
-      />
+      <SummerNoteWrapper ref={bodyRef}>
+        <ReactSummernoteLite
+          id="sample"
+          height={300}
+          onBlur={() => {
+            setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
+          }}
+        />
+      </SummerNoteWrapper>
+      {bodyError && (
+        <>
+          <ErrorMessage text="Body must be at least 30 characters." />
+          <BodyErrorIcon>
+            <HasErrorSvg />
+          </BodyErrorIcon>
+        </>
+      )}
       <PostAnswerButton onClick={handleAddAnswer}>
         Post Your Answer
       </PostAnswerButton>

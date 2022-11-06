@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
@@ -14,13 +13,17 @@ import {
   Box,
   ContentsUserHelp,
   ContentsUserWrite,
+  SummerNoteWrapper,
   Wrapper,
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { useState } from 'react';
-import { editAnswer } from '../redux/actions/questionAction';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import ReactSummernoteLite from '@easylogic/react-summernote';
+import useFetch from '../hooks/useFetch';
+import { useState, useRef, useEffect } from 'react';
+import { ErrorMessage } from '../components/Question/ErrorMessage';
+import { HasErrorSvg } from '../assets/images/LoginSvg';
+import { editAnswer } from '../redux/actions/questionAction';
 
 const MainContents = styled.div`
   width: 100%;
@@ -40,22 +43,48 @@ export const AskText1 = styled.div`
 
 export const AnswerEdit = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const bodyRef = useRef();
+
   const { qid, aid } = useParams();
 
   let question = useSelector((state) => state.questionReducer);
+
+  const [body, setBody] = useState('');
+  const [bodyError, setBodyError] = useState(false);
 
   const answer = question.comments.filter(
     (answer) => answer.comment_id == aid
   )[0];
 
-  const [body, setBody] = useState(answer.content);
-
   const inputData = { content: body };
 
-  const handleEditAnswer = () => {
-    console.log('EDIT ANSWER');
-    console.log(inputData);
-    dispatch(editAnswer(qid, inputData));
+  useEffect(() => {
+    bodyRef.current.querySelector('.note-editable').innerHTML = answer.content;
+  }, []);
+
+  useEffect(() => {
+    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+  });
+
+  const handleEditAnswer = async () => {
+    setBodyError(false);
+
+    bodyRef.current.classList.remove('error');
+
+    if (body.length < 30) {
+      setBodyError(true);
+      bodyRef.current.classList.add('error');
+    } else {
+      console.log('EDIT ANSWER');
+      console.log(inputData);
+
+      const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
+      dispatch(editAnswer(res));
+
+      navigate(`/article/${qid}`);
+    }
   };
 
   return (
@@ -83,15 +112,26 @@ export const AnswerEdit = () => {
                 <ContentsUserWrite>
                   <Box>
                     <AskText1>Body</AskText1>
-                    <ReactSummernoteLite
-                      id="sample"
-                      height={350}
-                      value={body}
-                      onChange={(e) => {
-                        console.log(e);
-                        setBody(e);
-                      }}
-                    />
+                    <SummerNoteWrapper ref={bodyRef}>
+                      <ReactSummernoteLite
+                        id="sample"
+                        height={300}
+                        onBlur={() => {
+                          setBody(
+                            bodyRef.current.querySelector('.note-editable')
+                              .innerHTML
+                          );
+                        }}
+                      />
+                    </SummerNoteWrapper>
+                    {bodyError && (
+                      <>
+                        <ErrorMessage text="Body must be at least 30 characters." />
+                        <BodyErrorIcon>
+                          <HasErrorSvg />
+                        </BodyErrorIcon>
+                      </>
+                    )}
                   </Box>
                 </ContentsUserWrite>
                 <ContentsUserHelp>
@@ -112,3 +152,9 @@ export const AnswerEdit = () => {
     </div>
   );
 };
+
+const BodyErrorIcon = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 214px;
+`;

@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { BlueButton } from '../../assets/styles/LoginStyle';
 import useFetch from '../../hooks/useFetch';
-import { getmyInfo } from '../../redux/actions/userAction';
+import { getLoginStatus } from '../../redux/actions/userAction';
 import Input from './Input';
 
 const LoginForm = () => {
@@ -20,6 +21,7 @@ const LoginForm = () => {
   let isEmailValid = regExp.test(email);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //   input 변경값 저장
   const inputHandler = (e) => {
@@ -59,11 +61,14 @@ const LoginForm = () => {
       password,
     };
     // 로그인
-    const res = await useFetch('POST', '/auth/login', body);
-    console.log(res);
+    await useFetch('POST', '/auth/login', body);
+    dispatch(getLoginStatus({ isLogin: true }));
+
     // // 내 정보 가져오기
-    const myInfo = await useFetch('GET', '/user/me');
-    dispatch(getmyInfo(myInfo));
+    // const myInfo = await useFetch('GET', '/user/me');
+    // dispatch(getmyInfo(myInfo));
+
+    navigate('/');
   };
 
   return (

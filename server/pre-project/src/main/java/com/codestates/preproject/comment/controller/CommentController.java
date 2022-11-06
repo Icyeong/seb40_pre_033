@@ -1,21 +1,20 @@
 package com.codestates.preproject.comment.controller;
 
-//import com.codestates.preproject.article.ArticleService;
-
 import com.codestates.preproject.article.Article;
 import com.codestates.preproject.article.ArticleService;
-import com.codestates.preproject.comment.dto.CommentDeleteDto;
-import com.codestates.preproject.comment.dto.CommentPatchDto;
-import com.codestates.preproject.comment.dto.CommentPostDto;
-import com.codestates.preproject.comment.dto.CommentVoteDto;
+import com.codestates.preproject.comment.dto.*;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.SingleResponseDto;
 import com.codestates.preproject.comment.entity.Comment;
+import com.codestates.preproject.security.userDetails.PrincipalDetails;
+import com.codestates.preproject.security.userDetails.PrincipalDetailsService;
+import com.codestates.preproject.user.repository.UserRepository;
 import com.codestates.preproject.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @RestController
 @Validated
@@ -32,18 +32,23 @@ public class CommentController {
 
     private final CommentService commentService;
     private final CommentMapper commentMapper;
+
     private final UserService userService;
     private final ArticleService articleService;
 
-    public CommentController(CommentService commentService, CommentMapper commentMapper, UserService userService, ArticleService articleService) {
+    private final UserRepository userRepository;
+
+
+    public CommentController(CommentService commentService, CommentMapper commentMapper, UserService userService, ArticleService articleService, UserRepository userRepository) {
         this.commentService = commentService;
         this.commentMapper = commentMapper;
         this.userService = userService;
         this.articleService = articleService;
+        this.userRepository = userRepository;
     }
 
-    // 답변 조회
-    @GetMapping("/{comment-id}")
+    // 답변 한명 조회
+    @GetMapping("/read/{comment-id}")
     public ResponseEntity getComment(
             @PathVariable("comment-id") @Positive long commentId) {
 
@@ -55,10 +60,22 @@ public class CommentController {
         );
     }
 
+    // 답변 전체 조회
+    @GetMapping("/all")
+    public ResponseEntity getComments() {
+
+        List<Comment> comments = commentService.findComments();
+
+        return new ResponseEntity<>(
+                commentMapper.commentsToCommentResponse(comments),
+                HttpStatus.OK
+        );
+    }
+
     // 답변 생성
     @PostMapping("/{article-id}")
     public ResponseEntity postComment(@Valid @RequestBody CommentPostDto commentPostDto,
-                                      @PathVariable("article-id") long articleId) {
+                                      @PathVariable("article-id") Long articleId) {
 
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.info(email);
@@ -66,7 +83,9 @@ public class CommentController {
         commentPostDto.setUserEmail(email);
         commentPostDto.setArticleId(articleId);
 
-        Comment comment = commentService.createComment(commentMapper.commentPostToComment(commentPostDto), email);
+        Article article = articleService.findArticle(articleId);
+
+        Comment comment = commentService.createComment(commentMapper.commentPostToComment(commentPostDto), email, articleId);
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(comment)),
@@ -78,13 +97,14 @@ public class CommentController {
     @PatchMapping("/{comment-id}")
     public ResponseEntity patchComment(
             @PathVariable("comment-id") @Positive long commentId,
-            @Valid @RequestBody CommentPatchDto commentPatchDto) {
+            @Valid @RequestBody CommentPatchDto commentPatchDto,
+            @AuthenticationPrincipal PrincipalDetails principal) {
 
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         commentPatchDto.setCommentId(commentId);
         commentPatchDto.setUserEmail(email);
 
-        Comment comment = commentService.updateComment(commentMapper.commentPatchToComment(commentPatchDto));
+        Comment comment = commentService.updateComment(commentMapper.commentPatchToComment(commentId, commentPatchDto));
 
         return new ResponseEntity<>(
                 new SingleResponseDto<>(commentMapper.commentToCommentResponse(comment)),
@@ -94,9 +114,8 @@ public class CommentController {
     // 답변 삭제
     @DeleteMapping("/{comment-id}")
     public ResponseEntity deleteComment(
-            @PathVariable("comment-id") @Positive long commentId) {
-
-        // TODO 같은 유저인지 확인 필요
+            @PathVariable("comment-id") @Positive long commentId,
+            @AuthenticationPrincipal PrincipalDetails principal) {
 
         commentService.deleteComment(commentId);
 

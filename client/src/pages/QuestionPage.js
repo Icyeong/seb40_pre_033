@@ -10,10 +10,12 @@ import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { Footer } from '../components/Home/Footer/Footer';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
-// import { useDispatch } from 'react-redux';
-// import { getQuestion } from '../redux/actions/questionAction';
-// import { useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getQuestion } from '../redux/actions/questionAction';
+import { useParams } from 'react-router-dom';
+import useFetch from '../hooks/useFetch';
+import { useEffect, useState } from 'react';
+import { Loading } from '../components/Common/Loading';
 
 const Container = styled.div`
   width: calc(100% - 164px);
@@ -51,13 +53,27 @@ const Content = styled.div`
 `;
 
 export const QuestionPage = () => {
-  // const dispatch = useDispatch();
-  // const { qid } = useParams();
+  const dispatch = useDispatch();
+  const { qid } = useParams();
 
-  // useEffect(() => {
-  //   console.log('GET QUESTION');
-  //   dispatch(getQuestion(qid));
-  // }, []);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const load = async () => {
+    console.log('GET QUESTION');
+
+    setIsLoading(true);
+
+    const res = await useFetch('GET', `/article/${qid}`).finally(() => {
+      setIsLoading(false);
+    });
+
+    console.log('get question res', res);
+    dispatch(getQuestion(res));
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
 
   return (
     <>
@@ -80,6 +96,7 @@ export const QuestionPage = () => {
         </Container>
       </Block>
       <Footer />
+      {isLoading && <Loading />}
     </>
   );
 };

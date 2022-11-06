@@ -28,6 +28,7 @@ const Title = styled.div`
 export const AskQuestionButton = styled(BlueButton)`
   margin-left: 12px;
   min-width: 100.115px;
+  height: 42px;
 
   a {
     color: var(--theme-button-primary-color);
@@ -65,20 +66,7 @@ const Detail = styled.ul`
 `;
 
 export const QuestionHeader = () => {
-  // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'a',
-    nickname: 'b',
-    userId: 1,
-  };
-  // const isNotLoginUser = {
-  //   email: '',
-  //   nickname: '',
-  //   userId: 0,
-  // };
-  let { email } = isLoginUser;
-
-  // let { email } = useSelector((state) => state.userReducer);
+  let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
   return (
@@ -86,7 +74,7 @@ export const QuestionHeader = () => {
       <Title>
         <h1>{question.title}</h1>
         <AskQuestionButton>
-          <Link to={email ? '/questions/ask' : '/users/login'}>
+          <Link to={user.isLogin ? '/questions/ask' : '/users/login'}>
             Ask Question
           </Link>
         </AskQuestionButton>
