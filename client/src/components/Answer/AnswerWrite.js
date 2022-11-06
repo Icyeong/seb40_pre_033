@@ -5,12 +5,10 @@ import { useParams } from 'react-router-dom';
 import { addAnswer } from '../../redux/actions/questionAction';
 import ReactSummernoteLite from '@easylogic/react-summernote';
 import useFetch from '../../hooks/useFetch';
-import {
-  BodyErrorIcon,
-  SummerNoteWrapper,
-} from '../../pages/QuestionWritePage';
+import { BodyErrorIcon } from '../WriteEdit/style';
 import { ErrorMessage } from '../Question/ErrorMessage';
 import { HasErrorSvg } from '../../assets/images/LoginSvg';
+import { SummerNoteWrapper } from '../WriteEdit/style';
 
 const Block = styled.div`
   h2 {

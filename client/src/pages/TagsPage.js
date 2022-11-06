@@ -7,6 +7,7 @@ import { TagsHeader } from '../components/Tags/TagsHeader';
 import { Footer } from '../components/Home/Footer/Footer';
 import { TagsSection } from '../components/Tags/TagsSection';
 import { TagsTab } from '../components/Tags/TagsTab';
+
 const Container = styled.div`
   width: 100%;
   border-left-width: 1px;
@@ -39,6 +40,7 @@ export const TagsPage = () => {
           <TagsTab />
           <TagsSection />
         </Container>
+        x
       </Block>
       <Footer />
     </>

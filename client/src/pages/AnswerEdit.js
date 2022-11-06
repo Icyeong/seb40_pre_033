@@ -8,14 +8,6 @@ import { Block } from './HomePage';
 import { BlueButton } from '../components/Common/BlueButton';
 import { CancelButton } from '../components/Common/CancelButton';
 import { Top, AskTitle, ButtonWrapper } from './QuestionEditPage';
-import {
-  AsWrapper,
-  Box,
-  ContentsUserHelp,
-  ContentsUserWrite,
-  SummerNoteWrapper,
-  Wrapper,
-} from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import ReactSummernoteLite from '@easylogic/react-summernote';
@@ -24,6 +16,14 @@ import { useState, useRef, useEffect } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import { editAnswer } from '../redux/actions/questionAction';
+import {
+  AsWrapper,
+  Box,
+  ContentsUserHelp,
+  ContentsUserWrite,
+  SummerNoteWrapper,
+} from '../components/WriteEdit/style';
+import { Wrapper } from './QuestionWritePage';
 
 const MainContents = styled.div`
   width: 100%;

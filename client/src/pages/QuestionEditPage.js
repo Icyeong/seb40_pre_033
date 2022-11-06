@@ -21,10 +21,8 @@ import {
   TagBox,
   TagInput,
   TagItem,
-  Text,
   TitleInput,
-  Wrapper,
-} from './QuestionWritePage';
+} from '../components/WriteEdit/style';
 import { useDispatch, useSelector } from 'react-redux';
 // import { editQuestion } from '../redux/actions/questionsAction';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -34,6 +32,7 @@ import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import { Header } from '../components/Home/Header/Header';
 import { editQuestion } from '../redux/actions/questionsAction';
+import { Wrapper } from './QuestionWritePage';
 
 export const QuestionEditPage = () => {
   const dispatch = useDispatch();
@@ -196,7 +195,7 @@ export const QuestionEditPage = () => {
                       {tags.map((tagItem, index) => {
                         return (
                           <TagItem key={index}>
-                            <Text>{tagItem}</Text>
+                            <div>{tagItem}</div>
                             <Button onClick={deleteTags}>X</Button>
                           </TagItem>
                         );
