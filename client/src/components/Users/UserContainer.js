@@ -1,26 +1,44 @@
 // grid 모달 처럼
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { Badge, PostUser } from '../Question/QuestionContent';
+
+export const PostUser = styled.ul`
+  margin: 4px 0;
+  padding: 5px 6px 7px 7px;
+  /* border: 1px solid red; */
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  // Mobile
+  @media screen and (max-width: 1260px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  // Mobile
+  @media screen and (max-width: 980px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  // Mobile
+  @media screen and (max-width: 640px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+`;
 
 export const UserInfo = styled.div`
   display: flex;
+  width: 100%;
+  padding: 5px 6px 7px 7px;
 
   img {
     width: 48px;
     height: 48px;
     cursor: pointer;
   }
-
   > div {
-    margin-left: 8px;
-  }
-  > div {
-    margin-left: 8px;
+    margin-left: 9px;
 
     h6 {
       color: var(--theme-link-color);
-      font-size: 13px;
+      font-size: 15px;
       cursor: pointer;
 
       &:hover,
@@ -28,20 +46,9 @@ export const UserInfo = styled.div`
         color: var(--theme-link-color-hover);
       }
     }
-
-    ul {
-      display: flex;
-      li:first-of-type {
-        margin-left: 2px;
-        font-weight: bold;
-        font-size: 12px;
-        color: var(--black-500);
-      }
-      li:not(:first-of-type) {
-        margin: 0px 3px 0 2px;
-        font-size: 12px;
-        color: var(--black-400);
-      }
+    h5 {
+      font-size: 13px;
+      color: var(--black-500);
     }
   }
 `;
@@ -49,20 +56,33 @@ export const UserInfo = styled.div`
 export const UserContainer = () => {
   let question = useSelector((state) => state.questionReducer);
   return (
-    <PostUser background="#D9EAF7">
+    <PostUser>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
-          <h6>rainbow.gekota</h6>
-          <h6>Australia</h6>
-          <ul>
-            <li>156</li>
-            <li>
-              <Badge color="#D1A684" />
-              27
-            </li>
-          </ul>
-          <h5>{question.tags}</h5>
+          <h6>{question.email}</h6>
+          <h5>{question.create_at}</h5>
+        </div>
+      </UserInfo>
+      <UserInfo>
+        <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
+        <div>
+          <h6>{question.email}</h6>
+          <h5>{question.create_at}</h5>
+        </div>
+      </UserInfo>
+      <UserInfo>
+        <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
+        <div>
+          <h6>{question.email}</h6>
+          <h5>{question.create_at}</h5>
+        </div>
+      </UserInfo>
+      <UserInfo>
+        <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
+        <div>
+          <h6>{question.email}</h6>
+          <h5>{question.create_at}</h5>
         </div>
       </UserInfo>
     </PostUser>

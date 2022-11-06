@@ -1,27 +1,22 @@
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { useState } from 'react';
+
 const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  /* border: 1px solid pink; */
-  margin: 0;
+  margin-top: 18px;
   padding: 0;
   flex-flow: wrap;
-  margin-bottom: 20px;
   @media screen and (max-width: 982px) {
     display: flex;
     row-gap: 12px;
     flex-direction: column;
-    margin-bottom: 10px;
-  }
-  @media screen and (max-width: 640px) {
-    margin-bottom: 0px;
   }
   > .input-search {
     display: flex;
-    max-width: calc(8rem * 3);
+    max-width: calc(4rem * 3);
     margin: 0;
     flex-direction: row;
     align-items: stretch;
@@ -42,11 +37,10 @@ const FilterContainer = styled.div`
     }
 
     > input {
-      color: hsl(210, 8%, 5%);
       font-size: 12px;
+      width: 100%;
       flex-grow: 1;
-
-      margin: 0;
+      height: 14.994px;
       border: none;
       :focus {
         outline: none;
@@ -54,6 +48,8 @@ const FilterContainer = styled.div`
     }
   }
   > .sort {
+    /* 우측 정렬 */
+    margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,12 +61,16 @@ const FilterContainer = styled.div`
       margin-bottom: 10px;
     }
     > .question-sort {
+      margin-bottom: 12px;
       > button {
-        font-size: 13px;
+        font-size: 12px;
         border: 1px solid hsl(210, 8%, 55%);
         padding: 8px 10px;
         color: hsl(210, 8%, 45%);
         @media screen and (max-width: 640px) {
+          height: 35.44px;
+          padding-left: 0.4em;
+          padding-right: 0.4em;
           flex-direction: column-reverse;
         }
         cursor: pointer;
@@ -102,26 +102,20 @@ const FilterContainer = styled.div`
     }
   }
 `;
-export const Tab = () => {
+export const TagsTab = () => {
   // ✨ 정렬
-  const [selected, setSelected] = useState('New users');
+  const [selected, setSelected] = useState('Popular');
   // redux?
   const sortClick = (e) => {
     switch (e.target.value) {
-      case 'Reputation':
-        setSelected('Reputation');
+      case 'Popular':
+        setSelected('Popular');
         break;
-      case 'New users':
-        setSelected('New users');
+      case 'Name':
+        setSelected('Name');
         break;
-      case 'Voters':
-        setSelected('Voters');
-        break;
-      case 'Editors':
-        setSelected('Editors');
-        break;
-      case 'Moderators':
-        setSelected('Moderators');
+      case 'New':
+        setSelected('New');
         break;
       default:
         break;
@@ -134,45 +128,31 @@ export const Tab = () => {
         <input
           type="text"
           className="logo-search"
-          placeholder="Filter by user"
+          placeholder="Filter by tag name"
         />
       </div>
       <div className="sort">
         <div className="question-sort">
           <button
             onClick={sortClick}
-            className={selected === 'Reputation' ? 'is-selected' : ''}
-            value={'Reputation'}
+            className={selected === 'Popular' ? 'is-selected' : ''}
+            value={'Popular'}
           >
-            Reputation
+            Popular
           </button>
           <button
             onClick={sortClick}
-            className={selected === 'New users' ? 'is-selected' : ''}
-            value={'New users'}
+            className={selected === 'Name' ? 'is-selected' : ''}
+            value={'Name'}
           >
-            New users
+            Name
           </button>
           <button
             onClick={sortClick}
-            className={selected === 'Voters' ? 'is-selected' : ''}
-            value={'Voters'}
+            className={selected === 'New' ? 'is-selected' : ''}
+            value={'New'}
           >
-            Voters
-          </button>
-          <button
-            onClick={sortClick}
-            className={selected === 'Editors' ? 'is-selected' : ''}
-            value={'Editors'}
-          >
-            Editors
-          </button>
-          <button
-            onClick={sortClick}
-            className={selected === 'Moderators' ? 'is-selected' : ''}
-            value={'Moderators'}
-          >
-            Moderators
+            New
           </button>
         </div>
       </div>

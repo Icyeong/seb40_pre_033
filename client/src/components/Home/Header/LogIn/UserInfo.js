@@ -1,6 +1,9 @@
 import styled from 'styled-components';
-import { useState } from 'react';
-import { Card } from './Card';
+// import { useState } from 'react';
+// import { Card } from './Card';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLoginStatus } from '../../../../redux/actions/userAction';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Box = styled.div`
   display: flex;
@@ -16,9 +19,9 @@ export const UserIcon = styled.div`
   height: 25px;
   border-radius: 3px;
   overflow: hidden;
-  background-image: url(https://source.unsplash.com/random);
+  background-image: url(https://www.gravatar.com/avatar/bbe9331b29e219cb3488180135a01921?s=256&d=identicon&r=PG);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 `;
 
 // 클릭 시 card 이동
@@ -34,20 +37,35 @@ export const UserName = styled.span`
   font-weight: 700;
 `;
 
-export const UserInfo = ({ user }) => {
-  const [openCard, setOpencard] = useState(false);
-  console.log(user);
+export const UserInfo = () => {
+  // const [openCard, setOpencard] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const user = useSelector((state) => state.userReducer.data);
+
+  // 로그아웃
+  const logoutHandler = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    dispatch(getLoginStatus({ isLogin: false }));
+    navigate('/');
+    window.location.reload();
+  };
 
   return (
     <Box>
-      <UserIcon>
-        <UserIconButton
+      <Link to="/users" className="user-button">
+        <UserIcon />
+      </Link>
+      <UserName>{user && user.nickname}</UserName>
+      {/* <UserIconButton
           className="user-button"
           onClick={() => setOpencard((prev) => !prev)}
-        />
-      </UserIcon>
-      {openCard && <Card user={user} setOpencard={setOpencard} />}
-      <UserName>{user.nickname}</UserName>
+        /> */}
+      {/* {openCard && <Card user={user} setOpencard={setOpencard} />} */}
+      <button onClick={logoutHandler}>로그아웃</button>
     </Box>
   );
 };

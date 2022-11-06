@@ -247,6 +247,7 @@ export const Top = styled.div`
   -webkit-box-align: center;
   align-items: center;
   padding: 0px 15px;
+  border: 3px red solid;
 `;
 
 export const AskTitle = styled.div`

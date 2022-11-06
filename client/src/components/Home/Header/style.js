@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export const NavBar = styled.div`
   padding-right: 12px;
   position: fixed;
+  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
