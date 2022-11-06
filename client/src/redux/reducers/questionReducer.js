@@ -10,7 +10,7 @@ import {
 } from '../actions/questionAction';
 
 const initialState = {
-  article_id: 0,
+  articleId: 0,
   title: '',
   content: '',
   email: '',
@@ -21,7 +21,7 @@ const initialState = {
 
 // dummy
 // const initialState = {
-//   article_id: 1,
+//   articleId: 1,
 //   title: '질문 제목',
 //   content: '질문 내용',
 //   email: '질문 작성자 이메일',

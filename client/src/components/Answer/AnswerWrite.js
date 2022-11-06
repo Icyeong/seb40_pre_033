@@ -68,11 +68,11 @@ export const AnswerWrite = () => {
   const inputData = { content: body };
 
   useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
-    console.log(
-      '#3',
-      bodyRef.current.querySelector('.note-editable').innerText
-    );
+    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
+    // console.log(
+    //   '#3',
+    //   bodyRef.current.querySelector('.note-editable').innerText
+    // );
   });
 
   const handleAddAnswer = async () => {

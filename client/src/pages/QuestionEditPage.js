@@ -48,7 +48,7 @@ export const QuestionEditPage = () => {
 
   const [title, setTitle] = useState(question.title);
   const [body, setBody] = useState('');
-  const [textBody, setTextBody] = useState();
+  const [textBody, setTextBody] = useState('');
 
   const [tagInput, setTagInput] = useState('');
   const [tags, setTags] = useState(['임시']);
@@ -66,7 +66,7 @@ export const QuestionEditPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
   });
 
   const handleEditQuestion = async () => {

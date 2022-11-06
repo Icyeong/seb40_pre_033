@@ -66,7 +66,7 @@ export const AnswerEdit = () => {
   }, []);
 
   useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
   });
 
   const handleEditAnswer = async () => {

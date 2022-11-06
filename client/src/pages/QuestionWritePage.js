@@ -39,7 +39,7 @@ export const QuestionWritePage = () => {
   const inputData = { title, content: body };
 
   useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
   });
 
   const handleAddQuestion = async () => {

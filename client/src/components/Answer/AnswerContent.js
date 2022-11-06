@@ -8,14 +8,13 @@ import {
   PostUser,
   UserInfo,
 } from '../Question/QuestionContent';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { deleteAnswer } from '../../redux/actions/questionAction';
 import useFetch from '../../hooks/useFetch';
 import { useRef } from 'react';
 
 export const AnswerContent = (type) => {
   const dispatch = useDispatch();
-  const { qid } = useParams();
 
   let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
@@ -24,7 +23,7 @@ export const AnswerContent = (type) => {
 
   if (bodyRef.current) {
     bodyRef.current.innerHTML = question.comments[type.idx].content;
-    console.log('#1', bodyRef.current);
+    // console.log('#1', bodyRef.current);
   }
 
   const handleDeleteAnswer = async () => {
@@ -50,9 +49,7 @@ export const AnswerContent = (type) => {
             <>
               <li>
                 <Link
-                  to={`/questions/${qid}/answer/edit/${
-                    question.comments[type.idx].commentId
-                  }`}
+                  to={`/answer/edit/${question.comments[type.idx].commentId}`}
                 >
                   Edit
                 </Link>
