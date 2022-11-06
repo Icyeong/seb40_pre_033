@@ -48,10 +48,8 @@ public class UserController {
         String refreshToken = request.getHeader("Refresh");
 
         Map<String, String> tokens = principalDetailsService.refresh(refreshToken);
-        response.setHeader(HttpHeaders.AUTHORIZATION, tokens.get("access"));
-        if (tokens.get("refresh") != null) {
-            response.setHeader("Refresh", tokens.get("refresh"));
-        }
+        response.setHeader(HttpHeaders.AUTHORIZATION, tokens.get("Authorization"));
+        response.setHeader("Refresh", tokens.get("Refresh"));
 
         return new ResponseEntity<>(new SingleResponseDto<Map<String, String>>(tokens), HttpStatus.OK);
     }
