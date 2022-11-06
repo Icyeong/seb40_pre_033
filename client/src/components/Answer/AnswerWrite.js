@@ -37,7 +37,7 @@ export const PostAnswerButton = styled.button`
   background-color: var(--theme-button-primary-background-color);
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   padding: 10.4px;
-
+  margin-bottom: 25px;
   &:active,
   &:hover,
   &:focus {

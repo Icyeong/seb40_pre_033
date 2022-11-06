@@ -15,7 +15,6 @@ import {
   AskText2,
   AskTitle,
   AskTop,
-  AsWrapper,
   BodyErrorIcon,
   Box,
   Button,
@@ -118,10 +117,11 @@ export const Main = () => {
   };
   return (
     <Wrapper>
-      <AsWrapper>
+      <div>
         <AskImg>
-          <AskTitle>Ask public Question </AskTitle>
-          <AskTop></AskTop>
+          <AskTop>
+            <AskTitle>Ask public Question </AskTitle>
+          </AskTop>
         </AskImg>
         <MainContents>
           <ContentsUserWrite>
@@ -235,7 +235,7 @@ export const Main = () => {
         <PostAnswerButton onClick={handleAddQuestion}>
           Post your Question
         </PostAnswerButton>
-      </AsWrapper>
+      </div>
     </Wrapper>
   );
 };

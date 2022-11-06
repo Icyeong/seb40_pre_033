@@ -13,6 +13,7 @@ const Top = styled.div`
   -webkit-box-align: center;
   align-items: center;
   padding: 0px 15px;
+  width: 100%;
 
   // Mobile
   @media screen and (max-width: 640px) {
@@ -26,7 +27,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 0px 0px 24px 24px;
-
+  width: 100%;
   // Mobile
   @media screen and (max-width: 640px) {
     > h2 {

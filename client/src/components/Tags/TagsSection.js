@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { TagsPagination } from './TagsPagination';
 
 export const TagBox = styled.ul`
   margin: 4px 0;
@@ -27,6 +26,7 @@ export const TagInfo = styled.div`
   height: 100%;
 
   > div {
+    width: 100%;
     padding: 12px;
     border: 1px solid #babfc4;
     border-radius: 4px;
@@ -62,12 +62,41 @@ export const TagInfo = styled.div`
       margin-bottom: 12px;
       font-size: 13px;
       color: var(--black-500);
-      max-width: 227px;
       max-height: 67px;
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+    // Mobile
+    @media screen and (max-width: 1260px) {
+      .h5 > {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+    // Mobile
+    @media screen and (max-width: 980px) {
+      .h5 > {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+    // Mobile
+    @media screen and (max-width: 640px) {
+      .h5 > {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
     }
   }
 `;
@@ -290,7 +319,6 @@ export const TagsSection = () => {
             </TagQuestion>
           </div>
         </TagInfo>
-        <TagsPagination />
       </TagBox>
     </>
   );

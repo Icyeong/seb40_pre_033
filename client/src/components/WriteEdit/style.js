@@ -1,20 +1,28 @@
 import styled from 'styled-components';
 
 export const AskTop = styled.div`
-  width: 600px;
   height: 130.34px;
-  background: url(https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368);
-  background-repeat: no-repeat;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const AskImg = styled.div`
-  width: 100%;
+  background-image: url(https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368);
+  background-repeat: no-repeat;
+  background-position: right;
   display: flex;
   justify-content: space-between;
+  border: 1px pink solid;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const AskTitle = styled.div`
-  width: 400px;
+  width: 100%;
   height: 100px;
   font-size: 27px;
   font-weight: 650;
@@ -22,6 +30,9 @@ export const AskTitle = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+  @media screen and (max-width: 640px) {
+    font-size: 22px;
+  }
 `;
 
 export const SidebarBox = styled.div`

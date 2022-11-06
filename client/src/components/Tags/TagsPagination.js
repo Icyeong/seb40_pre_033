@@ -1,7 +1,11 @@
-import styled from 'styled-components';
-import Pagination from 'react-js-pagination';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import Pagination from 'react-js-pagination';
+import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
+import useFetch from '../../hooks/useFetch';
+import { getQuestions } from '../../redux/actions/questionsAction';
+import { Loading } from '../Common/Loading';
+import { Container } from '../questionsList/style';
 
 export const Box = styled.div`
   display: flex;
@@ -55,16 +59,50 @@ export const Box = styled.div`
 `;
 
 export const TagsPagination = () => {
-  let { page, size, totalElements, totalPages } = useSelector(
-    (state) => state.questionsReducer.pageInfo
-  );
-  const [currentPage, setCurrentPage] = useState(page);
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+
+  let { page, size, totalElements, totalPages } = useSelector;
+  // ✨ 페이지네이션
+  const [currentPage, setCurrentPage] = useState(page); // 현재 페이지 번호
+  const [perPageCount, setPerPageCount] = useState(size); // 페이지 당 글 개수
+
+  const perPageCountList = [10, 15, 20];
+
   const handleCurrentPageChange = async (e) => {
-    console.log('Users 현재 페이지 번호 체인지');
+    console.log('현재 페이지 번호 체인지');
+
+    setIsLoading(true);
     setCurrentPage(e);
+
+    const res = await useFetch(
+      'GET',
+      `/articles?page=${e}&size=${perPageCount}`
+    ).finally(() => {
+      setIsLoading(false);
+    });
+
+    dispatch(getQuestions(res));
   };
+
+  const perPageCountClick = async (e) => {
+    console.log('페이지 당 글 개수 체인지');
+
+    setIsLoading(true);
+    setPerPageCount(Number(e.target.value));
+
+    const res = await useFetch(
+      'GET',
+      `/articles?page=${currentPage}&size=${e.target.value}`
+    ).finally(() => {
+      setIsLoading(false);
+    });
+
+    dispatch(getQuestions(res));
+  };
+
   return (
-    <Box>
+    <Container>
       <Pagination
         activePage={currentPage}
         itemsCountPerPage={size}
@@ -75,6 +113,22 @@ export const TagsPagination = () => {
         prevPageText="Prev"
         nextPageText="Next"
       />
-    </Box>
+      <div className="btn-per-page">
+        {perPageCountList.map((el, idx) => {
+          return (
+            <button
+              key={idx}
+              value={el}
+              className={el === perPageCount ? 'btn-active' : ''}
+              onClick={perPageCountClick}
+            >
+              {el}
+            </button>
+          );
+        })}
+        <p>per page</p>
+      </div>
+      {isLoading && <Loading />}
+    </Container>
   );
 };
