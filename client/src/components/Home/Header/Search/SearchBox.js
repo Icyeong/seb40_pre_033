@@ -1,36 +1,31 @@
 import { AiOutlineSearch } from 'react-icons/ai';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { SearchHints } from './SearchHints';
 
 export const SearchBox = () => {
   const modalRef = useRef();
+  const searchRef = useRef();
 
-  const onFocusInput = () => {
-    if (!modalRef.current) {
-      return;
+  const modalHandler = ({ target }) => {
+    if (searchRef.current.contains(target)) {
+      modalRef.current.style.display = 'block';
+    } else {
+      modalRef.current.style.display = 'none';
     }
-    modalRef.current.style.display = 'block';
-    console.log(modalRef.current.style);
   };
 
-  const onBlurInput = () => {
-    if (!modalRef.current) {
-      return;
-    }
-    modalRef.current.style.display = 'none';
-  };
+  useEffect(() => {
+    window.addEventListener('click', modalHandler);
+    return () => {
+      window.removeEventListener('click', modalHandler);
+    };
+  });
 
   return (
-    <form className="search">
+    <form ref={searchRef} className="search">
       <div className="input-search">
         <AiOutlineSearch size={20} color="#838C95" />
-        <input
-          type="text"
-          className="logo-search"
-          placeholder="Search..."
-          onFocus={onFocusInput}
-          onBlur={onBlurInput}
-        />
+        <input type="text" className="logo-search" placeholder="Search..." />
         <div ref={modalRef} className="search-hints">
           <SearchHints />
         </div>
