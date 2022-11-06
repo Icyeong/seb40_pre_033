@@ -14,7 +14,7 @@ export const AskImg = styled.div`
   background-position: right;
   display: flex;
   justify-content: space-between;
-  @media screen and (max-width: 940px) {
+  @media screen and (max-width: 840px) {
     background-image: none;
     width: 100%;
   }
