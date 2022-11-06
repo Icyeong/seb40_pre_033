@@ -31,6 +31,9 @@ public class User extends BaseTime {
     @Column(length = 20)
     private String nickname;
 
+    @Column
+    private String refreshToken;
+
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
     private UserStatus userStatus = UserStatus.USER_ACTIVE;
@@ -70,5 +73,9 @@ public class User extends BaseTime {
 
     public void addComment(Comment comment) {
         comments.add(comment);
+    }
+
+    public void updateRefreshToken(String newToken) {
+        this.refreshToken = newToken;
     }
 }

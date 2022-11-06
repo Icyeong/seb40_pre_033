@@ -14,6 +14,7 @@ import { useDispatch } from 'react-redux';
 import { getLoginStatus, getmyInfo } from './redux/actions/userAction';
 import jwt_decode from 'jwt-decode';
 import { refreshToken } from './hooks/refreshToken';
+import { TagsPage } from './pages/TagsPage';
 import SignupRecovery from './pages/SignupRecovery';
 import User from './pages/User';
 import { UsersPage } from './pages/UsersPage';
@@ -84,6 +85,7 @@ function App() {
             element={<AnswerEdit />}
           />
           <Route path="/users/user" element={<User />} />
+          <Route path="/tags" element={<TagsPage />} />
         </Routes>
       </Router>
     </>
