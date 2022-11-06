@@ -81,8 +81,8 @@ function App() {
           <Route path="/questions/ask" element={<QuestionWritePage />} />
           <Route path="/questions/edit/:qid" element={<QuestionEditPage />} />
           <Route path="answer/edit/:aid" element={<AnswerEdit />} />
+          <Route path="/users/user" element={<User />} />
           <Route path="/tags" element={<TagsPage />} />
-          <Route path="/users" element={<User />} />
         </Routes>
       </Router>
     </>
