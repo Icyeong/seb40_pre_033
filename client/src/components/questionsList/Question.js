@@ -20,7 +20,12 @@ export const Question = (type) => {
     <div className="questions">
       <div className="post-summury">
         <div>{questions[type.idx].vote} votes</div>
-        <div>{questions[type.idx].comments.length} answers</div>
+        <div>
+          {questions[type.idx].comments
+            ? questions[type.idx].comments.length
+            : 0}
+          answers
+        </div>
         <div>0 views</div>
       </div>
       <div className="question-list">

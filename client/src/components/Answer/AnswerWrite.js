@@ -61,6 +61,7 @@ export const AnswerWrite = () => {
   const bodyRef = useRef();
 
   const [body, setBody] = useState();
+  const [textBody, setTextBody] = useState();
 
   const [bodyError, setBodyError] = useState(false);
 
@@ -68,6 +69,10 @@ export const AnswerWrite = () => {
 
   useEffect(() => {
     console.log('#2', bodyRef.current.querySelector('.note-editable'));
+    console.log(
+      '#3',
+      bodyRef.current.querySelector('.note-editable').innerText
+    );
   });
 
   const handleAddAnswer = async () => {
@@ -76,7 +81,7 @@ export const AnswerWrite = () => {
     bodyRef.current.classList.remove('error');
 
     // 유효성 검사
-    if (body.length < 30) {
+    if (textBody.length < 30) {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
@@ -87,7 +92,7 @@ export const AnswerWrite = () => {
       console.log('add answer res', res);
       dispatch(addAnswer(res));
 
-      setBody('');
+      bodyRef.current.querySelector('.note-editable').innerHTML = '';
     }
   };
 
@@ -100,6 +105,9 @@ export const AnswerWrite = () => {
           height={300}
           onBlur={() => {
             setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
+            setTextBody(
+              bodyRef.current.querySelector('.note-editable').innerText
+            );
           }}
         />
       </SummerNoteWrapper>

@@ -56,7 +56,6 @@ export const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_QUESTIONS:
       return {
-        // ✨ 테스트 할 때, ...state.data 지우기
         data: [...action.payload.data],
         pageInfo: { ...state.pageInfo, ...action.payload.pageInfo },
       };

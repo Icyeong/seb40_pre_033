@@ -52,6 +52,7 @@ export const AnswerEdit = () => {
   let question = useSelector((state) => state.questionReducer);
 
   const [body, setBody] = useState('');
+  const [textBody, setTextBody] = useState();
   const [bodyError, setBodyError] = useState(false);
 
   const answer = question.comments.filter(
@@ -73,7 +74,7 @@ export const AnswerEdit = () => {
 
     bodyRef.current.classList.remove('error');
 
-    if (body.length < 30) {
+    if (textBody.length < 30) {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
@@ -120,6 +121,10 @@ export const AnswerEdit = () => {
                           setBody(
                             bodyRef.current.querySelector('.note-editable')
                               .innerHTML
+                          );
+                          setTextBody(
+                            bodyRef.current.querySelector('.note-editable')
+                              .innerText
                           );
                         }}
                       />

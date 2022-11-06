@@ -16,20 +16,7 @@ import { useRef } from 'react';
 export const AnswerContent = (type) => {
   const dispatch = useDispatch();
   const { qid } = useParams();
-  // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'hello@g.com',
-    nickname: 'b',
-    userId: 1,
-  };
-  // const isNotLoginUser = {
-  //   email: '',
-  //   nickname: '',
-  //   userId: 0,
-  // };
-  let { email } = isLoginUser;
 
-  // let { email } = useSelector((state) => state.userReducer);
   let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
