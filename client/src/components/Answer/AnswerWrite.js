@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
@@ -31,14 +31,14 @@ const Block = styled.div`
   }
 `;
 
-const PostAnswerButton = styled.button`
-  padding: 10.4px;
+export const PostAnswerButton = styled.button`
   border: 1px solid transparent;
   border-radius: 3px;
   font-size: 13px;
   color: var(--theme-button-primary-color);
   background-color: var(--theme-button-primary-background-color);
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+  padding: 10.4px;
 
   &:active,
   &:hover,
@@ -65,6 +65,10 @@ export const AnswerWrite = () => {
   const [bodyError, setBodyError] = useState(false);
 
   const inputData = { content: body };
+
+  useEffect(() => {
+    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+  });
 
   const handleAddAnswer = async () => {
     setBodyError(false);
@@ -94,10 +98,8 @@ export const AnswerWrite = () => {
         <ReactSummernoteLite
           id="sample"
           height={300}
-          value={body}
-          onChange={(e) => {
-            console.log(e);
-            setBody(e);
+          onBlur={() => {
+            setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
           }}
         />
       </SummerNoteWrapper>

@@ -13,17 +13,13 @@ const Container = styled.div`
   width: calc(100% - 164px);
   max-width: 1100px;
   padding: 24px;
-  // Mobile
-  @media screen and (max-width: 640px) {
-    margin-top: 40px;
-  }
 
   > h1 {
     font-size: 27px;
     margin-bottom: 24px;
     // Mobile
     @media screen and (max-width: 640px) {
-      display: none;
+      font-size: 22px;
     }
   }
 

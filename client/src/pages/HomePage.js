@@ -6,7 +6,6 @@ import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { SidebarWidget } from '../components/Home/SidebarWidget/SidebarWidget';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import useFetch from '../hooks/useFetch';
-// import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getQuestions } from '../redux/actions/questionsAction';
 import { useEffect, useState } from 'react';
@@ -41,13 +40,13 @@ export const HomePage = () => {
 
     setIsLoading(true);
 
+    // 질문 리스트 가져오기
     const res = await useFetch(
       'GET',
       `/articles?page=${initPage}&size=${initSize}`
     ).finally(() => {
       setIsLoading(false);
     });
-
     console.log('getQuestions res', res);
     dispatch(getQuestions(res));
   };

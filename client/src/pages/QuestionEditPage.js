@@ -29,7 +29,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { editQuestion } from '../redux/actions/questionsAction';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import { Header } from '../components/Home/Header/Header';
@@ -48,7 +48,7 @@ export const QuestionEditPage = () => {
   let question = useSelector((state) => state.questionReducer);
 
   const [title, setTitle] = useState(question.title);
-  const [body, setBody] = useState(question.content);
+  const [body, setBody] = useState('');
 
   const [tagInput, setTagInput] = useState('');
   const [tags, setTags] = useState(['임시']);
@@ -56,7 +56,18 @@ export const QuestionEditPage = () => {
   const [titleError, setTitleError] = useState(false);
   const [bodyError, setBodyError] = useState(false);
   const [tagsError, setTagsError] = useState(false);
-  const inputData = { title, content: body, tags };
+
+  // const inputData = { title, content: body, tags };
+  const inputData = { title, content: body };
+
+  useEffect(() => {
+    bodyRef.current.querySelector('.note-editable').innerHTML =
+      question.content;
+  }, []);
+
+  useEffect(() => {
+    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+  });
 
   const handleEditQuestion = async () => {
     setTitleError(false);
@@ -85,12 +96,12 @@ export const QuestionEditPage = () => {
       console.log('ADD QUESTION');
       console.log(inputData);
 
-      const res = await useFetch('PATCH', `/article/${qid}`, inputData);
+      const res = await useFetch('PATCH', `/questions/${qid}`, inputData);
       console.log('edit question res', res);
       dispatch(editQuestion(res));
     }
 
-    navigate(`/article/${qid}`);
+    navigate(`/questions/${qid}`);
   };
 
   const TagInputChange = (e) => {
@@ -162,10 +173,11 @@ export const QuestionEditPage = () => {
                       <ReactSummernoteLite
                         id="sample"
                         height={300}
-                        value={body}
-                        onChange={(e) => {
-                          console.log(e);
-                          setBody(e);
+                        onBlur={() => {
+                          setBody(
+                            bodyRef.current.querySelector('.note-editable')
+                              .innerHTML
+                          );
                         }}
                       />
                     </SummerNoteWrapper>

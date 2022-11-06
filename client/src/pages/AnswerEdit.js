@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import ReactSummernoteLite from '@easylogic/react-summernote';
 import useFetch from '../hooks/useFetch';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import { editAnswer } from '../redux/actions/questionAction';
@@ -45,24 +45,30 @@ export const AnswerEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { qid, aid } = useParams();
   const bodyRef = useRef();
-  const [bodyError, setBodyError] = useState(false);
+
+  const { qid, aid } = useParams();
 
   let question = useSelector((state) => state.questionReducer);
+
+  const [body, setBody] = useState('');
+  const [bodyError, setBodyError] = useState(false);
 
   const answer = question.comments.filter(
     (answer) => answer.comment_id == aid
   )[0];
 
-  const [body, setBody] = useState(answer.content);
-
   const inputData = { content: body };
 
-  const handleEditAnswer = async () => {
-    // 요청 검사할때 한 번만 데이터를 넣어줌
-    setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
+  useEffect(() => {
+    bodyRef.current.querySelector('.note-editable').innerHTML = answer.content;
+  }, []);
 
+  useEffect(() => {
+    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+  });
+
+  const handleEditAnswer = async () => {
     setBodyError(false);
 
     bodyRef.current.classList.remove('error');
@@ -107,7 +113,16 @@ export const AnswerEdit = () => {
                   <Box>
                     <AskText1>Body</AskText1>
                     <SummerNoteWrapper ref={bodyRef}>
-                      <ReactSummernoteLite id="sample" height={300} />
+                      <ReactSummernoteLite
+                        id="sample"
+                        height={300}
+                        onBlur={() => {
+                          setBody(
+                            bodyRef.current.querySelector('.note-editable')
+                              .innerHTML
+                          );
+                        }}
+                      />
                     </SummerNoteWrapper>
                     {bodyError && (
                       <>

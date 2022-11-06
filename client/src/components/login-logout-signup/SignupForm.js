@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BlueButton } from '../../assets/styles/LoginStyle';
 import useFetch from '../../hooks/useFetch';
+import { getmyInfo } from '../../redux/actions/userAction';
 import Input from './Input';
 import OptionalInput from './OptionalInput';
 import Recaptcha from './Recaptcha';
@@ -30,6 +32,7 @@ const SignupForm = () => {
   const isEmailValid = regExp.test(email);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // input 변경값 저장
   const inputHandler = (e) => {
@@ -104,6 +107,7 @@ const SignupForm = () => {
       // 로봇이 아닙니다
     } else if (!robotCheck) {
       recaptchaTxt.current.classList.add('inValid');
+      return;
     }
 
     // 모든 유효성 체크 완료!
@@ -116,11 +120,25 @@ const SignupForm = () => {
       opt,
     };
 
+    console.log('보내는 데이터 :', body);
     // 회원가입 요청
     const res = await useFetch('POST', '/auth/signup', body);
-    console.log(res);
-    // 페이지 전환
-    navigate('/users/signup/success');
+    console.log('응답코드', res);
+    // 이메일은 있으나 비밀번호가 다른경우
+    if (res === 409) {
+      navigate('/users/signup/recovery');
+      // 입력 정보가 이미 있으면 로그인
+    } else if (res === 303) {
+      await useFetch('POST', '/auth/login', { email, password });
+      // // 내 정보 가져오기
+      const myInfo = await useFetch('GET', '/user/me');
+      dispatch(getmyInfo(myInfo));
+
+      navigate('/');
+      // 회원가입 성공
+    } else {
+      navigate('/users/signup/success');
+    }
   };
 
   return (
