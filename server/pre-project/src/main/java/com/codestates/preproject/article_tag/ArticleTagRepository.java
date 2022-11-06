@@ -1,4 +1,4 @@
-package com.codestates.preproject.article_tag;
+/*package com.codestates.preproject.article_tag;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,4 +10,4 @@ import java.util.List;
 public interface ArticleTagRepository extends JpaRepository<ArticleTag, Long> {
 
     List<ArticleTag> findByArticleId(Long articleId);
-}
+}*/
