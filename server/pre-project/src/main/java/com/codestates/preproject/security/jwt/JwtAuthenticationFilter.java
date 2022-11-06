@@ -1,8 +1,10 @@
 package com.codestates.preproject.security.jwt;
 
+import com.codestates.preproject.security.userDetails.PrincipalDetailsService;
 import com.codestates.preproject.user.dto.UserLoginDto;
 import com.codestates.preproject.user.dto.UserResponseDto;
 import com.codestates.preproject.user.entity.User;
+import com.codestates.preproject.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import lombok.SneakyThrows;
@@ -23,10 +25,12 @@ import java.util.Map;
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;
+    private final PrincipalDetailsService principalDetailsService;
 
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtTokenizer jwtTokenizer) {
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtTokenizer jwtTokenizer, PrincipalDetailsService principalDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenizer = jwtTokenizer;
+        this.principalDetailsService = principalDetailsService;
     }
 
     @SneakyThrows
@@ -50,6 +54,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String accessToken = delegateAccessToken(user);
         String refreshToken = delegateRefreshToken(user);
+
+        principalDetailsService.updateRefreshToken(user.getEmail(), refreshToken);
 
         response.setHeader("Authorization", "Bearer " + accessToken);
         response.setHeader("Refresh", refreshToken);
