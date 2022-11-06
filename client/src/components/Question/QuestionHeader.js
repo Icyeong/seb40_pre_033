@@ -13,7 +13,6 @@ const Title = styled.div`
     color: var(--black-700);
 
     display: -webkit-box;
-    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     word-break: break-all;

@@ -15,7 +15,6 @@ export const Body = styled.div`
   font-size: 15px;
 
   display: -webkit-box;
-  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-all;
