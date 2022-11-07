@@ -6,6 +6,20 @@ export const Sidebar = () => {
   return (
     <SidebarContainer>
       <Wrapper>
+        <div>PUBLIC</div>
+        <NavLinkMenu to="/" className="question-menu">
+          <EarthSvg />
+          Questions
+        </NavLinkMenu>
+        <div className="tab-menu">
+          <Link to="/tags">Tags</Link>
+        </div>
+        <div className="tab-menu">
+          <Link to="/users">Users</Link>
+        </div>
+        <div>
+          COLLECTIVES
+          <InfoSvg />
         <div className="side-bar-tabs">
           <NavLink className="home-link" to="/">
             <p>Home</p>

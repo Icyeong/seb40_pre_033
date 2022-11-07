@@ -154,6 +154,11 @@ export const StyledQuestions = styled.div`
         margin: 10px;
         flex-direction: column;
 
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
         // Mobile
         @media screen and (max-width: 640px) {
           font-size: 11px;

@@ -5,12 +5,10 @@ import { useParams } from 'react-router-dom';
 import { addAnswer } from '../../redux/actions/questionAction';
 import ReactSummernoteLite from '@easylogic/react-summernote';
 import useFetch from '../../hooks/useFetch';
-import {
-  BodyErrorIcon,
-  SummerNoteWrapper,
-} from '../../pages/QuestionWritePage';
+import { BodyErrorIcon } from '../WriteEdit/style';
 import { ErrorMessage } from '../Question/ErrorMessage';
 import { HasErrorSvg } from '../../assets/images/LoginSvg';
+import { SummerNoteWrapper } from '../WriteEdit/style';
 
 const Block = styled.div`
   h2 {
@@ -39,7 +37,7 @@ export const PostAnswerButton = styled.button`
   background-color: var(--theme-button-primary-background-color);
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   padding: 10.4px;
-
+  margin-bottom: 25px;
   &:active,
   &:hover,
   &:focus {
