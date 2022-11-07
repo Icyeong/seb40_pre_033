@@ -10,9 +10,10 @@ import { UserContainer } from '../components/Users/UserContainer';
 import { Tab } from '../components/Users/Tab';
 
 const Container = styled.div`
-  width: calc(100% - 164px);
-  max-width: 1100px;
+  width: 100%;
+  border-left-width: 1px;
   padding: 24px;
+  margin-right: 24px;
 
   > h1 {
     font-size: 27px;
@@ -44,7 +45,7 @@ export const UsersPage = () => {
       <Header />
       <HeaderMargin />
       <Block>
-        <Sidebar />
+        <Sidebar page="users" />
         <Container>
           <h1>Users</h1>
           {/* reducer 이용 시 여기서 namelist 만들어서 props */}

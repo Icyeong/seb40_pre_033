@@ -24,7 +24,7 @@ export const QuestionWritePage = () => {
 
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [textBody, setTextBody] = useState();
+  const [textBody, setTextBody] = useState('');
 
   const [tagInput, setTagInput] = useState('');
   const [tags, setTags] = useState([]);

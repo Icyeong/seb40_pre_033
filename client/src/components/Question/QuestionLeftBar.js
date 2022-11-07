@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import {
   ArrowDownSvg,
@@ -6,12 +6,13 @@ import {
   BookmarkSvg,
   HistorySvg,
 } from '../../assets/images/QuestionSvg';
-import {
-  voteUpQuestion,
-  voteDownQuestion,
-} from '../../redux/actions/questionAction';
-import { useParams } from 'react-router-dom';
-import useFetch from '../../hooks/useFetch';
+// import {
+//   voteUpQuestion,
+//   voteDownQuestion,
+// } from '../../redux/actions/questionAction';
+// import { useParams } from 'react-router-dom';
+// import useFetch from '../../hooks/useFetch';
+import { useState } from 'react';
 
 export const Block = styled.div`
   display: flex;
@@ -46,23 +47,29 @@ export const Block = styled.div`
 `;
 
 export const QuestionLeftBar = () => {
-  const dispatch = useDispatch();
-  const { qid } = useParams();
+  // const dispatch = useDispatch();
+  // const { qid } = useParams();
 
-  let question = useSelector((state) => state.questionReducer);
+  // let question = useSelector((state) => state.questionReducer);
+
+  const [vote, setVote] = useState(0);
 
   const handleVoteUpQuestion = async () => {
-    const res = await useFetch('GET', `/article/${qid}/like`);
-    dispatch(voteUpQuestion(res));
+    // const res = await useFetch('GET', `/article/${qid}/like`);
+    // dispatch(voteUpQuestion(res));
 
-    console.log('VOTE UP QUESTION', res);
+    // console.log('VOTE UP QUESTION', res);
+
+    setVote(vote + 1);
   };
 
   const handleVoteDownQuestion = async () => {
-    const res = await useFetch('GET', `/article/${qid}/dislike`);
-    dispatch(voteDownQuestion(res));
+    // const res = await useFetch('GET', `/article/${qid}/dislike`);
+    // dispatch(voteDownQuestion(res));
 
-    console.log('VOTE DOWN QUESTION', res);
+    // console.log('VOTE DOWN QUESTION', res);
+
+    setVote(vote - 1);
   };
 
   return (
@@ -70,7 +77,7 @@ export const QuestionLeftBar = () => {
       <button onClick={handleVoteUpQuestion}>
         <ArrowUpSvg />
       </button>
-      <span>{question.vote}</span>
+      <span>{vote}</span>
       <button onClick={handleVoteDownQuestion}>
         <ArrowDownSvg />
       </button>
