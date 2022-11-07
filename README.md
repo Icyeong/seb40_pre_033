@@ -69,7 +69,7 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 ## 📝 커밋 메세지
 
-유형|instructions
+유형|설명
 :---:|:---:
 feat|새로운 기능에 대한 커밋
 fix|버그 수정에 대한 커밋
