@@ -36,7 +36,7 @@ export const TagsPage = () => {
       <Header />
       <HeaderMargin />
       <Block>
-        <Sidebar />
+        <Sidebar page="tags" />
         <Container>
           <TagsHeader />
           <TagsTab />

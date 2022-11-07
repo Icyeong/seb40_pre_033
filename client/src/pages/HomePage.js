@@ -57,7 +57,7 @@ export const HomePage = () => {
         <Header />
         <HeaderMargin />
         <Block>
-          <Sidebar />
+          <Sidebar page="home" />
           <HomeSidebarMargin />
           <QuestionsList />
           <aside>

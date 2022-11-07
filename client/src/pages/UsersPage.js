@@ -45,7 +45,7 @@ export const UsersPage = () => {
       <Header />
       <HeaderMargin />
       <Block>
-        <Sidebar />
+        <Sidebar page="users" />
         <Container>
           <h1>Users</h1>
           {/* reducer 이용 시 여기서 namelist 만들어서 props */}

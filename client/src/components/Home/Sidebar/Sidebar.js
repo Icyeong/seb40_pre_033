@@ -1,29 +1,29 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { InfoSvg, StarSvg, EarthSvg } from '../../../assets/images/HomeSvg';
 import { SidebarContainer, Wrapper, Teams } from './Sidebar_style';
 
-export const Sidebar = () => {
-  const [selected, setSelected] = useState('Home');
+export const Sidebar = (type) => {
+  // const [selected, setSelected] = useState('Home');
 
-  const sortClick = (e) => {
-    switch (e.target.value) {
-      case 'Home':
-        setSelected('Home');
-        break;
-      case 'Questions':
-        setSelected('Questions');
-        break;
-      case 'Tags':
-        setSelected('Tags');
-        break;
-      case 'Users':
-        setSelected('Users');
-        break;
+  // const sortClick = (e) => {
+  //   switch (e.target.value) {
+  //     case 'Home':
+  //       setSelected('Home');
+  //       break;
+  //     case 'Questions':
+  //       setSelected('Questions');
+  //       break;
+  //     case 'Tags':
+  //       setSelected('Tags');
+  //       break;
+  //     case 'Users':
+  //       setSelected('Users');
+  //       break;
 
-      default:
-        break;
-    }
-  };
+  //     default:
+  //       break;
+  //   }
+  // };
 
   return (
     <SidebarContainer>
@@ -33,32 +33,17 @@ export const Sidebar = () => {
             <div className="companies">Home</div>
           </div>
           <p className="title fc-light">PUBLIC</p>
-          <a
-            onClick={sortClick}
-            className={selected === 'Questions' ? 'is-selected' : ''}
-            value={'Questions'}
-            href="/"
-          >
+          <a href="/" className={type.page === 'home' && 'selected'}>
             <p>
               <EarthSvg />
               Questions
             </p>
           </a>
-          <a
-            onClick={sortClick}
-            className={selected === 'Tags' ? 'is-selected' : ''}
-            value={'Tags'}
-            href="/tags"
-          >
-            <p>Tags</p>
+          <a href="/tags" className={type.page === 'tags' && 'selected'}>
+            <p className="is-padding">Tags</p>
           </a>
-          <a
-            onClick={sortClick}
-            className={selected === 'Users' ? 'is-selected' : ''}
-            value={'Users'}
-            href="/users"
-          >
-            <p>Users</p>
+          <a href="/users" className={type.page === 'users' && 'selected'}>
+            <p className="is-padding">Users</p>
           </a>
           <div className="tab-menu">
             <div className="companies">Companies</div>
