@@ -27,6 +27,7 @@ public class TagResponseDto {
     }
 
     public static TagResponseDto of(Tag tag) {
+
         return new TagResponseDto(tag.getContent(), tag.getName());
     }
 

@@ -2,9 +2,11 @@ package com.codestates.preproject.tag.service;
 
 import com.codestates.preproject.exception.BusinessLogicException;
 import com.codestates.preproject.exception.ExceptionCode;
-import com.codestates.preproject.tag.dto.TagPostDto;
 import com.codestates.preproject.tag.entity.Tag;
 import com.codestates.preproject.tag.repository.TagRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,38 +24,37 @@ public class TagService {
 
     // 태그 1개 조회
     @Transactional
-    public Tag findTag(String name) {
+    public Tag findTag(Long tagId) {
 
-        Tag tag = tagRepository.findByName(name);
-
-        if (tag == null) {
-        }
-
-        return tag;
+        return findVerifiedTag(tagId);
 
     }
 
     // 태그 전체 조회
     @Transactional
-    public List<Tag> findTags() {
-        return tagRepository.findAll();
+    public Page<Tag> findTags(Long articleId, int page, int size) {
+
+        return tagRepository.findAllByArticleId(articleId, PageRequest.of(page, size));
     }
 
     // 태그 생성
     @Transactional
-    public Tag createTag(TagPostDto tagPostDto) {
+    public Tag createTag(Tag tag) {
 
-        Tag tag = tagRepository.findByName(tagPostDto.getName());
+//        tag = tagRepository.findByTagId(tagPostDto.getTagId());
+//
+//        if (tag == null) {
+//            tag = new Tag();
+//            tag.setName(tagPostDto.getName());
+//            tag.setContent(tagPostDto.getContent());
+//
+//            return tagRepository.save(tag);
+//
+//        }
+//
+//        return tag;
 
-        if (tag == null) {
-            tag = new Tag();
-            tag.setName(tagPostDto.getName());
-            tag.setContent(tagPostDto.getContent());
-
-            tagRepository.save(tag);
-        }
-
-        return tag;
+        return tagRepository.save(tag);
 
     }
 
@@ -90,10 +91,10 @@ public class TagService {
     }
 
 
-    // 더미 사용
+    /*// 더미 사용
     @Transactional
     public Tag createTag(Tag tag) {
         return tagRepository.save(tag);
-    }
+    }*/
 
 }

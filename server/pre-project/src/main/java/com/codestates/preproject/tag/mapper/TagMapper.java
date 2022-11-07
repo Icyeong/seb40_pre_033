@@ -1,6 +1,5 @@
 package com.codestates.preproject.tag.mapper;
 
-import com.codestates.preproject.tag.dto.TagDto;
 import com.codestates.preproject.tag.dto.TagPatchDto;
 import com.codestates.preproject.tag.dto.TagPostDto;
 import com.codestates.preproject.tag.dto.TagResponseDto;
