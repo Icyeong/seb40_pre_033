@@ -72,6 +72,6 @@ test|테스트 코드 수정에 대한 커밋
 ---|---|---|
 <img width="1440" alt="로그인" src="https://user-images.githubusercontent.com/107919949/200343852-e44b314a-df48-4048-82cb-334cab130683.png">|<img width="1440" alt="회원가입" src="https://user-images.githubusercontent.com/107919949/200343890-37469751-f783-4111-b826-2667dd49cd46.png">|<img width="1440" alt="회원가입성공" src="https://user-images.githubusercontent.com/107919949/200343940-455dce81-40ae-4786-8291-f0f14a1f8245.png">
 
-Tag|Users|MyPage
+Tag | Users | MyPage
 ---|---|---|
 <img width="1440" alt="태그" src="https://user-images.githubusercontent.com/107919949/200344054-fdadbab0-dbe7-4690-aa4c-e1d262ac91c8.png">|<img width="1440" alt="유저" src="https://user-images.githubusercontent.com/107919949/200344091-b26b8f7d-230c-4bb9-aa23-cc0ba3edbedf.png">|<img width="1440" alt="마이페이지" src="https://user-images.githubusercontent.com/107919949/200344137-0ec331ae-d6a9-4ae3-996c-2af53f1673c3.png">
