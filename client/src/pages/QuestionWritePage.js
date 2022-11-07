@@ -1,40 +1,20 @@
 import styled from 'styled-components';
+import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
-import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
-import { Sidebar } from '../components/Home/Sidebar/Sidebar';
-import { Block } from './HomePage';
-import { BlueButton } from '../components/Common/BlueButton';
-import { CancelButton } from '../components/Common/CancelButton';
+import { useDispatch } from 'react-redux';
+import { addQuestion } from '../redux/actions/questionsAction';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
 import ReactSummernoteLite from '@easylogic/react-summernote';
-import {
-  AskText1,
-  AsWrapper,
-  Box,
-  Button,
-  ContentsUserHelp,
-  ContentsUserWrite,
-  MainContents,
-  SummerNoteWrapper,
-  TagBox,
-  TagInput,
-  TagItem,
-  Text,
-  TitleInput,
-  Wrapper,
-} from './QuestionWritePage';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
-import { Header } from '../components/Home/Header/Header';
-import { editQuestion } from '../redux/actions/questionsAction';
+import useFetch from '../hooks/useFetch';
+import { useNavigate } from 'react-router-dom';
+import { PostAnswerButton } from '../components/Answer/AnswerWrite';
 
-export const QuestionEditPage = () => {
+export const QuestionWritePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -42,16 +22,12 @@ export const QuestionEditPage = () => {
   const bodyRef = useRef();
   const tagsRef = useRef();
 
-  const { qid } = useParams();
-
-  let question = useSelector((state) => state.questionReducer);
-
-  const [title, setTitle] = useState(question.title);
+  const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [textBody, setTextBody] = useState('');
+  const [textBody, setTextBody] = useState();
 
   const [tagInput, setTagInput] = useState('');
-  const [tags, setTags] = useState(['임시']);
+  const [tags, setTags] = useState([]);
 
   const [titleError, setTitleError] = useState(false);
   const [bodyError, setBodyError] = useState(false);
@@ -60,12 +36,7 @@ export const QuestionEditPage = () => {
   // const inputData = { title, content: body, tags };
   const inputData = { title, content: body };
 
-  useEffect(() => {
-    bodyRef.current.querySelector('.note-editable').innerHTML =
-      question.content;
-  }, []);
-
-  const handleEditQuestion = async () => {
+  const handleAddQuestion = async () => {
     setTitleError(false);
     setBodyError(false);
     setTagsError(false);
@@ -89,13 +60,13 @@ export const QuestionEditPage = () => {
         tagsRef.current.classList.add('error');
       }
     } else {
-      const res = await useFetch('PATCH', `/article/${qid}`, inputData);
-      dispatch(editQuestion(res));
+      const res = await useFetch('POST', '/article', inputData);
+      dispatch(addQuestion(res));
 
-      console.log('EDIT QUESTION', res);
+      console.log('ADD QUESTION', res);
+
+      navigate('/');
     }
-
-    navigate(`/questions/${qid}`);
   };
 
   const TagInputChange = (e) => {
@@ -120,155 +91,378 @@ export const QuestionEditPage = () => {
     <div>
       <Top>
         <Header />
-        <HeaderMargin />
-        <Block>
-          <Sidebar />
-          <Wrapper>
-            <AsWrapper>
-              <AskTitle>
-                <p>
-                  Your edit will be placed in a queue until it is peer reviewed.
-                </p>
-                <p>
-                  We welcome edits that make the post easier to understand and
-                  more valuable for readers. Because community members review
-                  edits, please try to make the post substantially better than
-                  how you found it, for example, by fixing grammar or adding
-                  additional resources and hyperlinks.
-                </p>
-              </AskTitle>
-              <MainContents>
-                <ContentsUserWrite>
-                  <Box>
-                    <AskText1>Title</AskText1>
-                    <TitleInput
+        <HeaderMargin></HeaderMargin>
+        <Wrapper>
+          <AsWrapper>
+            <AskImg>
+              <AskTitle>Ask public Question </AskTitle>
+              <AskTop></AskTop>
+            </AskImg>
+            <MainContents>
+              <ContentsUserWrite>
+                <Box>
+                  <AskText1>Title</AskText1>
+                  <AskText2>
+                    Be specific and imagine you’re asking a question to another
+                    person
+                  </AskText2>
+                  <TitleInput
+                    type="text"
+                    className="TitleInput"
+                    placeholder="e.g Is there an R function for finding the index of an element in a vector?"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    ref={titleRef}
+                  />
+                  {titleError && (
+                    <>
+                      <ErrorMessage text="Title must be at least 15 characters." />
+                      <TitleErrorIcon>
+                        <HasErrorSvg />
+                      </TitleErrorIcon>
+                    </>
+                  )}
+                </Box>
+                <Box>
+                  <AskText1>Body</AskText1>
+                  <AskText2>
+                    Include all the information someone would need to answer
+                    your question
+                  </AskText2>
+                  <SummerNoteWrapper ref={bodyRef}>
+                    <ReactSummernoteLite
+                      id="sample"
+                      height={300}
+                      onBlur={() => {
+                        setBody(
+                          bodyRef.current.querySelector('.note-editable')
+                            .innerHTML
+                        );
+                        setTextBody(
+                          bodyRef.current.querySelector('.note-editable')
+                            .innerText
+                        );
+                        bodyRef.current.style = '';
+                      }}
+                      onFocus={() => {
+                        bodyRef.current.style =
+                          'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
+                      }}
+                    />
+                  </SummerNoteWrapper>
+                  {bodyError && (
+                    <>
+                      <ErrorMessage text="Body must be at least 30 characters." />
+                      <BodyErrorIcon>
+                        <HasErrorSvg />
+                      </BodyErrorIcon>
+                    </>
+                  )}
+                </Box>
+                <Box>
+                  <AskText1>Tags</AskText1>
+                  <AskText2>
+                    Add up to 5 tags to describe what your question is about
+                  </AskText2>
+                  <TagBox ref={tagsRef}>
+                    {tags.map((tagItem, index) => {
+                      return (
+                        <TagItem key={index}>
+                          <Text>{tagItem}</Text>
+                          <Button onClick={deleteTags}>X</Button>
+                        </TagItem>
+                      );
+                    })}
+                    <TagInput
                       type="text"
                       className="TitleInput"
-                      placeholder="e.g Is there an R function for finding the index of an element in a vector?"
-                      value={title}
-                      onChange={(e) => {
-                        setTitle(e.target.value);
-                      }}
-                      ref={titleRef}
+                      placeholder="e.g (c linux r)"
+                      value={tagInput}
+                      onChange={(e) => TagInputChange(e)}
+                      onKeyUp={(e) => addTagInput(e)}
+                      tags={tags}
+                      onClick={deleteTags}
                     />
-                    {titleError && (
-                      <>
-                        <ErrorMessage text="Title must be at least 15 characters." />
-                        <TitleErrorIcon>
-                          <HasErrorSvg />
-                        </TitleErrorIcon>
-                      </>
-                    )}
-                  </Box>
-                  <Box>
-                    <AskText1>Body</AskText1>
-                    <SummerNoteWrapper ref={bodyRef}>
-                      <ReactSummernoteLite
-                        id="sample"
-                        height={300}
-                        onBlur={() => {
-                          setBody(
-                            bodyRef.current.querySelector('.note-editable')
-                              .innerHTML
-                          );
-                          setTextBody(
-                            bodyRef.current.querySelector('.note-editable')
-                              .innerText
-                          );
-                          bodyRef.current.style = '';
-                        }}
-                        onFocus={() => {
-                          bodyRef.current.style =
-                            'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
-                        }}
-                      />
-                    </SummerNoteWrapper>
-                    {bodyError && (
-                      <>
-                        <ErrorMessage text="Body must be at least 30 characters." />
-                        <BodyErrorIcon>
-                          <HasErrorSvg />
-                        </BodyErrorIcon>
-                      </>
-                    )}
-                  </Box>
-                  <Box>
-                    <AskText1>Tags</AskText1>
-                    <TagBox ref={tagsRef}>
-                      {tags.map((tagItem, index) => {
-                        return (
-                          <TagItem key={index}>
-                            <Text>{tagItem}</Text>
-                            <Button onClick={deleteTags}>X</Button>
-                          </TagItem>
-                        );
-                      })}
-                      <TagInput
-                        type="text"
-                        className="TitleInput"
-                        placeholder="e.g (c linux r)"
-                        value={tagInput}
-                        onChange={(e) => TagInputChange(e)}
-                        onKeyUp={(e) => addTagInput(e)}
-                        tags={tags}
-                        onClick={deleteTags}
-                      />
-                    </TagBox>
-                    {tagsError && (
-                      <>
-                        <ErrorMessage text="Please enter at least one tag; see a list of popular tags." />
-                        <TagsErrorIcon>
-                          <HasErrorSvg />
-                        </TagsErrorIcon>
-                      </>
-                    )}
-                  </Box>
-                </ContentsUserWrite>
-                <ContentsUserHelp>
-                  <EditWidget />
-                </ContentsUserHelp>
-              </MainContents>
-              <ButtonWrapper>
-                <BlueButton onClick={handleEditQuestion}>Save Edits</BlueButton>
-                <CancelButton>
-                  <Link to={`/questions/${qid}`}>Cancel</Link>
-                </CancelButton>
-              </ButtonWrapper>
-            </AsWrapper>
-          </Wrapper>
-        </Block>
+                  </TagBox>
+                  {tagsError && (
+                    <>
+                      <ErrorMessage text="Please enter at least one tag; see a list of popular tags." />
+                      <TagsErrorIcon>
+                        <HasErrorSvg />
+                      </TagsErrorIcon>
+                    </>
+                  )}
+                </Box>
+              </ContentsUserWrite>
+              <ContentsUserHelp>
+                <SidebarBox>
+                  <Sidebarbox2>
+                    <Sidebarwidget>Step 1: Draft your question</Sidebarwidget>
+                    <Sidebarwidget>
+                      <Sidebarwidget2>
+                        The community is here to help you with specific coding,
+                        algorithm, or language problems.
+                      </Sidebarwidget2>
+                      <Sidebarwidget2>
+                        Avoid asking opinion-based questions.
+                      </Sidebarwidget2>
+                      <Sidebarwidget3>Summarize the problems</Sidebarwidget3>
+                      <TextList>
+                        <li>Include details abot your goal</li>
+                        <li>Describe expected and actual results</li>
+                        <li>Include any error messages</li>
+                      </TextList>
+                    </Sidebarwidget>
+                  </Sidebarbox2>
+                </SidebarBox>
+              </ContentsUserHelp>
+            </MainContents>
+            <PostAnswerButton onClick={handleAddQuestion}>
+              Post your Question
+            </PostAnswerButton>
+          </AsWrapper>
+        </Wrapper>
       </Top>
       <Footer></Footer>
     </div>
   );
 };
 
-export const Top = styled.div`
+const Top = styled.div`
+  background-color: rgb(242, 242, 243);
   display: flex;
   flex-flow: column wrap;
   -webkit-box-align: center;
   align-items: center;
   padding: 0px 15px;
-  border: 3px red solid;
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    > h2 {
+      font-size: 14.3846px;
+    }
+  }
 `;
 
-export const AskTitle = styled.div`
-  border: 1px solid red;
+export const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 0px 0px 24px 24px;
+
+  // Mobile
+  @media screen and (max-width: 640px) {
+    > h2 {
+      font-size: 14.3846px;
+    }
+  }
+`;
+
+export const AsWrapper = styled.div`
+  width: 100%;
+`;
+
+const AskTop = styled.div`
+  width: 600px;
+  height: 130.34px;
+  background: url(https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368);
+  background-repeat: no-repeat;
+`;
+
+const AskImg = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const AskTitle = styled.div`
+  width: 400px;
+  height: 100px;
+  font-size: 27px;
+  font-weight: 650;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+`;
+
+export const MainContents = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const ContentsUserWrite = styled.div`
   width: 827px;
-  height: 119px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  padding: 16px;
-  color: rgb(59, 64, 69);
-  background-color: rgb(253, 247, 226);
-  border: 1px solid rgb(230, 207, 121);
-  border-radius: 3px;
-  font-size: 13px;
-  line-height: 17px;
+  margin-bottom: 16px;
+  padding: 16px 16px 16px 16px;
+  background-color: #ffffff;
+  border-radius: 0.8%;
+  box-shadow: 0px 0px 4px #d6d9dc;
 `;
 
-export const ButtonWrapper = styled.div`
-  padding: 12px 0 16px 0;
+export const ContentsUserHelp = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+`;
+
+export const AskText1 = styled.div`
+  width: 400px;
+  height: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px 0px 0px;
+`;
+
+export const AskText2 = styled.div`
+  width: 600px;
+  height: 100%;
+  font-size: 12px;
+  display: flex;
+  justify-content: left;
+  align-items: baseline;
+  margin: 0px 0px 10px 0px;
+`;
+
+export const TitleInput = styled.input`
+  width: 100%;
+  height: 32.57px;
+  padding: 8px 10px;
+  border: 1px solid var(--bc-darker);
+  border-radius: var(--br-sm);
+  background-color: white;
+  color: var(--fc-dark);
+  font-size: 13px;
+  border-radius: 2px;
+
+  &.error {
+    border: 1px solid rgb(222, 79, 84);
+    outline: rgb(249, 210, 211) solid 4px;
+  }
+
+  &:focus {
+    box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
+    border: none;
+    outline: 0;
+  }
+`;
+
+export const Box = styled.div`
+  position: relative;
+`;
+
+export const Userwrite = styled.div`
+  font-size: 14px;
+`;
+
+export const SummerNotePreview = styled.div`
+  width: 100%;
+  height: 300px;
+`;
+
+const SidebarBox = styled.div`
+  width: 340px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Sidebarbox2 = styled.div`
+  box-shadow: 0px 0px 4px #d6d9dc;
+  height: auto;
+`;
+
+const Sidebarwidget = styled.div`
+  padding: 15px 15px 15px 20px;
+  color: #525060;
+  background-color: #f8f9f9;
+  font-size: 15px;
+  box-shadow: 0px 0px 4px #d6d9dc;
+`;
+const Sidebarwidget2 = styled.div`
+  margin: 0px 0px 10px 0px;
+  font-size: 13px;
+`;
+
+const TextList = styled.ul`
+  margin-top: 15px;
+  font-size: 13px;
+  row-gap: 5px;
+  padding: 0px 15px 0px 25px;
+  li {
+    list-style: disc;
+  }
+`;
+
+const Sidebarwidget3 = styled.div`
+  margin-top: 37px;
+  font-weight: bold;
+`;
+
+export const TagBox = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 50px;
+  margin: 10px 0;
+  padding: 0 10px;
+  border: 1px solid var(--bc-darker);
+  border-radius: var(--br-sm);
+
+  &.error {
+    border: 1px solid rgb(222, 79, 84);
+    outline: rgb(249, 210, 211) solid 4px;
+  }
+
+  &:focus-within {
+    box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
+    border: none;
+    outline: 0;
+  }
+`;
+
+export const TagInput = styled.input`
+  border: 1px solid red;
+  cursor: text;
+  display: inline-flex;
+  min-width: 150px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: text;
+`;
+
+export const TagItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 5px;
+  background-color: rgb(225, 236, 244);
+  border-radius: 5px;
+  color: rgb(57, 115, 157);
+  font-size: 12px;
+  font-weight: 620;
+`;
+
+export const Text = styled.span``;
+
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+  border-radius: 50%;
+  color: rgb(57, 115, 157);
+  font-weight: 620;
+`;
+
+export const SummerNoteWrapper = styled.div`
+  &.error {
+    border: 1px solid rgb(222, 79, 84);
+    outline: rgb(249, 210, 211) solid 4px;
+  }
 `;
 
 const TitleErrorIcon = styled.div`
@@ -277,7 +471,7 @@ const TitleErrorIcon = styled.div`
   top: 51px;
 `;
 
-const BodyErrorIcon = styled.div`
+export const BodyErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 214px;
