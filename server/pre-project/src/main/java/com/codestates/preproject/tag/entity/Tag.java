@@ -1,8 +1,7 @@
 package com.codestates.preproject.tag.entity;
 
 import com.codestates.preproject.article_tag.ArticleTag;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +10,9 @@ import java.util.List;
 @Entity(name = "TAG")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Tag {
 
     @Id
@@ -29,6 +31,12 @@ public class Tag {
 
     public void addArticleTag(ArticleTag tag) {
         this.articleTags.add(tag);
+    }
+
+    @Builder
+    public Tag(Long tagId, String content) {
+        this.tagId = tagId;
+        this.content = content;
     }
 
 }

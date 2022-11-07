@@ -1,8 +1,10 @@
 package com.codestates.preproject.article;
 
+import com.codestates.preproject.article_tag.ArticleTag;
 import com.codestates.preproject.audit.BaseTime;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.user.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,15 +20,16 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 public class Article extends BaseTime {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="article_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "article_id")
     private Long articleId;
 
-    @Column(insertable = true, nullable= false)
+    @Column(insertable = true, nullable = false)
     private String title;
 
     @Lob
-    @Column(insertable = true, nullable= false)
+    @Column(insertable = true, nullable = false)
     private String content;
 
     @ManyToOne
@@ -48,7 +51,11 @@ public class Article extends BaseTime {
         comments.add(comment);
     }
 
+    @OneToMany(mappedBy = "article")
+    @JsonIgnore
+    List<ArticleTag> articleTags = new ArrayList<>();
 
-
-
+    public void addArticleTag(ArticleTag tag) {
+        this.articleTags.add(tag);
+    }
 }

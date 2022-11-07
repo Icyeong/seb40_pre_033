@@ -6,6 +6,9 @@ import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.reply.entity.Reply;
 import com.codestates.preproject.reply.service.ReplyService;
+import com.codestates.preproject.tag.dto.TagDto;
+import com.codestates.preproject.tag.entity.Tag;
+import com.codestates.preproject.tag.service.TagService;
 import com.codestates.preproject.user.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,12 +23,14 @@ public class DummyController {
     private final ArticleService articleService;
     private final UserService userService;
     private final ReplyService replyService;
+    private final TagService tagService;
 
-    public DummyController(CommentService commentService, ArticleService articleService, UserService userService, ReplyService replyService) {
+    public DummyController(CommentService commentService, ArticleService articleService, UserService userService, ReplyService replyService, TagService tagService) {
         this.commentService = commentService;
         this.articleService = articleService;
         this.userService = userService;
         this.replyService = replyService;
+        this.tagService = tagService;
     }
 
     @PostConstruct
@@ -74,6 +79,11 @@ public class DummyController {
                 .build();
         replyService.createReply(reply);
 
+        Tag tag = Tag.builder()
+                .tagId(1L)
+                .content("Spring")
+                .build();
+        tagService.createTag(tag);
 
         // *************** 2번 게시물 *************** //
 
