@@ -69,11 +69,9 @@ test|테스트 코드 수정에 대한 커밋
 
 ## 🖥️ 화면
 로그인|회원가입|회원가입 성공
----|---|---|---|
-<img width="1440" alt="스크린샷 2022-11-07 오후 11 47 28" src="https://user-images.githubusercontent.com/107919949/200340909-e5ccf3e5-14ec-4a64-ad60-77b00c11fac5.png">|<img width="1440" alt="스크린샷 2022-11-07 오후 11 55 30" src="https://user-images.githubusercontent.com/107919949/200341248-f23a1c80-e41f-4736-9998-89e88fddec17.png">|<img width="1440" alt="스크린샷 2022-11-07 오후 11 56 59" src="https://user-images.githubusercontent.co![Uploading 스크린샷 2022-11-07 오후 11.56.59.png…]()
-m/107919949/200341495-5d27302d-9700-47e4-b04b-4e416cfce4fc.png"> |
-
+---|---|---|
+<img width="1440" alt="로그인" src="https://user-images.githubusercontent.com/107919949/200343852-e44b314a-df48-4048-82cb-334cab130683.png">|<img width="1440" alt="회원가입" src="https://user-images.githubusercontent.com/107919949/200343890-37469751-f783-4111-b826-2667dd49cd46.png">|<img width="1440" alt="회원가입성공" src="https://user-images.githubusercontent.com/107919949/200343940-455dce81-40ae-4786-8291-f0f14a1f8245.png">
 
 Tag|Users|MyPage
 ---|---|---|
-<img width="1440" alt="스크린샷 2022-11-07 오후 11 47 19" src="https://user-images.githubusercontent.com/107919949/200341562-c979720a-6f39-451e-8552-d5301dc67155.png">|<img width="1440" alt="스크린샷 2022-11-07 오후 11 47 09" src="https://user-images.githubusercontent.com/107919949/200341614-39b3d021-40e6-4c13-91c3-14ac3956a091.png">|<img width="1440" alt="스크린샷 2022-11-08 오전 12 01 21" src="https://user-images.githubusercontent.com/107919949/200342826-defed5a1-0efe-48b7-b394-0de214204c3d.png">
+<img width="1440" alt="태그" src="https://user-images.githubusercontent.com/107919949/200344054-fdadbab0-dbe7-4690-aa4c-e1d262ac91c8.png">|<img width="1440" alt="유저" src="https://user-images.githubusercontent.com/107919949/200344091-b26b8f7d-230c-4bb9-aa23-cc0ba3edbedf.png">|<img width="1440" alt="마이페이지" src="https://user-images.githubusercontent.com/107919949/200344137-0ec331ae-d6a9-4ae3-996c-2af53f1673c3.png">
