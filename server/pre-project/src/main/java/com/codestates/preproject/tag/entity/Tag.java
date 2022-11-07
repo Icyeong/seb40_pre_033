@@ -1,14 +1,16 @@
 package com.codestates.preproject.tag.entity;
 
-import com.codestates.preproject.article.Article;
+import com.codestates.preproject.articleTag.ArticleTag;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "TAG")
 @Getter
 @Setter
-@Builder
+//@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tag {
@@ -21,25 +23,15 @@ public class Tag {
     @Column(name = "name")
     String name;
 
-    @Column(name = "content", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "content", nullable = true, columnDefinition = "TEXT")
     String content;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "article")
-    private Article article;
-
-    public void addArticle(Article article) {
-        article.addTag(this);
-        this.article = article;
-    }
-
-    @Column(name = "article_id")
-    private Long articleId;
+    @OneToMany(mappedBy = "tag")
+    private List<ArticleTag> articleTag = new ArrayList<>();
 
     @Builder
-    public Tag(Long tagId, String content) {
-        this.tagId = tagId;
-        this.content = content;
+    public Tag(String name ) {
+        this.name = name;
     }
 
 }
