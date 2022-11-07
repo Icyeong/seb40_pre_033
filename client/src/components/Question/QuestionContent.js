@@ -193,6 +193,11 @@ export const QuestionContent = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
+  const date = `${question.createAt.slice(0, 10)} ${question.createAt.slice(
+    11,
+    19
+  )}`;
+
   return (
     <Block>
       <Body ref={bodyRef}></Body>
@@ -222,7 +227,7 @@ export const QuestionContent = () => {
           )}
         </PostMenu>
         <PostUser background="#D9EAF7">
-          <h5>{question.createAt}</h5>
+          <h5>{date}</h5>
           <UserInfo>
             <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
             <div>

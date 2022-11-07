@@ -15,6 +15,10 @@ export const Question = (type) => {
   // 태그 바꾸기
   const tags = ['임시'];
 
+  const date = `${questions[type.idx].createAt.slice(0, 10)} ${questions[
+    type.idx
+  ].createAt.slice(11, 19)}`;
+
   return (
     <div className="questions">
       <div className="post-summury">
@@ -50,9 +54,7 @@ export const Question = (type) => {
               className="discussion__avatar--image"
             />
 
-            {`${questions[type.idx].email} asked ${
-              questions[type.idx].createAt
-            }`}
+            {`${questions[type.idx].email} asked ${date}`}
           </div>
         </div>
       </div>
