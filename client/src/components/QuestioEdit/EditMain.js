@@ -99,9 +99,9 @@ export const EditMain = () => {
       const res = await useFetch('PATCH', `/questions/${qid}`, inputData);
       console.log('edit question res', res);
       dispatch(editQuestion(res));
-    }
 
-    navigate(`/questions/${qid}`);
+      navigate(`/questions/${qid}`);
+    }
   };
 
   const TagInputChange = (e) => {

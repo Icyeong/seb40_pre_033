@@ -151,7 +151,10 @@ export const TagsPagination = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
 
-  let { page, size, totalElements, totalPages } = useSelector;
+  let { page, size, totalElements, totalPages } = useSelector(
+    (state) => state.questionsReducer.pageInfo
+  );
+
   // ✨ 페이지네이션
   const [currentPage, setCurrentPage] = useState(page); // 현재 페이지 번호
   const [perPageCount, setPerPageCount] = useState(size); // 페이지 당 글 개수

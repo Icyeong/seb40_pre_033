@@ -65,6 +65,7 @@ export const PaiginationContainer = () => {
   let { page, size, totalElements, totalPages } = useSelector(
     (state) => state.questionsReducer.pageInfo
   );
+
   const [currentPage, setCurrentPage] = useState(page);
   const handleCurrentPageChange = async (e) => {
     setCurrentPage(e);
