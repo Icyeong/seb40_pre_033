@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@RestController("/tag")
 public class TagController {
 
     private final TagService tagService;
@@ -21,7 +21,8 @@ public class TagController {
         this.tagService = tagService;
     }
 
-    @GetMapping("/TagFind")
+    // 태그 1개 검색
+    @GetMapping("/find/{tag-id}")
     public ResponseEntity tagFind(@RequestParam String name) {
 
         Tag tag = tagService.findTag(name);
@@ -39,7 +40,8 @@ public class TagController {
         return new ResponseEntity(tagFind, HttpStatus.OK);
     }
 
-    @GetMapping("/TagFinds")
+    // 태그 전체 조회
+    @GetMapping("/all")
     public ResponseEntity tagFinds() {
 
         List<Tag> tags = tagService.findTags();

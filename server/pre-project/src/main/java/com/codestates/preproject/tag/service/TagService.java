@@ -17,6 +17,7 @@ public class TagService {
         this.tagRepository = tagRepository;
     }
 
+    // 태그 생성
     public Tag createTag(TagDto.TagPost dto) {
 
         Tag tag = tagRepository.findByName(dto.getName());
@@ -33,11 +34,7 @@ public class TagService {
 
     }
 
-    // 더미 사용
-    public Tag createTag(Tag tag) {
-        return tagRepository.save(tag);
-    }
-
+    // 태그 1개 조회
     public Tag findTag(String name) {
 
         Tag tag = tagRepository.findByName(name);
@@ -49,11 +46,15 @@ public class TagService {
 
     }
 
+    // 태그 전체 조회
     public List<Tag> findTags() {
         return tagRepository.findAll();
     }
 
-
+    // 더미 사용
+    public Tag createTag(Tag tag) {
+        return tagRepository.save(tag);
+    }
 
 
 }
