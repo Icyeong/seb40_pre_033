@@ -1,30 +1,7 @@
-// import { useState } from 'react';
 import { InfoSvg, StarSvg, EarthSvg } from '../../../assets/images/HomeSvg';
 import { SidebarContainer, Wrapper, Teams } from './Sidebar_style';
 
 export const Sidebar = (type) => {
-  // const [selected, setSelected] = useState('Home');
-
-  // const sortClick = (e) => {
-  //   switch (e.target.value) {
-  //     case 'Home':
-  //       setSelected('Home');
-  //       break;
-  //     case 'Questions':
-  //       setSelected('Questions');
-  //       break;
-  //     case 'Tags':
-  //       setSelected('Tags');
-  //       break;
-  //     case 'Users':
-  //       setSelected('Users');
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // };
-
   return (
     <SidebarContainer>
       <Wrapper>
@@ -33,16 +10,16 @@ export const Sidebar = (type) => {
             <div className="companies">Home</div>
           </div>
           <p className="title fc-light">PUBLIC</p>
-          <a href="/" className={type.page === 'home' && 'selected'}>
+          <a href="/" className={type.page === 'home' ? 'selected' : ''}>
             <p>
               <EarthSvg />
               Questions
             </p>
           </a>
-          <a href="/tags" className={type.page === 'tags' && 'selected'}>
+          <a href="/tags" className={type.page === 'tags' ? 'selected' : ''}>
             <p className="is-padding">Tags</p>
           </a>
-          <a href="/users" className={type.page === 'users' && 'selected'}>
+          <a href="/users" className={type.page === 'users' ? 'selected' : ''}>
             <p className="is-padding">Users</p>
           </a>
           <div className="tab-menu">
