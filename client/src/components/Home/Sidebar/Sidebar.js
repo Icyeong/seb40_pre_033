@@ -28,15 +28,9 @@ export const Sidebar = () => {
     <SidebarContainer>
       <Wrapper>
         <div className="side-bar-tabs">
-          <a
-            onClick={sortClick}
-            className={selected === 'Home' ? 'is-selected' : ''}
-            value={'Home'}
-            href="/"
-          >
-            <p>Home</p>
-          </a>
-
+          <div className="tab-menu">
+            <div className="companies">Home</div>
+          </div>
           <p className="title fc-light">PUBLIC</p>
           <a
             onClick={sortClick}
@@ -65,7 +59,6 @@ export const Sidebar = () => {
           >
             <p>Users</p>
           </a>
-
           <div className="tab-menu">
             <div className="companies">Companies</div>
           </div>
