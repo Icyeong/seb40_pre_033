@@ -108,6 +108,11 @@ export const AnswerWrite = () => {
             setTextBody(
               bodyRef.current.querySelector('.note-editable').innerText
             );
+            bodyRef.current.style = '';
+          }}
+          onFocus={() => {
+            bodyRef.current.style =
+              'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
           }}
         />
       </SummerNoteWrapper>
