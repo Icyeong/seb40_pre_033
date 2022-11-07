@@ -11,8 +11,7 @@ export const SidebarContainer = styled.nav`
   display: flex;
   flex-flow: column nowrap;
   flex-direction: column;
-  width: 164px;
-  padding-right: 3px;
+  width: 190px;
 `;
 
 export const Wrapper = styled.div`
@@ -22,49 +21,13 @@ export const Wrapper = styled.div`
   flex-direction: column; */
   margin-top: 30px;
   > .side-bar-tabs {
-    float: right;
-    margin-top: 25px;
-    > .home-link {
-      text-decoration: none;
-      color: hsl(210, 8%, 45%);
-
-      p {
-        padding: 5px 5px 5px 10px;
-        border-right: 3px;
-        font-size: 13px;
-      }
-      &:hover {
-        color: hsl(210, 8%, 5%);
-      }
-    }
+    padding-left: 5px;
     .title {
       font-size: 11px;
       margin-bottom: 5px;
-      margin-left: 10px;
       color: hsl(210, 8%, 45%);
     }
-
-    > .icon-link {
-      text-decoration: none;
-      color: hsl(210, 8%, 45%);
-
-      p {
-        display: flex;
-        padding: 5px 30px 5px 10px;
-        margin-bottom: 5px;
-        border-right: 3px solid transparent;
-        width: 160px;
-        font-size: 13px;
-        gap: 4px;
-        > .icon {
-          margin-right: 5px;
-        }
-      }
-
-      &:hover {
-        color: hsl(210, 8%, 5%);
-      }
-    }
+    /* 
     > .link {
       text-decoration: none;
       color: hsl(210, 8%, 45%);
@@ -80,20 +43,68 @@ export const Wrapper = styled.div`
       &:hover {
         color: hsl(210, 8%, 5%);
       }
-    }
-
-    > .active {
-      color: #f2f2f3;
+    } */
+    a {
+      color: hsl(210, 8%, 45%);
+      font-size: 13px;
+      text-decoration: none;
       p {
+        display: flex;
+        padding: 5px 30px 5px 0px;
+        margin-bottom: 5px;
+        border-right: 3px solid transparent;
+        font-size: 13px;
+        gap: 4px;
+      }
+      :hover {
+        border: none;
         color: hsl(210, 8%, 5%);
-        font-weight: bold;
-        background-color: hsl(210, 8%, 95%);
-        border-right: 3px solid hsl(27, 90%, 55%);
-        .icon {
+      }
+      /* > .home-link {
+        text-decoration: none;
+        color: hsl(210, 8%, 45%);
+
+        p {
+          padding: 5px 5px 5px 10px;
+          border-right: 3px;
+          font-size: 13px;
+        }
+        &:hover {
           color: hsl(210, 8%, 5%);
         }
       }
+
+      > .icon-link {
+        text-decoration: none;
+        color: hsl(210, 8%, 45%);
+
+        p {
+          display: flex;
+          padding: 5px 30px 5px 10px;
+          margin-bottom: 5px;
+          border-right: 3px solid transparent;
+          width: 160px;
+          font-size: 13px;
+          gap: 4px;
+          > .icon {
+            margin-right: 5px;
+          }
+        }
+
+        &:hover {
+          color: hsl(210, 8%, 5%);
+        }
+      } */
+      &.is-selected {
+        p {
+          color: hsl(210, 8%, 5%);
+          font-weight: bold;
+          background-color: hsl(210, 8%, 95%);
+          border-right: 3px solid hsl(27, 90%, 55%);
+        }
+      }
     }
+
     > .tab-menu {
       color: hsl(210, 8%, 45%);
       font-size: 13px;
@@ -107,16 +118,14 @@ export const Wrapper = styled.div`
         border: none;
         color: hsl(210, 8%, 5%);
       }
-      > .companies {
-        padding-left: 30px;
-      }
     }
     > .collectives {
       color: hsl(210, 8%, 45%);
       font-size: 11px;
       display: flex;
       justify-content: space-between;
-      margin-left: 10px;
+      margin-bottom: 12px;
+      padding-right: 10px;
     }
   }
 
@@ -138,7 +147,7 @@ export const Wrapper = styled.div`
   > .teams {
     color: hsl(210, 8%, 45%);
     font-size: 11px;
-    margin: 24px 8px 10px 0px;
+    margin: 24px 8px 10px 5px;
   }
 `;
 
@@ -180,6 +189,7 @@ export const Teams = styled.div`
   font-size: 13px;
   border: 1px solid #e3e6e8;
   border-radius: 4px;
+  margin-left: 5px;
 
   > .textbox {
     padding: 10px;

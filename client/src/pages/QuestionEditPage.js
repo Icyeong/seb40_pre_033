@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
-import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { Block } from './HomePage';
 import { BlueButton } from '../components/Common/BlueButton';
 import { CancelButton } from '../components/Common/CancelButton';
@@ -33,6 +32,7 @@ import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import { Header } from '../components/Home/Header/Header';
 import { editQuestion } from '../redux/actions/questionsAction';
+import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 
 export const QuestionEditPage = () => {
   const dispatch = useDispatch();
