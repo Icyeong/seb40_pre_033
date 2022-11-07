@@ -1,88 +1,100 @@
-// grid 모달 처럼
-import styled from 'styled-components';
+import { useState } from 'react';
+import { InfoSvg, StarSvg, EarthSvg } from '../../../assets/images/HomeSvg';
+import { SidebarContainer, Wrapper, Teams } from './Sidebar_style';
 
-export const PostUser = styled.ul`
-  margin: 4px 0;
-  padding: 5px 6px 7px 7px;
-  /* border: 1px solid red; */
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  // Mobile
-  @media screen and (max-width: 1260px) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  // Mobile
-  @media screen and (max-width: 980px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  // Mobile
-  @media screen and (max-width: 640px) {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-  }
-`;
+export const Sidebar = () => {
+  const [selected, setSelected] = useState('Home');
 
-export const UserInfo = styled.div`
-  display: flex;
-  width: 100%;
-  padding: 5px 6px 7px 7px;
+  const sortClick = (e) => {
+    switch (e.target.value) {
+      case 'Home':
+        setSelected('Home');
+        break;
+      case 'Questions':
+        setSelected('Questions');
+        break;
+      case 'Tags':
+        setSelected('Tags');
+        break;
+      case 'Users':
+        setSelected('Users');
+        break;
 
-  img {
-    width: 48px;
-    height: 48px;
-    cursor: pointer;
-  }
-  > div {
-    margin-left: 9px;
-
-    h6 {
-      color: var(--theme-link-color);
-      font-size: 15px;
-      cursor: pointer;
-
-      &:hover,
-      &:active {
-        color: var(--theme-link-color-hover);
-      }
+      default:
+        break;
     }
-    h5 {
-      font-size: 13px;
-      color: var(--black-500);
-    }
-  }
-`;
-// user 정보 question 페이지 참고
-export const UserContainer = () => {
+  };
   return (
-    <PostUser>
-      <UserInfo>
-        <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
-        <div>
-          <h6>Daniel Amezcua</h6>
-          <h5>1 in one day</h5>
+    <SidebarContainer>
+      <Wrapper>
+        <div className="side-bar-tabs">
+          <a
+            onClick={sortClick}
+            className={selected === 'Home' ? 'is-selected' : ''}
+            value={'Home'}
+            href="/"
+          >
+            <p>Home</p>
+          </a>
+
+          <p className="title fc-light">PUBLIC</p>
+          <a
+            onClick={sortClick}
+            className={selected === 'Questions' ? 'is-selected' : ''}
+            value={'Questions'}
+            href="/"
+          >
+            <p>
+              <EarthSvg />
+              Questions
+            </p>
+          </a>
+          <a
+            onClick={sortClick}
+            className={selected === 'Tags' ? 'is-selected' : ''}
+            value={'Tags'}
+            href="/tags"
+          >
+            <p>Tags</p>
+          </a>
+          <a
+            onClick={sortClick}
+            className={selected === 'Users' ? 'is-selected' : ''}
+            value={'Users'}
+            href="/users"
+          >
+            <p>Users</p>
+          </a>
+
+          <div className="tab-menu">
+            <div className="companies">Companies</div>
+          </div>
+          <div className="collectives">
+            COLLECTIVES
+            <InfoSvg />
+          </div>
         </div>
-      </UserInfo>
-      <UserInfo>
-        <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
-        <div>
-          <h6>Bertram George</h6>
-          <h5>1 in one day</h5>
+
+        <div className="tab-menu2">
+          <StarSvg />
+          Explore Collectives
         </div>
-      </UserInfo>
-      <UserInfo>
-        <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
-        <div>
-          <h6>Lambertsen Cullen</h6>
-          <h5>1 in one day</h5>
-        </div>
-      </UserInfo>
-      <UserInfo>
-        <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
-        <div>
-          <h6>Caleb E Ramos</h6>
-          <h5>1 in one day</h5>
-        </div>
-      </UserInfo>
-    </PostUser>
+        <div className="teams">TEAMS</div>
+        <Teams>
+          <div className="textbox">
+            <strong>Stack Overflow for Teams -</strong>
+            Start collaborating and sharing organizational knowledge.
+          </div>
+          <img
+            src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e"
+            width="139"
+            height="114"
+            alt="promo"
+          />
+          <button className="orange-button">Create a free Team</button>
+          <button className="white-button">Why Teams?</button>
+        </Teams>
+      </Wrapper>
+    </SidebarContainer>
   );
 };

@@ -23,6 +23,7 @@ import { useState, useRef, useEffect } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import { editAnswer } from '../redux/actions/questionAction';
+import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 
 const MainContents = styled.div`
   width: 100%;
