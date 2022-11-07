@@ -1,10 +1,9 @@
 package com.codestates.preproject.article;
 
-import com.codestates.preproject.article_tag.ArticleTag;
 import com.codestates.preproject.audit.BaseTime;
 import com.codestates.preproject.comment.entity.Comment;
+import com.codestates.preproject.tag.entity.Tag;
 import com.codestates.preproject.user.entity.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -51,11 +50,10 @@ public class Article extends BaseTime {
         comments.add(comment);
     }
 
-    @OneToMany(mappedBy = "article")
-    @JsonIgnore
-    List<ArticleTag> articleTags = new ArrayList<>();
+    @OneToMany(mappedBy = "article", cascade=CascadeType.PERSIST)
+    private List<Tag> tags = new ArrayList<>();
 
-    public void addArticleTag(ArticleTag tag) {
-        this.articleTags.add(tag);
+    public void addTag(Tag tag) {
+        tags.add(tag);
     }
 }
