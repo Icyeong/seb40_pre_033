@@ -53,7 +53,6 @@ const Box = styled.div`
       width: 25px;
       height: 25px;
       border-radius: 2px;
-      /* background-image: url(../assets/); */
       background-color: white;
       border: 2px solid #c1c1c1;
       margin: 0 8px 0 0;

@@ -52,7 +52,6 @@ const LoginForm = () => {
       emailFormEl.current.classList.add('inValid');
       return setInvalidEmail('The email is not a valid email address.');
     }
-
     // 모든 유효성 체크 완료!
 
     // 보낼 데이터
@@ -61,12 +60,13 @@ const LoginForm = () => {
       password,
     };
     // 로그인
-    await useFetch('POST', '/auth/login', body);
+    const res = await useFetch('POST', '/auth/login', body);
+    // 회원정보가 없을때
+    if (res === 401) {
+      emailFormEl.current.classList.add('inValid');
+      return setInvalidEmail('The email is not a valid email address.');
+    }
     dispatch(getLoginStatus({ isLogin: true }));
-
-    // // 내 정보 가져오기
-    // const myInfo = await useFetch('GET', '/user/me');
-    // dispatch(getmyInfo(myInfo));
 
     navigate('/');
   };
