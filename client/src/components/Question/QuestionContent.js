@@ -189,6 +189,10 @@ export const QuestionContent = () => {
   // 태그 바꾸기
   const tags = ['임시'];
 
+  const rand = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
   return (
     <Block>
       <Body ref={bodyRef}></Body>
@@ -224,10 +228,18 @@ export const QuestionContent = () => {
             <div>
               <h6>{question.email}</h6>
               <ul>
-                <li>156</li>
+                <li>{rand(1, 10000)}</li>
+                <li>
+                  <Badge color="#FFCC01" />
+                  {rand(1, 100)}
+                </li>
+                <li>
+                  <Badge color="#B4B8BC" />
+                  {rand(1, 100)}
+                </li>
                 <li>
                   <Badge color="#D1A684" />
-                  27
+                  {rand(1, 100)}
                 </li>
               </ul>
             </div>

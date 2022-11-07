@@ -34,7 +34,11 @@ export const AnswerContent = (type) => {
 
     console.log('DELETE ANSWER', res);
 
-    window.location.reload();
+    // window.location.reload();
+  };
+
+  const rand = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
   return (
@@ -71,10 +75,18 @@ export const AnswerContent = (type) => {
             <div>
               <h6>{question.comments[type.idx].email}</h6>
               <ul>
-                <li>156</li>
+                <li>{rand(1, 10000)}</li>
+                <li>
+                  <Badge color="#FFCC01" />
+                  {rand(1, 100)}
+                </li>
+                <li>
+                  <Badge color="#B4B8BC" />
+                  {rand(1, 100)}
+                </li>
                 <li>
                   <Badge color="#D1A684" />
-                  27
+                  {rand(1, 100)}
                 </li>
               </ul>
             </div>

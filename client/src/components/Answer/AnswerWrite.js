@@ -84,7 +84,7 @@ export const AnswerWrite = () => {
 
       bodyRef.current.querySelector('.note-editable').innerHTML = '';
 
-      window.location.reload();
+      // window.location.reload();
     }
   };
 
