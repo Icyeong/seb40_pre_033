@@ -72,13 +72,16 @@ test|테스트 코드 수정에 대한 커밋
 ---|---|---|
 <img width="1440" alt="로그인" src="https://user-images.githubusercontent.com/107919949/200343852-e44b314a-df48-4048-82cb-334cab130683.png">|<img width="1440" alt="회원가입" src="https://user-images.githubusercontent.com/107919949/200343890-37469751-f783-4111-b826-2667dd49cd46.png">|<img width="1440" alt="회원가입성공" src="https://user-images.githubusercontent.com/107919949/200343940-455dce81-40ae-4786-8291-f0f14a1f8245.png">
 
-Tag|Users|MyPage
+계정복구|글수정|댓글수정
 ---|---|---|
-<img width="1440" alt="태그" src="https://user-images.githubusercontent.com/107919949/200344054-fdadbab0-dbe7-4690-aa4c-e1d262ac91c8.png">|<img width="1440" alt="유저" src="https://user-images.githubusercontent.com/107919949/200344091-b26b8f7d-230c-4bb9-aa23-cc0ba3edbedf.png">|<img width="1440" alt="마이페이지" src="https://user-images.githubusercontent.com/107919949/200344137-0ec331ae-d6a9-4ae3-996c-2af53f1673c3.png">
+<img width="1440" alt="이메일 찾기" src="https://user-images.githubusercontent.com/107919949/200347956-b987feb2-5056-4c16-a1e1-953d3ef57467.png">|<img width="1440" alt="글수정" src="https://user-images.githubusercontent.com/107919949/200348059-4d23c904-699f-4b9b-aa03-ac4cacb65f7d.png">
+
 
 글작성|글목록|글상세
 ---|---|---|
 <img width="1440" alt="글작성" src="https://user-images.githubusercontent.com/107919949/200345916-0c5467d0-5916-415a-a81e-412eb255be32.png">|<img width="1440" alt="글목록" src="https://user-images.githubusercontent.com/107919949/200345949-89687be4-f770-4800-b588-ce27f5b01c6b.png">|<img width="1440" alt="글상세" src="https://user-images.githubusercontent.com/107919949/200345999-4b63a273-f3b9-45f7-aed2-4b7eb1b2c0e5.png">
 
 
-
+Tag|Users|MyPage
+---|---|---|
+<img width="1440" alt="태그" src="https://user-images.githubusercontent.com/107919949/200344054-fdadbab0-dbe7-4690-aa4c-e1d262ac91c8.png">|<img width="1440" alt="유저" src="https://user-images.githubusercontent.com/107919949/200344091-b26b8f7d-230c-4bb9-aa23-cc0ba3edbedf.png">|<img width="1440" alt="마이페이지" src="https://user-images.githubusercontent.com/107919949/200344137-0ec331ae-d6a9-4ae3-996c-2af53f1673c3.png">
