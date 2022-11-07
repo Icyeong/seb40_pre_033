@@ -39,5 +39,14 @@ public class ArticleResponse {
                         .collect(Collectors.toList()))
                         .build();
     }
+    public static ArticleResponse of(Article article){
+        return ArticleResponse.builder()
+                .articleId(article.getArticleId())
+                .title(article.getTitle())
+                .createdAt(article.getCreatedAt())
+                .content(article.getContent())
+                .email(UserResponseDto.of(article.getUser()).getEmail())
+                .build();
+    }
     
 }

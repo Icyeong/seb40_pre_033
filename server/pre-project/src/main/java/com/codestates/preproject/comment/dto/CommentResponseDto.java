@@ -26,13 +26,17 @@ public class CommentResponseDto {
     private List<Reply> replies;
 
 
-    public CommentResponseDto(String content, String email){
+    public CommentResponseDto(Long commentId,String content, String email,LocalDateTime createdAt, LocalDateTime modifiedAt,Long articleId){
+        this.commentId=commentId;
         this.content = content;
         this.email =email;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
+        this.articleId = articleId;
     }
 
     public static CommentResponseDto of(Comment comment) {
-        return new CommentResponseDto(comment.getContent(),comment.getEmail());
+        return new CommentResponseDto(comment.getCommentId(), comment.getContent(), comment.getEmail(), comment.getCreatedAt(), comment.getModifiedAt(), comment.getArticleId());
     }
 
 }
