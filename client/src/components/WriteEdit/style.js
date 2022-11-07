@@ -43,7 +43,6 @@ export const SidebarBox = styled.div`
   display: flex;
   justify-content: center;
   @media screen and (max-width: 940px) {
-    background-image: none;
     width: 100%;
   }
 `;
@@ -52,7 +51,6 @@ export const Sidebarbox2 = styled.div`
   box-shadow: 0px 0px 4px #d6d9dc;
   height: auto;
   @media screen and (max-width: 940px) {
-    background-image: none;
     width: 100%;
   }
 `;
@@ -64,7 +62,6 @@ export const Sidebarwidget = styled.div`
   font-size: 15px;
   box-shadow: 0px 0px 4px #d6d9dc;
   @media screen and (max-width: 940px) {
-    background-image: none;
     width: 100%;
   }
 `;
@@ -136,7 +133,8 @@ export const AsWrapper = styled.div`
 export const MainContents = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  margin-left: -15px;
+  /* justify-content: center; */
   /* border: 5px solid red; */
   @media screen and (max-width: 940px) {
     background-image: none;
@@ -145,7 +143,6 @@ export const MainContents = styled.div`
 `;
 
 export const ContentsUserWrite = styled.div`
-  width: 100%;
   margin-bottom: 16px;
   padding: 16px 16px 16px 16px;
   /* border: 1px solid red; */
@@ -266,7 +263,6 @@ export const TagBox = styled.div`
   }
   @media screen and (max-width: 940px) {
     background-image: none;
-    width: 100%;
   }
 `;
 
@@ -281,7 +277,6 @@ export const TagInput = styled.input`
   cursor: text;
   @media screen and (max-width: 940px) {
     background-image: none;
-    width: 100%;
   }
 `;
 
@@ -298,7 +293,7 @@ export const TagItem = styled.div`
   font-weight: 620;
   @media screen and (max-width: 940px) {
     background-image: none;
-    width: 100%;
+    height: 65%;
   }
 `;
 
@@ -333,6 +328,19 @@ export const BodyErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 214px;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
+`;
+
+export const EditUserWrite = styled.div`
+  margin: 16px;
+  padding: 16px 16px 16px 16px;
+  /* border: 1px solid red; */
+  background-color: #ffffff;
+  border-radius: 0.8%;
+  box-shadow: 0px 0px 4px #d6d9dc;
   @media screen and (max-width: 940px) {
     background-image: none;
     width: 100%;

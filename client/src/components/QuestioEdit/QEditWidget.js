@@ -4,9 +4,10 @@ const RightSideWidget = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  margin-top: 12px;
   @media screen and (max-width: 1200px) {
     margin: 20px;
-    margin-top: -2px;
+    margin-top: 12px;
   }
 `;
 
@@ -36,7 +37,7 @@ const RightSidebar = styled.div`
   }
 `;
 
-export const AnswerWidget = () => {
+export const QEditWidget = () => {
   return (
     <RightSideWidget>
       <RightSidebar>

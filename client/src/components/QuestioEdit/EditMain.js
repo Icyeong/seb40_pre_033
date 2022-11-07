@@ -5,18 +5,20 @@ import { Link } from 'react-router-dom';
 import { HasErrorSvg } from '../../assets/images/LoginSvg';
 import useFetch from '../../hooks/useFetch';
 import { editQuestion } from '../../redux/actions/questionsAction';
-import { BlueButton } from '../Common/BlueButton';
+// import { BlueButton } from '../Common/BlueButton';
+import { Block, BlueButton } from './EditStyle';
 import { CancelButton } from '../Common/CancelButton';
-import { Wrapper } from '../Home/Sidebar/Dropdown_style';
-import { EditWidget } from '../Home/SidebarWidget/EditWidget';
+// import { Wrapper } from '../Home/Sidebar/Dropdown_style';
+// import { EditWidget } from '../Home/SidebarWidget/EditWidget';
+// import { AnswerWidget } from '../AnswerEdit/AnswerWidget';
+import { QEditWidget } from './QEditWidget';
 import { ErrorMessage } from '../Question/ErrorMessage';
 import {
   AskText1,
   AsWrapper,
   Box,
   Button,
-  ContentsUserHelp,
-  ContentsUserWrite,
+  EditUserWrite,
   MainContents,
   SummerNoteWrapper,
   TagBox,
@@ -121,7 +123,7 @@ export const EditMain = () => {
     setTags(filteredTagList);
   };
   return (
-    <Wrapper>
+    <Block>
       <AsWrapper>
         <AskTitle>
           <p>Your edit will be placed in a queue until it is peer reviewed.</p>
@@ -134,7 +136,7 @@ export const EditMain = () => {
           </p>
         </AskTitle>
         <MainContents>
-          <ContentsUserWrite>
+          <EditUserWrite>
             <Box>
               <AskText1>Title</AskText1>
               <TitleInput
@@ -209,10 +211,8 @@ export const EditMain = () => {
                 </>
               )}
             </Box>
-          </ContentsUserWrite>
-          <ContentsUserHelp>
-            <EditWidget />
-          </ContentsUserHelp>
+          </EditUserWrite>
+          <QEditWidget />
         </MainContents>
         <ButtonWrapper>
           <BlueButton onClick={handleEditQuestion}>Save Edits</BlueButton>
@@ -221,6 +221,6 @@ export const EditMain = () => {
           </CancelButton>
         </ButtonWrapper>
       </AsWrapper>
-    </Wrapper>
+    </Block>
   );
 };

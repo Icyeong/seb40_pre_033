@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
-import { Block } from './HomePage';
+// import { Div } from './HomePage';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
 import { Header } from '../components/Home/Header/Header';
 import { EditMain } from '../components/QuestioEdit/EditMain';
+import { Div } from '../components/QuestioEdit/EditStyle';
 
 export const Top = styled.div`
   width: 100%;
@@ -26,10 +27,10 @@ export const QuestionEditPage = () => {
       <Top>
         <Header />
         <HeaderMargin />
-        <Block>
+        <Div>
           <Sidebar />
           <EditMain />
-        </Block>
+        </Div>
       </Top>
       <Footer></Footer>
     </div>
