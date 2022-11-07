@@ -7,6 +7,7 @@ export const CancelButton = styled.button`
   font-size: 13px;
   color: var(--theme-button-color);
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+  padding: 10.4px 0;
 
   a {
     padding: 10.4px;

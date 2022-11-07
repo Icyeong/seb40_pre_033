@@ -52,17 +52,17 @@ export const QuestionLeftBar = () => {
   let question = useSelector((state) => state.questionReducer);
 
   const handleVoteUpQuestion = async () => {
-    console.log('VOTE UP QUESTION');
-
     const res = await useFetch('GET', `/article/${qid}/like`);
     dispatch(voteUpQuestion(res));
+
+    console.log('VOTE UP QUESTION', res);
   };
 
   const handleVoteDownQuestion = async () => {
-    console.log('VOTE DOWN QUESTION');
-
     const res = await useFetch('GET', `/article/${qid}/dislike`);
     dispatch(voteDownQuestion(res));
+
+    console.log('VOTE DOWN QUESTION', res);
   };
 
   return (

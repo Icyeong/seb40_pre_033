@@ -23,9 +23,7 @@ export const Block = styled.div`
   }
 `;
 
-const HomeSidebarMargin = styled.div`
-  /* width: 204px; */
-`;
+const HomeSidebarMargin = styled.div``;
 
 export const HomePage = () => {
   const dispatch = useDispatch();
@@ -36,8 +34,6 @@ export const HomePage = () => {
   const initSize = 10;
 
   const load = async () => {
-    console.log('GET QUESTIONS');
-
     setIsLoading(true);
 
     // 질문 리스트 가져오기
@@ -47,7 +43,7 @@ export const HomePage = () => {
     ).finally(() => {
       setIsLoading(false);
     });
-    console.log('getQuestions res', res);
+    console.log('GET QUESTIONS', res);
     dispatch(getQuestions(res));
   };
 

@@ -13,6 +13,11 @@ export const Block = styled.div`
 
 export const Body = styled.div`
   font-size: 15px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
 `;
 
 export const QuestionTags = styled(Tags)`
@@ -69,16 +74,6 @@ export const PostMenu = styled.ul`
       }
     }
   }
-
-  /* .delete-button {
-    button {
-      color: var(--red-500);
-      &:active,
-      &:hover {
-        color: var(--red-400);
-      }
-    }
-  } */
 
   h6 {
     font-size: 11px;
@@ -172,21 +167,6 @@ export const QuestionContent = () => {
   const navigate = useNavigate();
   const { qid } = useParams();
 
-
-  // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'ggg@ggg.com',
-    nickname: 'b',
-    userId: 1,
-  };
-  // const isNotLoginUser = {
-  //   email: '',
-  //   nickname: '',
-  //   userId: 0,
-  // };
-  let { email } = isLoginUser;
-
-  // let { email } = useSelector((state) => state.userReducer);
   let user = useSelector((state) => state.userReducer);
 
   let question = useSelector((state) => state.questionReducer);
@@ -195,21 +175,30 @@ export const QuestionContent = () => {
 
   if (bodyRef.current) {
     bodyRef.current.innerHTML = question.content;
-    console.log('#1', bodyRef.current);
   }
 
   const handelDeleteQuestion = async () => {
-    console.log('DELETE QUESTION');
-
     const res = await useFetch('DELETE', `/article/${qid}`);
-    console.log('delete question res', res);
     dispatch(deleteQuestion(res));
+
+    console.log('DELETE QUESTION', res);
 
     navigate('/');
   };
 
   // 태그 바꾸기
   const tags = ['임시'];
+
+  const rand = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  if (question.createAt) {
+    var date = `${question.createAt.slice(0, 10)} ${question.createAt.slice(
+      11,
+      19
+    )}`;
+  }
 
   return (
     <Block>
@@ -240,16 +229,24 @@ export const QuestionContent = () => {
           )}
         </PostMenu>
         <PostUser background="#D9EAF7">
-          <h5>{question.create_at}</h5>
+          <h5>{date}</h5>
           <UserInfo>
             <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
             <div>
               <h6>{question.email}</h6>
               <ul>
-                <li>156</li>
+                <li>{rand(1, 10000)}</li>
+                <li>
+                  <Badge color="#FFCC01" />
+                  {rand(1, 100)}
+                </li>
+                <li>
+                  <Badge color="#B4B8BC" />
+                  {rand(1, 100)}
+                </li>
                 <li>
                   <Badge color="#D1A684" />
-                  27
+                  {rand(1, 100)}
                 </li>
               </ul>
             </div>

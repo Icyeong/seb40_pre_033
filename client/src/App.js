@@ -24,8 +24,8 @@ import { ScrollToTop } from './components/Common/ScrollToTop';
 function App() {
   const dispatch = useDispatch();
 
+  // 내 정보 가져오기
   const userLoad = async () => {
-    // 내 정보 가져오기
     const myInfo = await useFetch('GET', '/user/me');
     dispatch(getmyInfo(myInfo));
     console.log('myInfo res', myInfo);
@@ -80,10 +80,7 @@ function App() {
           <Route path="/questions/:qid" element={<QuestionPage />} />
           <Route path="/questions/ask" element={<QuestionWritePage />} />
           <Route path="/questions/edit/:qid" element={<QuestionEditPage />} />
-          <Route
-            path="/questions/:qid/answer/edit/:aid"
-            element={<AnswerEdit />}
-          />
+          <Route path="/answer/edit/:qid/:aid" element={<AnswerEdit />} />
           <Route path="/users/user" element={<User />} />
           <Route path="/tags" element={<TagsPage />} />
         </Routes>

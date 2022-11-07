@@ -11,15 +11,21 @@ export const Dropdown = () => {
   return (
     <DropdownContainer>
       <Wrapper>
+        <div className="home">
+          <Link to="/">Home</Link>
+        </div>
         <div>PUBLIC</div>
         <NavLinkMenu to="/">
           <EarthSvg />
           Questions
         </NavLinkMenu>
-        <div className="tab-menu">Tags</div>
+        <div className="tab-menu">
+          <Link to="/tags">Tags</Link>
+        </div>
         <div className="tab-menu">
           <Link to="/users">Users</Link>
         </div>
+        <div className="tab-menu">Companies</div>
         <div>
           COLLECTIVES
           <InfoSvg />

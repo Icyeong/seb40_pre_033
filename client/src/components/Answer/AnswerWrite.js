@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
@@ -59,14 +59,11 @@ export const AnswerWrite = () => {
   const bodyRef = useRef();
 
   const [body, setBody] = useState();
+  const [textBody, setTextBody] = useState();
 
   const [bodyError, setBodyError] = useState(false);
 
   const inputData = { content: body };
-
-  useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
-  });
 
   const handleAddAnswer = async () => {
     setBodyError(false);
@@ -74,18 +71,18 @@ export const AnswerWrite = () => {
     bodyRef.current.classList.remove('error');
 
     // 유효성 검사
-    if (body.length < 30) {
+    if (textBody.length < 30) {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
-      console.log('ADD ANSWER');
-
       const res = await useFetch('POST', `/comment/${qid}`, inputData);
-
-      console.log('add answer res', res);
       dispatch(addAnswer(res));
 
-      setBody('');
+      console.log('ADD ANSWER', res);
+
+      bodyRef.current.querySelector('.note-editable').innerHTML = '';
+
+      // window.location.reload();
     }
   };
 
@@ -98,6 +95,14 @@ export const AnswerWrite = () => {
           height={300}
           onBlur={() => {
             setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
+            setTextBody(
+              bodyRef.current.querySelector('.note-editable').innerText
+            );
+            bodyRef.current.style = '';
+          }}
+          onFocus={() => {
+            bodyRef.current.style =
+              'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
           }}
         />
       </SummerNoteWrapper>

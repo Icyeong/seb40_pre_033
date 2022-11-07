@@ -1,6 +1,5 @@
 // grid 모달 처럼
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
 export const PostUser = styled.ul`
   margin: 4px 0;
@@ -55,34 +54,46 @@ export const UserInfo = styled.div`
 // user 정보 question 페이지 참고
 export const UserContainer = () => {
   let question = useSelector((state) => state.questionReducer);
+
+  if (question.createAt) {
+    var date = `${question.createAt.slice(0, 10)} ${question.createAt.slice(
+      11,
+      19
+    )}`;
+  }
+
   return (
     <PostUser>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
           <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h5>{date}</h5>
+
         </div>
       </UserInfo>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
           <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h5>{date}</h5>
+
         </div>
       </UserInfo>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
           <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h5>{date}</h5>
+
         </div>
       </UserInfo>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
           <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h5>{date}</h5>
+
         </div>
       </UserInfo>
     </PostUser>

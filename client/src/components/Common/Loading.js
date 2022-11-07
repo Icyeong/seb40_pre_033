@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Spinner from '../../assets/images/spinner.gif';
 
 const Block = styled.div`
   position: fixed;
@@ -19,5 +20,9 @@ const Block = styled.div`
 `;
 
 export const Loading = () => {
-  return <Block>로딩 중 ...</Block>;
+  return (
+    <Block>
+      <img src={Spinner} alt="로딩중" width="5%" />
+    </Block>
+  );
 };

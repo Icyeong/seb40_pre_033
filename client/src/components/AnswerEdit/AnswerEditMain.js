@@ -45,10 +45,6 @@ export const AnswerEditMain = () => {
     bodyRef.current.querySelector('.note-editable').innerHTML = answer.content;
   }, []);
 
-  useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
-  });
-
   const handleEditAnswer = async () => {
     setBodyError(false);
 
