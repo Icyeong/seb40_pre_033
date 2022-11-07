@@ -1,8 +1,6 @@
 # 🍀 Stack Overflow Clone
 
-```html
 <br/>
-```
 
 ## 🗓️ 프로젝트 기간
 
