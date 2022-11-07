@@ -88,6 +88,9 @@ export const SignupWrapper = styled(Wrapper)`
     }
     @media screen and (max-width: 300px) {
       width: 100%;
+      h1 {
+        width: 90%;
+      }
     }
   }
 `;
