@@ -39,7 +39,7 @@ export const QuestionWritePage = () => {
   const inputData = { title, content: body };
 
   useEffect(() => {
-    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
+    console.log('#2', bodyRef.current.querySelector('.note-editable'));
   });
 
   const handleAddQuestion = async () => {
@@ -151,6 +151,11 @@ export const QuestionWritePage = () => {
                           bodyRef.current.querySelector('.note-editable')
                             .innerText
                         );
+                        bodyRef.current.style = '';
+                      }}
+                      onFocus={() => {
+                        bodyRef.current.style =
+                          'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
                       }}
                     />
                   </SummerNoteWrapper>

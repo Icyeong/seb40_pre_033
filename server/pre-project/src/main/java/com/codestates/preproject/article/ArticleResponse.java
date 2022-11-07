@@ -49,22 +49,5 @@ public class ArticleResponse {
                         .collect(Collectors.toList()))
                 .build();
     }
-
-//    public static ArticleResponse tagOf(Article article, Page<Tag> tagPage) {
-//        return ArticleResponse.builder()
-//                .articleId(article.getArticleId())
-//                .title(article.getTitle())
-//                .createdAt(article.getCreatedAt())
-//                .content(article.getContent())
-//                .email(UserResponseDto.of(article.getUser()).getEmail())
-//                .tags(tagPage.stream()
-//                        .map(tag -> TagResponseDto.of(tag))
-//                        .collect(Collectors.toList()))
-//                .build();
-//    }
-
-
-
-
     
 }

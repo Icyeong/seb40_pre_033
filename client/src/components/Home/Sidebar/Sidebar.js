@@ -1,29 +1,44 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { InfoSvg, StarSvg, EarthSvg } from '../../../assets/images/HomeSvg';
-import { SidebarContainer, Wrapper, NavLinkMenu, Teams } from './Sidebar_style';
+import { SidebarContainer, Wrapper, Teams } from './Sidebar_style';
 
 export const Sidebar = () => {
   return (
     <SidebarContainer>
       <Wrapper>
-        <div>PUBLIC</div>
-        <NavLinkMenu to="/" className="question-menu">
-          <EarthSvg />
-          Questions
-        </NavLinkMenu>
-        <div className="tab-menu">Tags</div>
-        <div className="tab-menu">
-          <Link to="/users">Users</Link>
+        <div className="side-bar-tabs">
+          <NavLink className="home-link" to="/">
+            <p>Home</p>
+          </NavLink>
+
+          <p className="title fc-light">PUBLIC</p>
+          <NavLink className="icon-link" to="/">
+            <p>
+              <EarthSvg className="icon" />
+              Questions
+            </p>
+          </NavLink>
+          <NavLink activeclassname="active" className="link" to="/tags">
+            <p>Tags</p>
+          </NavLink>
+          <NavLink activeclassname="active" className="link" to="/users">
+            <p>Users</p>
+          </NavLink>
+
+          <div className="tab-menu">
+            <div className="companies">Companies</div>
+          </div>
+          <div className="collectives">
+            COLLECTIVES
+            <InfoSvg />
+          </div>
         </div>
-        <div>
-          COLLECTIVES
-          <InfoSvg />
-        </div>
-        <NavLinkMenu className="question-menu">
+
+        <div className="tab-menu2">
           <StarSvg />
           Explore Collectives
-        </NavLinkMenu>
-        <div>TEAMS</div>
+        </div>
+        <div className="teams">TEAMS</div>
         <Teams>
           <div className="textbox">
             <strong>Stack Overflow for Teams -</strong>

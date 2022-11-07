@@ -36,8 +36,8 @@ public class ArticleController {
         articlePost.setUserEmail(email); //email을 set으로 할 것인가 create 시에 넣어줄 것인가?
         Article article = articleService.makeArticle(mapper.articlePostToArticle(articlePost),email);
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.articleToArticleResponse(article))
-                , HttpStatus.CREATED);
+                new SingleResponseDto<>(ArticleResponse.of(article))
+                , HttpStatus.OK);
     }
 
     /*게시글 수정*/
