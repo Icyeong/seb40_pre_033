@@ -29,10 +29,6 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 <br/>
 
 ## 👨‍👩‍👧‍👦 팀원 소개
-### 공통
-<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
-
 ### Front-end
 
 김예린|방혜민|임채영|홍유진
@@ -46,14 +42,16 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 ## 🧑‍💻 기술 스택
 
+### 공통
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+
 ### Front-end
 
 <img src="https://img.shields.io/badge/html5-ED7D31?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS-00A7E2?style=for-the-badge&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-FFC000?style=for-the-badge&logo=JavaScript&logoColor=black"/> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/AmazonS3-339933?style=for-the-badge&logo=AmazonS3&logoColor=white">
 
 ### Back-end
-  <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">
-  <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white" />
-  <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+  <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white"> <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white" /> <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 <br/>
 
 ## 📝 커밋 메세지
