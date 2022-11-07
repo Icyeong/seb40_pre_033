@@ -11,6 +11,7 @@ const Title = styled.div`
     margin: 0 0 8px 0;
     font-size: 27px;
     color: var(--black-700);
+    padding-right: 130px;
 
     display: -webkit-box;
     -webkit-box-orient: vertical;

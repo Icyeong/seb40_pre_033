@@ -7,12 +7,13 @@ import { Footer } from '../components/Home/Footer/Footer';
 import { TagsSection } from '../components/Tags/TagsSection';
 import { TagsTab } from '../components/Tags/TagsTab';
 import { TagsPagination } from '../components/Tags/TagsPagination';
-import { Sidebar } from 'semantic-ui-react';
+import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 
 const Container = styled.div`
   width: 100%;
   border-left-width: 1px;
   padding: 24px;
+  margin-right: 24px;
 
   > div {
     display: flex;
@@ -35,7 +36,7 @@ export const TagsPage = () => {
       <Header />
       <HeaderMargin />
       <Block>
-        <Sidebar />
+        <Sidebar page="tags" />
         <Container>
           <TagsHeader />
           <TagsTab />
