@@ -24,8 +24,8 @@ import { ScrollToTop } from './components/Common/ScrollToTop';
 function App() {
   const dispatch = useDispatch();
 
+  // 내 정보 가져오기
   const userLoad = async () => {
-    // 내 정보 가져오기
     const myInfo = await useFetch('GET', '/user/me');
     dispatch(getmyInfo(myInfo));
     console.log('myInfo res', myInfo);

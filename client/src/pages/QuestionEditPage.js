@@ -65,10 +65,6 @@ export const QuestionEditPage = () => {
       question.content;
   }, []);
 
-  useEffect(() => {
-    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
-  });
-
   const handleEditQuestion = async () => {
     setTitleError(false);
     setBodyError(false);
@@ -93,12 +89,10 @@ export const QuestionEditPage = () => {
         tagsRef.current.classList.add('error');
       }
     } else {
-      console.log('ADD QUESTION');
-      console.log(inputData);
-
       const res = await useFetch('PATCH', `/questions/${qid}`, inputData);
-      console.log('edit question res', res);
       dispatch(editQuestion(res));
+
+      console.log('EDIT QUESTION', res);
     }
 
     navigate(`/questions/${qid}`);
@@ -113,7 +107,6 @@ export const QuestionEditPage = () => {
     if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
       setTags([...tags, e.target.value]);
       setTagInput('');
-      console.log(tags);
     }
   };
 
@@ -250,7 +243,6 @@ export const QuestionEditPage = () => {
   );
 };
 
-//스타일드 컴포넌트 (나중에 컴포넌트로 이동하기)
 export const Top = styled.div`
   display: flex;
   flex-flow: column wrap;

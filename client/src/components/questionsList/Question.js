@@ -10,7 +10,6 @@ export const Question = (type) => {
 
   if (bodyRef.current) {
     bodyRef.current.innerHTML = questions[type.idx].content;
-    // console.log('#1', bodyRef.current);
   }
 
   // 태그 바꾸기

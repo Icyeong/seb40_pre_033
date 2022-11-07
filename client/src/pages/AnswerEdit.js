@@ -30,7 +30,6 @@ const MainContents = styled.div`
   height: 511px;
   display: flex;
   justify-content: space-between;
-  /* border: 5px solid red; */
 `;
 
 export const AskText1 = styled.div`
@@ -65,10 +64,6 @@ export const AnswerEdit = () => {
     bodyRef.current.querySelector('.note-editable').innerHTML = answer.content;
   }, []);
 
-  useEffect(() => {
-    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
-  });
-
   const handleEditAnswer = async () => {
     setBodyError(false);
 
@@ -78,13 +73,10 @@ export const AnswerEdit = () => {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
-      console.log('EDIT ANSWER');
-      console.log(inputData);
-
       const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
       dispatch(editAnswer(res));
 
-      console.log('edit answer res', res);
+      console.log('EDIT ANSWER', res);
 
       navigate(`/questions/${qid}`);
     }

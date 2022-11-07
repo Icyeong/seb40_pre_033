@@ -67,7 +67,6 @@ export const PaiginationContainer = () => {
   );
   const [currentPage, setCurrentPage] = useState(page);
   const handleCurrentPageChange = async (e) => {
-    console.log('Users 현재 페이지 번호 체인지');
     setCurrentPage(e);
   };
   return (

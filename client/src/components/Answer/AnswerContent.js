@@ -23,19 +23,16 @@ export const AnswerContent = (type) => {
 
   if (bodyRef.current) {
     bodyRef.current.innerHTML = question.comments[type.idx].content;
-    // console.log('#1', bodyRef.current);
   }
 
   const handleDeleteAnswer = async () => {
-    console.log('DELETE ANSWER');
-
     const res = await useFetch(
       'DELETE',
       `/comment/${question.comments[type.idx].commentId}`
     );
     dispatch(deleteAnswer(res));
 
-    console.log('delete answer res', res);
+    console.log('DELETE ANSWER', res);
   };
 
   return (

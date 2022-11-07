@@ -75,16 +75,6 @@ export const PostMenu = styled.ul`
     }
   }
 
-  /* .delete-button {
-    button {
-      color: var(--red-500);
-      &:active,
-      &:hover {
-        color: var(--red-400);
-      }
-    }
-  } */
-
   h6 {
     font-size: 11px;
   }
@@ -185,15 +175,13 @@ export const QuestionContent = () => {
 
   if (bodyRef.current) {
     bodyRef.current.innerHTML = question.content;
-    // console.log('#1', bodyRef.current);
   }
 
   const handelDeleteQuestion = async () => {
-    console.log('DELETE QUESTION');
-
     const res = await useFetch('DELETE', `/article/${qid}`);
-    console.log('delete question res', res);
     dispatch(deleteQuestion(res));
+
+    console.log('DELETE QUESTION', res);
 
     navigate('/');
   };

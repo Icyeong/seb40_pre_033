@@ -19,23 +19,23 @@ export const AnswerLeftBar = (type) => {
   const idx = type.idx;
 
   const handleVoteUpAnswer = async () => {
-    console.log('VOTE UP ANSWER');
-
     const res = await useFetch(
       'GET',
       `/comment/${question.comments[idx].commentId}/like`
     );
     dispatch(voteUpAnswer(res));
+
+    console.log('VOTE UP ANSWER', res);
   };
 
   const handleVoteDownAnswer = async () => {
-    console.log('VOTE DOWN ANSWER');
-
     const res = await useFetch(
       'GET',
       `/comment/${question.comments[idx].commentId}/dislike`
     );
     dispatch(voteDownAnswer(res));
+
+    console.log('VOTE DOWN ANSWER', res);
   };
 
   return (
