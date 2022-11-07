@@ -20,12 +20,12 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 <br/>
 
-## 👩🏻‍❤️‍👨🏻 팀원 소개
+## 👨‍👩‍👧‍👦 팀원 소개
 
 ### Front-end
 
 김예린|방혜민|임채영|홍유진
----|---|---|---
+:---:|:---:|:---:|:---:
 ||||
 [@yelinz515](https://github.com/yelinz515)|[@youthmn](https://github.com/youthmn)|[@Icyeong](https://github.com/Icyeong)|[@yujinyny](https://github.com/yujinyny)
 
@@ -56,7 +56,7 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 ## Commit Message
 
 type|instructions
---|--
+:---:|:---:
 feat|새로운 기능 추가
 fix|버그 수정
 docs|문서 수정
