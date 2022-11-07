@@ -105,7 +105,7 @@ export const QuestionsList = () => {
           </div>
           {/* 글 받아오는 부분 */}
           {questions.map((post, idx) => (
-            <Question key={post.article_id} idx={idx} />
+            <Question key={post.articleId} idx={idx} />
           ))}
           <Container>
             <Pagination

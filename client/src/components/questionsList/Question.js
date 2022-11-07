@@ -29,7 +29,7 @@ export const Question = (type) => {
       </div>
       <div className="question-list">
         <h2 className="question-title">
-          <Link to={`/questions/${questions[type.idx].article_id}`}>
+          <Link to={`/questions/${questions[type.idx].articleId}`}>
             {questions[type.idx].title}
           </Link>
         </h2>
@@ -51,7 +51,7 @@ export const Question = (type) => {
             />
 
             {`${questions[type.idx].email} asked ${
-              questions[type.idx].create_at
+              questions[type.idx].createAt
             }`}
           </div>
         </div>

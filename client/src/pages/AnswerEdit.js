@@ -73,7 +73,7 @@ export const AnswerEdit = () => {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
-      const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
+      const res = await useFetch('PATCH', `/comment/${aid}`, inputData);
       dispatch(editAnswer(res));
 
       console.log('EDIT ANSWER', res);

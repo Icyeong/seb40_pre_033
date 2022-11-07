@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
@@ -83,6 +83,8 @@ export const AnswerWrite = () => {
       console.log('ADD ANSWER', res);
 
       bodyRef.current.querySelector('.note-editable').innerHTML = '';
+
+      window.location.reload();
     }
   };
 

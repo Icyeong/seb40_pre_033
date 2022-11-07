@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     ['/auth', '/user', '/articles', '/article', '/comment'],
     createProxyMiddleware({
-      target: 'https://acb3-114-205-132-181.jp.ngrok.io',
+      target: 'https://fe54-14-55-61-123.jp.ngrok.io',
       changeOrigin: true,
     })
   );

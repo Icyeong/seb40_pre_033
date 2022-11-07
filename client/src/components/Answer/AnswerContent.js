@@ -33,6 +33,8 @@ export const AnswerContent = (type) => {
     dispatch(deleteAnswer(res));
 
     console.log('DELETE ANSWER', res);
+
+    window.location.reload();
   };
 
   return (
@@ -46,7 +48,9 @@ export const AnswerContent = (type) => {
             <>
               <li>
                 <Link
-                  to={`/answer/edit/${question.comments[type.idx].commentId}`}
+                  to={`/answer/edit/${question.articleId}/${
+                    question.comments[type.idx].commentId
+                  }`}
                 >
                   Edit
                 </Link>
@@ -61,7 +65,7 @@ export const AnswerContent = (type) => {
           )}
         </PostMenu>
         <PostUser>
-          <h5>{question.comments[type.idx].create_at}</h5>
+          <h5>{question.comments[type.idx].createAt}</h5>
           <UserInfo>
             <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
             <div>

@@ -15,7 +15,7 @@ const initialState = {
   content: '',
   email: '',
   vote: 0,
-  create_at: '',
+  createAt: '',
   comments: [],
 };
 
@@ -42,7 +42,7 @@ export const questionReducer = (state = initialState, action) => {
         ...state,
         comments: [
           state.comments.filter(
-            (answer) => answer.commentId !== action.payload.data
+            (answer) => answer.commentId !== action.payload.commentId
           ),
         ],
       };

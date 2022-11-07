@@ -89,7 +89,7 @@ export const QuestionEditPage = () => {
         tagsRef.current.classList.add('error');
       }
     } else {
-      const res = await useFetch('PATCH', `/questions/${qid}`, inputData);
+      const res = await useFetch('PATCH', `/article/${qid}`, inputData);
       dispatch(editQuestion(res));
 
       console.log('EDIT QUESTION', res);

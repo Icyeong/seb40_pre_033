@@ -61,28 +61,28 @@ export const UserContainer = () => {
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
           <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h5>{question.createAt}</h5>
         </div>
       </UserInfo>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
           <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h5>{question.createAt}</h5>
         </div>
       </UserInfo>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
           <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h5>{question.createAt}</h5>
         </div>
       </UserInfo>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
           <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h5>{question.createAt}</h5>
         </div>
       </UserInfo>
     </PostUser>

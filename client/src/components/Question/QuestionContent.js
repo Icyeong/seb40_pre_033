@@ -218,7 +218,7 @@ export const QuestionContent = () => {
           )}
         </PostMenu>
         <PostUser background="#D9EAF7">
-          <h5>{question.create_at}</h5>
+          <h5>{question.createAt}</h5>
           <UserInfo>
             <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
             <div>

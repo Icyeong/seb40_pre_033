@@ -31,7 +31,7 @@ export const questionsReducer = (state = initialState, action) => {
       return {
         data: [
           ...state.data.map((question) => {
-            if (question.article_id === action.payload.data.article_id)
+            if (question.articleId === action.payload.data.articleId)
               question = action.payload.data;
 
             return question;
@@ -43,7 +43,7 @@ export const questionsReducer = (state = initialState, action) => {
       return {
         data: [
           ...state.data.filter(
-            (question) => question.article_id !== action.payload
+            (question) => question.articleId !== action.payload.articleId
           ),
         ],
         pageInfo: { ...state.pageInfo },
