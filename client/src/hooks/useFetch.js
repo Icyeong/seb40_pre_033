@@ -12,10 +12,10 @@ const useFetch = (method, url, fetchData) => {
     body: JSON.stringify(fetchData),
   };
 
-  return fetch(url, defaultOptions).then(async (res) => {
+  const API = process.env.REACT_APP_API_URL;
+  return fetch(API + url, defaultOptions).then(async (res) => {
     if (!res.ok) {
       return res.status;
-      // throw Error('에러발생');
 
       // 토큰이 있는 경우 (로그인)
     } else if (res.headers.get('authorization')) {
