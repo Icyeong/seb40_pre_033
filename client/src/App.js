@@ -35,7 +35,6 @@ function App() {
   useEffect(() => {
     if (isLogin) {
       userLoad();
-      console.log('유저정보');
     }
 
     const token = localStorage.getItem('accessToken');
@@ -67,7 +66,7 @@ function App() {
         console.log(e);
       }
     }
-  }, []);
+  }, [isLogin]);
 
   return (
     <>
