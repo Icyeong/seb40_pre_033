@@ -45,8 +45,6 @@ export const QuestionsList = () => {
   const perPageCountList = [10, 15, 20];
 
   const handleCurrentPageChange = async (e) => {
-    console.log('현재 페이지 번호 체인지');
-
     setIsLoading(true);
     setCurrentPage(e);
 
@@ -61,8 +59,6 @@ export const QuestionsList = () => {
   };
 
   const perPageCountClick = async (e) => {
-    console.log('페이지 당 글 개수 체인지');
-
     setIsLoading(true);
     setPerPageCount(Number(e.target.value));
 
@@ -109,7 +105,7 @@ export const QuestionsList = () => {
           </div>
           {/* 글 받아오는 부분 */}
           {questions.map((post, idx) => (
-            <Question key={post.article_id} idx={idx} />
+            <Question key={post.articleId} idx={idx} />
           ))}
           <Container>
             <Pagination

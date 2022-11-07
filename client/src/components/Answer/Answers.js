@@ -42,7 +42,7 @@ export const Answers = () => {
       <AnswersHeader />
       <ul>
         {question.comments.map((answer, idx) => (
-          <AnswersTemplate key={answer.commentId} idx={idx} />
+          <AnswersTemplate key={idx} idx={idx} />
         ))}
       </ul>
       <AnswerWrite />

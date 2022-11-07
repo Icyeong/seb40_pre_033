@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
@@ -65,14 +65,6 @@ export const AnswerWrite = () => {
 
   const inputData = { content: body };
 
-  useEffect(() => {
-    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
-    // console.log(
-    //   '#3',
-    //   bodyRef.current.querySelector('.note-editable').innerText
-    // );
-  });
-
   const handleAddAnswer = async () => {
     setBodyError(false);
 
@@ -83,14 +75,14 @@ export const AnswerWrite = () => {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
-      console.log('ADD ANSWER');
-
       const res = await useFetch('POST', `/comment/${qid}`, inputData);
-
-      console.log('add answer res', res);
       dispatch(addAnswer(res));
 
+      console.log('ADD ANSWER', res);
+
       bodyRef.current.querySelector('.note-editable').innerHTML = '';
+
+      // window.location.reload();
     }
   };
 

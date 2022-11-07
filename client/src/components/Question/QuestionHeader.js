@@ -76,6 +76,13 @@ export const QuestionHeader = () => {
   let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
+  if (question.createAt) {
+    var date = `${question.createAt.slice(0, 10)} ${question.createAt.slice(
+      11,
+      19
+    )}`;
+  }
+
   return (
     <>
       <Title>
@@ -89,15 +96,7 @@ export const QuestionHeader = () => {
       <Detail>
         <li>
           <span>Asked</span>
-          today
-        </li>
-        <li>
-          <span>Modified</span>
-          today
-        </li>
-        <li>
-          <span>Viewed</span>
-          11 times
+          {date}
         </li>
       </Detail>
     </>

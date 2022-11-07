@@ -40,7 +40,6 @@ const Container = styled.div`
 
 const Content = styled.div`
   width: calc(100% - 300px - 24px);
-  /* border: 2px solid aquamarine; */
 
   // Mobile
   @media screen and (max-width: 640px) {
@@ -59,15 +58,13 @@ export const QuestionPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const load = async () => {
-    console.log('GET QUESTION');
-
     setIsLoading(true);
 
     const res = await useFetch('GET', `/article/${qid}`).finally(() => {
       setIsLoading(false);
     });
 
-    console.log('get question res', res);
+    console.log('GET QUESTION', res);
     dispatch(getQuestion(res));
   };
 
