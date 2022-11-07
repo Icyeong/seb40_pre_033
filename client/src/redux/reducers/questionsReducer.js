@@ -28,14 +28,14 @@ const initialState = {
 //       tags: ['python1', 'ios1'],
 //       comments: [
 //         {
-//           comment_id: 1,
+//           commentId: 1,
 //           content: '댓글 내용1',
 //           email: '댓글 작성자 이메일1',
 //           vote: 2,
 //           create_at: 'Oct 27, 2022 at 15:34',
 //         },
 //         {
-//           comment_id: 2,
+//           commentId: 2,
 //           content: '댓글 내용2',
 //           email: '댓글 작성자 이메일2',
 //           vote: 3,
@@ -56,7 +56,6 @@ export const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_QUESTIONS:
       return {
-        // ✨ 테스트 할 때, ...state.data 지우기
         data: [...action.payload.data],
         pageInfo: { ...state.pageInfo, ...action.payload.pageInfo },
       };

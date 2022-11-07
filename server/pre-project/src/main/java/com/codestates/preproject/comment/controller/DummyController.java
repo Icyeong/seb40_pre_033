@@ -6,6 +6,9 @@ import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.reply.entity.Reply;
 import com.codestates.preproject.reply.service.ReplyService;
+import com.codestates.preproject.tag.dto.TagDto;
+import com.codestates.preproject.tag.entity.Tag;
+import com.codestates.preproject.tag.service.TagService;
 import com.codestates.preproject.user.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,12 +23,14 @@ public class DummyController {
     private final ArticleService articleService;
     private final UserService userService;
     private final ReplyService replyService;
+    private final TagService tagService;
 
-    public DummyController(CommentService commentService, ArticleService articleService, UserService userService, ReplyService replyService) {
+    public DummyController(CommentService commentService, ArticleService articleService, UserService userService, ReplyService replyService, TagService tagService) {
         this.commentService = commentService;
         this.articleService = articleService;
         this.userService = userService;
         this.replyService = replyService;
+        this.tagService = tagService;
     }
 
     @PostConstruct
@@ -37,7 +42,6 @@ public class DummyController {
                 .articleId(1L)
                 .title("안녕하세요. 점심 뭐 드시나요??")
                 .content("안녕히가세요")
-                .email("b@ergewgrb.com")
                 .build();
         articleService.createArticle(article);
 
@@ -75,6 +79,11 @@ public class DummyController {
                 .build();
         replyService.createReply(reply);
 
+        Tag tag = Tag.builder()
+                .tagId(1L)
+                .content("Spring")
+                .build();
+        tagService.createTag(tag);
 
         // *************** 2번 게시물 *************** //
 
@@ -82,7 +91,6 @@ public class DummyController {
                 .articleId(2L)
                 .title("하리보가 안대요")
                 .content("왜죠?")
-                .email("ber@23g2gb.com")
                 .build();
         articleService.createArticle(article);
 
@@ -110,7 +118,6 @@ public class DummyController {
                 .articleId(3L)
                 .title("벌써 11월이라니 시간 잘 가네요")
                 .content(":(")
-                .email("b12rewf@b.com")
                 .build();
         articleService.createArticle(article);
 
@@ -129,7 +136,6 @@ public class DummyController {
                 .articleId(4L)
                 .title("코딩코딩 랄랄랄")
                 .content("그냥 적어봤어요")
-                .email("bergergf@b.com")
                 .build();
         articleService.createArticle(article);
 
@@ -157,7 +163,6 @@ public class DummyController {
                 .articleId(5L)
                 .title("오늘 수요일인가요??")
                 .content("헤헤")
-                .email("berggd@b.com")
                 .build();
         articleService.createArticle(article);
 
@@ -194,7 +199,6 @@ public class DummyController {
                 .articleId(6L)
                 .title("주말에 뭐하시나요??")
                 .content("궁금궁금")
-                .email("b23yfe@b.com")
                 .build();
         articleService.createArticle(article);
 
@@ -213,7 +217,6 @@ public class DummyController {
                 .articleId(7L)
                 .title("티비 요즘 뭐가 좋나요??")
                 .content("모르게써요")
-                .email("bwerq233twsdf@b.com")
                 .build();
         articleService.createArticle(article);
 

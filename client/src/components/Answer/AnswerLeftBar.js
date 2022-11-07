@@ -23,7 +23,7 @@ export const AnswerLeftBar = (type) => {
 
     const res = await useFetch(
       'GET',
-      `/comment/${question.comments[idx].comment_id}/like`
+      `/comment/${question.comments[idx].commentId}/like`
     );
     dispatch(voteUpAnswer(res));
   };
@@ -33,7 +33,7 @@ export const AnswerLeftBar = (type) => {
 
     const res = await useFetch(
       'GET',
-      `/comment/${question.comments[idx].comment_id}/dislike`
+      `/comment/${question.comments[idx].commentId}/dislike`
     );
     dispatch(voteDownAnswer(res));
   };

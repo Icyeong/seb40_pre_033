@@ -8,28 +8,14 @@ import {
   PostUser,
   UserInfo,
 } from '../Question/QuestionContent';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { deleteAnswer } from '../../redux/actions/questionAction';
 import useFetch from '../../hooks/useFetch';
 import { useRef } from 'react';
 
 export const AnswerContent = (type) => {
   const dispatch = useDispatch();
-  const { qid } = useParams();
-  // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'hello@g.com',
-    nickname: 'b',
-    userId: 1,
-  };
-  // const isNotLoginUser = {
-  //   email: '',
-  //   nickname: '',
-  //   userId: 0,
-  // };
-  let { email } = isLoginUser;
 
-  // let { email } = useSelector((state) => state.userReducer);
   let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
@@ -37,7 +23,7 @@ export const AnswerContent = (type) => {
 
   if (bodyRef.current) {
     bodyRef.current.innerHTML = question.comments[type.idx].content;
-    console.log('#1', bodyRef.current);
+    // console.log('#1', bodyRef.current);
   }
 
   const handleDeleteAnswer = async () => {
@@ -45,9 +31,11 @@ export const AnswerContent = (type) => {
 
     const res = await useFetch(
       'DELETE',
-      `/comment/${question.comments[type.idx].comment_id}`
+      `/comment/${question.comments[type.idx].commentId}`
     );
     dispatch(deleteAnswer(res));
+
+    console.log('delete answer res', res);
   };
 
   return (
@@ -61,9 +49,7 @@ export const AnswerContent = (type) => {
             <>
               <li>
                 <Link
-                  to={`/questions/${qid}/answer/edit/${
-                    question.comments[type.idx].comment_id
-                  }`}
+                  to={`/answer/edit/${question.comments[type.idx].commentId}`}
                 >
                   Edit
                 </Link>

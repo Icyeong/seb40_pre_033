@@ -63,10 +63,12 @@ export const TagInfo = styled.div`
       font-size: 13px;
       color: var(--black-500);
       max-height: 67px;
+      overflow: auto;
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      word-break: break-all;
     }
     // Mobile
     @media screen and (max-width: 1260px) {
