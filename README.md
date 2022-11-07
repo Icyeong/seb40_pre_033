@@ -20,7 +20,7 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 <br/>
 
-## 📚 Documents
+## 📚 
 
 - [요구사항 정의서](https://docs.google.com/document/d/1-tvI0RAzlCXoddBjPX66JGV_aEA38uP1/edit)
 - [API 명세서](https://www.notion.so/codestates/S3-b5b00d31fdca4f5a870a8cc6f386ad97)
@@ -51,9 +51,9 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 <br/>
 
-## 📝 Commit Message
+## 📝 커밋 메세지
 
-type|instructions
+유형|instructions
 :---:|:---:
 feat|새로운 기능에 대한 커밋
 fix|버그 수정에 대한 커밋
