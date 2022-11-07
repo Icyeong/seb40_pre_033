@@ -1,6 +1,5 @@
 // grid 모달 처럼
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
 export const PostUser = styled.ul`
   margin: 4px 0;
@@ -70,6 +69,7 @@ export const UserContainer = () => {
         <div>
           <h6>{question.email}</h6>
           <h5>{date}</h5>
+
         </div>
       </UserInfo>
       <UserInfo>
@@ -77,6 +77,7 @@ export const UserContainer = () => {
         <div>
           <h6>{question.email}</h6>
           <h5>{date}</h5>
+
         </div>
       </UserInfo>
       <UserInfo>
@@ -84,6 +85,7 @@ export const UserContainer = () => {
         <div>
           <h6>{question.email}</h6>
           <h5>{date}</h5>
+
         </div>
       </UserInfo>
       <UserInfo>
@@ -91,6 +93,7 @@ export const UserContainer = () => {
         <div>
           <h6>{question.email}</h6>
           <h5>{date}</h5>
+
         </div>
       </UserInfo>
     </PostUser>

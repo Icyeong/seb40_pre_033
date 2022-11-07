@@ -69,6 +69,12 @@ public class GlobalException {
     }
 
     @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleNullPointException(NullPointerException e) {
+        return ErrorResponse.of(HttpStatus.BAD_REQUEST, "Required User login");
+    }
+
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleException(Exception e) {
         log.error("# handle Exception", e);

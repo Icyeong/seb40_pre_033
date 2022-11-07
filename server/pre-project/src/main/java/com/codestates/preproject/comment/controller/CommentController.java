@@ -10,7 +10,6 @@ import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.SingleResponseDto;
-import com.codestates.preproject.security.userDetails.PrincipalDetailsService;
 import com.codestates.preproject.user.repository.UserRepository;
 import com.codestates.preproject.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -98,8 +97,8 @@ public class CommentController {
     @PatchMapping("/{comment-id}")
     public ResponseEntity patchComment(
             @PathVariable("comment-id") @Positive long commentId,
-            @Valid @RequestBody CommentPatchDto commentPatchDto,
-            @AuthenticationPrincipal PrincipalDetailsService.PrincipalDetails principal) {
+            @Valid @RequestBody CommentPatchDto commentPatchDto) {
+
 
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         commentPatchDto.setCommentId(commentId);
@@ -115,8 +114,9 @@ public class CommentController {
     // 답변 삭제
     @DeleteMapping("/{comment-id}")
     public ResponseEntity deleteComment(
-            @PathVariable("comment-id") @Positive long commentId,
-            @AuthenticationPrincipal PrincipalDetailsService.PrincipalDetails principal) {
+            @PathVariable("comment-id") @Positive long commentId) {
+
+
 
         commentService.deleteComment(commentId);
 

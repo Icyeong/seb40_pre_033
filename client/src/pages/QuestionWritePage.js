@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { Header } from '../components/Home/Header/Header';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
-import { useDispatch } from 'react-redux';
-import { addQuestion } from '../redux/actions/questionsAction';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
 import ReactSummernoteLite from '@easylogic/react-summernote';
@@ -228,6 +226,7 @@ export const QuestionWritePage = () => {
   );
 };
 
+
 const Top = styled.div`
   background-color: rgb(242, 242, 243);
   display: flex;
@@ -235,6 +234,7 @@ const Top = styled.div`
   -webkit-box-align: center;
   align-items: center;
   padding: 0px 15px;
+  width: 100%;
 
   // Mobile
   @media screen and (max-width: 640px) {
@@ -248,7 +248,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 0px 0px 24px 24px;
-
+  width: 100%;
   // Mobile
   @media screen and (max-width: 640px) {
     > h2 {
@@ -482,3 +482,4 @@ const TagsErrorIcon = styled.div`
   right: 10px;
   top: 60px;
 `;
+

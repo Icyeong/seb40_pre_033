@@ -1,38 +1,13 @@
 import styled from 'styled-components';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
-import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
-import { Block } from './HomePage';
-import { BlueButton } from '../components/Common/BlueButton';
-import { CancelButton } from '../components/Common/CancelButton';
+// import { Div } from './HomePage';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
-import ReactSummernoteLite from '@easylogic/react-summernote';
-import {
-  AskText1,
-  AsWrapper,
-  Box,
-  Button,
-  ContentsUserHelp,
-  ContentsUserWrite,
-  MainContents,
-  SummerNoteWrapper,
-  TagBox,
-  TagInput,
-  TagItem,
-  Text,
-  TitleInput,
-  Wrapper,
-} from './QuestionWritePage';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
-import { useState, useRef, useEffect } from 'react';
-import { ErrorMessage } from '../components/Question/ErrorMessage';
-import { HasErrorSvg } from '../assets/images/LoginSvg';
 import { Header } from '../components/Home/Header/Header';
-import { editQuestion } from '../redux/actions/questionsAction';
+import { EditMain } from '../components/QuestioEdit/EditMain';
+import { Div } from '../components/QuestioEdit/EditStyle';
 
 export const QuestionEditPage = () => {
   const dispatch = useDispatch();
@@ -116,127 +91,17 @@ export const QuestionEditPage = () => {
     setTags(filteredTagList);
   };
 
+
+export const QuestionEditPage = () => {
   return (
     <div>
       <Top>
         <Header />
         <HeaderMargin />
-        <Block>
+        <Div>
           <Sidebar />
-          <Wrapper>
-            <AsWrapper>
-              <AskTitle>
-                <p>
-                  Your edit will be placed in a queue until it is peer reviewed.
-                </p>
-                <p>
-                  We welcome edits that make the post easier to understand and
-                  more valuable for readers. Because community members review
-                  edits, please try to make the post substantially better than
-                  how you found it, for example, by fixing grammar or adding
-                  additional resources and hyperlinks.
-                </p>
-              </AskTitle>
-              <MainContents>
-                <ContentsUserWrite>
-                  <Box>
-                    <AskText1>Title</AskText1>
-                    <TitleInput
-                      type="text"
-                      className="TitleInput"
-                      placeholder="e.g Is there an R function for finding the index of an element in a vector?"
-                      value={title}
-                      onChange={(e) => {
-                        setTitle(e.target.value);
-                      }}
-                      ref={titleRef}
-                    />
-                    {titleError && (
-                      <>
-                        <ErrorMessage text="Title must be at least 15 characters." />
-                        <TitleErrorIcon>
-                          <HasErrorSvg />
-                        </TitleErrorIcon>
-                      </>
-                    )}
-                  </Box>
-                  <Box>
-                    <AskText1>Body</AskText1>
-                    <SummerNoteWrapper ref={bodyRef}>
-                      <ReactSummernoteLite
-                        id="sample"
-                        height={300}
-                        onBlur={() => {
-                          setBody(
-                            bodyRef.current.querySelector('.note-editable')
-                              .innerHTML
-                          );
-                          setTextBody(
-                            bodyRef.current.querySelector('.note-editable')
-                              .innerText
-                          );
-                          bodyRef.current.style = '';
-                        }}
-                        onFocus={() => {
-                          bodyRef.current.style =
-                            'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
-                        }}
-                      />
-                    </SummerNoteWrapper>
-                    {bodyError && (
-                      <>
-                        <ErrorMessage text="Body must be at least 30 characters." />
-                        <BodyErrorIcon>
-                          <HasErrorSvg />
-                        </BodyErrorIcon>
-                      </>
-                    )}
-                  </Box>
-                  <Box>
-                    <AskText1>Tags</AskText1>
-                    <TagBox ref={tagsRef}>
-                      {tags.map((tagItem, index) => {
-                        return (
-                          <TagItem key={index}>
-                            <Text>{tagItem}</Text>
-                            <Button onClick={deleteTags}>X</Button>
-                          </TagItem>
-                        );
-                      })}
-                      <TagInput
-                        type="text"
-                        className="TitleInput"
-                        placeholder="e.g (c linux r)"
-                        value={tagInput}
-                        onChange={(e) => TagInputChange(e)}
-                        onKeyUp={(e) => addTagInput(e)}
-                        tags={tags}
-                        onClick={deleteTags}
-                      />
-                    </TagBox>
-                    {tagsError && (
-                      <>
-                        <ErrorMessage text="Please enter at least one tag; see a list of popular tags." />
-                        <TagsErrorIcon>
-                          <HasErrorSvg />
-                        </TagsErrorIcon>
-                      </>
-                    )}
-                  </Box>
-                </ContentsUserWrite>
-                <ContentsUserHelp>
-                  <EditWidget />
-                </ContentsUserHelp>
-              </MainContents>
-              <ButtonWrapper>
-                <BlueButton onClick={handleEditQuestion}>Save Edits</BlueButton>
-                <CancelButton>
-                  <Link to={`/questions/${qid}`}>Cancel</Link>
-                </CancelButton>
-              </ButtonWrapper>
-            </AsWrapper>
-          </Wrapper>
-        </Block>
+          <EditMain />
+        </Div>
       </Top>
       <Footer></Footer>
     </div>
@@ -288,3 +153,4 @@ const TagsErrorIcon = styled.div`
   right: 10px;
   top: 60px;
 `;
+
