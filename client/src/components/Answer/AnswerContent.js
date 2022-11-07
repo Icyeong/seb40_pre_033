@@ -35,8 +35,6 @@ export const AnswerContent = (type) => {
     dispatch(deleteAnswer(res));
 
     console.log('DELETE ANSWER', res);
-
-    // window.location.reload();
   };
 
   const rand = (min, max) => {

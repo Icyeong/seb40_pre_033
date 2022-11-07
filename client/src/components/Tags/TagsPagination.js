@@ -162,8 +162,6 @@ export const TagsPagination = () => {
   const perPageCountList = [10, 15, 20];
 
   const handleCurrentPageChange = async (e) => {
-    console.log('현재 페이지 번호 체인지');
-
     setIsLoading(true);
     setCurrentPage(e);
 
@@ -178,8 +176,6 @@ export const TagsPagination = () => {
   };
 
   const perPageCountClick = async (e) => {
-    console.log('페이지 당 글 개수 체인지');
-
     setIsLoading(true);
     setPerPageCount(Number(e.target.value));
 
