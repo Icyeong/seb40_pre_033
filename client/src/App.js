@@ -41,10 +41,8 @@ function App() {
     if (token) {
       try {
         const { exp } = jwt_decode(token);
-        // const time = Date.now();
+        // 토큰 만료
         if (Date.now() >= exp * 1000) {
-          console.log('토큰이 만료됬습니다.');
-          // console.log(exp);
           localStorage.removeItem('accessToken');
           localStorage.removeItem('refreshToken');
           dispatch(getLoginStatus({ isLogin: false }));
@@ -53,14 +51,10 @@ function App() {
           // 토큰 만료 전 로그인 연장 필요
         } else if (Date.now() >= exp * 1000 - 100000) {
           dispatch(getLoginStatus({ isLogin: true }));
-          console.log('토큰 재발급 필요.');
           refreshToken();
-          // console.log(exp);
           // 토큰 유효
         } else {
           dispatch(getLoginStatus({ isLogin: true }));
-          console.log('토큰이 유효합니다.');
-          // console.log(exp);
         }
       } catch (e) {
         console.log(e);
