@@ -10,7 +10,7 @@ import { QuestionWritePage } from './pages/QuestionWritePage';
 import { QuestionEditPage } from './pages/QuestionEditPage';
 import { AnswerEdit } from './pages/AnswerEdit';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getLoginStatus, getmyInfo } from './redux/actions/userAction';
 import jwt_decode from 'jwt-decode';
 import { refreshToken } from './hooks/refreshToken';
@@ -23,6 +23,7 @@ import { ScrollToTop } from './components/Common/ScrollToTop';
 
 function App() {
   const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.userReducer.isLogin);
 
   // 내 정보 가져오기
   const userLoad = async () => {
@@ -32,7 +33,10 @@ function App() {
   };
 
   useEffect(() => {
-    userLoad();
+    if (isLogin) {
+      userLoad();
+      console.log('유저정보');
+    }
 
     const token = localStorage.getItem('accessToken');
     if (token) {
