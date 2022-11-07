@@ -1,5 +1,6 @@
 package com.codestates.preproject.article;
 
+import com.codestates.preproject.articleTag.ArticleTag;
 import com.codestates.preproject.audit.BaseTime;
 import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.tag.entity.Tag;
@@ -36,7 +37,7 @@ public class Article extends BaseTime {
     private User user;
 
 
-    @OneToMany(mappedBy = "article", cascade=CascadeType.PERSIST)
+    @OneToMany(mappedBy = "article", cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Comment> comments = new ArrayList<>();
 
     @Builder
@@ -50,10 +51,9 @@ public class Article extends BaseTime {
         comments.add(comment);
     }
 
-    @OneToMany(mappedBy = "article", cascade=CascadeType.PERSIST)
-    private List<Tag> tags = new ArrayList<>();
+    @OneToMany(mappedBy = "article", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<ArticleTag> articleTag = new ArrayList<>();
 
-    public void addTag(Tag tag) {
-        tags.add(tag);
-    }
+    private String email;
+
 }

@@ -12,23 +12,15 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 @Getter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class TagResponseDto {
 
-    private Long tagId;
     private String name;
-    private String content;
-
-    public TagResponseDto(String name, String content) {
-        this.name = name;
-        this.content = content;
-    }
 
     public static TagResponseDto of(Tag tag) {
 
-        return new TagResponseDto(tag.getContent(), tag.getName());
+        return new TagResponseDto(tag.getName());
     }
 
 }
