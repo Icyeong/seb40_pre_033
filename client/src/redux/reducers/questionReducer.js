@@ -29,7 +29,7 @@ export const questionReducer = (state = initialState, action) => {
       return {
         ...state,
         comments: [
-          state.comments.map((answer) => {
+          ...state.comments.map((answer) => {
             if (answer.commentId === action.payload.data.commentId)
               answer = action.payload.data;
 
@@ -41,7 +41,7 @@ export const questionReducer = (state = initialState, action) => {
       return {
         ...state,
         comments: [
-          state.comments.filter(
+          ...state.comments.filter(
             (answer) => answer.commentId !== action.payload.commentId
           ),
         ],
