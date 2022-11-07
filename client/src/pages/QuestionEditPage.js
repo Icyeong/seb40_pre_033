@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { HeaderMargin } from '../components/Home/Header/HeaderMargin';
 import { Footer } from '../components/Home/Footer/Footer';
 import { EditWidget } from '../components/Home/SidebarWidget/EditWidget';
-import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { Block } from './HomePage';
 import { BlueButton } from '../components/Common/BlueButton';
 import { CancelButton } from '../components/Common/CancelButton';
@@ -26,7 +25,6 @@ import {
   Wrapper,
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
-// import { editQuestion } from '../redux/actions/questionsAction';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { useState, useRef, useEffect } from 'react';
@@ -34,6 +32,7 @@ import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import { Header } from '../components/Home/Header/Header';
 import { editQuestion } from '../redux/actions/questionsAction';
+import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 
 export const QuestionEditPage = () => {
   const dispatch = useDispatch();
@@ -49,6 +48,7 @@ export const QuestionEditPage = () => {
 
   const [title, setTitle] = useState(question.title);
   const [body, setBody] = useState('');
+  const [textBody, setTextBody] = useState('');
 
   const [tagInput, setTagInput] = useState('');
   const [tags, setTags] = useState(['임시']);
@@ -65,10 +65,6 @@ export const QuestionEditPage = () => {
       question.content;
   }, []);
 
-  useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
-  });
-
   const handleEditQuestion = async () => {
     setTitleError(false);
     setBodyError(false);
@@ -79,12 +75,12 @@ export const QuestionEditPage = () => {
     tagsRef.current.classList.remove('error');
 
     // 유효성 검사
-    if (title.length < 15 || body.length < 30 || tags.length < 1) {
+    if (title.length < 15 || textBody.length < 30 || tags.length < 1) {
       if (title.length < 15) {
         setTitleError(true);
         titleRef.current.classList.add('error');
       }
-      if (body.length < 30) {
+      if (textBody.length < 30) {
         setBodyError(true);
         bodyRef.current.classList.add('error');
       }
@@ -93,12 +89,10 @@ export const QuestionEditPage = () => {
         tagsRef.current.classList.add('error');
       }
     } else {
-      console.log('ADD QUESTION');
-      console.log(inputData);
-
-      const res = await useFetch('PATCH', `/questions/${qid}`, inputData);
-      console.log('edit question res', res);
+      const res = await useFetch('PATCH', `/article/${qid}`, inputData);
       dispatch(editQuestion(res));
+
+      console.log('EDIT QUESTION', res);
     }
 
     navigate(`/questions/${qid}`);
@@ -113,7 +107,6 @@ export const QuestionEditPage = () => {
     if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
       setTags([...tags, e.target.value]);
       setTagInput('');
-      console.log(tags);
     }
   };
 
@@ -178,6 +171,15 @@ export const QuestionEditPage = () => {
                             bodyRef.current.querySelector('.note-editable')
                               .innerHTML
                           );
+                          setTextBody(
+                            bodyRef.current.querySelector('.note-editable')
+                              .innerText
+                          );
+                          bodyRef.current.style = '';
+                        }}
+                        onFocus={() => {
+                          bodyRef.current.style =
+                            'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
                         }}
                       />
                     </SummerNoteWrapper>
@@ -241,7 +243,6 @@ export const QuestionEditPage = () => {
   );
 };
 
-//스타일드 컴포넌트 (나중에 컴포넌트로 이동하기)
 export const Top = styled.div`
   display: flex;
   flex-flow: column wrap;

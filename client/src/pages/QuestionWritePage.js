@@ -7,14 +7,12 @@ import { addQuestion } from '../redux/actions/questionsAction';
 import '../components/SummerText/Summernote.css';
 import 'jquery';
 import ReactSummernoteLite from '@easylogic/react-summernote';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import useFetch from '../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import { PostAnswerButton } from '../components/Answer/AnswerWrite';
-
-//써머노트 install 명령어 "npm install summernote"
 
 export const QuestionWritePage = () => {
   const dispatch = useDispatch();
@@ -26,6 +24,7 @@ export const QuestionWritePage = () => {
 
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [textBody, setTextBody] = useState();
 
   const [tagInput, setTagInput] = useState('');
   const [tags, setTags] = useState([]);
@@ -37,10 +36,6 @@ export const QuestionWritePage = () => {
   // const inputData = { title, content: body, tags };
   const inputData = { title, content: body };
 
-  useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
-  });
-
   const handleAddQuestion = async () => {
     setTitleError(false);
     setBodyError(false);
@@ -51,12 +46,12 @@ export const QuestionWritePage = () => {
     tagsRef.current.classList.remove('error');
 
     // 유효성 검사
-    if (title.length < 15 || body.length < 30 || tags.length < 1) {
+    if (title.length < 15 || textBody.length < 30 || tags.length < 1) {
       if (title.length < 15) {
         setTitleError(true);
         titleRef.current.classList.add('error');
       }
-      if (body.length < 30) {
+      if (textBody.length < 30) {
         setBodyError(true);
         bodyRef.current.classList.add('error');
       }
@@ -65,12 +60,10 @@ export const QuestionWritePage = () => {
         tagsRef.current.classList.add('error');
       }
     } else {
-      console.log('ADD QUESTION');
-      console.log(inputData);
-
       const res = await useFetch('POST', '/article', inputData);
-      console.log('add question res', res);
       dispatch(addQuestion(res));
+
+      console.log('ADD QUESTION', res);
 
       navigate('/');
     }
@@ -85,7 +78,6 @@ export const QuestionWritePage = () => {
     if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
       setTags([...tags, e.target.value]);
       setTagInput('');
-      console.log(tags);
     }
   };
 
@@ -146,6 +138,15 @@ export const QuestionWritePage = () => {
                           bodyRef.current.querySelector('.note-editable')
                             .innerHTML
                         );
+                        setTextBody(
+                          bodyRef.current.querySelector('.note-editable')
+                            .innerText
+                        );
+                        bodyRef.current.style = '';
+                      }}
+                      onFocus={() => {
+                        bodyRef.current.style =
+                          'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
                       }}
                     />
                   </SummerNoteWrapper>
@@ -227,7 +228,6 @@ export const QuestionWritePage = () => {
   );
 };
 
-//스타일드 컴포넌트 (나중에 컴포넌트로 이동하기)
 const Top = styled.div`
   background-color: rgb(242, 242, 243);
   display: flex;
@@ -289,14 +289,12 @@ export const MainContents = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* border: 5px solid red; */
 `;
 
 export const ContentsUserWrite = styled.div`
   width: 827px;
   margin-bottom: 16px;
   padding: 16px 16px 16px 16px;
-  /* border: 1px solid red; */
   background-color: #ffffff;
   border-radius: 0.8%;
   box-shadow: 0px 0px 4px #d6d9dc;
@@ -320,7 +318,6 @@ export const AskText2 = styled.div`
   width: 600px;
   height: 100%;
   font-size: 12px;
-  /* border: solid pink; */
   display: flex;
   justify-content: left;
   align-items: baseline;
@@ -361,7 +358,6 @@ export const Userwrite = styled.div`
 export const SummerNotePreview = styled.div`
   width: 100%;
   height: 300px;
-  /* border: solid black 5px; */
 `;
 
 const SidebarBox = styled.div`
@@ -385,12 +381,10 @@ const Sidebarwidget = styled.div`
 const Sidebarwidget2 = styled.div`
   margin: 0px 0px 10px 0px;
   font-size: 13px;
-  /* border: 1px solid pink; */
 `;
 
 const TextList = styled.ul`
   margin-top: 15px;
-  /* border: 1px solid red; */
   font-size: 13px;
   row-gap: 5px;
   padding: 0px 15px 0px 25px;

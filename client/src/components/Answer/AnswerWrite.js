@@ -1,16 +1,14 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { addAnswer } from '../../redux/actions/questionAction';
 import ReactSummernoteLite from '@easylogic/react-summernote';
 import useFetch from '../../hooks/useFetch';
-import {
-  BodyErrorIcon,
-  SummerNoteWrapper,
-} from '../../pages/QuestionWritePage';
+import { BodyErrorIcon } from '../WriteEdit/style';
 import { ErrorMessage } from '../Question/ErrorMessage';
 import { HasErrorSvg } from '../../assets/images/LoginSvg';
+import { SummerNoteWrapper } from '../WriteEdit/style';
 
 const Block = styled.div`
   h2 {
@@ -39,7 +37,7 @@ export const PostAnswerButton = styled.button`
   background-color: var(--theme-button-primary-background-color);
   box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
   padding: 10.4px;
-
+  margin-bottom: 25px;
   &:active,
   &:hover,
   &:focus {
@@ -61,14 +59,11 @@ export const AnswerWrite = () => {
   const bodyRef = useRef();
 
   const [body, setBody] = useState();
+  const [textBody, setTextBody] = useState();
 
   const [bodyError, setBodyError] = useState(false);
 
   const inputData = { content: body };
-
-  useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
-  });
 
   const handleAddAnswer = async () => {
     setBodyError(false);
@@ -76,18 +71,18 @@ export const AnswerWrite = () => {
     bodyRef.current.classList.remove('error');
 
     // 유효성 검사
-    if (body.length < 30) {
+    if (textBody.length < 30) {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
-      console.log('ADD ANSWER');
-
       const res = await useFetch('POST', `/comment/${qid}`, inputData);
-
-      console.log('add answer res', res);
       dispatch(addAnswer(res));
 
-      setBody('');
+      console.log('ADD ANSWER', res);
+
+      bodyRef.current.querySelector('.note-editable').innerHTML = '';
+
+      // window.location.reload();
     }
   };
 
@@ -100,6 +95,14 @@ export const AnswerWrite = () => {
           height={300}
           onBlur={() => {
             setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
+            setTextBody(
+              bodyRef.current.querySelector('.note-editable').innerText
+            );
+            bodyRef.current.style = '';
+          }}
+          onFocus={() => {
+            bodyRef.current.style =
+              'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
           }}
         />
       </SummerNoteWrapper>

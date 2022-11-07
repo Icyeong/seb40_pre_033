@@ -1,29 +1,85 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { InfoSvg, StarSvg, EarthSvg } from '../../../assets/images/HomeSvg';
-import { SidebarContainer, Wrapper, NavLinkMenu, Teams } from './Sidebar_style';
+import { SidebarContainer, Wrapper, Teams } from './Sidebar_style';
 
 export const Sidebar = () => {
+  const [selected, setSelected] = useState('Home');
+
+  const sortClick = (e) => {
+    switch (e.target.value) {
+      case 'Home':
+        setSelected('Home');
+        break;
+      case 'Questions':
+        setSelected('Questions');
+        break;
+      case 'Tags':
+        setSelected('Tags');
+        break;
+      case 'Users':
+        setSelected('Users');
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
     <SidebarContainer>
       <Wrapper>
-        <div>PUBLIC</div>
-        <NavLinkMenu to="/" className="question-menu">
-          <EarthSvg />
-          Questions
-        </NavLinkMenu>
-        <div className="tab-menu">Tags</div>
-        <div className="tab-menu">
-          <Link to="/users">Users</Link>
+        <div className="side-bar-tabs">
+          <a
+            onClick={sortClick}
+            className={selected === 'Home' ? 'is-selected' : ''}
+            value={'Home'}
+            href="/"
+          >
+            <p>Home</p>
+          </a>
+
+          <p className="title fc-light">PUBLIC</p>
+          <a
+            onClick={sortClick}
+            className={selected === 'Questions' ? 'is-selected' : ''}
+            value={'Questions'}
+            href="/"
+          >
+            <p>
+              <EarthSvg />
+              Questions
+            </p>
+          </a>
+          <a
+            onClick={sortClick}
+            className={selected === 'Tags' ? 'is-selected' : ''}
+            value={'Tags'}
+            href="/tags"
+          >
+            <p>Tags</p>
+          </a>
+          <a
+            onClick={sortClick}
+            className={selected === 'Users' ? 'is-selected' : ''}
+            value={'Users'}
+            href="/users"
+          >
+            <p>Users</p>
+          </a>
+
+          <div className="tab-menu">
+            <div className="companies">Companies</div>
+          </div>
+          <div className="collectives">
+            COLLECTIVES
+            <InfoSvg />
+          </div>
         </div>
-        <div>
-          COLLECTIVES
-          <InfoSvg />
-        </div>
-        <NavLinkMenu className="question-menu">
+
+        <div className="tab-menu2">
           <StarSvg />
           Explore Collectives
-        </NavLinkMenu>
-        <div>TEAMS</div>
+        </div>
+        <div className="teams">TEAMS</div>
         <Teams>
           <div className="textbox">
             <strong>Stack Overflow for Teams -</strong>

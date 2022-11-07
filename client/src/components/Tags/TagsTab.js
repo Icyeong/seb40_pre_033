@@ -12,7 +12,6 @@ const FilterContainer = styled.div`
   @media screen and (max-width: 982px) {
     display: flex;
     row-gap: 12px;
-    flex-direction: column;
   }
   > .input-search {
     display: flex;

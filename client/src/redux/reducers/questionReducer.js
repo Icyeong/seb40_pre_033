@@ -9,41 +9,14 @@ import {
   VOTE_DOWN_ANSWER,
 } from '../actions/questionAction';
 
-// const initialState = {
-//   article_id: 0,
-//   title: '',
-//   content: '',
-//   email: '',
-//   vote: 0,
-//   create_at: '',
-//   comments: [],
-// };
-
-// dummy
 const initialState = {
-  article_id: 1,
-  title: '질문 제목',
-  content: '질문 내용',
-  email: '질문 작성자 이메일',
-  vote: 1,
-  create_at: 'Oct 27, 2021 at 15:34',
-  tags: ['python', 'ios'],
-  comments: [
-    {
-      comment_id: 1,
-      content: '댓글 내용1',
-      email: '댓글 작성자 이메일1',
-      vote: 2,
-      create_at: 'Oct 27, 2022 at 15:34',
-    },
-    {
-      comment_id: 2,
-      content: '댓글 내용2',
-      email: '댓글 작성자 이메일2',
-      vote: 3,
-      create_at: 'Oct 27, 2023 at 15:34',
-    },
-  ],
+  articleId: 0,
+  title: '',
+  content: '',
+  email: '',
+  vote: 0,
+  createAt: '',
+  comments: [],
 };
 
 export const questionReducer = (state = initialState, action) => {
@@ -56,8 +29,8 @@ export const questionReducer = (state = initialState, action) => {
       return {
         ...state,
         comments: [
-          state.comments.map((answer) => {
-            if (answer.comment_id === action.payload.data.comment_id)
+          ...state.comments.map((answer) => {
+            if (answer.commentId === action.payload.data.commentId)
               answer = action.payload.data;
 
             return answer;
@@ -68,8 +41,8 @@ export const questionReducer = (state = initialState, action) => {
       return {
         ...state,
         comments: [
-          state.comments.filter(
-            (answer) => answer.comment_id !== action.payload.data
+          ...state.comments.filter(
+            (answer) => answer.commentId !== action.payload.commentId
           ),
         ],
       };
@@ -88,7 +61,7 @@ export const questionReducer = (state = initialState, action) => {
         ...state,
         comments: [
           state.comments.map((answer) => {
-            if (answer.comment_id === action.payload.data.comment_id)
+            if (answer.commentId === action.payload.data.commentId)
               answer.vote = action.payload.data.vote;
 
             return answer;
@@ -100,7 +73,7 @@ export const questionReducer = (state = initialState, action) => {
         ...state,
         comments: [
           state.comments.map((answer) => {
-            if (answer.comment_id === action.payload.data.comment_id)
+            if (answer.commentId === action.payload.data.commentId)
               answer.vote = action.payload.data.vote;
 
             return answer;

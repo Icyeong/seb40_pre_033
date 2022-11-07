@@ -2,13 +2,14 @@ package com.codestates.preproject.comment.controller;
 
 import com.codestates.preproject.article.Article;
 import com.codestates.preproject.article.ArticleService;
-import com.codestates.preproject.comment.dto.*;
+import com.codestates.preproject.comment.dto.CommentDeleteDto;
+import com.codestates.preproject.comment.dto.CommentPatchDto;
+import com.codestates.preproject.comment.dto.CommentPostDto;
+import com.codestates.preproject.comment.dto.CommentVoteDto;
+import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.SingleResponseDto;
-import com.codestates.preproject.comment.entity.Comment;
-import com.codestates.preproject.security.userDetails.PrincipalDetails;
-import com.codestates.preproject.security.userDetails.PrincipalDetailsService;
 import com.codestates.preproject.user.repository.UserRepository;
 import com.codestates.preproject.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.util.List;
 
 @RestController
 @Validated
@@ -60,7 +60,7 @@ public class CommentController {
         );
     }
 
-    // 답변 전체 조회
+/*    // 답변 전체 조회
     @GetMapping("/all")
     public ResponseEntity getComments() {
 
@@ -70,7 +70,7 @@ public class CommentController {
                 commentMapper.commentsToCommentResponse(comments),
                 HttpStatus.OK
         );
-    }
+    }*/
 
     // 답변 생성
     @PostMapping("/{article-id}")
@@ -97,8 +97,8 @@ public class CommentController {
     @PatchMapping("/{comment-id}")
     public ResponseEntity patchComment(
             @PathVariable("comment-id") @Positive long commentId,
-            @Valid @RequestBody CommentPatchDto commentPatchDto,
-            @AuthenticationPrincipal PrincipalDetails principal) {
+            @Valid @RequestBody CommentPatchDto commentPatchDto) {
+
 
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         commentPatchDto.setCommentId(commentId);
@@ -114,8 +114,9 @@ public class CommentController {
     // 답변 삭제
     @DeleteMapping("/{comment-id}")
     public ResponseEntity deleteComment(
-            @PathVariable("comment-id") @Positive long commentId,
-            @AuthenticationPrincipal PrincipalDetails principal) {
+            @PathVariable("comment-id") @Positive long commentId) {
+
+
 
         commentService.deleteComment(commentId);
 

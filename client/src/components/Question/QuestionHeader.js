@@ -11,6 +11,11 @@ const Title = styled.div`
     margin: 0 0 8px 0;
     font-size: 27px;
     color: var(--black-700);
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-all;
   }
 
   // Mobile
@@ -29,8 +34,10 @@ export const AskQuestionButton = styled(BlueButton)`
   margin-left: 12px;
   min-width: 100.115px;
   height: 42px;
+  padding: 0;
 
   a {
+    padding: 10.4px;
     color: var(--theme-button-primary-color);
   }
 
@@ -69,6 +76,13 @@ export const QuestionHeader = () => {
   let user = useSelector((state) => state.userReducer);
   let question = useSelector((state) => state.questionReducer);
 
+  if (question.createAt) {
+    var date = `${question.createAt.slice(0, 10)} ${question.createAt.slice(
+      11,
+      19
+    )}`;
+  }
+
   return (
     <>
       <Title>
@@ -82,15 +96,7 @@ export const QuestionHeader = () => {
       <Detail>
         <li>
           <span>Asked</span>
-          today
-        </li>
-        <li>
-          <span>Modified</span>
-          today
-        </li>
-        <li>
-          <span>Viewed</span>
-          11 times
+          {date}
         </li>
       </Detail>
     </>

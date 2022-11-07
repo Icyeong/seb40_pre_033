@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class ArticleDeleteResponse {
-    @JsonProperty("article_id")
+    @JsonProperty("articleId")
     private long articleId;
 
     public ArticleDeleteResponse(long articleId) {

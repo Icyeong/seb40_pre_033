@@ -8,6 +8,7 @@ export const HeaderWrapper = styled.div`
     @media screen and (max-width: 640px) {
       display: flex;
       flex: 1 auto !important;
+      flex-direction: column;
     }
     > h1 {
       font-size: 27px;
@@ -49,7 +50,7 @@ export const Body = styled.div`
   .container {
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: repeat(4, 2fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-gap: 12px;
   }
   .name {
