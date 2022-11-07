@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/74370531/200337543-ad7dbbbc-7aa1-419c-97a9-5acf73c95ea0.png)
+
 # 🍀 Stack Overflow Clone
 
 <br/>
@@ -17,6 +19,14 @@
 ## 🔗 배포 주소
 
 http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
+
+<br/>
+
+## 📚 Documents
+
+- [요구사항 정의서](https://docs.google.com/document/d/1-tvI0RAzlCXoddBjPX66JGV_aEA38uP1/edit)
+- [API 명세서](https://www.notion.so/codestates/S3-b5b00d31fdca4f5a870a8cc6f386ad97)
+- [S3 Team Home](https://standing-settee-428.notion.site/S3-Team-Home-93a4d3fb5e0443c1a22bd971c7dc7265)
 
 <br/>
 
@@ -43,20 +53,19 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 <br/>
 
-## 📚 Documents
-
-<br/>
-
 ## 📝 Commit Message
 
 type|instructions
 :---:|:---:
-feat|새로운 기능 추가
-fix|버그 수정
-docs|문서 수정
-refactor|코드 리펙토링
-test|테스트 코드, 리펙토링 테스트 코드 추가
-chore|빌드 업무 수정, 패키지 매니저 수정
+feat|새로운 기능에 대한 커밋
+fix|버그 수정에 대한 커밋
+build|빌드 관련 파일 수정에 대한 커밋
+chore|그 외 자잘한 수정에 대한 커밋
+ci|CI관련 설정 수정에 대한 커밋
+docs|문서 수정에 대한 커밋
+style|코드 스타일 혹은 포맷 등에 관한 커밋
+refactor|코드 리팩토링에 대한 커밋
+test|테스트 코드 수정에 대한 커밋
 
 <br/>
 
