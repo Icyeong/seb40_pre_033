@@ -1,6 +1,5 @@
 // grid 모달 처럼
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
 export const PostUser = styled.ul`
   margin: 4px 0;
@@ -54,35 +53,34 @@ export const UserInfo = styled.div`
 `;
 // user 정보 question 페이지 참고
 export const UserContainer = () => {
-  let question = useSelector((state) => state.questionReducer);
   return (
     <PostUser>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
-          <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h6>Daniel Amezcua</h6>
+          <h5>1 in one day</h5>
         </div>
       </UserInfo>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
-          <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h6>Bertram George</h6>
+          <h5>1 in one day</h5>
         </div>
       </UserInfo>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
-          <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h6>Lambertsen Cullen</h6>
+          <h5>1 in one day</h5>
         </div>
       </UserInfo>
       <UserInfo>
         <img src="https://via.placeholder.com/32" alt="user-thumbnail" />
         <div>
-          <h6>{question.email}</h6>
-          <h5>{question.create_at}</h5>
+          <h6>Caleb E Ramos</h6>
+          <h5>1 in one day</h5>
         </div>
       </UserInfo>
     </PostUser>

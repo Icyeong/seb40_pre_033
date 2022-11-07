@@ -8,6 +8,7 @@ export const DropdownContainer = styled.nav`
   flex-direction: column;
   width: 222px;
   background-color: #ffffff;
+  box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.1);
 `;
 
 export const Wrapper = styled.div`
@@ -15,13 +16,24 @@ export const Wrapper = styled.div`
   flex-flow: column nowrap;
   overflow-x: hidden;
   flex-direction: column;
+  > .home {
+    font-size: 13px;
+    a {
+      color: var(--black-500);
+
+      &:hover,
+      &:active {
+        color: hsl(210, 8%, 5%);
+      }
+    }
+  }
   > div {
     color: hsl(210, 8%, 35%);
     font-size: 11px;
     margin: 20px 8px 0px 8px;
   }
   > .tab-menu {
-    color: hsl(210, 8%, 35%);
+    color: hsl(210, 8%, 45%);
     font-size: 13px;
     text-decoration: none;
     display: flex;
@@ -31,13 +43,21 @@ export const Wrapper = styled.div`
     margin: 0;
     :hover {
       border: none;
-      background-color: #e2e6e8;
+      color: hsl(210, 8%, 5%);
+    }
+    a {
+      color: var(--black-500);
+
+      &:hover,
+      &:active {
+        color: hsl(210, 8%, 5%);
+      }
     }
   }
 `;
 
 export const NavLinkMenu = styled(NavLink)`
-  color: hsl(210, 8%, 35%);
+  color: hsl(210, 8%, 45%);
   font-size: 13px;
   text-decoration: none;
   display: flex;
@@ -49,11 +69,11 @@ export const NavLinkMenu = styled(NavLink)`
   }
 
   :hover {
-    color: hsl(210, 8%, 15%);
+    color: hsl(210, 8%, 5%);
   }
 
   /* 선택 시 박스 크기 조절 */
-  &.active {
+  & .active {
     font-weight: 700;
     color: hsl(210, 8%, 15%);
     margin-left: 1px;
