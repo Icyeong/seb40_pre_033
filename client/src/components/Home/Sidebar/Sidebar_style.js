@@ -22,6 +22,10 @@ export const Wrapper = styled.div`
   margin-top: 30px;
   > .side-bar-tabs {
     padding-left: 5px;
+    .is-padding {
+      padding: 5px 0 5px 20px;
+    }
+
     .title {
       font-size: 11px;
       margin-bottom: 5px;
