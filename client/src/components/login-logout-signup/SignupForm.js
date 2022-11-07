@@ -102,7 +102,6 @@ const SignupForm = () => {
       // 이메일 형식체크
     } else if (!isEmailValid) {
       emailFormEl.current.classList.add('inValid');
-      console.log(isOnlyNumber, isOnlyString);
       return setInvalidEmail('The email is not a valid email address.');
       // 로봇이 아닙니다
     } else if (!robotCheck) {
@@ -120,10 +119,8 @@ const SignupForm = () => {
       opt,
     };
 
-    console.log('보내는 데이터 :', body);
     // 회원가입 요청
     const res = await useFetch('POST', '/auth/signup', body);
-    console.log('응답코드', res);
     // 이메일은 있으나 비밀번호가 다른경우
     if (res === 409) {
       navigate('/users/signup/recovery');
