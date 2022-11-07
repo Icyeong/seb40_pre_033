@@ -15,93 +15,46 @@ export const SidebarContainer = styled.nav`
 `;
 
 export const Wrapper = styled.div`
-  /* display: flex;
-  flex-flow: column nowrap;
-  overflow-x: hidden;
-  flex-direction: column; */
   margin-top: 30px;
+
   > .side-bar-tabs {
     padding-left: 5px;
+
     .title {
       font-size: 11px;
       margin-bottom: 5px;
       color: hsl(210, 8%, 45%);
     }
-    /* 
-    > .link {
-      text-decoration: none;
-      color: hsl(210, 8%, 45%);
 
-      p {
-        padding: 5px 45px 5px 30px;
-        margin-bottom: 5px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        font-size: 13px;
-      }
-      &:hover {
-        color: hsl(210, 8%, 5%);
-      }
-    } */
     a {
       color: hsl(210, 8%, 45%);
       font-size: 13px;
       text-decoration: none;
-      p {
-        display: flex;
-        padding: 5px 30px 5px 0px;
-        margin-bottom: 5px;
-        border-right: 3px solid transparent;
-        font-size: 13px;
-        gap: 4px;
-      }
-      :hover {
-        border: none;
-        color: hsl(210, 8%, 5%);
-      }
-      /* > .home-link {
-        text-decoration: none;
-        color: hsl(210, 8%, 45%);
 
-        p {
-          padding: 5px 5px 5px 10px;
-          border-right: 3px;
-          font-size: 13px;
-        }
-        &:hover {
-          color: hsl(210, 8%, 5%);
-        }
-      }
-
-      > .icon-link {
-        text-decoration: none;
-        color: hsl(210, 8%, 45%);
-
-        p {
-          display: flex;
-          padding: 5px 30px 5px 10px;
-          margin-bottom: 5px;
-          border-right: 3px solid transparent;
-          width: 160px;
-          font-size: 13px;
-          gap: 4px;
-          > .icon {
-            margin-right: 5px;
-          }
-        }
-
-        &:hover {
-          color: hsl(210, 8%, 5%);
-        }
-      } */
-      &.is-selected {
+      &.selected {
         p {
           color: hsl(210, 8%, 5%);
           font-weight: bold;
           background-color: hsl(210, 8%, 95%);
           border-right: 3px solid hsl(27, 90%, 55%);
         }
+      }
+
+      p {
+        display: flex;
+        padding: 5px 30px 5px 7px;
+        margin-bottom: 5px;
+        border-right: 3px solid transparent;
+        font-size: 13px;
+        gap: 4px;
+
+        &.is-padding {
+          padding: 5px 30px 5px 30px;
+        }
+      }
+      :hover {
+        border: none;
+        color: hsl(210, 8%, 5%);
       }
     }
 
@@ -150,36 +103,6 @@ export const Wrapper = styled.div`
     margin: 24px 8px 10px 5px;
   }
 `;
-
-// export const NavLinkMenu = styled(NavLink)`
-//   color: hsl(210, 8%, 45%);
-//   font-size: 13px;
-//   text-decoration: none;
-//   display: flex;
-//   align-items: center;
-//   padding-left: 8px;
-//   padding: 8px 6px 8px 0;
-//   :hover {
-//     border: none;
-//     color: hsl(210, 8%, 5%);
-//   }
-//   /* 선택 시  */
-//   &.active {
-//     font-weight: 700;
-//     color: hsl(210, 8%, 5%);
-//     margin-left: 0px;
-//     width: 163px;
-//     background-color: hsl(210, 8%, 95%);
-//     border-right: 3px solid hsl(27, 90%, 55%);
-//   }
-//   > .paddings {
-//     padding-left: 30px;
-//   }
-
-//   > svg {
-//     margin: 0px 5px 0px 0px;
-//   }
-// `;
 
 export const Teams = styled.div`
   display: flex;
