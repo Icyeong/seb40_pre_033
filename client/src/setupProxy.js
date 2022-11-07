@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     ['/auth', '/user', '/articles', '/article', '/comment'],
     createProxyMiddleware({
-      target: 'https://ea33-14-55-61-123.jp.ngrok.io',
+      target: 'https://s3ackoverflow.herokuapp.com',
       changeOrigin: true,
     })
   );
