@@ -64,6 +64,9 @@ export const QuestionEditPage = () => {
   useEffect(() => {
     bodyRef.current.querySelector('.note-editable').innerHTML =
       question.content;
+
+    setBody(bodyRef.current.querySelector('.note-editable').innerHTML);
+    setTextBody(bodyRef.current.querySelector('.note-editable').innerText);
   }, []);
 
   const handleEditQuestion = async () => {
@@ -94,9 +97,8 @@ export const QuestionEditPage = () => {
       dispatch(editQuestion(res));
 
       console.log('EDIT QUESTION', res);
+      navigate(`/questions/${qid}`);
     }
-
-    navigate(`/questions/${qid}`);
   };
 
   const TagInputChange = (e) => {
