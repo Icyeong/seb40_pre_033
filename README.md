@@ -10,7 +10,7 @@
 
 ## 배포 주소
 
-[](http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/)
+(http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/)
 
 ## 팀원 소개
 
