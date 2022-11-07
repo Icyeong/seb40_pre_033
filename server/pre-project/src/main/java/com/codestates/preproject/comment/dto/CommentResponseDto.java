@@ -25,13 +25,14 @@ public class CommentResponseDto {
 
     private List<Reply> replies;
 
-    public CommentResponseDto(String content, String email) {
+
+    public CommentResponseDto(String content, String email){
         this.content = content;
-        this.email = email;
+        this.email =email;
     }
 
     public static CommentResponseDto of(Comment comment) {
-        return new CommentResponseDto(comment.getContent(), comment.getEmail());
+        return new CommentResponseDto(comment.getContent(),comment.getEmail());
     }
 
 }

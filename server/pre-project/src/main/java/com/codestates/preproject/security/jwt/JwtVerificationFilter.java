@@ -1,6 +1,7 @@
 package com.codestates.preproject.security.jwt;
 
 import com.codestates.preproject.utils.CustomAuthorityUtils;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.SignatureException;
 import java.util.List;
 import java.util.Map;
 
@@ -33,8 +35,14 @@ public class JwtVerificationFilter extends OncePerRequestFilter { // OncePerRequ
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        Map<String, Object> claims = verifyJws(request);
-        setAuthenticationToContext(claims);
+       try {
+           Map<String, Object> claims = verifyJws(request);
+           setAuthenticationToContext(claims);
+       } catch (ExpiredJwtException ee) {
+           request.setAttribute("exception", ee);
+       } catch (Exception e) {
+           request.setAttribute("exception", e);
+       }
 
         filterChain.doFilter(request, response);
     }
@@ -42,6 +50,7 @@ public class JwtVerificationFilter extends OncePerRequestFilter { // OncePerRequ
     // JWT 검증
     private Map<String, Object> verifyJws(HttpServletRequest request) {
         String jws = request.getHeader("Authorization").replace("Bearer ", "");
+
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
         // claims를 파싱할 수 있다는 것은 서명 검증에 성공했다는 의미
         Map<String, Object> claims = jwtTokenizer.getClaims(jws, base64EncodedSecretKey).getBody();

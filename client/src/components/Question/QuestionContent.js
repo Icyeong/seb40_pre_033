@@ -13,6 +13,12 @@ export const Block = styled.div`
 
 export const Body = styled.div`
   font-size: 15px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
 `;
 
 export const QuestionTags = styled(Tags)`
@@ -172,21 +178,6 @@ export const QuestionContent = () => {
   const navigate = useNavigate();
   const { qid } = useParams();
 
-
-  // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'ggg@ggg.com',
-    nickname: 'b',
-    userId: 1,
-  };
-  // const isNotLoginUser = {
-  //   email: '',
-  //   nickname: '',
-  //   userId: 0,
-  // };
-  let { email } = isLoginUser;
-
-  // let { email } = useSelector((state) => state.userReducer);
   let user = useSelector((state) => state.userReducer);
 
   let question = useSelector((state) => state.questionReducer);
@@ -195,7 +186,7 @@ export const QuestionContent = () => {
 
   if (bodyRef.current) {
     bodyRef.current.innerHTML = question.content;
-    console.log('#1', bodyRef.current);
+    // console.log('#1', bodyRef.current);
   }
 
   const handelDeleteQuestion = async () => {

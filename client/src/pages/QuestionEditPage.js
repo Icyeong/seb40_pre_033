@@ -26,7 +26,6 @@ import {
   Wrapper,
 } from './QuestionWritePage';
 import { useDispatch, useSelector } from 'react-redux';
-// import { editQuestion } from '../redux/actions/questionsAction';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { useState, useRef, useEffect } from 'react';
@@ -49,6 +48,7 @@ export const QuestionEditPage = () => {
 
   const [title, setTitle] = useState(question.title);
   const [body, setBody] = useState('');
+  const [textBody, setTextBody] = useState('');
 
   const [tagInput, setTagInput] = useState('');
   const [tags, setTags] = useState(['임시']);
@@ -66,7 +66,7 @@ export const QuestionEditPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
   });
 
   const handleEditQuestion = async () => {
@@ -79,12 +79,12 @@ export const QuestionEditPage = () => {
     tagsRef.current.classList.remove('error');
 
     // 유효성 검사
-    if (title.length < 15 || body.length < 30 || tags.length < 1) {
+    if (title.length < 15 || textBody.length < 30 || tags.length < 1) {
       if (title.length < 15) {
         setTitleError(true);
         titleRef.current.classList.add('error');
       }
-      if (body.length < 30) {
+      if (textBody.length < 30) {
         setBodyError(true);
         bodyRef.current.classList.add('error');
       }
@@ -177,6 +177,10 @@ export const QuestionEditPage = () => {
                           setBody(
                             bodyRef.current.querySelector('.note-editable')
                               .innerHTML
+                          );
+                          setTextBody(
+                            bodyRef.current.querySelector('.note-editable')
+                              .innerText
                           );
                         }}
                       />

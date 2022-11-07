@@ -19,5 +19,5 @@ const Block = styled.div`
 `;
 
 export const Loading = () => {
-  return <Block>로딩 중 ...</Block>;
+  return <Block>Loading ...</Block>;
 };

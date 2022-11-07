@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BlueButton } from '../../assets/styles/LoginStyle';
 import useFetch from '../../hooks/useFetch';
-import { getmyInfo } from '../../redux/actions/userAction';
+import { getLoginStatus, getmyInfo } from '../../redux/actions/userAction';
 import Input from './Input';
 import OptionalInput from './OptionalInput';
 import Recaptcha from './Recaptcha';
@@ -132,6 +132,7 @@ const SignupForm = () => {
       await useFetch('POST', '/auth/login', { email, password });
       // // 내 정보 가져오기
       const myInfo = await useFetch('GET', '/user/me');
+      dispatch(getLoginStatus({ isLogin: true }));
       dispatch(getmyInfo(myInfo));
 
       navigate('/');

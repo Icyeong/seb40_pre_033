@@ -52,10 +52,11 @@ export const AnswerEdit = () => {
   let question = useSelector((state) => state.questionReducer);
 
   const [body, setBody] = useState('');
+  const [textBody, setTextBody] = useState();
   const [bodyError, setBodyError] = useState(false);
 
   const answer = question.comments.filter(
-    (answer) => answer.comment_id == aid
+    (answer) => answer.commentId == aid
   )[0];
 
   const inputData = { content: body };
@@ -65,7 +66,7 @@ export const AnswerEdit = () => {
   }, []);
 
   useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
+    // console.log('#2', bodyRef.current.querySelector('.note-editable'));
   });
 
   const handleEditAnswer = async () => {
@@ -73,7 +74,7 @@ export const AnswerEdit = () => {
 
     bodyRef.current.classList.remove('error');
 
-    if (body.length < 30) {
+    if (textBody.length < 30) {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
@@ -83,7 +84,9 @@ export const AnswerEdit = () => {
       const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
       dispatch(editAnswer(res));
 
-      navigate(`/article/${qid}`);
+      console.log('edit answer res', res);
+
+      navigate(`/questions/${qid}`);
     }
   };
 
@@ -120,6 +123,10 @@ export const AnswerEdit = () => {
                           setBody(
                             bodyRef.current.querySelector('.note-editable')
                               .innerHTML
+                          );
+                          setTextBody(
+                            bodyRef.current.querySelector('.note-editable')
+                              .innerText
                           );
                         }}
                       />

@@ -42,7 +42,6 @@ public class DummyController {
                 .articleId(1L)
                 .title("안녕하세요. 점심 뭐 드시나요??")
                 .content("안녕히가세요")
-                .email("b@ergewgrb.com")
                 .build();
         articleService.createArticle(article);
 
@@ -92,7 +91,6 @@ public class DummyController {
                 .articleId(2L)
                 .title("하리보가 안대요")
                 .content("왜죠?")
-                .email("ber@23g2gb.com")
                 .build();
         articleService.createArticle(article);
 
@@ -120,7 +118,6 @@ public class DummyController {
                 .articleId(3L)
                 .title("벌써 11월이라니 시간 잘 가네요")
                 .content(":(")
-                .email("b12rewf@b.com")
                 .build();
         articleService.createArticle(article);
 
@@ -139,7 +136,6 @@ public class DummyController {
                 .articleId(4L)
                 .title("코딩코딩 랄랄랄")
                 .content("그냥 적어봤어요")
-                .email("bergergf@b.com")
                 .build();
         articleService.createArticle(article);
 
@@ -167,7 +163,6 @@ public class DummyController {
                 .articleId(5L)
                 .title("오늘 수요일인가요??")
                 .content("헤헤")
-                .email("berggd@b.com")
                 .build();
         articleService.createArticle(article);
 
@@ -204,7 +199,6 @@ public class DummyController {
                 .articleId(6L)
                 .title("주말에 뭐하시나요??")
                 .content("궁금궁금")
-                .email("b23yfe@b.com")
                 .build();
         articleService.createArticle(article);
 
@@ -223,7 +217,6 @@ public class DummyController {
                 .articleId(7L)
                 .title("티비 요즘 뭐가 좋나요??")
                 .content("모르게써요")
-                .email("bwerq233twsdf@b.com")
                 .build();
         articleService.createArticle(article);
 

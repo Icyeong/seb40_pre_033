@@ -80,12 +80,9 @@ function App() {
           <Route path="/questions/:qid" element={<QuestionPage />} />
           <Route path="/questions/ask" element={<QuestionWritePage />} />
           <Route path="/questions/edit/:qid" element={<QuestionEditPage />} />
-          <Route
-            path="/questions/:qid/answer/edit/:aid"
-            element={<AnswerEdit />}
-          />
+          <Route path="answer/edit/:aid" element={<AnswerEdit />} />
+          <Route path="/users/user" element={<User />} />
           <Route path="/tags" element={<TagsPage />} />
-          <Route path="/users" element={<User />} />
         </Routes>
       </Router>
     </>

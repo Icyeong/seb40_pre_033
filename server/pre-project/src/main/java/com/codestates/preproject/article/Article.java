@@ -32,15 +32,12 @@ public class Article extends BaseTime {
     @Column(insertable = true, nullable = false)
     private String content;
 
-    @Column
-    private String email;
-
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
 
 
-    @OneToMany(mappedBy = "article")
+    @OneToMany(mappedBy = "article", cascade=CascadeType.PERSIST)
     private List<Comment> comments = new ArrayList<>();
 
     @Builder

@@ -1,6 +1,5 @@
 package com.codestates.preproject.comment.repository;
 
-import com.codestates.preproject.article.Article;
 import com.codestates.preproject.comment.entity.Comment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

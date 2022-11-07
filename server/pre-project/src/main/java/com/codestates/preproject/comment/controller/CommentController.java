@@ -10,8 +10,6 @@ import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.mapper.CommentMapper;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.SingleResponseDto;
-import com.codestates.preproject.security.userDetails.PrincipalDetails;
-import com.codestates.preproject.security.userDetails.PrincipalDetailsService;
 import com.codestates.preproject.user.repository.UserRepository;
 import com.codestates.preproject.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.util.List;
 
 @RestController
 @Validated
@@ -102,6 +99,7 @@ public class CommentController {
             @PathVariable("comment-id") @Positive long commentId,
             @Valid @RequestBody CommentPatchDto commentPatchDto) {
 
+
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         commentPatchDto.setCommentId(commentId);
         commentPatchDto.setUserEmail(email);
@@ -117,6 +115,8 @@ public class CommentController {
     @DeleteMapping("/{comment-id}")
     public ResponseEntity deleteComment(
             @PathVariable("comment-id") @Positive long commentId) {
+
+
 
         commentService.deleteComment(commentId);
 
