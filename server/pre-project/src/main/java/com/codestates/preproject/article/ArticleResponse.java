@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Builder
 public class ArticleResponse {
-    @JsonProperty("article_id")
+    @JsonProperty("articleId")
     private long articleId;
     private String title;
     private String content;
     private String email;
     private int vote;
-    @JsonProperty("create_at")
+    @JsonProperty("createAt")
     private LocalDateTime createdAt;
     @Builder.Default
     private List<CommentResponseDto> comments;
