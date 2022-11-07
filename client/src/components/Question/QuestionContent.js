@@ -193,10 +193,12 @@ export const QuestionContent = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const date = `${question.createAt.slice(0, 10)} ${question.createAt.slice(
-    11,
-    19
-  )}`;
+  if (question.createAt) {
+    var date = `${question.createAt.slice(0, 10)} ${question.createAt.slice(
+      11,
+      19
+    )}`;
+  }
 
   return (
     <Block>

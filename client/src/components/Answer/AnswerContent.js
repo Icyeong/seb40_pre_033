@@ -11,7 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 import { deleteAnswer } from '../../redux/actions/questionAction';
 import useFetch from '../../hooks/useFetch';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 export const AnswerContent = (type) => {
   const dispatch = useDispatch();
@@ -21,9 +21,11 @@ export const AnswerContent = (type) => {
 
   const bodyRef = useRef();
 
-  if (bodyRef.current) {
-    bodyRef.current.innerHTML = question.comments[type.idx].content;
-  }
+  useEffect(() => {
+    if (bodyRef.current) {
+      bodyRef.current.innerHTML = question.comments[type.idx].content;
+    }
+  }, [question]);
 
   const handleDeleteAnswer = async () => {
     const res = await useFetch(
@@ -41,10 +43,12 @@ export const AnswerContent = (type) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const date = `${question.comments[type.idx].createdAt.slice(
-    0,
-    10
-  )} ${question.comments[type.idx].createdAt.slice(11, 19)}`;
+  if (question.comments[type.idx].createdAt) {
+    var date = `${question.comments[type.idx].createdAt.slice(
+      0,
+      10
+    )} ${question.comments[type.idx].createdAt.slice(11, 19)}`;
+  }
 
   return (
     <Block>

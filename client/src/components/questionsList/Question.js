@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Tags } from '../Common/Tags';
@@ -15,9 +16,11 @@ export const Question = (type) => {
   // 태그 바꾸기
   const tags = ['임시'];
 
-  const date = `${questions[type.idx].createAt.slice(0, 10)} ${questions[
-    type.idx
-  ].createAt.slice(11, 19)}`;
+  if (questions[type.idx].createAt) {
+    var date = `${questions[type.idx].createAt.slice(0, 10)} ${questions[
+      type.idx
+    ].createAt.slice(11, 19)}`;
+  }
 
   return (
     <div className="questions">

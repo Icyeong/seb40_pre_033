@@ -43,7 +43,9 @@ export const AnswerLeftBar = (type) => {
       <button onClick={handleVoteUpAnswer}>
         <ArrowUpSvg />
       </button>
-      <span>{question.comments[idx].vote}</span>
+      <span>
+        {question.comments[idx].vote ? question.comments[idx].vote : 0}
+      </span>
       <button onClick={handleVoteDownAnswer}>
         <ArrowDownSvg />
       </button>

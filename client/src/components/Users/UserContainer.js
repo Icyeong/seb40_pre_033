@@ -56,10 +56,12 @@ export const UserInfo = styled.div`
 export const UserContainer = () => {
   let question = useSelector((state) => state.questionReducer);
 
-  const date = `${question.createAt.slice(0, 10)} ${question.createAt.slice(
-    11,
-    19
-  )}`;
+  if (question.createAt) {
+    var date = `${question.createAt.slice(0, 10)} ${question.createAt.slice(
+      11,
+      19
+    )}`;
+  }
 
   return (
     <PostUser>
