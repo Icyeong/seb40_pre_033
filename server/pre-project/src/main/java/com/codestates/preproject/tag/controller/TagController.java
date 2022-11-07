@@ -1,29 +1,37 @@
 package com.codestates.preproject.tag.controller;
 
-import com.codestates.preproject.tag.dto.TagDto;
+import com.codestates.preproject.response.SingleResponseDto;
+import com.codestates.preproject.tag.dto.*;
 import com.codestates.preproject.tag.entity.Tag;
+import com.codestates.preproject.tag.mapper.TagMapper;
 import com.codestates.preproject.tag.service.TagService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("/tag")
+@RestController
+@Validated
+@RequestMapping("/tag")
 public class TagController {
 
     private final TagService tagService;
+    private final TagMapper tagMapper;
 
-    public TagController(TagService tagService) {
+    public TagController(TagService tagService, TagMapper tagMapper) {
+
         this.tagService = tagService;
+        this.tagMapper = tagMapper;
     }
 
     // 태그 1개 검색
-    @GetMapping("/find/{tag-id}")
-    public ResponseEntity tagFind(@RequestParam String name) {
+    @GetMapping("/{tag-id}")
+    public ResponseEntity tagFind(@PathVariable("comment-id")
+                                  @RequestParam String name) {
 
         Tag tag = tagService.findTag(name);
 
@@ -45,13 +53,13 @@ public class TagController {
     public ResponseEntity tagFinds() {
 
         List<Tag> tags = tagService.findTags();
-        List<TagDto.TagInfo> tagInfos = new ArrayList<>();
-        TagDto.TagsInfo tagsInfo = new TagDto.TagsInfo();
-        TagDto.TagInfo tagInfo;
+        List<TagInfo> tagInfos = new ArrayList<>();
+        TagInfo.TagsInfo tagsInfo = new TagInfo.TagsInfo();
+        TagInfo tagInfo;
 
         for (Tag tag : tags) {
 
-            tagInfo = new TagDto.TagInfo();
+            tagInfo = new TagInfo();
 
             tagInfo.setTagId(tagInfo.getTagId());
             tagInfo.setName(tagInfo.getName());
@@ -62,5 +70,44 @@ public class TagController {
         tagsInfo.setTags(tagInfos);
 
         return new ResponseEntity(tagsInfo, HttpStatus.OK);
+    }
+
+    // 태그 생성
+    @PostMapping("/{tag-id}")
+    public ResponseEntity postTag(@RequestBody TagPostDto tagPostDto,
+                                  @PathVariable("tag-id") Long tagId) {
+
+        tagPostDto.setTagId(tagId);
+
+        Tag tag = tagService.createTag(tagMapper.tagPostToTag(tagPostDto));
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(tagMapper.tagToTagResponse(tag)),
+                HttpStatus.OK);
+
+    }
+
+    // 태그 수정
+    @PatchMapping("/{tag-id}")
+    public ResponseEntity patchTag(@RequestBody TagPatchDto tagPatchDto,
+                                   @PathVariable("tag-id") Long tagId) {
+
+        tagPatchDto.setTagId(tagId);
+
+        Tag tag = tagService.updateTag(tagMapper.tagPatchToTag(tagId, tagPatchDto));
+
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(tagMapper.tagToTagResponse(tag)),
+                HttpStatus.OK);
+    }
+
+    // 태그 삭제
+    @DeleteMapping("/{tag-id}")
+    public ResponseEntity deleteTag(
+            @PathVariable("tag-id") @Positive Long tagId) {
+
+        tagService.deleteTag(tagId);
+
+        return new ResponseEntity<>(new TagDeleteDto(tagId), HttpStatus.OK);
     }
 }
