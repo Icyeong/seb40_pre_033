@@ -12,8 +12,11 @@ const useFetch = (method, url, fetchData) => {
     body: JSON.stringify(fetchData),
   };
 
-  const API = process.env.REACT_APP_API_URL;
-  return fetch(API + url, defaultOptions).then(async (res) => {
+  // const API = process.env.REACT_APP_API_URL;
+  return fetch(
+    'https://fe54-14-55-61-123.jp.ngrok.io' + url,
+    defaultOptions
+  ).then(async (res) => {
     if (!res.ok) {
       return res.status;
 

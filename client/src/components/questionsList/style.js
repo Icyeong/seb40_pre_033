@@ -2,10 +2,8 @@ import styled from 'styled-components';
 import { Tags } from '../Common/Tags';
 
 export const ListWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: calc(100% - 300px - 24px);
+  max-width: 800px;
+  width: 100%;
   font-size: 17px;
   // Mobile
   @media screen and (max-width: 640px) {
@@ -18,7 +16,6 @@ export const ListWrapper = styled.div`
 `;
 
 export const StyledQuestions = styled.div`
-  flex: 1 1 80%;
   padding: 24px 0 24px 24px;
   // Mobile
   @media screen and (max-width: 640px) {
@@ -104,6 +101,10 @@ export const StyledQuestions = styled.div`
     padding-top: 15px;
     border-top: 1px solid hsl(210, 8%, 90%);
     font-size: 13px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-all;
     // Mobile
     @media screen and (max-width: 640px) {
       display: flex;

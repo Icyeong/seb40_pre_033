@@ -15,15 +15,12 @@ export const Block = styled.div`
   max-width: 1264px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   margin: 0 auto;
 
   aside {
     float: right;
   }
 `;
-
-const HomeSidebarMargin = styled.div``;
 
 export const HomePage = () => {
   const dispatch = useDispatch();
@@ -58,7 +55,6 @@ export const HomePage = () => {
         <HeaderMargin />
         <Block>
           <Sidebar page="home" />
-          <HomeSidebarMargin />
           <QuestionsList />
           <aside>
             <SidebarWidget />
