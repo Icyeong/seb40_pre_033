@@ -45,7 +45,7 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 ### Front-end
 
-<img src="https://img.shields.io/badge/html5-FF9900?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS-339AF0?style=for-the-badge&logo=css&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-EC5990?style=for-the-badge&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/AmazonS3-339933?style=for-the-badge&logo=AmazonS3&logoColor=white">
+<img src="https://img.shields.io/badge/html5-FF9900?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS-339AF0?style=for-the-badge&logo=CSS&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-EC5990?style=for-the-badge&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/AmazonS3-339933?style=for-the-badge&logo=AmazonS3&logoColor=white">
 
 ### Back-end
 
@@ -53,7 +53,7 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 ## 📝 커밋 메세지
 
-유형|설명
+유형|instructions
 :---:|:---:
 feat|새로운 기능에 대한 커밋
 fix|버그 수정에 대한 커밋
@@ -72,6 +72,13 @@ test|테스트 코드 수정에 대한 커밋
 ---|---|---|
 <img width="1440" alt="로그인" src="https://user-images.githubusercontent.com/107919949/200343852-e44b314a-df48-4048-82cb-334cab130683.png">|<img width="1440" alt="회원가입" src="https://user-images.githubusercontent.com/107919949/200343890-37469751-f783-4111-b826-2667dd49cd46.png">|<img width="1440" alt="회원가입성공" src="https://user-images.githubusercontent.com/107919949/200343940-455dce81-40ae-4786-8291-f0f14a1f8245.png">
 
-Tag | Users | MyPage
+Tag|Users|MyPage
 ---|---|---|
 <img width="1440" alt="태그" src="https://user-images.githubusercontent.com/107919949/200344054-fdadbab0-dbe7-4690-aa4c-e1d262ac91c8.png">|<img width="1440" alt="유저" src="https://user-images.githubusercontent.com/107919949/200344091-b26b8f7d-230c-4bb9-aa23-cc0ba3edbedf.png">|<img width="1440" alt="마이페이지" src="https://user-images.githubusercontent.com/107919949/200344137-0ec331ae-d6a9-4ae3-996c-2af53f1673c3.png">
+
+글작성|글목록|글상세
+---|---|---|
+<img width="1440" alt="글작성" src="https://user-images.githubusercontent.com/107919949/200345916-0c5467d0-5916-415a-a81e-412eb255be32.png">|<img width="1440" alt="글목록" src="https://user-images.githubusercontent.com/107919949/200345949-89687be4-f770-4800-b588-ce27f5b01c6b.png">|<img width="1440" alt="글상세" src="https://user-images.githubusercontent.com/107919949/200345999-4b63a273-f3b9-45f7-aed2-4b7eb1b2c0e5.png">
+
+
+
