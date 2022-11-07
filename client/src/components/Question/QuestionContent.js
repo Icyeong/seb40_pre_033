@@ -172,19 +172,18 @@ export const QuestionContent = () => {
   const navigate = useNavigate();
   const { qid } = useParams();
 
-
   // 🔥 userReducer 리팩토링
-  const isLoginUser = {
-    email: 'ggg@ggg.com',
-    nickname: 'b',
-    userId: 1,
-  };
+  // const isLoginUser = {
+  //   email: 'ggg@ggg.com',
+  //   nickname: 'b',
+  //   userId: 1,
+  // };
   // const isNotLoginUser = {
   //   email: '',
   //   nickname: '',
   //   userId: 0,
   // };
-  let { email } = isLoginUser;
+  // let { email } = isLoginUser;
 
   // let { email } = useSelector((state) => state.userReducer);
   let user = useSelector((state) => state.userReducer);
