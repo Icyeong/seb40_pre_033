@@ -1,18 +1,18 @@
-# 33조 Stack Overflow Clone 🍀
+# 🍀 Stack Overflow Clone
 
-## 프로젝트 기간
+## 🗓️ 프로젝트 기간
 
 22.10.25 ~ 22.11.07
 
-## 서비스 소개
+## 💡 서비스 소개
 
 스택 오버플로우 페이지 클론입니다.
 
-## 배포 주소
+## 🔗 배포 주소
 
 http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
-## 팀원 소개
+## 👩🏻‍❤️‍👨🏻 팀원 소개
 
 ### Front-end
 
@@ -23,9 +23,9 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 ### Back-end
 
-## 기술 스택
+## 🧑‍💻 기술 스택
 
-## Front-end
+### Front-end
 
 - HTML5
 - CSS
@@ -35,5 +35,12 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 - Redux
 - Amazon S3
 
-## Back-end
+### Back-end
 
+## Team Culture
+
+## Documents
+
+## Commit Message
+
+## 화면
