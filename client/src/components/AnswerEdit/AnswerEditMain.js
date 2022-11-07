@@ -54,13 +54,12 @@ export const AnswerEditMain = () => {
       setBodyError(true);
       bodyRef.current.classList.add('error');
     } else {
-      console.log('EDIT ANSWER');
-      console.log(inputData);
-
       const res = await useFetch('PATCH', `/comment/${qid}`, inputData);
       dispatch(editAnswer(res));
 
       navigate(`/article/${qid}`);
+
+      console.log('EDIT ANSWER', res);
     }
   };
 
