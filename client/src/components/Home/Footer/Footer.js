@@ -14,22 +14,33 @@ export const Footer = () => {
         <nav className="footer-nav">
           <div className="footer-column">
             <h5>
-              <a href="/">STACK OVERFLOW</a>
+              <Link to="/">STACK OVERFLOW</Link>
             </h5>
             <ul>
               <li>
-                <a href="/">Questions</a>
+                <Link to="/">Questions</Link>
               </li>
-              <li>Help</li>
+              <li>
+                <a href="https://stackoverflow.com/help">Help</a>
+              </li>
             </ul>
           </div>
           <div className="footer-column">
             <h5>PRODUCTS</h5>
             <ul>
-              <li>Teams</li>
-              <li>Advertising</li>
-              <li>Collectives</li>
-              <li>Talent</li>
+              <li>
+                <a href="https://stackoverflow.com/teams">Teams</a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/advertising">Advertising</a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/collectives">Collectives</a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/talent">Talent</a>
+                Talent
+              </li>
             </ul>
           </div>
           <div className="footer-column">
@@ -37,15 +48,39 @@ export const Footer = () => {
               <a href="https://stackoverflow.co/">COMPANY</a>
             </h5>
             <ul>
-              <li>About</li>
-              <li>Press</li>
-              <li>Work Here</li>
+              <li>
+                <a href="https://stackoverflow.co/">About</a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.co/company/press">Press</a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.co/company/work-here">
+                  Work Here
+                </a>
+              </li>
               <li>Legal</li>
-              <li>Privacy Policy</li>
-              <li>Terms of Service</li>
-              <li>Contact Us</li>
+              <li>
+                <a href="https://stackoverflow.com/legal/privacy-policy">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.com/legal/terms-of-service">
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.co/company/contact">
+                  Contact Us
+                </a>
+              </li>
               <li>Cookie Settings</li>
-              <li>Cookie Policy</li>
+              <li>
+                <a href="https://stackoverflow.com/legal/cookie-policy">
+                  Cookie Policy
+                </a>
+              </li>
             </ul>
           </div>
           <div className="footer-column">
@@ -53,24 +88,60 @@ export const Footer = () => {
               <a href="https://stackexchange.com/">STACK EXCHANGE NETWORK</a>
             </h5>
             <ul>
-              <li>Technology</li>
-              <li>Culture & recreation</li>
-              <li>Life & arts</li>
-              <li>Science</li>
-              <li>Professional</li>
-              <li>Business</li>
-              <li>API</li>
-              <li>Data</li>
+              <li>
+                <a href="https://stackexchange.com/sites#technology">
+                  Technology
+                </a>
+              </li>
+              <li>
+                <a href="https://stackexchange.com/sites#culturerecreation">
+                  Culture & recreation
+                </a>
+              </li>
+              <li>
+                <a href="https://stackexchange.com/sites#lifearts">
+                  Life & arts
+                </a>
+              </li>
+              <li>
+                <a href="https://stackexchange.com/sites#science">Science</a>
+              </li>
+              <li>
+                <a href="https://stackexchange.com/sites#professional">
+                  Professional
+                </a>
+              </li>
+              <li>
+                <a href="https://stackexchange.com/sites#business">Business</a>
+              </li>
+              <li>
+                <a href="https://api.stackexchange.com/">API</a>
+              </li>
+              <li>
+                <a href="https://data.stackexchange.com/">Data</a>
+              </li>
             </ul>
           </div>
         </nav>
         <div className="footer-copyright">
           <ul>
-            <li>Blog</li>
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>LinkedIn</li>
-            <li>Instagram</li>
+            <li>
+              <a href="https://stackoverflow.blog/?blb=1/">Blog</a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/officialstackoverflow/">
+                Facebook
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/stackoverflow">Twitter</a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/company/stack-overflow">LinkedIn</a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/thestackoverflow">Instagram</a>
+            </li>
           </ul>
           <p>
             Site design / logo © 2022 Stack Exchange Inc; user contributions
