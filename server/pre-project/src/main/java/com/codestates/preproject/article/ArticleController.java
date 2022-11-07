@@ -31,12 +31,16 @@ public class ArticleController {
 
     /*게시글 등록*/
     @PostMapping("/article")
-    public ResponseEntity<SingleResponseDto<ArticleResponse>> postArticle(@Valid @RequestBody ArticlePost articlePost) {
+    public ResponseEntity<SingleResponseDto<ArticleResponse>> postArticle(@Valid @RequestBody ArticlePost articlePost, Long articleId) {
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         articlePost.setUserEmail(email); //email을 set으로 할 것인가 create 시에 넣어줄 것인가?
         Article article = articleService.makeArticle(mapper.articlePostToArticle(articlePost),email);
+
+        Page<Comment> commentPage =commentService.findComments(articleId,0,10);
+        Page<Tag> tagPage = tagService.findTags(articleId, 0, 10);
+
         return new ResponseEntity<>(
-                new SingleResponseDto<>(ArticleResponse.of(article))
+                new SingleResponseDto<>(ArticleResponse.of(article, commentPage, tagPage))
                 , HttpStatus.OK);
     }
 
