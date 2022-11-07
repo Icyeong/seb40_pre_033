@@ -42,7 +42,7 @@ const Container = styled.div`
 export const UsersPage = () => {
   return (
     <>
-      <Header />
+      <Header page2="users" />
       <HeaderMargin />
       <Block>
         <Sidebar page="users" />

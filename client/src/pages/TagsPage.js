@@ -33,7 +33,7 @@ const Container = styled.div`
 export const TagsPage = () => {
   return (
     <>
-      <Header />
+      <Header page2="tags" />
       <HeaderMargin />
       <Block>
         <Sidebar page="tags" />

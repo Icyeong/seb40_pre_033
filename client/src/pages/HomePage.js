@@ -54,7 +54,7 @@ export const HomePage = () => {
   return (
     <>
       <div>
-        <Header />
+        <Header page2="home" />
         <HeaderMargin />
         <Block>
           <Sidebar page="home" />

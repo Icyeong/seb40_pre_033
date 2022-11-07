@@ -1,4 +1,3 @@
-// import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const SidebarContainer = styled.nav`
@@ -42,7 +41,7 @@ export const Wrapper = styled.div`
 
       p {
         display: flex;
-        padding: 5px 30px 5px 7px;
+        padding: 5px 30px 5px 0px;
         margin-bottom: 5px;
         border-right: 3px solid transparent;
         font-size: 13px;
