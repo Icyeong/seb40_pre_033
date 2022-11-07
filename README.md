@@ -35,7 +35,7 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 김예린|방혜민|임채영|홍유진
 :---:|:---:|:---:|:---:
 ||||
-[@yelinz515](https://github.com/yelinz515)|[@youthmn](https://github.com/youthmn)|[@Icyeong](https://github.com/Icyeong)|[@yujinyny](https://github.com/yujinyny)
+[yelinz515](https://github.com/yelinz515)|[youthmn](https://github.com/youthmn)|[Icyeong](https://github.com/Icyeong)|[yujinyny](https://github.com/yujinyny)
 
 ### Back-end
 
