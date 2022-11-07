@@ -4,6 +4,8 @@ import com.codestates.preproject.comment.entity.Comment;
 import com.codestates.preproject.comment.service.CommentService;
 import com.codestates.preproject.response.MultiResponseDto;
 import com.codestates.preproject.response.SingleResponseDto;
+import com.codestates.preproject.tag.entity.Tag;
+import com.codestates.preproject.tag.service.TagService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -25,6 +27,7 @@ public class ArticleController {
     private final ArticleMapper mapper;
     private final ArticleService articleService;
     private final CommentService commentService;
+    private final TagService tagService;
 
     /*게시글 등록*/
     @PostMapping("/article")
@@ -59,10 +62,11 @@ public class ArticleController {
             @PathVariable("article-id") @Positive long articleId) {
         Article article = articleService.findArticle(articleId);
         Page<Comment> commentPage =commentService.findComments(articleId,0,10);
+        Page<Tag> tagPage = tagService.findTags(articleId, 0, 10);
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(ArticleResponse.of(article, commentPage))
-                , HttpStatus.OK);
+                new SingleResponseDto<>(ArticleResponse.of(article, commentPage, tagPage)),
+                HttpStatus.OK);
     }
 
     @GetMapping("/articles")

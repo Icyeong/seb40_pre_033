@@ -15,15 +15,7 @@ public class TagDto {
     String name;
     String content;
 
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    public class TagPost {
-        String name;
-        String content;
-        Article article;
-    }
-
+    // 태그 1개 조회
     @Getter
     @Setter
     public static class TagFind {
@@ -32,21 +24,5 @@ public class TagDto {
         String name;
         String description;
     }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    public static class TagInfo {
-
-        Long tagId;
-        String name;
-    }
-
-    @Getter
-    @Setter
-    public static class TagsInfo {
-        List<TagInfo> tags;
-    }
-
 
 }
