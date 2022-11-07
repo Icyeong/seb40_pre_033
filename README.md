@@ -37,12 +37,13 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 ||||
 [yelinz515](https://github.com/yelinz515)|[youthmn](https://github.com/youthmn)|[Icyeong](https://github.com/Icyeong)|[yujinyny](https://github.com/yujinyny)
 
+### Back-end
+
+
 임원용|김은진|정희윤
 :---:|:---:|:---:
 ||||
 [Im WonYong](https://github.com/ImWonYong)|[kim eunjin](https://github.com/2d3k)|[HuiYun](https://github.com/Tldkt)
-
-### Back-end
 
 <br/>
 
@@ -62,10 +63,7 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 
 ### Back-end
 
-  <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/>
-  <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=SpringBoot&logoColor=white"/>
-  <img src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens"/>
+  <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/> <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=flat-square&logo=SpringBoot&logoColor=white"/> <img src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens"/>
 
 
 <br/>
