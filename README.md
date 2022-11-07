@@ -1,5 +1,7 @@
 ![image](https://user-images.githubusercontent.com/74370531/200337543-ad7dbbbc-7aa1-419c-97a9-5acf73c95ea0.png)
 
+<br/>
+
 ## 🗓️ 프로젝트 기간
 
 22.10.25 ~ 22.11.07
