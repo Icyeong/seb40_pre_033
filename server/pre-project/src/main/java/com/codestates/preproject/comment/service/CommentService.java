@@ -52,8 +52,11 @@ public class CommentService {
 
         comment.setUser(findUser);
         comment.setEmail(email);
+
         Optional<Article> optionalArticle = articleRepository.findById(articleId);
+
         Article findArticle = optionalArticle.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ARTICLE_NOT_FOUND));
+
         comment.setArticleId(articleId);
         comment.setArticle(findArticle);
 
