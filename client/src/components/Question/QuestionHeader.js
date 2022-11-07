@@ -27,6 +27,15 @@ const Title = styled.div`
     h1 {
       font-size: 22.8462px;
       width: 100%;
+      padding-right: 0;
+    }
+  }
+  // Tablet
+  @media screen and (max-width: 980px) {
+    h1 {
+      font-size: 22.8462px;
+      width: 100%;
+      padding-right: 50px;
     }
   }
 `;
