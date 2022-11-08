@@ -7,7 +7,7 @@ export const Sidebar = (type) => {
       <Wrapper>
         <div className="side-bar-tabs">
           <div className="tab-menu">
-            <div className="companies">Home</div>
+            <div>Home</div>
           </div>
           <p className="title fc-light">PUBLIC</p>
           <a href="/" className={type.page === 'home' ? 'selected' : ''}>

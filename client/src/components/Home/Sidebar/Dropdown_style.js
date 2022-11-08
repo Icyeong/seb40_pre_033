@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const DropdownContainer = styled.nav`
@@ -12,74 +11,96 @@ export const DropdownContainer = styled.nav`
 `;
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  overflow-x: hidden;
-  flex-direction: column;
-  > .home {
-    font-size: 13px;
-    a {
-      color: var(--black-500);
-
-      &:hover,
-      &:active {
-        color: hsl(210, 8%, 5%);
-      }
-    }
-  }
+  margin-top: 10px;
   > div {
     color: hsl(210, 8%, 35%);
     font-size: 11px;
     margin: 20px 8px 0px 8px;
   }
-  > .tab-menu {
+  > .side-bar-tabs {
+    padding-left: 5px;
+
+    .title {
+      font-size: 11px;
+      margin-bottom: 5px;
+      color: hsl(210, 8%, 45%);
+    }
+
+    a {
+      color: hsl(210, 8%, 45%);
+      font-size: 13px;
+      text-decoration: none;
+
+      &.selected {
+        p {
+          color: hsl(210, 8%, 5%);
+          font-weight: bold;
+          background-color: hsl(210, 8%, 95%);
+          border-right: 3px solid hsl(27, 90%, 55%);
+        }
+      }
+
+      p {
+        display: flex;
+        padding: 5px 30px 5px 0px;
+        margin-bottom: 5px;
+        border-right: 3px solid transparent;
+        font-size: 13px;
+        gap: 4px;
+
+        &.is-padding {
+          padding: 5px 30px 5px 30px;
+        }
+      }
+      :hover {
+        border: none;
+        color: hsl(210, 8%, 5%);
+      }
+    }
+
+    > .tab-menu {
+      color: hsl(210, 8%, 45%);
+      font-size: 13px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      height: 34px;
+      padding: 0px 0px 4px 0px;
+      margin-bottom: 12px;
+      :hover {
+        border: none;
+        color: hsl(210, 8%, 5%);
+      }
+    }
+    > .collectives {
+      color: hsl(210, 8%, 45%);
+      font-size: 11px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-right: 10px;
+    }
+  }
+
+  > .tab-menu2 {
     color: hsl(210, 8%, 45%);
     font-size: 13px;
     text-decoration: none;
     display: flex;
     align-items: center;
     height: 34px;
-    padding: 4px 4px 4px 30px;
+    padding: 8px 18px 8px 10px;
     margin: 0;
+    gap: 4px;
     :hover {
       border: none;
       color: hsl(210, 8%, 5%);
     }
-    a {
-      color: var(--black-500);
-
-      &:hover,
-      &:active {
-        color: hsl(210, 8%, 5%);
-      }
-    }
   }
-`;
-
-export const NavLinkMenu = styled(NavLink)`
-  color: hsl(210, 8%, 45%);
-  font-size: 13px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  height: 34px;
-  padding-left: 8px;
-  > svg {
-    margin: 0px 5px 0px 0px;
-  }
-
-  :hover {
-    color: hsl(210, 8%, 5%);
-  }
-
-  /* 선택 시 박스 크기 조절 */
-  & .active {
-    font-weight: 700;
-    color: hsl(210, 8%, 15%);
-    margin-left: 1px;
-    width: 221px;
-    background-color: hsl(210, 8%, 95%);
-    border-right: 3px solid hsl(27, 90%, 55%);
+  > .teams {
+    color: hsl(210, 8%, 45%);
+    font-size: 11px;
+    margin: 24px 8px 10px 10px;
   }
 `;
 
