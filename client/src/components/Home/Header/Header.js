@@ -1,13 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 import { GrMenu, GrClose } from 'react-icons/gr'; // 햄버거 버튼, x 버튼
 import { useEffect, useState } from 'react';
-import { Dropdown } from '../Sidebar/Dropdown';
 import { NavBar, NavLink } from './style';
 import { LoggedIn } from './LogIn/LoggedIn';
 import { useSelector } from 'react-redux';
 import { SearchBox } from './Search/SearchBox';
+import { Dropdown } from '../Sidebar/Dropdown';
 
-export const Header = () => {
+export const Header = (type) => {
   const user = useSelector((state) => state.userReducer);
   const location = useLocation().pathname;
   const [click, setClick] = useState(false);
@@ -27,7 +27,9 @@ export const Header = () => {
         <button className="menuBtn" onClick={handleClick}>
           {click ? <GrClose /> : <GrMenu />}
         </button>
-        <div className="dropdown-menu2">{click ? <Dropdown /> : null}</div>
+        <div className="dropdown-menu2">
+          {click ? <Dropdown page2={type.page2} /> : null}
+        </div>
         <Link to="/" className="logo-wrapper">
           <div className="logo"></div>
         </Link>

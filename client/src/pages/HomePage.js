@@ -40,7 +40,7 @@ export const HomePage = () => {
     ).finally(() => {
       setIsLoading(false);
     });
-    console.log('GET QUESTIONS', res);
+    // console.log('GET QUESTIONS', res);
     dispatch(getQuestions(res));
   };
 
@@ -51,7 +51,7 @@ export const HomePage = () => {
   return (
     <>
       <div>
-        <Header />
+        <Header page2="home" />
         <HeaderMargin />
         <Block>
           <Sidebar page="home" />

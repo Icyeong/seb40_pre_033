@@ -5,10 +5,9 @@ import { useParams } from 'react-router-dom';
 import { addAnswer } from '../../redux/actions/questionAction';
 import ReactSummernoteLite from '@easylogic/react-summernote';
 import useFetch from '../../hooks/useFetch';
-import { BodyErrorIcon } from '../WriteEdit/style';
+import { BodyErrorIcon, SummerNoteWrapper } from '../WriteEdit/style';
 import { ErrorMessage } from '../Question/ErrorMessage';
 import { HasErrorSvg } from '../../assets/images/LoginSvg';
-import { SummerNoteWrapper } from '../WriteEdit/style';
 
 const Block = styled.div`
   h2 {
@@ -78,11 +77,9 @@ export const AnswerWrite = () => {
       const res = await useFetch('POST', `/comment/${qid}`, inputData);
       dispatch(addAnswer(res));
 
-      console.log('ADD ANSWER', res);
+      // console.log('ADD ANSWER', res);
 
       bodyRef.current.querySelector('.note-editable').innerHTML = '';
-
-      // window.location.reload();
     }
   };
 

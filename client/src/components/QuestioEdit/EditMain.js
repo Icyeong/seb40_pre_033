@@ -65,10 +65,6 @@ export const EditMain = () => {
       question.content;
   }, []);
 
-  useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
-  });
-
   const handleEditQuestion = async () => {
     setTitleError(false);
     setBodyError(false);
@@ -93,11 +89,7 @@ export const EditMain = () => {
         tagsRef.current.classList.add('error');
       }
     } else {
-      console.log('ADD QUESTION');
-      console.log(inputData);
-
       const res = await useFetch('PATCH', `/questions/${qid}`, inputData);
-      console.log('edit question res', res);
       dispatch(editQuestion(res));
 
       navigate(`/questions/${qid}`);
@@ -113,7 +105,6 @@ export const EditMain = () => {
     if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
       setTags([...tags, e.target.value]);
       setTagInput('');
-      console.log(tags);
     }
   };
 

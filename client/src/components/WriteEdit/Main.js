@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { HasErrorSvg } from '../../assets/images/LoginSvg';
@@ -58,10 +57,6 @@ export const Main = () => {
   // const inputData = { title, content: body, tags };
   const inputData = { title, content: body };
 
-  useEffect(() => {
-    console.log('#2', bodyRef.current.querySelector('.note-editable'));
-  });
-
   const handleAddQuestion = async () => {
     setTitleError(false);
     setBodyError(false);
@@ -86,11 +81,7 @@ export const Main = () => {
         tagsRef.current.classList.add('error');
       }
     } else {
-      console.log('ADD QUESTION');
-      console.log(inputData);
-
       const res = await useFetch('POST', '/article', inputData);
-      console.log('add question res', res);
       dispatch(addQuestion(res));
 
       navigate('/');
@@ -106,7 +97,6 @@ export const Main = () => {
     if (e.key === 'Enter' && e.target.value !== '' && filtered.length === 0) {
       setTags([...tags, e.target.value]);
       setTagInput('');
-      console.log(tags);
     }
   };
 
