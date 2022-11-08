@@ -16,6 +16,7 @@ const initialState = {
   email: '',
   vote: 0,
   createAt: '',
+  tags: [],
   comments: [],
 };
 

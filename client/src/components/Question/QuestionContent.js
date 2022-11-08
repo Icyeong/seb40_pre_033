@@ -181,13 +181,10 @@ export const QuestionContent = () => {
     const res = await useFetch('DELETE', `/article/${qid}`);
     dispatch(deleteQuestion(res));
 
-    console.log('DELETE QUESTION', res);
+    // console.log('DELETE QUESTION', res);
 
     navigate('/');
   };
-
-  // 태그 바꾸기
-  const tags = ['임시'];
 
   const rand = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -204,7 +201,7 @@ export const QuestionContent = () => {
     <Block>
       <Body ref={bodyRef}></Body>
       <QuestionTags>
-        {tags.map((tag, idx) => (
+        {question.tags.map((tag, idx) => (
           <li key={idx}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
             <a href="#">{tag}</a>

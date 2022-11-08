@@ -77,11 +77,9 @@ export const AnswerWrite = () => {
       const res = await useFetch('POST', `/comment/${qid}`, inputData);
       dispatch(addAnswer(res));
 
-      console.log('ADD ANSWER', res);
+      // console.log('ADD ANSWER', res);
 
       bodyRef.current.querySelector('.note-editable').innerHTML = '';
-
-      // window.location.reload();
     }
   };
 

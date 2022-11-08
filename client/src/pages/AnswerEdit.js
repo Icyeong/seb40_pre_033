@@ -79,7 +79,7 @@ export const AnswerEdit = () => {
       const res = await useFetch('PATCH', `/comment/${aid}`, inputData);
       dispatch(editAnswer(res));
 
-      console.log('EDIT ANSWER', res);
+      // console.log('EDIT ANSWER', res);
 
       navigate(`/questions/${qid}`);
     }
