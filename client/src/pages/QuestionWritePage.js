@@ -93,10 +93,11 @@ export const QuestionWritePage = () => {
         <Header />
         <HeaderMargin></HeaderMargin>
         <Wrapper>
-          <AsWrapper>
+          <div>
             <AskImg>
-              <AskTitle>Ask public Question </AskTitle>
-              <AskTop></AskTop>
+              <AskTop>
+                <AskTitle>Ask public Question </AskTitle>
+              </AskTop>
             </AskImg>
             <MainContents>
               <ContentsUserWrite>
@@ -142,11 +143,6 @@ export const QuestionWritePage = () => {
                           bodyRef.current.querySelector('.note-editable')
                             .innerText
                         );
-                        bodyRef.current.style = '';
-                      }}
-                      onFocus={() => {
-                        bodyRef.current.style =
-                          'box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5); border: none; outline: 0;';
                       }}
                     />
                   </SummerNoteWrapper>
@@ -168,7 +164,7 @@ export const QuestionWritePage = () => {
                     {tags.map((tagItem, index) => {
                       return (
                         <TagItem key={index}>
-                          <Text>{tagItem}</Text>
+                          <div>{tagItem}</div>
                           <Button onClick={deleteTags}>X</Button>
                         </TagItem>
                       );
@@ -220,7 +216,7 @@ export const QuestionWritePage = () => {
             <PostAnswerButton onClick={handleAddQuestion}>
               Post your Question
             </PostAnswerButton>
-          </AsWrapper>
+          </div>
         </Wrapper>
       </Top>
       <Footer></Footer>
@@ -237,11 +233,6 @@ const Top = styled.div`
   padding: 0px 15px;
 
   // Mobile
-  @media screen and (max-width: 640px) {
-    > h2 {
-      font-size: 14.3846px;
-    }
-  }
 `;
 
 export const Wrapper = styled.div`
@@ -250,32 +241,33 @@ export const Wrapper = styled.div`
   padding: 0px 0px 24px 24px;
 
   // Mobile
-  @media screen and (max-width: 640px) {
-    > h2 {
-      font-size: 14.3846px;
-    }
-  }
 `;
 
 export const AsWrapper = styled.div`
   width: 100%;
 `;
-
-const AskTop = styled.div`
-  width: 600px;
+export const AskTop = styled.div`
   height: 130.34px;
-  background: url(https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368);
-  background-repeat: no-repeat;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
-const AskImg = styled.div`
-  width: 100%;
+export const AskImg = styled.div`
+  background-image: url(https://cdn.sstatic.net/Img/ask/background.svg?v=2e9a8205b368);
+  background-repeat: no-repeat;
+  background-position: right;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 840px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
-const AskTitle = styled.div`
-  width: 400px;
+export const AskTitle = styled.div`
+  width: 100%;
   height: 100px;
   font-size: 27px;
   font-weight: 650;
@@ -283,27 +275,48 @@ const AskTitle = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
+  @media screen and (max-width: 640px) {
+    font-size: 22px;
+  }
 `;
 
 export const MainContents = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  margin-left: -15px;
+  /* justify-content: center; */
+  /* border: 5px solid red; */
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const ContentsUserWrite = styled.div`
-  width: 827px;
+  max-width: 767px;
   margin-bottom: 16px;
   padding: 16px 16px 16px 16px;
+  /* border: 1px solid red; */
   background-color: #ffffff;
   border-radius: 0.8%;
   box-shadow: 0px 0px 4px #d6d9dc;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const ContentsUserHelp = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 40px;
+  @media screen and (max-width: 940px) {
+    display: none;
+  }
 `;
 
 export const AskText1 = styled.div`
@@ -312,16 +325,25 @@ export const AskText1 = styled.div`
   font-size: 15px;
   font-weight: bold;
   margin: 10px 0px 0px;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const AskText2 = styled.div`
   width: 600px;
   height: 100%;
   font-size: 12px;
+  /* border: solid pink; */
   display: flex;
   justify-content: left;
   align-items: baseline;
   margin: 0px 0px 10px 0px;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const TitleInput = styled.input`
@@ -334,89 +356,124 @@ export const TitleInput = styled.input`
   color: var(--fc-dark);
   font-size: 13px;
   border-radius: 2px;
-
   &.error {
     border: 1px solid rgb(222, 79, 84);
     outline: rgb(249, 210, 211) solid 4px;
   }
-
   &:focus {
     box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
     border: none;
     outline: 0;
   }
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const Box = styled.div`
   position: relative;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const Userwrite = styled.div`
   font-size: 14px;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const SummerNotePreview = styled.div`
   width: 100%;
   height: 300px;
+  /* border: solid black 5px; */
 `;
 
-const SidebarBox = styled.div`
+export const SidebarBox = styled.div`
   width: 340px;
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 940px) {
+    width: 100%;
+  }
 `;
 
-const Sidebarbox2 = styled.div`
+export const Sidebarbox2 = styled.div`
   box-shadow: 0px 0px 4px #d6d9dc;
   height: auto;
+  @media screen and (max-width: 940px) {
+    width: 100%;
+  }
 `;
 
-const Sidebarwidget = styled.div`
+export const Sidebarwidget = styled.div`
   padding: 15px 15px 15px 20px;
   color: #525060;
   background-color: #f8f9f9;
   font-size: 15px;
   box-shadow: 0px 0px 4px #d6d9dc;
+  @media screen and (max-width: 940px) {
+    width: 100%;
+  }
 `;
-const Sidebarwidget2 = styled.div`
+export const Sidebarwidget2 = styled.div`
   margin: 0px 0px 10px 0px;
   font-size: 13px;
+  /* border: 1px solid pink; */
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
-const TextList = styled.ul`
+export const TextList = styled.ul`
   margin-top: 15px;
+  /* border: 1px solid red; */
   font-size: 13px;
   row-gap: 5px;
   padding: 0px 15px 0px 25px;
   li {
     list-style: disc;
   }
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
-const Sidebarwidget3 = styled.div`
+export const Sidebarwidget3 = styled.div`
   margin-top: 37px;
   font-weight: bold;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const TagBox = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 50px;
+  height: 38px;
   margin: 10px 0;
   padding: 0 10px;
   border: 1px solid var(--bc-darker);
   border-radius: var(--br-sm);
-
   &.error {
     border: 1px solid rgb(222, 79, 84);
     outline: rgb(249, 210, 211) solid 4px;
   }
-
   &:focus-within {
     box-shadow: 0px 0px 3px 3px rgba(107, 186, 247, 0.5);
     border: none;
     outline: 0;
+  }
+  @media screen and (max-width: 940px) {
+    background-image: none;
   }
 `;
 
@@ -429,6 +486,9 @@ export const TagInput = styled.input`
   border: none;
   outline: none;
   cursor: text;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+  }
 `;
 
 export const TagItem = styled.div`
@@ -442,6 +502,10 @@ export const TagItem = styled.div`
   color: rgb(57, 115, 157);
   font-size: 12px;
   font-weight: 620;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    height: 65%;
+  }
 `;
 
 export const Text = styled.span``;
@@ -456,29 +520,49 @@ export const Button = styled.button`
   border-radius: 50%;
   color: rgb(57, 115, 157);
   font-weight: 620;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const SummerNoteWrapper = styled.div`
   &.error {
     border: 1px solid rgb(222, 79, 84);
     outline: rgb(249, 210, 211) solid 4px;
+    @media screen and (max-width: 940px) {
+      background-image: none;
+      width: 100%;
+    }
   }
 `;
 
-const TitleErrorIcon = styled.div`
+export const TitleErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 51px;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const BodyErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 214px;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
-const TagsErrorIcon = styled.div`
+export const TagsErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 60px;
+  @media screen and (max-width: 940px) {
+    background-image: none;
+    width: 100%;
+  }
 `;

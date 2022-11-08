@@ -32,6 +32,7 @@ import { ErrorMessage } from '../components/Question/ErrorMessage';
 import { HasErrorSvg } from '../assets/images/LoginSvg';
 import { Header } from '../components/Home/Header/Header';
 import { editQuestion } from '../redux/actions/questionsAction';
+// import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 import { Sidebar } from '../components/Home/Sidebar/Sidebar';
 
 export const QuestionEditPage = () => {
@@ -253,6 +254,10 @@ export const Top = styled.div`
   align-items: center;
   padding: 0px 15px;
   border: 3px red solid;
+  @media screen and (max-width: 840px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const AskTitle = styled.div`
@@ -268,26 +273,46 @@ export const AskTitle = styled.div`
   border-radius: 3px;
   font-size: 13px;
   line-height: 17px;
+  @media screen and (max-width: 840px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
   padding: 12px 0 16px 0;
+  @media screen and (max-width: 840px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 const TitleErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 51px;
+  @media screen and (max-width: 840px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 const BodyErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 214px;
+  @media screen and (max-width: 840px) {
+    background-image: none;
+    width: 100%;
+  }
 `;
 
 const TagsErrorIcon = styled.div`
   position: absolute;
   right: 10px;
   top: 60px;
+  @media screen and (max-width: 840px) {
+    background-image: none;
+    width: 100%;
+  }
 `;

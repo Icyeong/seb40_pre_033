@@ -65,4 +65,7 @@ export const Body = styled.div`
     margin: 2px 2px 2px 0px;
     padding: 4.8px 6px;
   }
+  @media screen and (max-width: 640px) {
+    width: 100%;
+  }
 `;
