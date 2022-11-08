@@ -14,7 +14,7 @@ const useFetch = (method, url, fetchData) => {
 
   // const API = process.env.REACT_APP_API_URL;
   return fetch(
-    'https://fe54-14-55-61-123.jp.ngrok.io' + url,
+    'https://stackoverflow-cloning.herokuapp.com' + url,
     defaultOptions
   ).then(async (res) => {
     if (!res.ok) {
