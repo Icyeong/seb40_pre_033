@@ -40,7 +40,7 @@ http://33stackoverflow.s3-website.ap-northeast-2.amazonaws.com/
 ### Back-end
 
 
-임원용|김은진|정희윤
+🏅 임원용|김은진|정희윤
 :---:|:---:|:---:
 ||||
 [Im WonYong](https://github.com/ImWonYong)|[kim eunjin](https://github.com/2d3k)|[HuiYun](https://github.com/Tldkt)
