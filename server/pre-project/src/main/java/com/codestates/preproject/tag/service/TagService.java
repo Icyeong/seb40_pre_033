@@ -1,12 +1,15 @@
 package com.codestates.preproject.tag.service;
 
+import com.codestates.preproject.article.Article;
+import com.codestates.preproject.article.ArticleRepository;
 import com.codestates.preproject.exception.BusinessLogicException;
 import com.codestates.preproject.exception.ExceptionCode;
 import com.codestates.preproject.tag.entity.Tag;
 import com.codestates.preproject.tag.repository.TagRepository;
+import com.codestates.preproject.user.entity.User;
+import com.codestates.preproject.user.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +20,12 @@ import java.util.Optional;
 public class TagService {
 
     private TagRepository tagRepository;
+    private ArticleRepository articleRepository;
 
-    public TagService(TagRepository tagRepository) {
+
+    public TagService(TagRepository tagRepository, ArticleRepository articleRepository) {
         this.tagRepository = tagRepository;
+        this.articleRepository = articleRepository;
     }
 
     // 태그 1개 조회
@@ -32,30 +38,15 @@ public class TagService {
 
     // 태그 전체 조회
     @Transactional
-    public Page<Tag> findTags(Long articleId, int page, int size) {
+    public List<Tag> findTags() {
 
-        return tagRepository.findAllByArticleId(articleId, PageRequest.of(page, size));
+        return tagRepository.findAll();
     }
 
     // 태그 생성
     @Transactional
     public Tag createTag(Tag tag) {
-
-//        tag = tagRepository.findByTagId(tagPostDto.getTagId());
-//
-//        if (tag == null) {
-//            tag = new Tag();
-//            tag.setName(tagPostDto.getName());
-//            tag.setContent(tagPostDto.getContent());
-//
-//            return tagRepository.save(tag);
-//
-//        }
-//
-//        return tag;
-
         return tagRepository.save(tag);
-
     }
 
     // 태그 수정

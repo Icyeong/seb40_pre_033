@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface TagMapper {
 
-    Tag tagPostToTag(TagPostDto tagPostDto);
+//    Tag tagPostToTag(TagPostDto tagPostDto);
 
     Tag tagPatchToTag(Long tagId, TagPatchDto tagPatchDto);
 

@@ -33,18 +33,12 @@ public class CommentController {
     private final CommentService commentService;
     private final CommentMapper commentMapper;
 
-    private final UserService userService;
     private final ArticleService articleService;
 
-    private final UserRepository userRepository;
-
-
-    public CommentController(CommentService commentService, CommentMapper commentMapper, UserService userService, ArticleService articleService, UserRepository userRepository) {
+    public CommentController(CommentService commentService, CommentMapper commentMapper, ArticleService articleService) {
         this.commentService = commentService;
         this.commentMapper = commentMapper;
-        this.userService = userService;
         this.articleService = articleService;
-        this.userRepository = userRepository;
     }
 
     // 답변 한명 조회
@@ -60,17 +54,17 @@ public class CommentController {
         );
     }
 
-/*    // 답변 전체 조회
-    @GetMapping("/all")
-    public ResponseEntity getComments() {
-
-        List<Comment> comments = commentService.findComments();
-
-        return new ResponseEntity<>(
-                commentMapper.commentsToCommentResponse(comments),
-                HttpStatus.OK
-        );
-    }*/
+    // 답변 전체 조회
+//    @GetMapping("/all")
+//    public ResponseEntity getComments() {
+//
+//        List<Comment> comments = commentService.findComments();
+//
+//        return new ResponseEntity<>(
+//                commentMapper.commentsToCommentResponse(comments),
+//                HttpStatus.OK
+//        );
+//    }
 
     // 답변 생성
     @PostMapping("/{article-id}")

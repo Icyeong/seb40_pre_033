@@ -1,24 +1,22 @@
 package com.codestates.preproject.tag.dto;
 
 import com.codestates.preproject.article.Article;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class TagPostDto {
 
     private Long tagId;
-    private String name;
-    private String content;
-    private Article article;
+    private List<String> name;
 
-    public TagPostDto(String name, String content) {
+    public TagPostDto(List<String> name) {
         this.name = name;
-        this.content = content;
     }
 
 }
