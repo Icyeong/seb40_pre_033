@@ -34,9 +34,6 @@ const Block = styled.div`
 export const Answers = () => {
   let question = useSelector((state) => state.questionReducer);
 
-  // 태그 바꾸기
-  const tags = ['임시'];
-
   return (
     <Block>
       <AnswersHeader />
@@ -49,7 +46,7 @@ export const Answers = () => {
       <h2>
         Not the answer you&#39;re looking for? Browse other questions tagged{' '}
         <Tags>
-          {tags.map((tag, idx) => (
+          {question.tags.map((tag, idx) => (
             <li key={idx}>
               {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a href="#">{tag}</a>

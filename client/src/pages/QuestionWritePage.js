@@ -33,8 +33,7 @@ export const QuestionWritePage = () => {
   const [bodyError, setBodyError] = useState(false);
   const [tagsError, setTagsError] = useState(false);
 
-  // const inputData = { title, content: body, tags };
-  const inputData = { title, content: body };
+  const inputData = { title, content: body, tags };
 
   const handleAddQuestion = async () => {
     setTitleError(false);

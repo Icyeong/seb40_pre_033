@@ -13,9 +13,6 @@ export const Question = (type) => {
     bodyRef.current.innerHTML = questions[type.idx].content;
   }
 
-  // 태그 바꾸기
-  const tags = ['임시'];
-
   if (questions[type.idx].createAt) {
     var date = `${questions[type.idx].createAt.slice(0, 10)} ${questions[
       type.idx
@@ -43,7 +40,7 @@ export const Question = (type) => {
         <div className="question-content" ref={bodyRef}></div>
         <div className="question-information">
           <Tags>
-            {tags.map((tag, idx) => (
+            {questions[type.idx].tags.map((tag, idx) => (
               <li key={idx}>
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a href="#">{tag}</a>
