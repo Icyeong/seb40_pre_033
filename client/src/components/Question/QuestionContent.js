@@ -181,7 +181,7 @@ export const QuestionContent = () => {
     const res = await useFetch('DELETE', `/article/${qid}`);
     dispatch(deleteQuestion(res));
 
-    console.log('DELETE QUESTION', res);
+    // console.log('DELETE QUESTION', res);
 
     navigate('/');
   };

@@ -51,7 +51,7 @@ export const QuestionEditPage = () => {
   const [textBody, setTextBody] = useState('');
 
   const [tagInput, setTagInput] = useState('');
-  const [tags, setTags] = useState(['임시']);
+  const [tags, setTags] = useState(question.tags);
 
   const [titleError, setTitleError] = useState(false);
   const [bodyError, setBodyError] = useState(false);
@@ -68,6 +68,8 @@ export const QuestionEditPage = () => {
   }, []);
 
   const handleEditQuestion = async () => {
+    // console.log('#1', inputData);
+
     setTitleError(false);
     setBodyError(false);
     setTagsError(false);
@@ -94,7 +96,7 @@ export const QuestionEditPage = () => {
       const res = await useFetch('PATCH', `/article/${qid}`, inputData);
       dispatch(editQuestion(res));
 
-      console.log('EDIT QUESTION', res);
+      // console.log('EDIT QUESTION', res);
       navigate(`/questions/${qid}`);
     }
   };

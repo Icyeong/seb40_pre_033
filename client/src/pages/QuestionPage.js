@@ -64,7 +64,7 @@ export const QuestionPage = () => {
       setIsLoading(false);
     });
 
-    console.log('GET QUESTION', res);
+    // console.log('GET QUESTION', res);
     dispatch(getQuestion(res));
   };
 

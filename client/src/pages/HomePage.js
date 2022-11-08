@@ -43,7 +43,7 @@ export const HomePage = () => {
     ).finally(() => {
       setIsLoading(false);
     });
-    console.log('GET QUESTIONS', res);
+    // console.log('GET QUESTIONS', res);
     dispatch(getQuestions(res));
   };
 

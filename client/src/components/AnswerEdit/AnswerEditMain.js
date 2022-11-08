@@ -59,7 +59,7 @@ export const AnswerEditMain = () => {
 
       navigate(`/article/${qid}`);
 
-      console.log('EDIT ANSWER', res);
+      // console.log('EDIT ANSWER', res);
     }
   };
 

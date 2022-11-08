@@ -60,9 +60,10 @@ export const QuestionWritePage = () => {
       }
     } else {
       const res = await useFetch('POST', '/article', inputData);
+      // console.log('#1', inputData);
       dispatch(addQuestion(res));
 
-      console.log('ADD QUESTION', res);
+      // console.log('ADD QUESTION', res);
 
       navigate('/');
     }
