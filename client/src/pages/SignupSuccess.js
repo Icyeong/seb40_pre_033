@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { CheckSvg } from '../assets/images/SignupSvg';
 import { Wrapper } from '../assets/styles/LoginStyle';
@@ -31,6 +32,7 @@ const Flexbox = styled.div`
 `;
 
 const SignupSuccess = () => {
+  const email = useSelector((state) => state.userReducer.email);
   return (
     <>
       <Header />
@@ -39,8 +41,8 @@ const SignupSuccess = () => {
           <CheckSvg />
           <div className="successBox">
             <p>
-              Registration email sent to test@gamil.com. Open this email to
-              finish signup.
+              Registration email sent to {email}. Open this email to finish
+              signup.
             </p>
             <p>
               If you don’t see this email in your inbox within 15 minutes, look

@@ -135,6 +135,7 @@ const SignupForm = () => {
       navigate('/');
       // 회원가입 성공
     } else {
+      dispatch(getmyInfo({ email }));
       navigate('/users/signup/success');
     }
   };
